@@ -5,20 +5,19 @@ import { Action } from 'history';
 export const counterSlice  = createSlice({
     name:"mode",
     initialState:{
-        light:true
+        light:true,
+        role:""
     },
     reducers:{
         changeLight:(state)=>{
             state.light =!state.light;
         },
-        decrement:(state)=>{
-            // state.value -=1;
+        setRole:(state,action)=>{
+            state.role =action.payload;
         },
-        incrementByAmount:(state,action)=>{
-            // state.value += action.payload;
-        }
+        
     }
 });
 
-export const {changeLight,decrement,incrementByAmount}=counterSlice.actions
+export const {changeLight,setRole,}=counterSlice.actions
 export default counterSlice.reducer;

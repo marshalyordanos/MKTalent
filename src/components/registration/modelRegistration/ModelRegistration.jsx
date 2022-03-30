@@ -1,8 +1,6 @@
 
-import { Image } from '@mui/icons-material';
-import { light } from '@mui/material/styles/createPalette';
 import React, { useState } from 'react'
-import { Button, NavLink } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {ToastContainer,toast} from 'react-toastify'
@@ -13,14 +11,16 @@ import 'react-toastify/dist/ReactToastify.css';
 import styled from 'styled-components';
 
 
-
-import SignupImg from '../img/signup.png';
 const ModelRegistration = () => {
   const light = useSelector(state=>state.mode.light)
+  const roleType = useSelector(state=>state.mode.role)
+  console.log("lkndksdnskldncksdnlksd",roleType)
+
   
   const [value,setValue] = useState({
      username:"",
      email:'',
+     role:'',
      gender:"",
      password:"",
      passwordConfirm:""
@@ -45,7 +45,7 @@ const ModelRegistration = () => {
   
   const handleValidation = (e)=>{
      e.preventDefault();
- const {email,username,gender,password,passwordConfirm} = value;
+ const {email,role,username,gender,password,passwordConfirm} = value;
       if(!username){
       toast.error("Please provide your username",toastOption)
     }
@@ -53,7 +53,10 @@ const ModelRegistration = () => {
       toast.error("Please provide your emal",toastOption)
     }else if(!gender){
       toast.error("Please provide your gender",toastOption)
-    }else if(!password){
+    }else if(!role){
+      toast.error("Please provide your role",toastOption)
+    }
+    else if(!password){
       toast.error("Please provide your password",toastOption)
     }
     else if(password!==passwordConfirm){
@@ -78,13 +81,31 @@ console.log(light)
       <label for="email">Email</label>
       <input name="email" onChange={(e)=>onChangeHandler(e)} value={value.email} id="email" type="emial" placeholder='email' />
      
-     <label for="gender">Gender</label>
+     <div style={{display:"flex",justifyContent:"space-between",width:"500px"}}>
+      <div className="form-group">
+             <label for="gender">Gender</label>
 
-      <select onChange={(e)=>onChangeHandler(e)} name="gender" id="gender">
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-      </select>
-     
+            <select className="form-control" onChange={(e)=>onChangeHandler(e)} name="gender" id="gender">
+            <option hidden >Select your gender</option>
+              
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+      </div>
+      <div className="form-group">
+             <label for="role">Role</label>
+
+            <select defaultValue={roleType} className="form-control" onChange={(e)=>onChangeHandler(e)} name="role" id="role">
+            <option hidden >Select your role</option>
+              
+              <option value="model">Model</option>
+              <option value="poet">Poet</option>
+              <option value="musician">Musicain</option>
+              <option value="other">Other</option>
+
+            </select>
+      </div>
+      </div>
      
       <label for="password">Password</label>
       <input name="password" onChange={(e)=>onChangeHandler(e)} value={value.password} id="password" type="Password" placeholder='Password' />
