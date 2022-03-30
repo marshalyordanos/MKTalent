@@ -1,0 +1,68 @@
+.register{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  
+}
+.register__box{
+  display: flex;
+  height: 75vh;
+  align-items: center;
+  justify-content: space-evenly;
+  max-width: 1100px;
+  margin: auto;
+  flex-wrap: wrap;
+}
+.register__box > div{
+  width: 210px;
+  height: 220px;
+  margin: 30px;
+
+
+
+}
+.register__box a{
+  text-decoration: none;
+  color: black;
+}
+.register__box > div:hover{
+  box-shadow: 4px 4px 15px rgb(199, 199, 199);
+}
+.register__box > div div{
+ overflow: hidden;
+ height: 180px;
+
+}
+
+.register__box img{
+  /* width: 200px; */
+  margin-left: -50px;
+  height: 180px;
+  transition: all 0.4s;
+}
+.register__box > div:hover img{
+ height: 200px;
+}
+.register__box p{
+  text-align: center;
+  padding-top: 10px;
+}
+
+
+/* dark style  */
+
+.register__dark{
+  position: absolute;
+  background-color: #292929;
+  height: 100%;
+  width: 100%;
+}
+
+
+.register__dark .register__box > div:hover{
+  box-shadow: 4px 4px 15px rgb(83, 83, 83);
+}
+
+.register__dark p{
+  color: white;
+}

@@ -1,0 +1,35 @@
+.navbar__lightBtn:hover{
+  background: rgb(51, 51, 51);
+}
+.navbar__con{
+  background-color: #198754;
+  /* background-color: #FFA000; */
+  color: black;
+
+}
+.navbar__con1 > a{
+   color: white;
+   text-decoration:none ;
+}
+.navbar__left >a{
+  
+  color: white;
+  text-decoration:none ;
+}
+.navbar__con__dark{
+  background-color: rgb(71, 71, 71);
+}
+.navbar__left{
+  display: flex;
+  align-items: center;
+}
+
+
+@media only screen and (max-width:1000px) {
+  .navbar__left{
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  
+}

@@ -1,0 +1,61 @@
+.moreInformation__stepper{
+
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+/* dark */
+.moreInformation__dark{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #474747;
+    color: white;
+}
+
+
+
+
+
+
+/* first step */
+
+.firstStep{
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: auto;
+    justify-content: center;
+    
+    
+}
+.firstStep h1{
+    margin:10px 40px 30px 40px ;
+    font-size: 33px;
+}
+.firstStep p{
+ border: 1px solid rgb(196, 196, 196);
+ padding: 13px 20px;
+ border-radius: 10px;
+}
+.firstStep p:hover{
+    border-color: #198754;
+    box-shadow: 1px 1px 10px #adf3d2;
+}
+.firstStep .firstStep__selecte{
+    
+    border-color: #198754;
+    box-shadow: 1px 1px 10px #adf3d2;
+}
+.firstStep a{
+    align-self: center;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    padding: 10px 35px;
+    border-radius: 5px;
+    background: #198754;
+}
+.firstStep input{
+    display: none;
+}
