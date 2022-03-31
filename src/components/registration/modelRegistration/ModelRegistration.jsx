@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 // import './ModelRegistration.css'
 import styled from 'styled-components';
+import api from '../../../api/api';
 
 
 const ModelRegistration = () => {
@@ -43,7 +44,7 @@ const ModelRegistration = () => {
      setValue({...value,[e.target.name]:e.target.value})
   }
   
-  const handleValidation = (e)=>{
+  const handleValidation = async(e)=>{
      e.preventDefault();
  const {email,role,username,gender,password,passwordConfirm} = value;
       if(!username){
@@ -61,6 +62,13 @@ const ModelRegistration = () => {
     }
     else if(password!==passwordConfirm){
       toast.error("Your password and confirm password is not match",toastOption)
+    }else{
+      try{
+         const res = await api.post('/users/signup',value)
+         console.log("ooooooooooooooooo",res)
+      }catch(err){
+        console.log("ooooooooooooooooo",err)
+      }
     }
      
   }  
