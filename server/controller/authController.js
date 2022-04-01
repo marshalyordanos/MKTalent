@@ -5,6 +5,7 @@ const AppErorr = require('../utils/appError')
 const catchAsync = require('../utils/catchAsync')
  
 const getToken =(id)=>{
+    //check your code aeound here you may have forgotten id:id and said only id
     return jwt.sign({id:id},process.env.JWT_SECRETE,{
         expiresIn:"30d"
     })

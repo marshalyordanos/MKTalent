@@ -34,6 +34,7 @@ const Login = () => {
           else if(!password){
             toast.error("Please provide your password",toastOption)
           }
+          
     }
   return (
         <div className={light?"login":"login login__dark"}>
