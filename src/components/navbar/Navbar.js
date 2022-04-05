@@ -14,7 +14,7 @@ const NavbarApp = (props) => {
   return (
     <div  style={{position:'sticky',top:'0px',borderBottom:"1px solid black",zIndex:1}}>
  {/* <Button  variant="primary">Button #1</Button> */}
-<Navbar collapseOnSelect  className={light?'navbar__con':'navbar__con navbar__con__dark'} expand="lg" variant="dark">
+<Navbar collapseOnSelect bg="dark" className={light?'navbar__con':'navbar__con navbar__con__dark'} expand="lg" variant="dark">
   <Container className='navbar__con1'>
   <NavLink to="/home"><Navbar.Brand >MK-Talent</Navbar.Brand></NavLink>
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />

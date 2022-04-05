@@ -109,7 +109,7 @@ const Home = () => {
      </div>
    </div>
    {/* Developer Information */}
-   <div className={light?'home__dev':"home__dev home__dev__dark"}>
+   <div className={light?'home__dev bg-gray-900 ':"home__dev home__dev__dark"}>
      <div className='home__dev__title'>
      <h1>MK-Talent Developers</h1>
         <p>Here's the developers that develop MK-TAlent </p>

@@ -7,6 +7,7 @@ import NavbarApp from './components/navbar/Navbar';
 import Model from './utils/Model'
 import Login from './components/login/Login'
 import { Navigate, Route, Routes } from 'react-router-dom';
+import Layout from './components/layout/LayoutApp'
 const HomeApp = () => {
   const [showLogin, setShowLogin] = React.useState(false);
   const handleShowLoginOpen = () => setShowLogin(true);
@@ -23,7 +24,7 @@ const HomeApp = () => {
           <Route path='/home' element={<Home/>} />
           <Route path='/register' element={<Register/>} />
           <Route path='/registeruser' element={<ModelRegistration/>} />
-
+          <Route path='/talent' element={<Layout/>} />
 
           
 

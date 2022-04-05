@@ -4,7 +4,7 @@ import './usercard.css'
 
 const Usercard = () => {
   return (
-    <div className='usercard'>
+    <div className='usercard bg-gray-800'>
         <div className='usercard__top'>
         <Avatar aria-label="recipe" style={{
                      width:"60px",

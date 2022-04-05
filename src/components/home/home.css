@@ -108,7 +108,7 @@ justify-content: center;
   padding-bottom: 20px;
 }
 .home__dev{
-  background-color:#198754 ;
+  /* background-color:rgb(255, 143, 15) ; */
 }
 .home__card{
   display: flex;
