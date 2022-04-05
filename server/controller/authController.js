@@ -24,18 +24,7 @@ exports.signup = catchAsync(async(req,res,next)=>{
 })
 
 
-exports.login = catchAsync(async(req,res,next)=>{
-    //
-    const newUser = await User.create(req.body)
 
-    const token = getToken(newUser._id)
-
-    res.status(200).json({
-        success:"success",
-        token:token,
-        data:newUser
-    })
-})
 
 exports.login  = catchAsync(async(req,res,next)=>{
     const {email,password} = req.body
