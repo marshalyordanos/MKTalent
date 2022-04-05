@@ -6,7 +6,7 @@ import ModelRegistration from './components/registration/modelRegistration/Model
 import NavbarApp from './components/navbar/Navbar';
 import Model from './utils/Model'
 import Login from './components/login/Login'
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 const HomeApp = () => {
   const [showLogin, setShowLogin] = React.useState(false);
   const handleShowLoginOpen = () => setShowLogin(true);
@@ -17,6 +17,9 @@ const HomeApp = () => {
       <Model show={showLogin} onClosed={handleShowLoginClose} ><Login /></Model>
         <NavbarApp modelOpen={handleShowLoginOpen}/>
         <Routes>
+          
+          <Route path='/' element={<Navigate to={"/home"}  />} />
+
           <Route path='/home' element={<Home/>} />
           <Route path='/register' element={<Register/>} />
           <Route path='/registeruser' element={<ModelRegistration/>} />
