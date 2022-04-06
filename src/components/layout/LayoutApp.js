@@ -27,6 +27,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
 import VideoCard from '../fragments/VideoCard';
 import VideoPage from '../../pages/VideoPage';
+import PostCard from '../fragments/PostCard';
 const { Header, Sider,Footer, Content } = Layout;
 
 
@@ -182,9 +183,14 @@ const LayoutApp =()=> {
           >
             <div className='flex justify-between'>
               
-              <div className=' border-solid border-r-[1px] border-[#d2d2d2] '>
+              <div className='pr-20 border-solid border-r-[1px] border-[#d2d2d2] '>
                 
-                <VideoPage/>
+                {/* <VideoPage/> */}
+                <PostCard/>
+                <PostCard/>
+                <PostCard/>
+                <PostCard/>
+
                 
 
               </div>
