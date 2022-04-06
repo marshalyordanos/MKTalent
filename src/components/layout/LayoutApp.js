@@ -28,6 +28,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import VideoCard from '../fragments/VideoCard';
 import VideoPage from '../../pages/VideoPage';
 import PostCard from '../fragments/PostCard';
+import Posts from '../../pages/Posts';
 const { Header, Sider,Footer, Content } = Layout;
 
 
@@ -175,7 +176,7 @@ const LayoutApp =()=> {
           </Header>
           <Layout>
           <Content
-            className={`${!light ? "bg-[#001529]":"bg-[#fbfbfb]"}`}
+            className={`${!light ? "bg-[#001529]":"bg-[#FAFAFA]"}`}
             style={{
               padding: '0 16px',
               minHeight: 280,
@@ -183,13 +184,10 @@ const LayoutApp =()=> {
           >
             <div className='flex justify-between'>
               
-              <div className='pr-20 border-solid border-r-[1px] border-[#d2d2d2] '>
+              <div className=' border-solid border-r-[1px] border-[#d2d2d2] '>
                 
-                {/* <VideoPage/> */}
-                <PostCard/>
-                <PostCard/>
-                <PostCard/>
-                <PostCard/>
+                <VideoPage/>
+                {/* <Posts/> */}
 
                 
 
