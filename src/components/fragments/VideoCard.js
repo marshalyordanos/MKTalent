@@ -5,8 +5,10 @@ import Image2 from '../../assets/page/videopage/sec.jpg'
 import styled from 'styled-components'
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';import { IconButton } from '@mui/material'
 import { Modal, Button } from 'antd';
+import { useSelector } from 'react-redux'
 
 const VideoCard = () => {
+    const light = useSelector(state=>state.mode.light)
     const [play,setPlay]= useState(false)
     const [showModal,setShowModal]= useState(false)
     const setModalVisible =()=>{
@@ -16,7 +18,7 @@ const VideoCard = () => {
   return (
     <VideoCard1  >
         
-        <div className='imgZoom'>
+        <div className={`imgZoom  `}>
             <div onClick={setModalVisible}>
             <img   src={Image2} className="w-[230px] rounded-md h-[200px] object-cover  "  />
             <IconButton sx={{position:"absolute",top:"70px",left:"100px"}} >
@@ -26,22 +28,25 @@ const VideoCard = () => {
         </div>
         <div className='flex items-center  ' >
             <img src={Image} className="w-[40px] m-2 h-[40px] object-cover rounded-full " alt="" />
-            <p className=' m-2 text-base'>Marshal yordanos</p>
+            <p className={` m-2 text-base ${!light&&"dark:text-white "}`}>Marshal yordanos</p>
         </div>
         <div className=' absolute top-0'>
             
             <Modal
             title="Title"
             centered
+            
+            bodyStyle={{backgroundColor:!light&&"#001529"}}
             visible={showModal}
             // onOk={() => setModalVisible(false)}
             onCancel={() => setShowModal(false)}
             okButtonProps={false}
             width={950}
+            className="kkk"
             footer={[
               ]}
             >
-              <div className=''>
+              <div className={`${!light&&"dark:text-white dark:bg-slate-900"}`}>
               <div>
               <video width="920" height="440" controls>
                 <source src={Abel} type="video/mp4"/>
@@ -69,6 +74,9 @@ const VideoCard = () => {
 
 
 const VideoCard1  = styled.div`
+   .kkk{
+     background-color: red;
+   }
     :hover .imgZoom img{
         transform: scale(1.5);
         transition: all 0.5s;

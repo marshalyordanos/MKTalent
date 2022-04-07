@@ -1,8 +1,11 @@
 
 import {useState} from 'react'
+import { useSelector } from 'react-redux';
 import RightSideBarUserCard from './RightSideBarUserCard';
 
 function UserStatus() {
+  const light = useSelector(state=>state.mode.light)
+
   const [page,setPage]=useState(1);
   const pageNewest=()=>{
     setPage(1);
@@ -15,9 +18,9 @@ function UserStatus() {
   }
   return (
     
-    <div className=' box-content pb-4  bg-[#F6F0FC] w-[300px] rounded-xl'>
+    <div className={` box-content pb-4 ${!light?"dark:text-white dark:bg-[#320064]":"bg-[#F6F0FC]"}  w-[300px] rounded-xl`}>
       
-<h1 className=' py-2 pt-3 text-xl border-blue-500 w-[73px] border-b-2 mx-3 my-8 '>Members</h1>
+<h1 className={`py-2 pt-3 text-xl border-blue-500 w-[73px] border-b-2 mx-3 my-8 ${!light&&"dark:text-white "}`}>Members</h1>
 <span className="flex flex-rows px-2">
 <p className="text-base mx-3 hover:cursor-pointer
 border-b-2  

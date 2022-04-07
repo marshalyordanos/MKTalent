@@ -58,10 +58,10 @@ const menu = (
 
 
 
-const LayoutApp =()=> {
+const LayoutApp =(props)=> {
   const dispatch = useDispatch()
   const [collapsed,setCollapsed]=useState(false)
-  const [windowWidth,setWindowWidth]=useState(3000)
+  const [windowWidth,setWindowWidth]=useState(window.innerWidth)
   const light = useSelector(state=>state.mode.light)
   useEffect(() => {
     function handleResize() {
@@ -85,7 +85,8 @@ const LayoutApp =()=> {
         <Sider breakpoint="lg" width={300} style={{backgroundColor:light?"#F0F2F5":"#001529",
                                                    borderRight:!light&&"1px solid #00417e",
                                                    minHeight:"100vh",
-                                                   position:"fixed"
+                                                   position:"fixed",
+                                                   zIndex:101
                                                    }}  trigger={null} collapsible collapsed={windowWidth<1370?true:collapsed}>
           <div >
           <div className={`flex ${collapsed||windowWidth<1370?"h-[67px]":"h-60"} justify-center items-center bg-[#001529]   border-solid border-red-700 `}  >
@@ -182,19 +183,21 @@ const LayoutApp =()=> {
               minHeight: 280,
             }}
           >
-            <div className='flex justify-between'>
+            <div className='Layoutapp__content'>
               
-              <div className=' border-solid border-r-[1px] border-[#d2d2d2] '>
+              <div className=' flex-grow border-solid border-r-[1px] border-[#d2d2d2] '>
                 
-                <VideoPage/>
+                {/* <VideoPage/> */}
                 {/* <Posts/> */}
 
-                
+                {props.children}
 
               </div>
+              {windowWidth<1200?"":
               <div className='px-10 h-[88vh] sticky top-20 '>
-                <UserStatus/>
-              </div>
+              <UserStatus/>
+            </div>
+              }
             
             </div>
 
@@ -216,7 +219,10 @@ const LayoutStyle = styled.div`
    *{
      transition:all 0.1s;
    }
-   
+   .Layoutapp__content{
+     display: flex;
+     justify-content: center;
+   }
    .navbar-a{
     
     height: 61px;
@@ -248,6 +254,17 @@ const LayoutStyle = styled.div`
    .dark__navbar_a .active:hover{
      color: white;
    }
+
+   @media screen and (max-width: 1200px) {
+   .Layoutapp__content{
+    justify-content: center;
+  }
+}
+@media screen and (max-width: 1200px) {
+   .Layoutapp__content{
+    justify-content: center;
+  }
+}
    
 `;
 
