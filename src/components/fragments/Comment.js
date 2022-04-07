@@ -2,6 +2,7 @@ import React from 'react';
 import Profile from '../../assets//page/profile.png'
 import {Link}from 'react-router-dom'
 import styled from 'styled-components'
+
 const Comment = (props) => {
   return (
     <div>
