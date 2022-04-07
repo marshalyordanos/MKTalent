@@ -33,3 +33,7 @@
     margin-bottom: 8px;
     margin-left: 8px;
   }
+
+
+
+  /* ${!light&&"dark:text-white dark:bg-slate-900"} */

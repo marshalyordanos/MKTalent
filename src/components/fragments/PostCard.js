@@ -14,7 +14,7 @@ const PostCard = (props) => {
 
 const [comments,setComments]=useState(defaultcomments)
   return (
-    <div className=" box-content  w-[500px] p-4 justify-start overflow-hidden">
+    <div className=" border-[1px] m-5 box-content  w-[600px] p-4 justify-start overflow-hidden">
    <RightSideBarUserCard username="John Doe" 
    status="7 hours, 57 minutes ago"/>
 <div className=" px-9">

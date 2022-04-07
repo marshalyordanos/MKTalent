@@ -25,9 +25,11 @@ export default function BasicModal(props) {
         onClose={props.onClosed}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        
       >
       {props.children}
       </Modal>
     </div>
   );
 }
+
