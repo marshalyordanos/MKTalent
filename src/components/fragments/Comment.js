@@ -1,16 +1,12 @@
-import React from 'react'
-import {useState} from 'react'
-import styled from 'styled-components'
-import Profile from '../../assets/page/profile.png'
+import React from 'react';
+import Profile from '../../assets//page/profile.png'
 import {Link}from 'react-router-dom'
+import styled from 'styled-components'
+
 const Comment = (props) => {
-  return(<div>
-      <PlaceHolder className="flex flex-row">
-   <img src={Profile} className="my-3 mx-3 bg-contain bg-center h-9 w-9 object-cover rounded-3xl"/>
-    <input type="text" className="my-3 rounded-xl bg-slate-200 w-[300px] h-[35px]" placeholder="Write your comment here"/>
-  
-    </PlaceHolder>
-    <PlaceHolder className="flex flex-row">
+  return (
+    <div>
+     <PlaceHolder className="flex flex-row">
     <Link to="/profile/:username" className="flex flex-row">
     <img src={Profile} className="my-3 mx-3 bg-contain 
     bg-center h-9 w-9 
@@ -20,15 +16,16 @@ const Comment = (props) => {
   font-sans antialiased 
   text-base border-b-[1px] 
 border-slate-200  hover:border-b-[1px]  
-  hover:border-blue-500">{props.username}</h4></Link>
+  hover:border-blue-500">{props.username}</h4>
+  </Link>
 <p className='pt-4 px-2' >{props.status}</p>
 
     </PlaceHolder>
-    <p className="my-1 mx-14">{props.comment}</p>
-      </div>
-    )
-    }
-
+      <p className="px-16">{props.comment}</p>
+   
+    </div>
+  );
+}
 const PlaceHolder= styled.div`
 
 input::placeholder{

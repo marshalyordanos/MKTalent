@@ -95,24 +95,28 @@ const LayoutApp =(props)=> {
           </div>
           <Menu theme={!light&&"dark"} style={{backgroundColor:light&&"#F0F2F5"}}  mode="inline" defaultSelectedKeys={['1']}>
             <Menu.Item key="1" icon={<HomeOutlined />}>
-              Home
+            <Link to={"/main"}>Home</Link>
+
             </Menu.Item>
             <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-              Video
+            <Link to={"/videos"}>Video</Link>
+
             </Menu.Item>
             <Menu.Item key="3" icon={<UserOutlined />}>
-              People
+            <Link to={"/peoples"}>People</Link>
+
             </Menu.Item>
             <Menu.Item key="4" icon={<TvIcon/>}>
               Advert
             </Menu.Item>
             <Menu.Item key="5" icon={<FestivalOutlinedIcon />}>
-              Event
+            <Link to={"/events"}>Event</Link>
+
             </Menu.Item>
             
             <Menu.Item key="6" icon={<WorkOutlineOutlinedIcon />}>
               
-            <Link to={"ooo"}>Job</Link>
+            <Link to={"/jobs"}>Job</Link>
             </Menu.Item>
             <Menu.Item key="7" icon={<StickyNote2OutlinedIcon />}>
               Blog

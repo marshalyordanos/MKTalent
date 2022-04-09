@@ -16,7 +16,9 @@ const VideoCard = () => {
         setShowModal(true)
     }
 
+
   return (
+    
     <VideoCard1  >
         
         <div className={`imgZoom  `}>

@@ -2,78 +2,40 @@ import { SearchOutlined } from '@mui/icons-material'
 import { style } from '@mui/system'
 import { Button, Checkbox } from 'antd'
 import React, { useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 import styled from 'styled-components'
 import FilterListIcon from '@mui/icons-material/FilterList';
 import JobCard from '../components/fragments/job/JobCard'
 import JobCatagory from '../components/fragments/job/JobCatagory'
-const JobPage = () => {
+import EventCard from '../components/fragments/event/EventCard'
+const EventPage = () => {
     const [showFilter,setShowFilter]=useState(false)
-    const [showCatagory,setShowCatagory]=useState(false)
 
   return (
-    <JobPageStyle>
+    <EventPageStyle>
         {/* ********** header */}
        <div className='header flex items-center justify-between text-base m-4'>
-           <NavLink  to="/qq">All jobs</NavLink>
-           <span onClick={()=>{
-               setShowCatagory(!showCatagory)
-               setShowFilter(false)
-           }} to="#Catagorys">Categories</span>
+           <NavLink  to="#">All Events</NavLink>
+           
 
 
        </div>
-       <div className='header__bottem '>
-           <div className='header__bottem__one'>
-           <input type="text" placeholder='Keywords' name="" id="" />
-           <input type="text" placeholder='Location' name="" id="" />
-      <Button size={"lage"} type="primary" shape="circle" icon={ <SearchOutlined />} />
-           </div>
-           <div onClick={()=>{
-               setShowFilter(!showFilter)
-               setShowCatagory(false)
-           }} className='header__bottem__two select-none felx items-center'>
-               <FilterListIcon/>
-               <span className='pl-3'>Filter</span>
-           </div>
-       </div>
-       {
-           showFilter &&
-           <div className='JobPage__filter text-lg m-6 flex justify-center'>
-                <Checkbox  >Freelance</Checkbox>
-                <Checkbox >Full Time</Checkbox>
-                <Checkbox >Part Time</Checkbox>
-                <Checkbox >Temporary</Checkbox>
-
-
-            </div>
-       }
-       {
-           showCatagory &&<div  className='grid grid-cols-3 gap-3 m-4'>
-           <JobCatagory/>
-           <JobCatagory/>
-           <JobCatagory/>
-           <JobCatagory/>
-           <JobCatagory/>
-           <JobCatagory/>
-           <JobCatagory/>
-           <JobCatagory/>
-           <JobCatagory/>
-           <JobCatagory/>
-    
-           </div>
-       }
+       
+      
+       
        <div>
-           <Link to={"/jobs/knnkjkn"}><JobCard/></Link>
-           <JobCard/>
-           <JobCard/>
-           <JobCard/>
-           <JobCard/>
+           <EventCard/>
+           <EventCard/>
+           <EventCard/>
+           <EventCard/>
+           <EventCard/>
+           <EventCard/>
+
 
        </div>
 
-    </JobPageStyle>
+    </EventPageStyle>
   )
 }
 
@@ -84,7 +46,7 @@ const JobPage = () => {
 
 
 
-const JobPageStyle = styled.div`
+const EventPageStyle = styled.div`
   
 
   /* ******** top header  */
@@ -118,7 +80,7 @@ const JobPageStyle = styled.div`
     border: 1px solid #1890FF;
     background-color: #FAFAFA;
     color: black;
-
+/* 0915870708 */
 
     
   }
@@ -164,4 +126,4 @@ const JobPageStyle = styled.div`
 
 `;
 
-export default JobPage
+export default EventPage

@@ -13,13 +13,15 @@ import Past from './img/past.jpg'
 
 import './home.css'
 import Usercard from './UserCard/Usercard'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-const Home = () => {
+const Home = (props) => {
   const light = useSelector(state=>state.mode.light)
+  const navigate = useNavigate()
   return (
     <div className={light?"home":"home home__dark"}>
         {/* navbar */}
+        {props.children}
         
    <div className={light?'home__top__con':"home__top__con home__top__con__dark"}>
    <div className={light?'home__top home__top1':'home__top home__top1 home__top__dark home__top1__dark'}>
@@ -28,7 +30,7 @@ const Home = () => {
                 <p>We provide many ways for you to get yourself out there and introduce yourself to the world. Join us and make your work opportunity a little Easier!
                 Grow your portfolio by doing jobs, participating in events and getting rewards.
                 </p>
-                <Button size='lg' style={{marginTop:"30px"}} variant="success">Get started</Button>
+                <Button onClick={()=>navigate('/main')} size='lg' style={{marginTop:"30px"}} variant="success">Get started</Button>
             </div>
         <div className="home__img">
         <img src={light?HomeIMg:HomeDarkIMg} />
