@@ -3,7 +3,8 @@ import Abel from '../../assets/page/videopage/abel.mp4'
 import Image from '../../assets/page/videopage/abel.jpg'
 import Image2 from '../../assets/page/videopage/sec.jpg'
 import styled from 'styled-components'
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';import { IconButton } from '@mui/material'
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import { IconButton } from '@mui/material'
 import { Modal, Button } from 'antd';
 import { useSelector } from 'react-redux'
 
@@ -21,7 +22,7 @@ const VideoCard = () => {
         <div className={`imgZoom  `}>
             <div onClick={setModalVisible}>
             <img   src={Image2} className="w-[230px] rounded-md h-[200px] object-cover  "  />
-            <IconButton sx={{position:"absolute",top:"70px",left:"100px"}} >
+            <IconButton  sx={{position:"absolute",top:"70px",left:"100px"}} >
             <PlayArrowIcon sx={{fontSize:"40px",color:"#1890FF"}}/>
             </IconButton>
             </div>
