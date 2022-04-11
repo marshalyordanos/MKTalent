@@ -3,6 +3,8 @@ const User = require('../model/userModel/usersModel')
 const jwt = require('jsonwebtoken')
 const AppErorr = require('../utils/appError')
 const catchAsync = require('../utils/catchAsync')
+const {promisify} = require('util')
+
  
 const getToken =(id)=>{
     //check your code aeound here you may have forgotten id:id and said only id
@@ -54,3 +56,35 @@ exports.login  = catchAsync(async(req,res,next)=>{
      
 })
 
+
+exports.protect  = catchAsync(async(req,res,next)=>{
+    //check if there is a token
+    let token;
+    if(req.headers.authorization || (req.headers.authorization.startsWith('Bearer'))){
+        token = req.headers.authorization.split(' ')[1];
+    }
+    if(!token){
+        return next(new AppErorr("yor are not logged in",401))
+    }
+    // varification token
+    console.log(token)
+    const decoded = await promisify(jwt.verify)(token,process.env.JWT_SECRETE)
+ 
+    // check if the user still exixst
+    const freshUser = await User.findById(decoded.id)
+    if(!freshUser){
+        return next(new AppErorr('the user is does not exist',401))
+    }
+
+    // check if the user change password after the token wa issued
+
+    if(freshUser.changePasswordAfter(decoded.iat)){
+        return next(
+            new AppErorr('user recently chaged password! please log in again.',401)
+        );
+    }
+     
+     req.user = freshUser
+    next()
+})
+    

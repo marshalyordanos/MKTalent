@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs')
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
-        required: [true, 'Please tell us your username!'],
+        required: [true, 'Please tell us your username'],
         unique:true
     },
     email:{
@@ -13,15 +13,14 @@ const userSchema = new mongoose.Schema({
         required:[true, 'Please provide your email'],
         unique:true,
         lowercase:true,
-        Validate:[Validator.isEmail,'Please provide a valid email.']
+        validate:[Validator.isEmail,'Please provide a valid email']
     }, 
     role:{
         type:String,
-        required:[true, 'Please provide your role'],
         enum: {
-            values:['music','model','poet','other'],
-            message:"difficulty is either: easy, medium, hard"
-        }
+            values:['admin','user','company'],
+        },
+        default:"user"
     },
     gender:{
         type:String,
@@ -57,11 +56,16 @@ const userSchema = new mongoose.Schema({
 
 userSchema.pre('save', async function(next){
     if(!(this.isModified('password'))) return next()
-
-    this.password = await bcrypt.hash(this.password,12);
+    const salt = await bcrypt.genSalt(10)
+    this.password = await bcrypt.hash(this.password,salt);
     this.passwordConfirm = undefined;
     next();
 })
+userSchema.pre(/^find/, async function(next){
+     
+})
+
+
 
 
 userSchema.methods.correctPassword = async function(password1,password2){
@@ -69,15 +73,15 @@ userSchema.methods.correctPassword = async function(password1,password2){
 }
 
 
-// userSchema.methods.changePasswordAfter = function(JWTTimeStamp){
-//     if(this.passwordChangeAt){
-//         const changedTimeStamp = parseInt(
-//             this.passwordChangeAt.getTime()/1000,10
-//         )
-//         return JWTTimeStamp <changedTimeStamp;
-//     }
-//     return false;
-// }
+userSchema.methods.changePasswordAfter = function(JWTTimeStamp){
+    if(this.passwordChangeAt){
+        const changedTimeStamp = parseInt(
+            this.passwordChangeAt.getTime()/1000,10
+        )
+        return JWTTimeStamp <changedTimeStamp;
+    }
+    return false;
+}
 
 // userSchema.methods.createPasswordResetToken=function(){
 //    const restToken = crypto.randomBytes(32).toString('hex');
