@@ -29,6 +29,7 @@ import VideoCard from '../fragments/VideoCard';
 import VideoPage from '../../pages/VideoPage';
 import PostCard from '../fragments/PostCard';
 import Posts from '../../pages/Posts';
+import MKLogo from '../../assets/page/MK logo/MK logo.png'
 const { Header, Sider,Footer, Content } = Layout;
 
 
@@ -91,7 +92,7 @@ const LayoutApp =(props)=> {
           <div >
           <div className={`flex ${collapsed||windowWidth<1370?"h-[67px]":"h-60"} justify-center items-center bg-[#001529]   border-solid border-red-700 `}  >
            
-            <h1 className='text-white'>Logo</h1>
+            <img src={MKLogo} alt="MK Logo"/>
           </div>
           <Menu theme={!light&&"dark"} style={{backgroundColor:light&&"#F0F2F5"}}  mode="inline" defaultSelectedKeys={['1']}>
             <Menu.Item key="1" icon={<HomeOutlined />}>

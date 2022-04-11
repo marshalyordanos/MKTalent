@@ -16,6 +16,7 @@ import JobPage from './pages/JobPage';
 import JobDetail from './components/fragments/job/JobDetail';
 import EventPage from './pages/EventPage';
 import PageNotFound from './utils/PageNotFound';
+import PeoplePage from './pages/PeoplePage';
 const HomeApp = () => {
   const [showLogin, setShowLogin] = React.useState(false);
   const handleShowLoginOpen = () => setShowLogin(true);
@@ -38,7 +39,7 @@ const HomeApp = () => {
           <Route path='/jobs/:id' element={<Layout><JobDetail/></Layout>} />
           <Route path='/events' element={<Layout><EventPage/></Layout>} />
           <Route path='/events/:id' element={<Layout><JobDetail/></Layout>} />
-          <Route path='/peoples' element={<Layout></Layout>} />
+          <Route path='/peoples' element={<Layout><PeoplePage/></Layout>} />
 
           <Route path='*' element={<PageNotFound/>} />
           
