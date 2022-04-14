@@ -24,14 +24,14 @@ const EventPage = () => {
        
       
        
-       <div>
+       <div clasName="flex flex-column" >
+          <div className='flex flex-row'><EventCard/>
+           <EventCard/>
+           <EventCard/></div> 
+         <div className='flex flex-row'>  <EventCard/>
            <EventCard/>
            <EventCard/>
-           <EventCard/>
-           <EventCard/>
-           <EventCard/>
-           <EventCard/>
-
+           </div>
 
        </div>
 
