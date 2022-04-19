@@ -15,6 +15,7 @@ import VideoPage from './pages/VideoPage';
 import JobPage from './pages/JobPage';
 import JobDetail from './components/fragments/job/JobDetail';
 import EventPage from './pages/EventPage';
+import EventDetail from './components/fragments/event/EventDetail';
 import PageNotFound from './utils/PageNotFound';
 import PeoplePage from './pages/PeoplePage';
 const HomeApp = () => {
@@ -38,7 +39,7 @@ const HomeApp = () => {
           <Route path='/jobs' element={<Layout><JobPage/></Layout>} />
           <Route path='/jobs/:id' element={<Layout><JobDetail/></Layout>} />
           <Route path='/events' element={<Layout><EventPage/></Layout>} />
-          <Route path='/events/:id' element={<Layout><JobDetail/></Layout>} />
+          <Route path='/eventdetail/:id' element={<Layout><EventDetail/></Layout>} />
           <Route path='/peoples' element={<Layout><PeoplePage/></Layout>} />
 
           <Route path='*' element={<PageNotFound/>} />
