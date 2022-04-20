@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import EventImage from '../../../assets/page/event/jorka.png'
+import { Navigate, Route, Routes,Link } from 'react-router-dom';
 const EventCard = () => {
   return (
     <EventCardStyle >
@@ -13,7 +14,7 @@ const EventCard = () => {
 
        </div>
        <div className=' self-start bg-gray-200 hover:bg-blue-500 hover:ease-in-out duration:300 hover:cursor-pointer p-2 px-4 rounded-lg '>
-            <p>Participate</p>
+            <Link to="/eventdetail/22"><p>Participate</p></Link>
        </div>
     </EventCardStyle>
   )
