@@ -40,10 +40,10 @@ exports.getAllComment=catchAsync(async(req,res,next)=>{
 
 
 })
-exports.getComment=catchAsync(async(req,res,next)=>{
+exports.getPostComments=catchAsync(async(req,res,next)=>{
 
     console.log(req.params)
-    const comment = await Comment.findById({_id:req.params.id})
+    const comment = await Comment.find({post:req.params.postId})
     if(!comment){
         return next(new AppErorr("There is not Comment in this ID",404))
     }
