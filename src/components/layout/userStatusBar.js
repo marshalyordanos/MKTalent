@@ -1,70 +1,140 @@
-
-import {useState} from 'react'
-import { useSelector } from 'react-redux';
-import RightSideBarUserCard from './RightSideBarUserCard';
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import RightSideBarUserCard from "./RightSideBarUserCard";
 
 function UserStatus() {
-  const light = useSelector(state=>state.mode.light)
+  const light = useSelector((state) => state.mode.light);
 
-  const [page,setPage]=useState(1);
-  const pageNewest=()=>{
+  const [page, setPage] = useState(1);
+  const pageNewest = () => {
     setPage(1);
-  }
-  const pageActive=()=>{
+  };
+  const pageActive = () => {
     setPage(2);
-  }
-  const pagePopular=()=>{
+  };
+  const pagePopular = () => {
     setPage(3);
-  }
+  };
   return (
-    
-    <div className={` box-content pb-4 ${!light?"dark:text-white dark:bg-[#320064]":"bg-[#F6F0FC]"}  w-[300px] rounded-xl`}>
-      
-<h1 className={`py-2 pt-3 text-xl border-blue-500 w-[73px] border-b-2 mx-3 my-8 ${!light&&"dark:text-white "}`}>Members</h1>
-<span className="flex flex-rows px-2">
-<p className="text-base mx-3 hover:cursor-pointer
+    <div
+      className={` box-content pb-4 ${
+        !light ? "dark:text-white dark:bg-[#320064]" : "bg-[#F6F0FC]"
+      }  w-[300px] rounded-xl`}
+    >
+      <h1
+        className={`py-2 pt-3 text-xl border-blue-500 w-[73px] border-b-2 mx-3 my-8 ${
+          !light && "dark:text-white "
+        }`}
+      >
+        Members
+      </h1>
+      <span className="flex flex-rows px-2">
+        <p
+          className="text-base mx-3 hover:cursor-pointer
 border-b-2  
 border-slate-100 
 hover:border-b-2  
-  hover:border-blue-500" onClick={pageNewest}>Newest</p>|
-   <p className="text-base mx-3 hover:cursor-pointer hover:border-b-2  
-  hover:border-blue-500"onClick={pageActive}> Active</p>|
-   <p className="text-base mx-3 hover:cursor-pointer hover:border-b-2  
-  hover:border-blue-500" onClick={pagePopular}> Popular</p></span>
-   {page==1 &&(<div>
- <RightSideBarUserCard username="John Doe" status="Registered two years ago"/>
- <RightSideBarUserCard username="John Doe" status="Registered two years ago"/>
- <RightSideBarUserCard username="John Doe" status="Registered two years ago"/>
- <RightSideBarUserCard username="John Doe" status="Registered two years ago"/>
- <RightSideBarUserCard username="John Doe" status="Registered two years ago"/>
- <RightSideBarUserCard username="John Doe" status="Registered two years ago"/>
- <RightSideBarUserCard username="John Doe" status="Registered two years ago"/>
- </div>
- 
- )}
-{page==2 &&(<div>  
-<RightSideBarUserCard username="John Doe" status="two years ago"/>
- <RightSideBarUserCard username="John Doe" status="two years ago"/>
- <RightSideBarUserCard username="John Doe" status="two years ago"/>
- <RightSideBarUserCard username="John Doe" status="two years ago"/>
- <RightSideBarUserCard username="John Doe" status="two years ago"/>
- <RightSideBarUserCard username="John Doe" status="two years ago"/>
- <RightSideBarUserCard username="John Doe" status="two years ago"/>
- </div>
-)} 
+  hover:border-blue-500"
+          onClick={pageNewest}
+        >
+          Newest
+        </p>
+        |
+        <p
+          className="text-base mx-3 hover:cursor-pointer hover:border-b-2  
+  hover:border-blue-500"
+          onClick={pageActive}
+        >
+          {" "}
+          Active
+        </p>
+        |
+        <p
+          className="text-base mx-3 hover:cursor-pointer hover:border-b-2  
+  hover:border-blue-500"
+          onClick={pagePopular}
+        >
+          {" "}
+          Popular
+        </p>
+      </span>
+      {page == 1 && (
+        <div>
+          <RightSideBarUserCard
+            username="Abebe kebede"
+            status="Registered two years ago"
+          />
+          <RightSideBarUserCard
+            username="Abebe kebede"
+            status="Registered two years ago"
+          />
+          <RightSideBarUserCard
+            username="Abebe kebede"
+            status="Registered two years ago"
+          />
+          <RightSideBarUserCard
+            username="Abebe kebede"
+            status="Registered two years ago"
+          />
+          <RightSideBarUserCard
+            username="Abebe kebede"
+            status="Registered two years ago"
+          />
+          <RightSideBarUserCard
+            username="Abebe kebede"
+            status="Registered two years ago"
+          />
+          <RightSideBarUserCard
+            username="Abebe kebede"
+            status="Registered two years ago"
+          />
+        </div>
+      )}
+      {page == 2 && (
+        <div>
+          <RightSideBarUserCard
+            username="Abebe kebede"
+            status="two years ago"
+          />
+          <RightSideBarUserCard
+            username="Abebe kebede"
+            status="two years ago"
+          />
+          <RightSideBarUserCard
+            username="Abebe kebede"
+            status="two years ago"
+          />
+          <RightSideBarUserCard
+            username="Abebe kebede"
+            status="two years ago"
+          />
+          <RightSideBarUserCard
+            username="Abebe kebede"
+            status="two years ago"
+          />
+          <RightSideBarUserCard
+            username="Abebe kebede"
+            status="two years ago"
+          />
+          <RightSideBarUserCard
+            username="Abebe kebede"
+            status="two years ago"
+          />
+        </div>
+      )}
 
-{page==3 &&(    <div> 
-<RightSideBarUserCard username="John Doe" status="11 Friends"/>
-<RightSideBarUserCard username="John Doe" status="11 Friends"/>
-<RightSideBarUserCard username="John Doe" status="11 Friends"/>
-<RightSideBarUserCard username="John Doe" status="11 Friends"/>
-<RightSideBarUserCard username="John Doe" status="11 Friends"/>
-<RightSideBarUserCard username="John Doe" status="11 Friends"/>
-<RightSideBarUserCard username="John Doe" status="11 Friends"/>
-</div> 
-)}
-  </div>
- 
+      {page == 3 && (
+        <div>
+          <RightSideBarUserCard username="Abebe kebede" status="11 Friends" />
+          <RightSideBarUserCard username="Abebe kebede" status="11 Friends" />
+          <RightSideBarUserCard username="Abebe kebede" status="11 Friends" />
+          <RightSideBarUserCard username="Abebe kebede" status="11 Friends" />
+          <RightSideBarUserCard username="Abebe kebede" status="11 Friends" />
+          <RightSideBarUserCard username="Abebe kebede" status="11 Friends" />
+          <RightSideBarUserCard username="Abebe kebede" status="11 Friends" />
+        </div>
+      )}
+    </div>
   );
 }
 

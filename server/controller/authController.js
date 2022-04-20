@@ -60,7 +60,7 @@ exports.login  = catchAsync(async(req,res,next)=>{
 exports.protect  = catchAsync(async(req,res,next)=>{
     //check if there is a token
     let token;
-    if(req.headers.authorization || (req.headers.authorization.startsWith('Bearer'))){
+    if(req.headers.authorization || (req.headers.authorization?.startsWith('Bearer'))){
         token = req.headers.authorization.split(' ')[1];
     }
     if(!token){
@@ -87,4 +87,18 @@ exports.protect  = catchAsync(async(req,res,next)=>{
      req.user = freshUser
     next()
 })
+
+exports.restricTo = (...roles)=>{
+    return (req,res,next)=>{
+        //roles ['admin','user']
+        if(!roles.includes(req.user.role)){
+            return next(new AppErorr('You do not have permission to perform this Action',403))
+        }
+
+        next()
+    }
+}
+
+
+
     

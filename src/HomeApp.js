@@ -18,6 +18,7 @@ import EventPage from './pages/EventPage';
 import EventDetail from './components/fragments/event/EventDetail';
 import PageNotFound from './utils/PageNotFound';
 import PeoplePage from './pages/PeoplePage';
+import RewardPage from './pages/RewardPage';
 const HomeApp = () => {
   const [showLogin, setShowLogin] = React.useState(false);
   const handleShowLoginOpen = () => setShowLogin(true);
@@ -41,10 +42,12 @@ const HomeApp = () => {
           <Route path='/events' element={<Layout><EventPage/></Layout>} />
           <Route path='/eventdetail/:id' element={<Layout><EventDetail/></Layout>} />
           <Route path='/peoples' element={<Layout><PeoplePage/></Layout>} />
+          <Route path='/reward' element={<Layout><RewardPage/></Layout>} />
 
+          
           <Route path='*' element={<PageNotFound/>} />
           
-          
+             
 
         </Routes>
     </div>
