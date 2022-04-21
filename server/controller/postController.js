@@ -26,7 +26,6 @@ const multerStorage = multer.diskStorage({
 
 /******************** multer fields ************************ */
 const multerFilter = (req, file, cb) => {
-  console.log(file);
   if (file.mimetype.startsWith("image")) {
     cb(null, true);
   } else if (file.mimetype.startsWith("audio")) {
@@ -51,7 +50,6 @@ exports.uploadUserPhoto = upload.fields([
 
 exports.createPost = catchAsync(async (req, res, next) => {
   req.body.user = req.user.id;
-  console.log(req.files);
   if (req.files.images) {
     req.body.images = [];
     req.files.images.map((file) => req.body.images.push(file.filename));
@@ -62,7 +60,6 @@ exports.createPost = catchAsync(async (req, res, next) => {
   if (req.files.audio) {
     req.body.audio = req.files.audio[0].filename;
   }
-  console.log(req.body);
   const post = await Post.create(req.body);
 
   res.status(200).json({
@@ -73,7 +70,15 @@ exports.createPost = catchAsync(async (req, res, next) => {
 
 /****************************** get all posts ****************** */
 exports.getAllPost = catchAsync(async (req, res, next) => {
-  const post = await Post.find().populate("comments");
+  let query = Post.find();
+  console.log(req.query);
+  const page = req.query.page * 1 || 1;
+  const limit = +req.query.limit || 10;
+
+  const skip = (page - 1) * limit;
+  query.skip(skip).limit(limit);
+
+  const post = await query.populate("comments").populate("user");
 
   res.status(200).json({
     length: post.length,
@@ -97,7 +102,6 @@ exports.getPost = catchAsync(async (req, res, next) => {
 });
 
 exports.updatePost = catchAsync(async (req, res, next) => {
-  console.log(req.body);
   const post = await Post.findByIdAndUpdate({ _id: req.params.id }, req.body, {
     new: true,
     runValidators: true,
@@ -115,7 +119,6 @@ exports.updatePost = catchAsync(async (req, res, next) => {
 exports.deletePost = catchAsync(async (req, res, next) => {
   const post = await Post.findById({ _id: req.params.id });
 
-  console.log(req.user.id == post.user);
   if (!(req.user.id == post.user)) {
     return next(new AppErorr("this is not your post", 404));
   }
@@ -132,9 +135,7 @@ exports.deletePost = catchAsync(async (req, res, next) => {
 
     try {
       path.map((p) => fs.unlinkSync(`../public/assets/img/post/${p}`));
-      console.log(
-        "marshal marshal marshal marshal marshal marshal betelhem betelhem betelhem betelhem"
-      );
+
       //file removed
     } catch (err) {
       console.error(err);
@@ -145,9 +146,7 @@ exports.deletePost = catchAsync(async (req, res, next) => {
 
     try {
       fs.unlinkSync(`../public/assets/video/${path}`);
-      console.log(
-        "marshal marshal marshal marshal marshal marshal betelhem betelhem betelhem betelhem"
-      );
+
       //file removed
     } catch (err) {
       console.error(err);
@@ -158,9 +157,7 @@ exports.deletePost = catchAsync(async (req, res, next) => {
 
     try {
       fs.unlinkSync(`../public/assets/audio/${path}`);
-      console.log(
-        "marshal marshal marshal marshal marshal marshal betelhem betelhem betelhem betelhem"
-      );
+
       //file removed
     } catch (err) {
       console.error(err);
