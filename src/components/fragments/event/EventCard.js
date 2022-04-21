@@ -13,8 +13,8 @@ const EventCard = () => {
            <p>location and address</p>
 
        </div>
-       <div className=' self-start bg-gray-200 hover:bg-blue-500 hover:ease-in-out duration:300 hover:cursor-pointer p-2 px-4 rounded-lg '>
-            <Link to="/eventdetail/22"><p>Participate</p></Link>
+       <div className=' self-start bg-gray-200 hover:bg-blue-500 hover:ease-in-out duration:300 hover:cursor-pointer  p-2 px-4 rounded-lg '>
+            <Link to="/eventdetail/22" className='hover:text-white'><p className='hover:text-white'>Participate</p></Link>
        </div>
     </EventCardStyle>
   )
