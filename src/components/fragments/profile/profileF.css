@@ -7,6 +7,8 @@
   #customers td, #customers th {
     border: 1px solid #ddd;
     padding: 8px;
+    border-right:none;
+    border-left:none ; 
   }
   
   #customers tr:nth-child(even){background-color: #f2f2f2;}
