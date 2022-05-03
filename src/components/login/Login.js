@@ -8,8 +8,11 @@ import "react-toastify/dist/ReactToastify.css";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../redux/authReducer";
 import api from "../../api/api";
-const Login = () => {
+import { useNavigate } from "react-router-dom";
+const Login = (props) => {
+  const navigate = useNavigate();
   const light = useSelector((state) => state.mode.light);
+  const { loading, error } = useSelector((state) => state.userAuth);
   const dispatch = useDispatch();
   const [value, setValue] = useState({
     email: "",
@@ -38,6 +41,12 @@ const Login = () => {
 
         const { data } = await api.post("/users/login", value);
         dispatch(login({ data: data, loading: false }));
+        props.click();
+        if (data.data.role == "talent") {
+          navigate("/main");
+        } else if (data.data.role == "admin") {
+          navigate("/admin");
+        }
       } catch (err) {
         dispatch(
           login({
@@ -50,6 +59,7 @@ const Login = () => {
   };
   return (
     <div className={light ? "login" : "login login__dark"}>
+      {loading ? <h1>Loading... </h1> : error ? <h1>{error}</h1> : ""}
       <h1>Login</h1>
       <input
         onChange={(e) => setValue({ ...value, email: e.target.value })}

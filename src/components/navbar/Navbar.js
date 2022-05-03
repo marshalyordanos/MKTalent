@@ -1,115 +1,139 @@
-import React from 'react'
-import { Button, Container, Nav, Navbar, NavDropdown } from 'react-bootstrap'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { DarkMode, Search } from '@mui/icons-material';
-import SearchIcon from '@mui/icons-material/Search';
-import LightModeIcon from '@mui/icons-material/LightMode';
-import './navbar.css'
-import { useDispatch, useSelector } from 'react-redux';
-import { changeLight } from '../../redux/counter/mode';
-import { NavLink } from 'react-router-dom';
+import React from "react";
+import { Button, Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { DarkMode, Search } from "@mui/icons-material";
+import SearchIcon from "@mui/icons-material/Search";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import "./navbar.css";
+import { useDispatch, useSelector } from "react-redux";
+import { changeLight } from "../../redux/counter/mode";
+import { NavLink } from "react-router-dom";
+import { Avatar } from "@mui/material";
+import { Dropdown, Menu } from "antd";
+import { logout } from "../../redux/authReducer";
 const NavbarApp = (props) => {
-  const light = useSelector(state=>state.mode.light)
+  const data = useSelector((state) => state.userAuth.data);
+  // console.log(data, "bettty");
+  const light = useSelector((state) => state.mode.light);
   const dispatch = useDispatch();
+  const profileMenu = (
+    <Menu>
+      <Menu.Item key={10}>
+        <NavLink to={"/ww"}>Profile</NavLink>
+      </Menu.Item>
+      <Menu.Item key={12}>
+        <NavLink
+          onClick={() => {
+            dispatch(logout());
+          }}
+          to={"#logout"}
+        >
+          Logout
+        </NavLink>
+      </Menu.Item>
+    </Menu>
+  );
   return (
-    <div  style={{position:'sticky',top:'0px',borderBottom:"1px solid black",zIndex:1}}>
- {/* <Button  variant="primary">Button #1</Button> */}
-<Navbar collapseOnSelect bg="dark" className={light?'navbar__con':'navbar__con navbar__con__dark'} expand="lg" variant="dark">
-  <Container className='navbar__con1'>
-  <NavLink to="/home"><Navbar.Brand >MK-Talent</Navbar.Brand></NavLink>
-  <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-  <Navbar.Collapse id="responsive-navbar-nav">
-    <Nav className="me-auto">
-      <Nav.Link href="#features">News</Nav.Link>
-      <NavDropdown title="Blog" id="collasible-nav-dropdown">
-        <NavDropdown.Item href="#action/3.1">Talent</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.2">Professional advice</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.3">Companies</NavDropdown.Item>
-       
-
-      </NavDropdown>
-      <NavDropdown title="Talent" id="collasible-nav-dropdown">
-        <NavDropdown.Item href="#action/3.1">Men</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.2">Women</NavDropdown.Item>
-       
-
-      </NavDropdown>
-      <Nav.Link href="#pricing">Development</Nav.Link>
-      <Nav.Link href="#pricing">About</Nav.Link>
-    </Nav>
-    <Nav className="navbar__left" >
-      <Nav.Link  href="#deets"> <SearchIcon/> </Nav.Link>
-      <Nav.Link onClick={props.modelOpen} eventKey={2} href="#memes">
-      Login
-      </Nav.Link>
-      <NavLink to={"/register"}>
-        Register
-      </NavLink>
-      {light?
-      <Nav.Link  href="#deets"> <Button onClick={()=>dispatch(changeLight())} className='navbar__lightBtn' style={{width:"50px"}} variant="" ><DarkMode style={{color:"white"}}/> </Button> </Nav.Link>
-
-      :
-      <Nav.Link  href="#deets"><Button onClick={()=>dispatch(changeLight())} className='navbar__lightBtn' style={{width:"50px"}} variant="" ><LightModeIcon style={{color:"white"}}/> </Button> </Nav.Link>
-
-    }
-     
-    </Nav>
-  </Navbar.Collapse>
-  </Container>
-</Navbar>
+    <div
+      style={{
+        position: "sticky",
+        top: "0px",
+        borderBottom: "1px solid black",
+        zIndex: 1,
+      }}
+    >
+      {/* <Button  variant="primary">Button #1</Button> */}
+      <Navbar
+        collapseOnSelect
+        bg="dark"
+        className={light ? "navbar__con" : "navbar__con navbar__con__dark"}
+        expand="lg"
+        variant="dark"
+      >
+        <Container className="navbar__con1">
+          <NavLink to="/home">
+            <Navbar.Brand>MK-Talent</Navbar.Brand>
+          </NavLink>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link href="#features">News</Nav.Link>
+              <NavDropdown title="Blog" id="collasible-nav-dropdown">
+                <NavDropdown.Item href="#action/3.1">Talent</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.2">
+                  Professional advice
+                </NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.3">
+                  Companies
+                </NavDropdown.Item>
+              </NavDropdown>
+              <NavDropdown title="Talent" id="collasible-nav-dropdown">
+                <NavDropdown.Item href="#action/3.1">Men</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.2">Women</NavDropdown.Item>
+              </NavDropdown>
+              <Nav.Link href="#pricing">Development</Nav.Link>
+              <Nav.Link href="#pricing">About</Nav.Link>
+            </Nav>
+            <Nav className="navbar__left">
+              {/* <Nav.Link href="#deets">
+                {" "}
+                <SearchIcon />{" "}
+              </Nav.Link> */}
+              {data?.token ? (
+                <Dropdown overlay={profileMenu} placement="bottomLeft" arrow>
+                  <div className="flex items-center  text-white ">
+                    <p className="py-0 pl-4 pr-2 mt-[14px] ">
+                      {data?.data.username}
+                    </p>
+                    <Avatar>M</Avatar>
+                  </div>
+                </Dropdown>
+              ) : (
+                <>
+                  {" "}
+                  <Nav.Link
+                    onClick={props.modelOpen}
+                    eventKey={2}
+                    href="#memes"
+                  >
+                    Login
+                  </Nav.Link>
+                  <NavLink to={"/register"}>Register</NavLink>
+                </>
+              )}
+              {light ? (
+                <Nav.Link href="#deets">
+                  {" "}
+                  <Button
+                    onClick={() => dispatch(changeLight())}
+                    className="navbar__lightBtn"
+                    style={{ width: "50px" }}
+                    variant=""
+                  >
+                    <DarkMode style={{ color: "white" }} />{" "}
+                  </Button>{" "}
+                </Nav.Link>
+              ) : (
+                <Nav.Link href="#deets">
+                  <Button
+                    onClick={() => dispatch(changeLight())}
+                    className="navbar__lightBtn"
+                    style={{ width: "50px" }}
+                    variant=""
+                  >
+                    <LightModeIcon style={{ color: "white" }} />{" "}
+                  </Button>{" "}
+                </Nav.Link>
+              )}
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
     </div>
-  )
-}
+  );
+};
 
-export default NavbarApp
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export default NavbarApp;
 
 // import * as React from 'react';
 // import AppBar from '@mui/material/AppBar';
@@ -190,7 +214,7 @@ export default NavbarApp
 //                 display: { xs: 'block', md: 'none' },
 //               }}
 //             >
-             
+
 //                 <MenuItem  onClick={handleCloseNavMenu}>
 //                   <Typography textAlign="center">Products</Typography>
 //                 </MenuItem>
@@ -200,7 +224,7 @@ export default NavbarApp
 //                 <MenuItem  onClick={handleCloseNavMenu}>
 //                   <Typography textAlign="center">Products</Typography>
 //                 </MenuItem>
-             
+
 //             </Menu>
 //           </Box>
 //           <Typography
@@ -209,58 +233,58 @@ export default NavbarApp
 //             component="div"
 //             sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
 //           >
-//            MKTALENT 
+//            MKTALENT
 //           </Typography>
 //           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            
+
 //               <Button
-                
+
 //                 onClick={handleCloseNavMenu}
 //                 sx={{ my: 2, color: 'white', display: 'block' }}
 //               >
-               
+
 //               </Button>
 //               <Button
-                
-//                 onClick={handleCloseNavMenu}
-//                 sx={{ my: 2, color: 'white', display: 'block' }}
-//               >
-//                Products
-//               </Button>
-//               <Button
-                
+
 //                 onClick={handleCloseNavMenu}
 //                 sx={{ my: 2, color: 'white', display: 'block' }}
 //               >
 //                Products
 //               </Button>
-            
+//               <Button
+
+//                 onClick={handleCloseNavMenu}
+//                 sx={{ my: 2, color: 'white', display: 'block' }}
+//               >
+//                Products
+//               </Button>
+
 //           </Box>
 
 //           <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' }  }}>
-            
+
 //               <Button
-                
+
 //                 onClick={handleCloseNavMenu}
 //                 sx={{ my: 2, color: 'white', display: 'block' }}
 //               >
 //                Product
 //               </Button>
 //               <Button
-                
+
 //                 onClick={handleCloseNavMenu}
 //                 sx={{ my: 2, color: 'white', display: 'block' }}
 //               >
 //                Products
 //               </Button>
 //               <Button
-                
+
 //                 onClick={handleCloseNavMenu}
 //                 sx={{ my: 2, color: 'white', display: 'block' }}
 //               >
 //                Products
 //               </Button>
-            
+
 //           </Box>
 
 //           {/* <Box sx={{ flexGrow: 0 }}>
@@ -285,7 +309,7 @@ export default NavbarApp
 //               open={Boolean(anchorElUser)}
 //               onClose={handleCloseUserMenu}
 //             >
-              
+
 //                 <MenuItem onClick={handleCloseUserMenu}>
 //                   <Typography textAlign="center">Profile</Typography>
 //                 </MenuItem>

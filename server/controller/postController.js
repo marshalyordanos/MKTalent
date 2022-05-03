@@ -73,7 +73,7 @@ exports.getAllPost = catchAsync(async (req, res, next) => {
   let query = Post.find();
   console.log(req.query);
   const page = req.query.page * 1 || 1;
-  const limit = +req.query.limit || 10;
+  const limit = +req.query.limit || 9;
 
   const skip = (page - 1) * limit;
   query.skip(skip).limit(limit);

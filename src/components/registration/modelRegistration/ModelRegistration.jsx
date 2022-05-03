@@ -1,25 +1,28 @@
 import React, { useState } from "react";
 import { Button, Navbar } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { register } from "../../../redux/authReducer";
+import { useNavigate } from "react-router-dom";
+
 // import ModelRegistrationCon from '../RegisterStyle'
 
 // import './ModelRegistration.css'
 import styled from "styled-components";
 import api from "../../../api/api";
-import NavbarApp from "../../navbar/Navbar";
 
 const ModelRegistration = (props) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const userData = useSelector((state) => state.auth);
   const light = useSelector((state) => state.mode.light);
   const roleType = useSelector((state) => state.mode.role);
-  console.log("lkndksdnskldncksdnlksd", roleType);
 
   const [value, setValue] = useState({
     username: "",
     email: "",
-    role: "",
     gender: "",
     password: "",
     passwordConfirm: "",
@@ -36,21 +39,18 @@ const ModelRegistration = (props) => {
   };
 
   const onChangeHandler = (e) => {
-    // console.log(e.target)
     setValue({ ...value, [e.target.name]: e.target.value });
   };
 
   const handleValidation = async (e) => {
     e.preventDefault();
-    const { email, role, username, gender, password, passwordConfirm } = value;
+    const { email, username, gender, password, passwordConfirm } = value;
     if (!username) {
       toast.error("Please provide your username", toastOption);
     } else if (!email) {
       toast.error("Please provide your emal", toastOption);
     } else if (!gender) {
       toast.error("Please provide your gender", toastOption);
-    } else if (!role) {
-      toast.error("Please provide your role", toastOption);
     } else if (!password) {
       toast.error("Please provide your password", toastOption);
     } else if (password !== passwordConfirm) {
@@ -60,14 +60,27 @@ const ModelRegistration = (props) => {
       );
     } else {
       try {
-        const res = await api.post("/users/signup", value);
-        console.log("ooooooooooooooooo", res);
+        dispatch(register({ loading: true }));
+
+        const { data } = await api.post("/users/signup", value);
+        dispatch(register({ data: data, loading: false }));
+
+        console.log("pppppppp", data);
+        if (data.data.role == "talent") {
+          navigate("/main");
+        } else if (data.data.role == "admin") {
+          navigate("/admin");
+        }
       } catch (err) {
-        console.log("ooooooooooooooooo", err);
+        dispatch(
+          register({
+            error: err.response && err.response.data.message,
+            loading: false,
+          })
+        );
       }
     }
   };
-  console.log(light);
   return (
     <>
       {props.children}
@@ -121,24 +134,6 @@ const ModelRegistration = (props) => {
 
                   <option value="male">Male</option>
                   <option value="female">Female</option>
-                </select>
-              </div>
-              <div className="form-group">
-                <label for="role">Role</label>
-
-                <select
-                  defaultValue={roleType}
-                  className="form-control"
-                  onChange={(e) => onChangeHandler(e)}
-                  name="role"
-                  id="role"
-                >
-                  <option hidden>Select your role</option>
-
-                  <option value="model">Model</option>
-                  <option value="poet">Poet</option>
-                  <option value="musician">Musicain</option>
-                  <option value="other">Other</option>
                 </select>
               </div>
             </div>
