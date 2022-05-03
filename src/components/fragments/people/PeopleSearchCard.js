@@ -1,5 +1,7 @@
 import React from 'react';
 import Profile from '../../../assets/page/profile.png'
+import {Link } from "react-router-dom";
+
 const PeopleSearchCard = () => {
     const FGstatus=(props)=>{
         return(
@@ -15,7 +17,8 @@ const PeopleSearchCard = () => {
       <h1 className="flex flex-column self-center">John Doe</h1>
       <p className=" self-center">Active 1 minute ago</p>
      <div className="flex flex-rows  self-center"> <FGstatus className="mx-4 my-8" number="0" label="Friends"/> <FGstatus number="0" label="Likes"/> </div>
-  <button className=" self-center border-purple-600 box-content border-2 w-[200px] rounded-3xl h-[35px] mb-3 text-purple-600 hover:bg-purple-600 hover:text-white hover:duration-700">View Profile</button>
+  <Link to="/profile/:id"><button className=" self-center border-purple-600 box-content border-2 w-[200px] rounded-3xl h-[35px] mb-3 text-purple-600 hover:bg-purple-600 hover:text-white hover:duration-700">
+    View Profile</button></Link>
     </div>
   );
 }
