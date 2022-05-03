@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Layout, Menu, Dropdown } from "antd";
+import { Layout, Menu, Dropdown, Avatar } from "antd";
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
@@ -32,6 +32,7 @@ import Posts from "../../pages/Posts";
 import MKLogo from "../../assets/page/MK logo/MK logo.png";
 import Login from "../login/Login";
 import Model from "../../utils/Model";
+import { logout } from "../../redux/authReducer";
 const { Header, Sider, Footer, Content } = Layout;
 
 const menu = (
@@ -52,6 +53,7 @@ const menu = (
 );
 
 const LayoutApp = (props) => {
+  const data = useSelector((state) => state.userAuth.data);
   const dispatch = useDispatch();
   const [collapsed, setCollapsed] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -59,7 +61,23 @@ const LayoutApp = (props) => {
   const [showLogin, setShowLogin] = React.useState(false);
   const handleShowLoginOpen = () => setShowLogin(true);
   const handleShowLoginClose = () => setShowLogin(false);
-
+  const profileMenu = (
+    <Menu>
+      <Menu.Item key={10}>
+        <NavLink to={"/ww"}>Profile</NavLink>
+      </Menu.Item>
+      <Menu.Item key={12}>
+        <NavLink
+          onClick={() => {
+            dispatch(logout());
+          }}
+          to={"#logout"}
+        >
+          Logout
+        </NavLink>
+      </Menu.Item>
+    </Menu>
+  );
   useEffect(() => {
     function handleResize() {
       setWindowWidth(window.innerWidth);
@@ -76,7 +94,7 @@ const LayoutApp = (props) => {
   return (
     <LayoutStyle>
       <Model show={showLogin} onClosed={handleShowLoginClose}>
-        <Login />
+        <Login click={handleShowLoginClose} />
       </Model>
 
       <Layout className=" bg-green-500" style={{ minHeight: "100vh" }}>
@@ -100,7 +118,9 @@ const LayoutApp = (props) => {
                 collapsed || windowWidth < 1370 ? "h-[67px]" : "h-60"
               } justify-center items-center bg-[#001529]   border-solid border-red-700 `}
             >
-              <img src={MKLogo} alt="MK Logo" />
+              <NavLink to={"/home"}>
+                <img src={MKLogo} alt="MK Logo" />
+              </NavLink>
             </div>
             <Menu
               theme={!light && "dark"}
@@ -198,19 +218,48 @@ const LayoutApp = (props) => {
                 } flex items-center  mx-8 `}
               >
                 {windowWidth > 845 ? (
-                  <div className="flex mx-8">
+                  <div className="flex items-center mx-8">
                     <NavLink to={"/ww"}>ABOUT US</NavLink>
                     <NavLink to={"/ee"}>CONTACT</NavLink>
-                    <span
-                      style={{ cursor: "pointer" }}
-                      onClick={handleShowLoginOpen}
-                    >
-                      LOGIN
-                    </span>
-                    <NavLink to={"/register"}>REGISTER</NavLink>
+                    {data?.token ? (
+                      <Dropdown
+                        overlay={profileMenu}
+                        placement="bottomLeft"
+                        arrow
+                      >
+                        <div className="flex items-center   ">
+                          <p className="py-0 pl-4 pr-2 mt-[14px] ">
+                            {data?.data.username}
+                          </p>
+
+                          <Avatar>M</Avatar>
+                        </div>
+                      </Dropdown>
+                    ) : (
+                      <span>
+                        <span
+                          style={{ cursor: "pointer" }}
+                          onClick={handleShowLoginOpen}
+                        >
+                          LOGIN
+                        </span>
+                        <NavLink to={"/register"}>REGISTER</NavLink>
+                      </span>
+                    )}
                   </div>
                 ) : (
-                  <div className="self-center mx-5">
+                  <div className="self-center flex items-center mx-5">
+                    {data.token && (
+                      <Dropdown overlay={menu} placement="bottomLeft" arrow>
+                        <div className="flex items-center  px-4  ">
+                          <p className="py-0 pl-4 pr-2 mt-[14px] ">
+                            {data?.data.username}
+                          </p>
+
+                          <Avatar>M</Avatar>
+                        </div>
+                      </Dropdown>
+                    )}
                     <Dropdown
                       overlay={menu}
                       placement="bottomLeft"

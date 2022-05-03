@@ -1,19 +1,22 @@
-import React from 'react'
+import React from "react";
 
-import Comment from './Comment'
-   
-const Commentlist = ({ comments = [] }) => {
+import Comment from "./Comment";
+
+const Commentlist = (props) => {
+  console.log("ssssssssssssssssssssss", props);
   return (
     <div>
-     {comments.map((p, i) => (
- <React.Fragment key={'comment-' + i} >
- <Comment  username="John Doe" status="commented 2 minutes ago" {...p} />
-
- </React.Fragment>
-))}
-
+      {props.comments.map((comment, i) => (
+        <React.Fragment key={"comment-" + i}>
+          <Comment
+            username={comment.user.username}
+            status="commented 2 minutes ago"
+            message={comment.message}
+          />
+        </React.Fragment>
+      ))}
     </div>
-  )
-}
+  );
+};
 
-export default Commentlist
+export default Commentlist;
