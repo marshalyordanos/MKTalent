@@ -7,7 +7,7 @@ const Activity = () => {
           <p>Personal</p>
           <hr></hr>
       </div>
-      <div className='flex flex-row flex-wrap hover:text-purple-500 hover:cursor-pointer'>
+      <div className='flex flex-row flex-wrap hover:text-purple-500 hover:cursor-pointerp'>
       <p>Favorites</p>
       <hr></hr>
       </div>
