@@ -26,6 +26,7 @@ const multerStorage = multer.diskStorage({
 
 /******************** multer fields ************************ */
 const multerFilter = (req, file, cb) => {
+  console.log(file, "marshal");
   if (file.mimetype.startsWith("image")) {
     cb(null, true);
   } else if (file.mimetype.startsWith("audio")) {
@@ -50,6 +51,7 @@ exports.uploadUserPhoto = upload.fields([
 
 exports.createPost = catchAsync(async (req, res, next) => {
   req.body.user = req.user.id;
+  console.log(req.files.images, req.body);
   if (req.files.images) {
     req.body.images = [];
     req.files.images.map((file) => req.body.images.push(file.filename));

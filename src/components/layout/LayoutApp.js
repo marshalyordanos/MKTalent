@@ -293,6 +293,7 @@ const LayoutApp = (props) => {
               </div>
             </div>
           </Header>
+
           <Layout>
             <Content
               className={`${!light ? "bg-[#001529]" : "bg-[#FAFAFA]"}`}
@@ -308,12 +309,16 @@ const LayoutApp = (props) => {
 
                   {props.children}
                 </div>
-                {windowWidth < 1200 ? (
-                  ""
-                ) : (
-                  <div className="px-10 h-[88vh] sticky top-20 ">
-                    <UserStatus />
-                  </div>
+                {props.sidebar && (
+                  <>
+                    {windowWidth < 1200 ? (
+                      ""
+                    ) : (
+                      <div className="px-10 h-[88vh] sticky top-20 ">
+                        <UserStatus />
+                      </div>
+                    )}
+                  </>
                 )}
               </div>
             </Content>
@@ -322,6 +327,10 @@ const LayoutApp = (props) => {
       </Layout>
     </LayoutStyle>
   );
+};
+
+LayoutApp.defaultProps = {
+  sidebar: true,
 };
 
 const LayoutStyle = styled.div`
