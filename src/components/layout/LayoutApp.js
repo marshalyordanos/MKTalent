@@ -128,7 +128,7 @@ const LayoutApp = (props) => {
                 <Link to={"/jobs"}>Job</Link>
               </Menu.Item>
               <Menu.Item key="7" icon={<StickyNote2OutlinedIcon />}>
-                <Link to={"/blog"}>Blog</Link>
+                <Link to={"/bloghome"}>Blog</Link>
               </Menu.Item>
               <Menu.Item key="8" icon={<EmojiEventsOutlinedIcon />}>
                 <Link to={"/reward"}>Reward</Link>

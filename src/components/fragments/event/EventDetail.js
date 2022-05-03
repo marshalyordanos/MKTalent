@@ -38,7 +38,7 @@ const EventDetail = () => {
     ]
   return (
     <EventDetailStyle>
-        <EventCard className="w-8 h-60"/>
+        <EventCard className=""/>
         <div className='eventDetail__type text-gray-500'>
             <div className='eventDetail__type1 '>
                 <div className='a1'>

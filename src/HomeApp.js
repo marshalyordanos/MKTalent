@@ -19,6 +19,7 @@ import EventDetail from './components/fragments/event/EventDetail';
 import PageNotFound from './utils/PageNotFound';
 import PeoplePage from './pages/PeoplePage';
 import RewardPage from './pages/RewardPage';
+// import HomeB from './components-/blog/pages/home/Home'
 const HomeApp = () => {
   const [showLogin, setShowLogin] = React.useState(false);
   const handleShowLoginOpen = () => setShowLogin(true);
@@ -43,7 +44,7 @@ const HomeApp = () => {
           <Route path='/eventdetail/:id' element={<Layout><EventDetail/></Layout>} />
           <Route path='/peoples' element={<Layout><PeoplePage/></Layout>} />
           <Route path='/reward' element={<Layout><RewardPage/></Layout>} />
-
+{/* <Route path='/bloghome' element={<Layout><HomeB/></Layout>} /> */}
           
           <Route path='*' element={<PageNotFound/>} />
           
