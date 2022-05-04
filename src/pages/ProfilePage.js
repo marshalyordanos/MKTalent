@@ -48,18 +48,18 @@ const ProfilePage = () => {
       <div className="toptab z-50">
         <ul>
           <li>
-            <Link to="/klsdc">
+            <Link to="media/favourites">
               <PermMediaOutlined sx={{ fontSize: 30 }} /> <p>Media</p>
             </Link>
           </li>
           <li>
-            <Link to="/lskd">
+            <Link to="profile">
               <AssignmentIndOutlined sx={{ fontSize: 30 }} />
               <p>Profile</p>
             </Link>
           </li>{" "}
           <li>
-            <Link to="/mskla">
+            <Link to="friends">
               {" "}
               <PermIdentityOutlined sx={{ fontSize: 30 }} />
               <p>Friends</p>
@@ -131,7 +131,7 @@ const ProfilePage = () => {
             </div>
           </div>
         </div>
-        <div className=" border-l-2 border-r-2 min-w-[500px] h-[500px] flex-1">
+        <div className=" border-l-2 p-4 border-r-2 min-w-[500px] h-[500px] flex-1">
           <Outlet />
         </div>
         {/* <div className=" border-2 h-40 w-[300px]"></div> */}
