@@ -22,6 +22,7 @@ import RewardPage from "./pages/RewardPage";
 import ProfilePage from "./pages/ProfilePage";
 import ProfileFrag from "./components/fragments/profile/ProfileFrag";
 import Activity from "./components/fragments/profile/Activity";
+import ProfileContainer from "./components/fragments/profile/ProfileContainer";
 const HomeApp = () => {
   const [showLogin, setShowLogin] = React.useState(false);
   const handleShowLoginOpen = () => setShowLogin(true);
@@ -120,28 +121,17 @@ const HomeApp = () => {
           path="/profile/:id"
           element={
             <Layout sidebar={false}>
-                 <ProfilePage>
-              </ProfilePage> 
+              <ProfilePage></ProfilePage>
             </Layout>
           }
         >
-         <Route
-         path="favourites"
-         element={
-         <ProfileFrag/>
-         
-         }
-         />
-          <Route
-         path="activity"
-         element={
-         <Activity/>
-         
-         }
-         />
-
+          <Route path="media" element={<ProfileContainer />}>
+            <Route path="favourites" element={<ProfileFrag />} />
+            <Route path="activity" element={<Activity />} />
+          </Route>
+          <Route path="profile" element={<ProfileFrag />} />
+          <Route path="friends" element={<ProfileFrag />} />
         </Route>
-        
 
         <Route path="*" element={<PageNotFound />} />
       </Routes>
