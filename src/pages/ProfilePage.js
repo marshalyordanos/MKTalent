@@ -48,7 +48,7 @@ const ProfilePage = () => {
       <div className="toptab z-50">
         <ul>
           <li>
-            <Link to="media/favourites">
+            <Link to="media/activity">
               <PermMediaOutlined sx={{ fontSize: 30 }} /> <p>Media</p>
             </Link>
           </li>
