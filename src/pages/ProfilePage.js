@@ -25,8 +25,8 @@ const ProfilePage = () => {
           </div>
         </Col>
       </Row>
-      <div className="flex flex-col">
-        <div className="pl-[20%] z-10 border-2" offset={2}>
+      <div className="flex z-10 ">
+        <div className="pl-[10%] z-10 border-2" offset={2}>
           <div className=" ">
             <div className="h-[200px] mt-[-160px]  w-[200px] hover:bg-purple-500 border-2">
               <img
@@ -38,29 +38,28 @@ const ProfilePage = () => {
             <h3 className="mt-2 ml-10 center">Marshal</h3>
           </div>
         </div>
-        <div span={8}>
-          <div className="mt-[-80px]  items-center flex text-white">
+        <div>
+          <div className="mt-[-80px] z-50 items-center flex text-white">
             <h3 className="p-0 m-2   text-white">@marsh </h3>
-            <span>Active 12 hours, 22 minutes ago</span>
+            <span>Active 12 hours, 22 minutes ago </span>
           </div>
         </div>
       </div>
-      <div className="toptab">
+      <div className="toptab z-50">
         <ul>
           <li>
-            <Link to="">
-              <PermMediaOutlined sx={{ fontSize: 30 }} />
-              <p>Media</p>
+            <Link to="/klsdc">
+              <PermMediaOutlined sx={{ fontSize: 30 }} /> <p>Media</p>
             </Link>
           </li>
           <li>
-            <Link to="">
+            <Link to="/lskd">
               <AssignmentIndOutlined sx={{ fontSize: 30 }} />
               <p>Profile</p>
             </Link>
           </li>{" "}
           <li>
-            <Link to="">
+            <Link to="/mskla">
               {" "}
               <PermIdentityOutlined sx={{ fontSize: 30 }} />
               <p>Friends</p>
@@ -173,6 +172,9 @@ const ProfilePageStyle = styled.div`
       flex-direction: column;
       align-items: center;
       justify-content: center;
+    }
+    a:hover {
+      color: blue;
     }
     p {
       font-size: 18px;
