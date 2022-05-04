@@ -132,7 +132,9 @@ const ProfilePage = () => {
             </div>
           </div>
         </div>
-        <div className=" border-l-2 border-r-2 min-w-[500px] h-[500px] flex-1"></div>
+        <div className=" border-l-2 border-r-2 min-w-[500px] h-[500px] flex-1">
+          
+        </div>
         {/* <div className=" border-2 h-40 w-[300px]"></div> */}
       </div>
     </ProfilePageStyle>
