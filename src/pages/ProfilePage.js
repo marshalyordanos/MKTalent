@@ -1,14 +1,13 @@
 import {
   AssignmentIndOutlined,
   MediaBluetoothOnOutlined,
-  Outlet,
   PermIdentityOutlined,
   PermMediaOutlined,
 } from "@mui/icons-material";
 import { border, fontSize } from "@mui/system";
 import { Col, Divider, Image, Row } from "antd";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import styled from "styled-components";
 import CoverImg from "../assets/profile/aa.jpg";
 const style = { background: "#0092ff", padding: "10px 0" };
