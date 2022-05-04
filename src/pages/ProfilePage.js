@@ -25,7 +25,7 @@ const ProfilePage = () => {
           </div>
         </Col>
       </Row>
-      <Row>
+      <Row className="flex flex-col">
         <Col span={5} offset={2}>
           <div className=" ">
             <div className="h-[200px] mt-[-160px]  w-[200px] hover:bg-purple-500 border-2">
@@ -68,7 +68,72 @@ const ProfilePage = () => {
           </li>
         </ul>
       </div>
-      <Divider />
+      <Divider className="p-0 m-0 " />
+      {/* <Row>
+        <Col span={{ xs: 2, sm: 3, md: 0, lg: 0 }}>
+          <div className="h-40 border-r-[1px] border-x-neutral-300 ">
+            <Row>
+              <Col offset={4} span={19}>
+                <div className="">
+                  <Row>
+                    <Col span={12}>
+                      <div className="border-2">
+                        <h3>10</h3>
+                        <p>Friends</p>
+                      </div>
+                    </Col>
+                    <Col span={12}>
+                      <div className="border-2">
+                        <h3>45</h3>
+                        <p>like</p>
+                      </div>
+                    </Col>
+                    <Divider />
+                    <Col span={24}></Col>
+                    <Col span={12}>
+                      <div className="border-2 w-[100px] h-[140px]"></div>
+                    </Col>
+                    <Col span={12}>
+                      <div className="border-2 w-[100px] h-[140px]"></div>
+                    </Col>
+                  </Row>
+                </div>
+              </Col>
+            </Row>
+          </div>
+        </Col>
+        <Col span={11}>
+          <div className=""></div>
+        </Col>
+        <Col span={7}>
+          <div className="h-40  border-l-[1px] border-x-neutral-300 "></div>
+        </Col>
+      </Row> */}
+      <div className="flex flex-wrap">
+        <div className="  h-40 w-[300px]">
+          <div className="flex border-b-[1px] justify-end p-4">
+            <div className=" mr-4 ">
+              <h3>10</h3>
+              <p>Friends</p>
+            </div>
+            <div className="mr-4">
+              <h3>10</h3>
+              <p>Likes</p>
+            </div>
+          </div>
+          <div className=" text-center ">
+            <h2 className="mt-2">Saggetion</h2>
+            <div className="flex flex-wrap ">
+              {Array(5)
+                .fill(2)
+                .map(() => (
+                  <div className=" border-2 m-2 w-20 h-20"></div>
+                ))}
+            </div>
+          </div>
+        </div>
+        <div className=" border-l-2 border-r-2 min-w-[500px] h-[500px] flex-1"></div>
+      </div>
     </ProfilePageStyle>
   );
 };
