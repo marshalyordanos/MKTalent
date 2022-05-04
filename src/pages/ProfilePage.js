@@ -7,14 +7,14 @@ import {
 import { border, fontSize } from "@mui/system";
 import { Col, Divider, Image, Row } from "antd";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import styled from "styled-components";
 import CoverImg from "../assets/profile/aa.jpg";
 import ProfileFrag from '../components/fragments/profile/ProfileFrag'
 import Activity from '../components/fragments/profile/Activity'
 const style = { background: "#0092ff", padding: "10px 0" };
 
-const ProfilePage = () => {
+const ProfilePage = (props) => {
   return (
  
     <ProfilePageStyle className="flex flex-col">
@@ -72,7 +72,76 @@ const ProfilePage = () => {
           </li>
         </ul>
       </div>
-      <Divider />
+      <Divider className="p-0 m-0 " />
+      {/* <Row>
+        <Col span={{ xs: 2, sm: 3, md: 0, lg: 0 }}>
+          <div className="h-40 border-r-[1px] border-x-neutral-300 ">
+            <Row>
+              <Col offset={4} span={19}>
+                <div className="">
+                  <Row>
+                    <Col span={12}>
+                      <div className="border-2">
+                        <h3>10</h3>
+                        <p>Friends</p>
+                      </div>
+                    </Col>
+                    <Col span={12}>
+                      <div className="border-2">
+                        <h3>45</h3>
+                        <p>like</p>
+                      </div>
+                    </Col>
+                    <Divider />
+                    <Col span={24}></Col>
+                    <Col span={12}>
+                      <div className="border-2 w-[100px] h-[140px]"></div>
+                    </Col>
+                    <Col span={12}>
+                      <div className="border-2 w-[100px] h-[140px]"></div>
+                    </Col>
+                  </Row>
+                </div>
+              </Col>
+            </Row>
+          </div>
+        </Col>
+        <Col span={11}>
+          <div className=""></div>
+        </Col>
+        <Col span={7}>
+          <div className="h-40  border-l-[1px] border-x-neutral-300 "></div>
+        </Col>
+      </Row> */}
+      <div className="flex flex-wrap">
+        <div className="  h-40 w-[300px]">
+          <div className="flex border-b-[1px] justify-end p-4">
+            <div className=" mr-4 ">
+              <h3>10</h3>
+              <p>Friends</p>
+            </div>
+            <div className="mr-4">
+              <h3>10</h3>
+              <p>Likes</p>
+            </div>
+          </div>
+          <div className=" text-center ">
+            <h2 className="mt-2">Suggestion</h2>
+            <div className="flex flex-wrap ">
+              {Array(5)
+                .fill(2)
+                .map(() => (
+                  <div className=" border-2 m-2 w-20 h-20"></div>
+                ))}
+            </div>
+          </div>
+        </div>
+        <div className=" border-l-2 border-r-2 min-w-[500px] h-[500px] flex-1">
+
+          <Outlet/>
+        </div>
+        {/* <div className=" border-2 h-40 w-[300px]"></div> */}
+      </div>
     </ProfilePageStyle>
   );
 };
