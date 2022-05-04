@@ -7,7 +7,7 @@ import {
 import { border, fontSize } from "@mui/system";
 import { Col, Divider, Image, Row } from "antd";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import styled from "styled-components";
 import CoverImg from "../assets/profile/aa.jpg";
 const style = { background: "#0092ff", padding: "10px 0" };
@@ -26,7 +26,7 @@ const ProfilePage = () => {
         </Col>
       </Row>
       <div className="flex flex-col">
-        <div className="pl-[20%] z-50 border-2" offset={2}>
+        <div className="pl-[20%] z-10 border-2" offset={2}>
           <div className=" ">
             <div className="h-[200px] mt-[-160px]  w-[200px] hover:bg-purple-500 border-2">
               <img
@@ -53,12 +53,12 @@ const ProfilePage = () => {
               <p>Media</p>
             </Link>
           </li>
-          <li>
-            <Link to="">
+           <li>
+           
               <AssignmentIndOutlined sx={{ fontSize: 30 }} />
-              <p>Profile</p>
-            </Link>
-          </li>{" "}
+              <Link to="/profile/dawd/favourites"> <p>Profile</p> </Link>
+          
+          </li>{" "} 
           <li>
             <Link to="">
               {" "}
@@ -133,7 +133,7 @@ const ProfilePage = () => {
           </div>
         </div>
         <div className=" border-l-2 border-r-2 min-w-[500px] h-[500px] flex-1">
-          
+          <Outlet />
         </div>
         {/* <div className=" border-2 h-40 w-[300px]"></div> */}
       </div>
