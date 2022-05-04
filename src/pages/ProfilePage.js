@@ -1,6 +1,7 @@
 import {
   AssignmentIndOutlined,
   MediaBluetoothOnOutlined,
+  Outlet,
   PermIdentityOutlined,
   PermMediaOutlined,
 } from "@mui/icons-material";
@@ -26,7 +27,7 @@ const ProfilePage = () => {
         </Col>
       </Row>
       <div className="flex flex-col">
-        <div className="pl-[20%] z-50 border-2" offset={2}>
+        <div className="pl-[20%] z-10 border-2" offset={2}>
           <div className=" ">
             <div className="h-[200px] mt-[-160px]  w-[200px] hover:bg-purple-500 border-2">
               <img
@@ -132,7 +133,9 @@ const ProfilePage = () => {
             </div>
           </div>
         </div>
-        <div className=" border-l-2 border-r-2 min-w-[500px] h-[500px] flex-1"></div>
+        <div className=" border-l-2 border-r-2 min-w-[500px] h-[500px] flex-1">
+          <Outlet />
+        </div>
         {/* <div className=" border-2 h-40 w-[300px]"></div> */}
       </div>
     </ProfilePageStyle>
