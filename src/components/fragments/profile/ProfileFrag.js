@@ -11,6 +11,7 @@ import './profileF.css'
 const ProfileFrag = () => {
 
   return (
+    
     <div>
       <div className=''>
 <p>View</p>
