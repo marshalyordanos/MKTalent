@@ -122,7 +122,7 @@ const ProfilePage = () => {
             </div>
           </div>
           <div className=" text-center ">
-            <h2 className="mt-2">Saggetion</h2>
+            <h2 className="mt-2">Suggestion</h2>
             <div className="flex flex-wrap ">
               {Array(5)
                 .fill(2)
@@ -133,6 +133,7 @@ const ProfilePage = () => {
           </div>
         </div>
         <div className=" border-l-2 border-r-2 min-w-[500px] h-[500px] flex-1"></div>
+        {/* <div className=" border-2 h-40 w-[300px]"></div> */}
       </div>
     </ProfilePageStyle>
   );
