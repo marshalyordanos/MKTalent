@@ -20,6 +20,8 @@ import PageNotFound from "./utils/PageNotFound";
 import PeoplePage from "./pages/PeoplePage";
 import RewardPage from "./pages/RewardPage";
 import ProfilePage from "./pages/ProfilePage";
+import ProfileFrag from "./components/fragments/profile/ProfileFrag";
+import Activity from "./components/fragments/profile/Activity";
 const HomeApp = () => {
   const [showLogin, setShowLogin] = React.useState(false);
   const handleShowLoginOpen = () => setShowLogin(true);
@@ -118,10 +120,28 @@ const HomeApp = () => {
           path="/profile/:id"
           element={
             <Layout sidebar={false}>
-              <ProfilePage />
+                 <ProfilePage>
+              </ProfilePage> 
             </Layout>
           }
-        />
+        >
+         <Route
+         path="favourites"
+         element={
+         <ProfileFrag/>
+         
+         }
+         />
+          <Route
+         path="activity"
+         element={
+         <Activity/>
+         
+         }
+         />
+
+        </Route>
+        
 
         <Route path="*" element={<PageNotFound />} />
       </Routes>
