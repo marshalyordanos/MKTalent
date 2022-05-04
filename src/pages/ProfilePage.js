@@ -25,8 +25,8 @@ const ProfilePage = () => {
           </div>
         </Col>
       </Row>
-      <Row className="flex flex-col">
-        <Col span={5} offset={2}>
+      <div className="flex ">
+        <div className="pl-[20%] z-10 border-2" offset={2}>
           <div className=" ">
             <div className="h-[200px] mt-[-160px]  w-[200px] hover:bg-purple-500 border-2">
               <img
@@ -37,14 +37,14 @@ const ProfilePage = () => {
             </div>
             <h3 className="mt-2 ml-10 center">Marshal</h3>
           </div>
-        </Col>
-        <Col span={8}>
+        </div>
+        <div className="z-10">
           <div className="mt-[-80px]  items-center flex text-white">
             <h3 className="p-0 m-2   text-white">@marsh </h3>
             <span>Active 12 hours, 22 minutes ago</span>
           </div>
-        </Col>
-      </Row>
+        </div>
+      </div>
       <div className="toptab">
         <ul>
           <li>
