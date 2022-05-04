@@ -127,7 +127,7 @@ const HomeApp = () => {
         >
           <Route path="media" element={<ProfileContainer />}>
             <Route path="favourites" element={<ProfileFrag />} />
-            <Route path="activity" element={<Activity />} />
+            <Route path="personal" element={<Activity />} />
           </Route>
           <Route path="profile" element={<ProfileFrag />} />
           <Route path="friends" element={<ProfileFrag />} />

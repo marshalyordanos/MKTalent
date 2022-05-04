@@ -1,3 +1,4 @@
+
 import {
   AssignmentIndOutlined,
   MediaBluetoothOnOutlined,
@@ -48,16 +49,16 @@ const ProfilePage = () => {
       <div className="toptab z-50">
         <ul>
           <li>
-            <Link to="media/favourites">
+            <Link to="media/personal">
               <PermMediaOutlined sx={{ fontSize: 30 }} /> <p>Media</p>
             </Link>
           </li>
           <li>
             <Link to="profile">
               <AssignmentIndOutlined sx={{ fontSize: 30 }} />
-              <Link to="/profile/dawd/favourites"> <p>Profile</p> </Link>
-          
-          </li>{" "} 
+              <p>Profile</p>
+            </Link>
+          </li>{" "}
           <li>
             <Link to="friends">
               {" "}
@@ -122,7 +123,9 @@ const ProfilePage = () => {
           </div>
           <div className=" text-center ">
             <h2 className="mt-2">Suggestion</h2>
-            <div className="flex flex-wrap ">
+
+Marshal, [5/5/2022 12:21 AM]
+<div className="flex flex-wrap ">
               {Array(5)
                 .fill(2)
                 .map(() => (
@@ -175,6 +178,7 @@ const ProfilePageStyle = styled.div`
     }
     a:hover {
       color: blue;
+    }
     p {
       font-size: 18px;
     }
