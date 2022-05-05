@@ -8,7 +8,7 @@ import styled from "styled-components";
 const FriendsPost = () => {
   const { posts, loading, error } = useSelector((state) => state.postData);
   const dispatch = useDispatch();
-  console.log("ooooooooooooooooo", posts);
+  // console.log("ooooooooooooooooo", posts);
   useEffect(() => {
     async function fetchPost() {
       dispatch(getAllPost({ loading: true }));
@@ -26,21 +26,25 @@ const FriendsPost = () => {
       }
     }
     fetchPost();
-    // console.log
   }, []);
+  if (loading) {
+    return <h1>Loding .....</h1>;
+  }
   return (
     <div className="Posts">
-      {loading && <h1 className="text-3xl">Loading</h1>}
-      {posts &&
-        posts.map((post, i) => (
+      {posts.map((p) => (
+        <>
+          {}
+
           <PostCard
-            postId={post._id}
-            comments={post.comments}
-            images={post.images}
-            description={post.description}
-            key={i}
+            images={p.images}
+            comments={p.comments}
+            description={p.description}
+            postId={p._id}
+            key={p._id}
           />
-        ))}
+        </>
+      ))}
     </div>
   );
 };

@@ -9,6 +9,7 @@ import { Image } from "antd";
 import styled from "styled-components";
 
 const PostCard = (props) => {
+  console.log(props.images);
   console.log("hahahahahahaha", props);
   const [comments, setComments] = useState(props.comments);
   return (
@@ -23,7 +24,10 @@ const PostCard = (props) => {
           {props.images.length == 1 && (
             <div>
               <Image.PreviewGroup>
-                <Image width={500} src={`assets/img/post/${props.images[0]}`} />
+                <Image
+                  width={500}
+                  src={`/assets/img/post/${props.images[0]}`}
+                />
                 {/* <Image width={200} src={`assets/img/post/${image}`} /> */}
               </Image.PreviewGroup>
             </div>
@@ -35,7 +39,7 @@ const PostCard = (props) => {
                 {props.images.map((image, i) => {
                   return (
                     <div className="two_div" key={i}>
-                      <Image width={250} src={`assets/img/post/${image}`} />
+                      <Image width={250} src={`/assets/img/post/${image}`} />
                     </div>
                   );
                 })}
@@ -48,7 +52,7 @@ const PostCard = (props) => {
                 {props.images.map((image, i) => {
                   return (
                     <div className={`three_div${i + 1} three_div`} key={i}>
-                      <Image src={`assets/img/post/${image}`} />
+                      <Image src={`/assets/img/post/${image}`} />
                     </div>
                   );
                 })}

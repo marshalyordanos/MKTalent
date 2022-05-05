@@ -26,7 +26,7 @@ const ProfilePage = () => {
         </Col>
       </Row>
       <div className="flex z-10 ">
-        <div className="pl-[10%] z-10 border-2" offset={2}>
+        <div className="pl-[10%] z-10 " offset={2}>
           <div className=" ">
             <div className="h-[200px] mt-[-160px]  w-[200px] hover:bg-purple-500 border-2">
               <img
@@ -48,7 +48,7 @@ const ProfilePage = () => {
       <div className="toptab z-50">
         <ul>
           <li>
-            <Link to="media/activity">
+            <Link to="media/personal">
               <PermMediaOutlined sx={{ fontSize: 30 }} /> <p>Media</p>
             </Link>
           </li>
