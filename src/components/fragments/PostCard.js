@@ -20,7 +20,7 @@ const PostCard = (props) => {
       <div className=" px-9">
         <h1 className="text-ellipsis text-sm">{props.description}</h1>
         <div className="  box-content w-[500px] overflow-hidden">
-          {props.images.length == 1 && (
+          {props.images?.length == 1 && (
             <div>
               <Image.PreviewGroup>
                 <Image width={500} src={`assets/img/post/${props.images[0]}`} />
@@ -29,7 +29,7 @@ const PostCard = (props) => {
             </div>
           )}
 
-          {props.images.length == 2 && (
+          {props.images?.length == 2 && (
             <div className="two">
               <Image.PreviewGroup className>
                 {props.images.map((image, i) => {
