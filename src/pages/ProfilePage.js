@@ -134,7 +134,7 @@ Marshal, [5/5/2022 12:21 AM]
             </div>
           </div>
         </div>
-        <div className=" border-l-2 p-4 border-r-2 min-w-[500px] h-[500px] flex-1">
+        <div className=" border-l-2 p-4 border-r-2 min-w-[500px] h-auto flex-1 flex-wrap object-contain">
           <Outlet />
         </div>
         {/* <div className=" border-2 h-40 w-[300px]"></div> */}

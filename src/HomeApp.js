@@ -24,6 +24,7 @@ import ProfileFrag from "./components/fragments/profile/ProfileFrag";
 import Activity from "./components/fragments/profile/Activity";
 import ProfileContainer from "./components/fragments/profile/ProfileContainer";
 import FriendsPost from "./components/fragments/profile/FriendsPost";
+import PeopleSearchCard from "./components/fragments/people/PeopleSearchCard";
 const HomeApp = () => {
   const [showLogin, setShowLogin] = React.useState(false);
   const handleShowLoginOpen = () => setShowLogin(true);
@@ -129,11 +130,11 @@ const HomeApp = () => {
           <Route path="media" element={<ProfileContainer />}>
             {/* <Route path="favourites" element={<ProfileFrag />} /> */}
             <Route path="personal" element={<Activity />} />
-            <Route path="friends" element={<FriendsPost />} />
+            <Route path="friends" element={<PeopleSearchCard />} />
             <Route path="favourites" element={<Activity />} />
           </Route>
           <Route path="profile" element={<ProfileFrag />} />
-          <Route path="friends" element={<ProfileFrag />} />
+          <Route path="friends" element={<PeoplePage />} />
         </Route>
 
         <Route path="*" element={<PageNotFound />} />
