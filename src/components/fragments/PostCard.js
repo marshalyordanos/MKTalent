@@ -13,19 +13,20 @@ const PostCard = (props) => {
   console.log("hahahahahahaha", props);
   const [comments, setComments] = useState(props.comments);
   return (
-    <PostCardStyle className=" border-[1px] m-5 box-content  w-[600px] p-4 justify-start overflow-hidden">
+    <PostCardStyle className=" border-[1px] border-gray-200 bg-white m-5 box-content  w-[600px] p-4 justify-start overflow-hidden">
       <RightSideBarUserCard
         username="John Doe"
         status="7 hours, 57 minutes ago"
       />
       <div className=" px-9">
         <h1 className="text-ellipsis text-sm">{props.description}</h1>
-        <div className="  box-content w-[500px] overflow-hidden">
+        <div className="image_con  box-content w-[500px]  overflow-hidden">
           {props.images?.length == 1 && (
             <div>
               <Image.PreviewGroup>
                 <Image
-                  width={500}
+                  className=" one_image"
+                  // style={{ width: 200 }}
                   src={`/assets/img/post/${props.images[0]}`}
                 />
                 {/* <Image width={200} src={`assets/img/post/${image}`} /> */}
@@ -39,7 +40,10 @@ const PostCard = (props) => {
                 {props.images.map((image, i) => {
                   return (
                     <div className="two_div" key={i}>
-                      <Image width={250} src={`/assets/img/post/${image}`} />
+                      <Image
+                        className="two_image"
+                        src={`/assets/img/post/${image}`}
+                      />
                     </div>
                   );
                 })}
@@ -60,14 +64,16 @@ const PostCard = (props) => {
             </div>
           )}
         </div>
-        <CreateComment
-          postId={props.postId}
-          comments={comments}
-          setComments={setComments}
-        />
+        <div className="comment_sec">
+          <CreateComment
+            postId={props.postId}
+            comments={comments}
+            setComments={setComments}
+          />
 
-        <div>
-          <Commentlist comments={comments} />
+          <div>
+            <Commentlist comments={comments} />
+          </div>
         </div>
       </div>
     </PostCardStyle>
@@ -117,6 +123,29 @@ const PostCardStyle = styled.div`
     object-fit: cover;
     width: 500px;
     height: 350px;
+  }
+  @media screen and (max-width: 821px) {
+    width: 400px;
+    .image_con {
+      width: 300px;
+
+      .one_image {
+        width: 300px;
+      }
+      .two {
+        display: flex;
+        width: 300px;
+        justify-content: space-between;
+      }
+      .tow_div {
+        width: 150px;
+        height: 150px;
+        .two_image {
+          width: 150px;
+          height: 150px;
+        }
+      }
+    }
   }
 `;
 

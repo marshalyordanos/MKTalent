@@ -32,7 +32,7 @@ const CreateComment = ({ comments, setComments, postId }) => {
         <form className="flex flex-row">
           <input
             type="text"
-            className="my-3 rounded-xl 
+            className="comment_input my-3 rounded-xl 
     bg-slate-200 w-[300px] h-[35px]"
             placeholder="Write your comment here"
             value={comment.message}
@@ -59,6 +59,12 @@ const PlaceHolder = styled.div`
   }
   input {
     padding-left: 20px;
+  }
+  @media screen and (max-width: 821px) {
+    .comment_input {
+      width: 210px;
+      padding: 3px 5px;
+    }
   }
 `;
 export default CreateComment;

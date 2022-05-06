@@ -1,4 +1,3 @@
-
 import {
   AssignmentIndOutlined,
   MediaBluetoothOnOutlined,
@@ -17,19 +16,19 @@ const ProfilePage = () => {
     <ProfilePageStyle className="flex flex-col">
       <Row gutter={(8, 16)}>
         <Col span={24}>
-          <div className="h-[280px] hover:bg-purple-500 border-2">
+          <div className="h-[170px] lg:h-[220px]  hover:bg-purple-500 border-2">
             <img
-              className=" w-[100%] h-[280px]  object-cover"
+              className=" w-[100%] h-[170px] lg:h-[220px]  object-cover"
               src={CoverImg}
               alt="ksjn"
             />
           </div>
         </Col>
       </Row>
-      <div className="flex z-10 ">
-        <div className="pl-[10%] z-10 " offset={2}>
+      <div className="pic_con mt-[-70px] bg-white lg:bg-none flex-col lg:flex-row  lg:mt-0 flex z-10 ">
+        <div className="pic_con__div  pl-[10%]  z-10 " offset={2}>
           <div className=" ">
-            <div className="h-[200px] mt-[-160px]  w-[200px] hover:bg-purple-500 border-2">
+            <div className="image_con h-[200px]  lg:mt-[-160px]  w-[200px] hover:bg-purple-500 ">
               <img
                 className="  w-[200px] h-[200px]  object-cover"
                 src={CoverImg}
@@ -40,77 +39,50 @@ const ProfilePage = () => {
           </div>
         </div>
         <div>
-          <div className="mt-[-80px] z-50 items-center flex text-white">
+          <div className="pic_con_data mt-[-80px]  text-balck z-50 items-center flex ">
             <h3 className="p-0 m-2   text-white">@marsh </h3>
             <span>Active 12 hours, 22 minutes ago </span>
           </div>
         </div>
       </div>
-      <div className="toptab z-50">
-        <ul>
-          <li>
-            <Link to="media/personal">
-              <PermMediaOutlined sx={{ fontSize: 30 }} /> <p>Media</p>
-            </Link>
-          </li>
-          <li>
-            <Link to="profile">
-              <AssignmentIndOutlined sx={{ fontSize: 30 }} />
-              <p>Profile</p>
-            </Link>
-          </li>{" "}
-          <li>
-            <Link to="friends">
-              {" "}
-              <PermIdentityOutlined sx={{ fontSize: 30 }} />
-              <p>Friends</p>
-            </Link>
-          </li>
-        </ul>
+      <div className="toptab  z-50">
+        <div className="header">
+          <ul>
+            <li>
+              <Link to="activity/personal">
+                <PermMediaOutlined sx={{ fontSize: 30 }} /> <p>Activity</p>
+              </Link>
+            </li>
+            <li>
+              <Link to="profile">
+                <AssignmentIndOutlined sx={{ fontSize: 30 }} />
+                <p>Profile</p>
+              </Link>
+            </li>{" "}
+            <li>
+              <Link to="friends">
+                {" "}
+                <PermIdentityOutlined sx={{ fontSize: 30 }} />
+                <p>Friends</p>
+              </Link>
+            </li>
+            <li>
+              <Link to="friends">
+                {" "}
+                <PermMediaOutlined sx={{ fontSize: 30 }} />
+                <p>Media</p>
+              </Link>
+            </li>
+          </ul>
+          <div className="createPost">
+            <p>Create a Post</p>
+          </div>
+        </div>
       </div>
       <Divider className="p-0 m-0 " />
-      {/* <Row>
-        <Col span={{ xs: 2, sm: 3, md: 0, lg: 0 }}>
-          <div className="h-40 border-r-[1px] border-x-neutral-300 ">
-            <Row>
-              <Col offset={4} span={19}>
-                <div className="">
-                  <Row>
-                    <Col span={12}>
-                      <div className="border-2">
-                        <h3>10</h3>
-                        <p>Friends</p>
-                      </div>
-                    </Col>
-                    <Col span={12}>
-                      <div className="border-2">
-                        <h3>45</h3>
-                        <p>like</p>
-                      </div>
-                    </Col>
-                    <Divider />
-                    <Col span={24}></Col>
-                    <Col span={12}>
-                      <div className="border-2 w-[100px] h-[140px]"></div>
-                    </Col>
-                    <Col span={12}>
-                      <div className="border-2 w-[100px] h-[140px]"></div>
-                    </Col>
-                  </Row>
-                </div>
-              </Col>
-            </Row>
-          </div>
-        </Col>
-        <Col span={11}>
-          <div className=""></div>
-        </Col>
-        <Col span={7}>
-          <div className="h-40  border-l-[1px] border-x-neutral-300 "></div>
-        </Col>
-      </Row> */}
-      <div className="flex flex-wrap">
-        <div className="  h-40 w-[300px]">
+
+      <div className=" flex flex-wrap">
+        <div className="leftSideBar  h-40 w-[300px]">
           <div className="flex border-b-[1px] justify-end p-4">
             <div className=" mr-4 ">
               <h3>10</h3>
@@ -123,9 +95,8 @@ const ProfilePage = () => {
           </div>
           <div className=" text-center ">
             <h2 className="mt-2">Suggestion</h2>
-
-Marshal, [5/5/2022 12:21 AM]
-<div className="flex flex-wrap ">
+            Marshal, [5/5/2022 12:21 AM]
+            <div className="flex flex-wrap ">
               {Array(5)
                 .fill(2)
                 .map(() => (
@@ -156,11 +127,13 @@ const ProfilePageStyle = styled.div`
     object-fit: cover;
   }
   .toptab {
+    border: 1px solid red;
     margin-top: -70px;
     margin-left: -40px;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: 30px;
     ul {
       margin: 0;
       padding: 0;
@@ -181,6 +154,55 @@ const ProfilePageStyle = styled.div`
     }
     p {
       font-size: 18px;
+    }
+    .header {
+      border: 1px solid;
+      display: flex;
+      justify-content: space-between;
+    }
+    .createPost {
+      align-self: flex-end;
+    }
+  }
+
+  @media screen and (max-width: 1021px) {
+    .toptab {
+      margin: 0;
+    }
+    .pic_con {
+      width: 60%;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 10px;
+      box-shadow: 4px 4px 4px lightgray;
+      margin-bottom: 20px;
+      .image_con {
+        width: 120px;
+        height: 120px;
+        /* margin: auto; */
+        margin-top: -50px;
+      }
+      .pic_con__div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      h3 {
+        margin: 0;
+        padding: 0;
+        margin-left: 10px;
+      }
+      img {
+        width: 120px;
+        height: 120px;
+        border-radius: 100px;
+      }
+      .pic_con_data {
+        display: none;
+      }
+    }
+    .leftSideBar {
+      display: none;
     }
   }
 `;
