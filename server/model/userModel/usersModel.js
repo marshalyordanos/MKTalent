@@ -28,7 +28,7 @@ const userSchema = new mongoose.Schema(
       required: ["true", "Please input gender"],
       enum: {
         values: ["male", "female"],
-        message: "difficulty is either: easy, medium, hard",
+        message: "input either: male or female",
       },
     },
     password: {

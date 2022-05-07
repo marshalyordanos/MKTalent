@@ -20,12 +20,18 @@ const PeoplePage = () => {
    </div>  
    <hr className='ml-7 mr-7 border-[#e7e7e7] '/>
     <div className='self-center flex flex-wrap justify-center m-auto '>
-       <div className="flex flex-row"><PeopleSearchCard/> <PeopleSearchCard/>  </div>
-       <div className="flex flex-row"><PeopleSearchCard/> <PeopleSearchCard/>  </div>
-       <div className="flex flex-row"><PeopleSearchCard/> <PeopleSearchCard/>  </div>
-       <div className="flex flex-row"><PeopleSearchCard/> <PeopleSearchCard/>  </div>
-       <div className="flex flex-row"><PeopleSearchCard/> <PeopleSearchCard/>  </div>
-       <div className="flex flex-row"><PeopleSearchCard/> <PeopleSearchCard/>  </div>
+       <div className="flex flex-row"><PeopleSearchCard/> </div>
+       <div className="flex flex-row"><PeopleSearchCard/> </div>
+       <div className="flex flex-row"><PeopleSearchCard/> </div>
+       <div className="flex flex-row"><PeopleSearchCard/> </div>
+       <div className="flex flex-row"><PeopleSearchCard/> </div>
+       <div className="flex flex-row"><PeopleSearchCard/> </div>
+       <div className="flex flex-row"><PeopleSearchCard/>  </div>
+ <div className="flex flex-row"><PeopleSearchCard/>  </div>
+ <div className="flex flex-row"><PeopleSearchCard/>  </div>
+ <div className="flex flex-row"><PeopleSearchCard/>  </div>
+ <div className="flex flex-row"><PeopleSearchCard/>  </div>
+ <div className="flex flex-row"><PeopleSearchCard/>  </div>
    
 
       {/* <PeopleSearchCard/>

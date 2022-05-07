@@ -24,7 +24,10 @@ import ProfileFrag from "./components/fragments/profile/ProfileFrag";
 import Activity from "./components/fragments/profile/Activity";
 import ProfileContainer from "./components/fragments/profile/ProfileContainer";
 import FriendsPost from "./components/fragments/profile/FriendsPost";
+import PersonalPost from "./components/fragments/profile/PersonalPost";
 import PeopleSearchCard from "./components/fragments/people/PeopleSearchCard";
+import Favorites from "./components/fragments/profile/Favourites";
+import CreatePostpage from "./pages/CreatePostpage";
 const HomeApp = () => {
   const [showLogin, setShowLogin] = React.useState(false);
   const handleShowLoginOpen = () => setShowLogin(true);
@@ -127,15 +130,41 @@ const HomeApp = () => {
             </Layout>
           }
         >
-          <Route path="media" element={<ProfileContainer />}>
+          <Route path="activity" element={<ProfileContainer />}>
             {/* <Route path="favourites" element={<ProfileFrag />} /> */}
-            <Route path="personal" element={<Activity />} />
-            <Route path="friends" element={<PeopleSearchCard />} />
-            <Route path="favourites" element={<Activity />} />
+            <Route
+              path="personal"
+              element={
+                <>
+                  <Activity />
+                  <PersonalPost />
+                </>
+              }
+            />
+            <Route
+              path="friends"
+              element={
+                <>
+                  <Activity />
+                  <FriendsPost />
+                </>
+              }
+            />
+            <Route
+              path="favourites"
+              element={
+                <>
+                  <Activity />
+                  <Favorites />
+                </>
+              }
+            />
           </Route>
           <Route path="profile" element={<ProfileFrag />} />
           <Route path="friends" element={<PeoplePage />} />
+          <Route path="media" element={<PeoplePage />} />
         </Route>
+        <Route path="/:id/createPost" element={<CreatePostpage />} />
 
         <Route path="*" element={<PageNotFound />} />
       </Routes>
