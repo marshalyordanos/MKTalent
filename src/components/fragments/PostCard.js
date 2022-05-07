@@ -68,10 +68,10 @@ const PostCard = (props) => {
               </Image.PreviewGroup>
             </div>
           )}
-          <div><FavoriteBorderIcon className="mx-2 my-4"/>
+           {userData.token &&( <div><FavoriteBorderIcon className="mx-2 my-4"/>
           <StarBorderIcon className="mx-2 my-4"/>
 
-<ChatIcon className="mx-2 my-4"/> </div> 
+<ChatIcon className="mx-2 my-4"/> </div> )}
         </div>
         {userData.token && (
           <div className="comment_sec">
