@@ -7,10 +7,12 @@ import CreateComment from "./CreateComment";
 import { PropaneSharp } from "@mui/icons-material";
 import { Image } from "antd";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 
 const PostCard = (props) => {
   console.log(props.images);
-  console.log("hahahahahahaha", props);
+  console.log("hahahahahahaha", props); // {token:"" ,data:[]}
+  const { data: userData } = useSelector((state) => state.userAuth);
   const [comments, setComments] = useState(props.comments);
   return (
     <PostCardStyle className=" border-[1px] border-gray-200 bg-white m-5 box-content  w-[600px] p-4 justify-start overflow-hidden">
@@ -64,17 +66,19 @@ const PostCard = (props) => {
             </div>
           )}
         </div>
-        <div className="comment_sec">
-          <CreateComment
-            postId={props.postId}
-            comments={comments}
-            setComments={setComments}
-          />
+        {userData.token && (
+          <div className="comment_sec">
+            <CreateComment
+              postId={props.postId}
+              comments={comments}
+              setComments={setComments}
+            />
 
-          <div>
-            <Commentlist comments={comments} />
+            <div>
+              <Commentlist comments={comments} />
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </PostCardStyle>
   );
