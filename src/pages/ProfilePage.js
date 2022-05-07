@@ -116,7 +116,7 @@ const ProfilePage = () => {
 
 const ProfilePageStyle = styled.div`
   .car {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     width: 700px;
     height: 200px;
     /* overflow: hidden; */
@@ -127,7 +127,7 @@ const ProfilePageStyle = styled.div`
     object-fit: cover;
   }
   .toptab {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     margin-top: -70px;
     margin-left: -40px;
     display: flex;
@@ -156,12 +156,18 @@ const ProfilePageStyle = styled.div`
       font-size: 18px;
     }
     .header {
-      border: 1px solid;
+      /* border: 1px solid; */
       display: flex;
       justify-content: space-between;
     }
     .createPost {
       align-self: flex-end;
+      p {
+        background-color: green;
+        padding: 10px;
+        border-radius: 7px;
+        color: white;
+      }
     }
   }
 

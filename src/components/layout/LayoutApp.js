@@ -303,7 +303,11 @@ const LayoutApp = (props) => {
               }}
             >
               <div className="Layoutapp__content">
-                <div className=" flex-grow border-solid  border-r-[1px] border-[#d2d2d2] ">
+                <div
+                  className={`flex-grow border-solid ${
+                    props.sidebar && "flex flex-1 justify-center"
+                  } border-r-[1px] border-[#d2d2d2] `}
+                >
                   {/* <VideoPage/> */}
                   {/* <Posts/> */}
 

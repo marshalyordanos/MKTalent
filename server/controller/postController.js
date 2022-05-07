@@ -79,7 +79,7 @@ exports.getAllPost = catchAsync(async (req, res, next) => {
 
   const skip = (page - 1) * limit;
   query.skip(skip).limit(limit);
-
+  query.sort("-createdAt");
   const post = await query.populate("comments").populate("user");
 
   res.status(200).json({

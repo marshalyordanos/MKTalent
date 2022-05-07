@@ -27,6 +27,7 @@ import FriendsPost from "./components/fragments/profile/FriendsPost";
 import PersonalPost from "./components/fragments/profile/PersonalPost";
 import PeopleSearchCard from "./components/fragments/people/PeopleSearchCard";
 import Favorites from "./components/fragments/profile/Favourites";
+import CreatePostpage from "./pages/CreatePostpage";
 const HomeApp = () => {
   const [showLogin, setShowLogin] = React.useState(false);
   const handleShowLoginOpen = () => setShowLogin(true);
@@ -163,6 +164,7 @@ const HomeApp = () => {
           <Route path="friends" element={<PeoplePage />} />
           <Route path="media" element={<PeoplePage />} />
         </Route>
+        <Route path="/:id/createPost" element={<CreatePostpage />} />
 
         <Route path="*" element={<PageNotFound />} />
       </Routes>
