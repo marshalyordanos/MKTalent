@@ -28,6 +28,7 @@ import PersonalPost from "./components/fragments/profile/PersonalPost";
 import PeopleSearchCard from "./components/fragments/people/PeopleSearchCard";
 import Favorites from "./components/fragments/profile/Favourites";
 import CreatePostpage from "./pages/CreatePostpage";
+import BlogHome from './blog/pages/home/Home'
 const HomeApp = () => {
   const [showLogin, setShowLogin] = React.useState(false);
   const handleShowLoginOpen = () => setShowLogin(true);
@@ -119,6 +120,14 @@ const HomeApp = () => {
           element={
             <Layout>
               <RewardPage />
+            </Layout>
+          }
+        />
+             <Route
+          path="/bloghome"
+          element={
+            <Layout>
+              <BlogHome />
             </Layout>
           }
         />

@@ -18,12 +18,12 @@ export default function Home() {
     fetchPosts();
   }, [search]);
   return (
-    <>
+    <div className="home_con_blog">
       <Header />
-      <div className="home">
+      <div className="home1_blog">
         <Posts posts={posts} />
         <Sidebar />
       </div>
-    </>
+    </div>
   );
 }
