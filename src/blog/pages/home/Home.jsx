@@ -6,6 +6,7 @@ import TopBar from '../../topbar/TopBar'
 import "./home.css";
 import axios from "axios";
 import { useLocation } from "react-router";
+import { Link, Outlet } from "react-router-dom";
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
@@ -14,12 +15,7 @@ export default function Home() {
   return (
     <div className="home1_blog">
     <TopBar/>
-    <div className='home_con_blog'>
-      <Header />
-    
-     
-      <h1>some posts will be here</h1><Sidebar />
-        </div>
+   < Outlet/>
      
       </div>
       

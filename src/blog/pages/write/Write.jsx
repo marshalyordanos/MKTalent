@@ -15,7 +15,7 @@ export default function Write() {
    
   return (
     <div className="write">
-     
+     <h1>this will be the place to write blogs</h1>
     </div>
   );
 }

@@ -32,6 +32,9 @@ import BlogHome from './blog/pages/home/Home'
 import Write from './blog/pages/write/Write'
 import Settings from './blog/pages/settings/Settings'
 import { useSelector } from "react-redux";
+import Sidebar from "./blog/sidebar/Sidebar";
+import Header from "./blog/header/Header";
+import Homepcon from "./blog/homepagecontainer/Homepcon";
 const HomeApp = () => {
   const [showLogin, setShowLogin] = React.useState(false);
   const handleShowLoginOpen = () => setShowLogin(true);
@@ -130,15 +133,19 @@ const { data: userData } = useSelector((state) => state.userAuth);
           }
         />
              <Route
-          path="/bloghome"
+          path="/blog"
           element={
             <Layout>
               <BlogHome/>
             </Layout>
           }
           
-        />
-          {/* <Route path="write" element={        <Write /> } />  */}
+        >
+          <Route path="write" element={<Write /> } /> 
+          <Route path="homeblog" element={<>
+          
+        <Homepcon/>
+          </> } /> 
 
         {/*{userData.token ? }
      
@@ -148,7 +155,7 @@ const { data: userData } = useSelector((state) => state.userAuth);
       
         {/* <Route path="settings" element={<Settings />}  /> */}
         {/* {userData.token ? :}> */}
-        {/* </Route> */}
+        </Route>
 
 
         
