@@ -132,12 +132,19 @@ const { data: userData } = useSelector((state) => state.userAuth);
             </Layout>
           }
         />
+       <Route
+          path="/blog"  element={
+           < Navigate to={"/blog/homeblog"}/>
+           
+          }
+          />
              <Route
           path="/blog"
           element={
             <Layout>
               <BlogHome/>
             </Layout>
+           
           }
           
         >
