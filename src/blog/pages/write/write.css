@@ -1,13 +1,20 @@
 .write {
   padding-top: 50px;
+  width: 100%;
+  flex-wrap: wrap;
+  /* border: 1px solid red; */
+  /* width: 50vh; */
 }
 
 .writeImg {
   margin-left: 150px;
-  width: 70vw;
+  width:70vh;
+  flex-wrap: wrap;
   height: 250px;
   border-radius: 10px;
   object-fit: cover;
+  /* align-self: center; */
+margin-bottom: 30px;
 }
 
 .writeForm {
@@ -15,7 +22,7 @@
 }
 
 .writeFormGroup {
-  margin-left: 150px;
+  /* margin-left: 150px; */
   display: flex;
   align-items: center;
 }
@@ -37,7 +44,7 @@
   font-size: 30px;
   border: none;
   padding: 20px;
-  width: 70vw;
+  width: 100.6vh;
 }
 
 .writeInput:focus {
@@ -47,6 +54,7 @@
 .writeText {
   font-size: 20px;
   height: 100vh;
+  width: 104vh;
 }
 
 .writeSubmit {

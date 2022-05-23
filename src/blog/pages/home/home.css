@@ -1,3 +1,9 @@
-.home{
+.home1_blog{
     display: flex;
+    flex-direction: column;
+}
+.home_con_blog{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
