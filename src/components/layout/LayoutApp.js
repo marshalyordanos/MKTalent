@@ -249,7 +249,7 @@ const LayoutApp = (props) => {
                   </div>
                 ) : (
                   <div className="self-center flex items-center mx-5">
-                    {data.token && (
+                    {data?.token && (
                       <Dropdown overlay={menu} placement="bottomLeft" arrow>
                         <div className="flex items-center  px-4  ">
                           <p className="py-0 pl-4 pr-2 mt-[14px] ">

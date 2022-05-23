@@ -75,7 +75,9 @@ const ProfilePage = () => {
             </li>
           </ul>
           <div className="createPost">
-            <p>Create a Post</p>
+            <p>
+              <Link to={"/id/createpost"}>Create a Post</Link>
+            </p>
           </div>
         </div>
       </div>
