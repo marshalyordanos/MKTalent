@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./authReducer";
 import postReducer from "./postReducer";
-
+import blogPostReducer from './blogpostReducer'
 import counterReducer from "./counter/mode";
 
 import {
@@ -28,6 +28,7 @@ export const store=configureStore({
     mode: counterReducer,
     userAuth: persistedReducer,
     postData: postReducer,
+    blogPostData:blogPostReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
