@@ -1,9 +1,9 @@
 import React from "react";
-import RightSideBarUserCard from "../layout/RightSideBarUserCard";
+// import RightSideBarUserCard from "../layout/RightSideBarUserCard";
 import Postimg from "../../assets/page/profile.png";
 import { useState } from "react";
-import Commentlist from "./Commentlist";
-import CreateComment from "./CreateComment";
+// import Commentlist from "./Commentlist";
+// import CreateComment from "./CreateComment";
 import { PropaneSharp } from "@mui/icons-material";
 import { Image } from "antd";
 import styled from "styled-components";
@@ -12,34 +12,34 @@ import StarBorderIcon from '@mui/icons-material/StarBorder';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { useSelector } from "react-redux";
 
-const PostCard = (props) => {
-  console.log(props.images);
+const BlogCard = (props) => {
+  console.log(props.photo);
   console.log("hahahahahahaha", props); // {token:"" ,data:[]}
   const { data: userData } = useSelector((state) => state.userAuth);
-  const [comments, setComments] = useState(props.comments);
+//   const [comments, setComments] = useState(props.comments);
   return (
     <PostCardStyle className=" border-[1px] border-gray-200 bg-white m-5 box-content  w-[600px] p-4 justify-start overflow-hidden">
-      <RightSideBarUserCard
+      {/* <RightSideBarUserCard
         username="John Doe"
         status="7 hours, 57 minutes ago"
-      />
+      /> */}
       <div className=" px-9">
-        <h1 className="text-ellipsis text-sm">{props.description}</h1>
+        <h1 className="text-ellipsis text-sm">{props.desc}</h1>
         <div className="image_con  box-content w-[500px]  overflow-hidden">
-          {props.images?.length == 1 && (
+          {props.photo?.length == 1 && (
             <div>
               <Image.PreviewGroup>
                 <Image
                   className=" one_image"
                   // style={{ width: 200 }}
-                  src={`/assets/img/post/${props.images[0]}`}
+                  src={`/assets/img/post/${props.photo[0]}`}
                 />
                 {/* <Image width={200} src={`assets/img/post/${image}`} /> */}
               </Image.PreviewGroup>
             </div>
           )}
 
-          {props.images?.length == 2 && (
+          {/* {props.images?.length == 2 && (
             <div className="two">
               <Image.PreviewGroup className>
                 {props.images.map((image, i) => {
@@ -47,15 +47,15 @@ const PostCard = (props) => {
                     <div className="two_div" key={i}>
                       <Image
                         className="two_image"
-                        src={`/assets/img/post/${image}`}
+                        src={`/assets/img/blogpost/${image}`}
                       />
                     </div>
                   );
                 })}
               </Image.PreviewGroup>
             </div>
-          )}
-          {props.images.length == 3 && (
+          )} */}
+          {/* {props.images.length == 3 && (
             <div className="three">
               <Image.PreviewGroup className>
                 {props.images.map((image, i) => {
@@ -67,13 +67,13 @@ const PostCard = (props) => {
                 })}
               </Image.PreviewGroup>
             </div>
-          )}
-           {userData.token &&( <div><FavoriteBorderIcon className="mx-2 my-4"/>
+          )} */}
+           {/* {userData.token &&( <div><FavoriteBorderIcon className="mx-2 my-4"/>
           <StarBorderIcon className="mx-2 my-4"/>
 
-<ChatIcon className="mx-2 my-4"/> </div> )}
+<ChatIcon className="mx-2 my-4"/> </div> )} */}
         </div>
-        {userData.token && (
+        {/* {userData.token && (
           <div className="comment_sec">
             <CreateComment
               postId={props.postId}
@@ -85,7 +85,10 @@ const PostCard = (props) => {
               <Commentlist comments={comments} />
             </div>
           </div>
-        )}
+        )} */}
+        <div><h2>{props.title}</h2>
+        <p>{props.desc}</p>
+        </div>
       </div>
     </PostCardStyle>
   );
@@ -160,4 +163,4 @@ const PostCardStyle = styled.div`
   }
 `;
 
-export default PostCard;
+export default BlogCard;
