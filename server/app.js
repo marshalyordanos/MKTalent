@@ -1,7 +1,7 @@
 const express = require('express');
 const userRouter = require('./router/userRouter');
 const postRouter = require('./router/postRouter');
-
+const blogRouter = require('./router/Blogrouter')
 
 const AppErorr = require('./utils/appError');
 const Cors = require('cors');
@@ -13,6 +13,7 @@ app.use(Cors());
 
 app.use('/api/v1/users',userRouter)
 app.use('/api/v1/posts',postRouter)
+app.use('/api/v1/blogposts',blogRouter)
 // app.use('/api/v1/comments',commentRouter)
 
 
