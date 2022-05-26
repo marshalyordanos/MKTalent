@@ -19,10 +19,7 @@ const BlogCard = (props) => {
 //   const [comments, setComments] = useState(props.comments);
   return (
     <PostCardStyle className=" border-[1px] border-gray-200 bg-white m-5 box-content  w-[600px] p-4 justify-start overflow-hidden">
-      {/* <RightSideBarUserCard
-        username="John Doe"
-        status="7 hours, 57 minutes ago"
-      /> */}
+
       <div className=" px-9">
         <h1 className="text-ellipsis text-sm">{props.desc}</h1>
         <div className="image_con  box-content w-[500px]  overflow-hidden">
@@ -31,61 +28,16 @@ const BlogCard = (props) => {
               <Image.PreviewGroup>
                 <Image
                   className=" one_image"
-                  // style={{ width: 200 }}
+
                   src={`/assets/img/post/${props.photo[0]}`}
                 />
-                {/* <Image width={200} src={`assets/img/post/${image}`} /> */}
               </Image.PreviewGroup>
             </div>
           )}
 
-          {/* {props.images?.length == 2 && (
-            <div className="two">
-              <Image.PreviewGroup className>
-                {props.images.map((image, i) => {
-                  return (
-                    <div className="two_div" key={i}>
-                      <Image
-                        className="two_image"
-                        src={`/assets/img/blogpost/${image}`}
-                      />
-                    </div>
-                  );
-                })}
-              </Image.PreviewGroup>
-            </div>
-          )} */}
-          {/* {props.images.length == 3 && (
-            <div className="three">
-              <Image.PreviewGroup className>
-                {props.images.map((image, i) => {
-                  return (
-                    <div className={`three_div${i + 1} three_div`} key={i}>
-                      <Image src={`/assets/img/post/${image}`} />
-                    </div>
-                  );
-                })}
-              </Image.PreviewGroup>
-            </div>
-          )} */}
-           {/* {userData.token &&( <div><FavoriteBorderIcon className="mx-2 my-4"/>
-          <StarBorderIcon className="mx-2 my-4"/>
-
-<ChatIcon className="mx-2 my-4"/> </div> )} */}
+        
         </div>
-        {/* {userData.token && (
-          <div className="comment_sec">
-            <CreateComment
-              postId={props.postId}
-              comments={comments}
-              setComments={setComments}
-            />
-
-            <div>
-              <Commentlist comments={comments} />
-            </div>
-          </div>
-        )} */}
+    
         <div><h2>{props.title}</h2>
         <p>{props.desc}</p>
         </div>
