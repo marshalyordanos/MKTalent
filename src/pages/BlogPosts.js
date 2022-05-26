@@ -5,16 +5,16 @@ import { getAllblogPost } from "../redux/blogpostReducer";
 import api from "../api/api";
 import { Image } from "antd";
 import styled from "styled-components";
-const Posts = () => {
-  const { posts, loading, error } = useSelector((state) => state.postData);
+const BlogPosts = () => {
+  const { posts, loading, error } = useSelector((state) => state.blogPostData);
   const dispatch = useDispatch();
   console.log("ooooooooooooooooo", posts);
   useEffect(() => {
     async function fetchPost() {
       dispatch(getAllblogPost({ loading: true }));
       try {
-        const { data } = await api.get("/blogposts/getallpost?limit=5");
-        console.log(data.data);
+        const { data } = await api.get("/blogposts/getallpost");
+        console.log("***************************",data.data);
         dispatch(getAllblogPost({ loading: false, posts: data.data }));
       } catch (err) {
         dispatch(
@@ -45,4 +45,4 @@ const Posts = () => {
   );
 };
 
-export default Posts;
+export default BlogPosts;
