@@ -64,7 +64,7 @@ const LayoutApp = (props) => {
   const profileMenu = (
     <Menu>
       <Menu.Item key={10}>
-        <NavLink to={"/ww"}>Profile</NavLink>
+        <NavLink to={"/profile/qqqqqq"}>Profile</NavLink>
       </Menu.Item>
       <Menu.Item key={12}>
         <NavLink
@@ -89,7 +89,6 @@ const LayoutApp = (props) => {
   const toggle = () => {
     setCollapsed(!collapsed);
   };
-  console.log(windowWidth);
 
   return (
     <LayoutStyle>

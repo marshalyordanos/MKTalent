@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import RightSideBarUserCard from "../layout/RightSideBarUserCard";
 import Postimg from "../../assets/page/profile.png";
 import { useState } from "react";
@@ -7,24 +7,70 @@ import CreateComment from "./CreateComment";
 import { PropaneSharp } from "@mui/icons-material";
 import { Image } from "antd";
 import styled from "styled-components";
-import ChatIcon from '@mui/icons-material/Chat';
-import StarBorderIcon from '@mui/icons-material/StarBorder';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import ChatIcon from "@mui/icons-material/Chat";
+import StarBorderIcon from "@mui/icons-material/StarBorder";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useSelector } from "react-redux";
 
 const PostCard = (props) => {
-  console.log(props.images);
-  console.log("hahahahahahaha", props); // {token:"" ,data:[]}
   const { data: userData } = useSelector((state) => state.userAuth);
   const [comments, setComments] = useState(props.comments);
+  const [time, setTime] = useState("");
+  useEffect(() => {
+    /******************   posted date */
+
+    const y = new Date(props.createdAt);
+    const x = new Date();
+    const z = x - y;
+    const timeInSeconed = Math.floor(z / 1000);
+    const timeInMin = Math.floor(timeInSeconed / 60);
+    const timeInHours = Math.floor(timeInMin / 60);
+    const timeInDay = Math.floor(timeInHours / 24);
+    const timeInMonth = Math.floor(timeInDay / 30);
+    const timeInYear = Math.floor(timeInDay / 365);
+    let time = "";
+    if (timeInSeconed < 60) {
+      setTime("just now");
+    } else if (timeInYear > 0) {
+      setTime(`${timeInYear} year ago`);
+    } else if (timeInMin < 60) {
+      setTime(`${timeInMin} min ago`);
+    } else if (timeInHours < 24) {
+      setTime(`${timeInHours} hours ago`);
+    } else if (timeInDay < 30) {
+      setTime(`${timeInDay} day ago`);
+    } else if (timeInMonth < 24) {
+      setTime(`${timeInMonth} month ago`);
+    }
+  }, []);
   return (
     <PostCardStyle className=" border-[1px] border-gray-200 bg-white m-5 box-content  w-[600px] p-4 justify-start overflow-hidden">
-      <RightSideBarUserCard
-        username="John Doe"
-        status="7 hours, 57 minutes ago"
-      />
+      <RightSideBarUserCard username={props.username} status={time} />
       <div className=" px-9">
         <h1 className="text-ellipsis text-sm">{props.description}</h1>
+        {props.audio ? (
+          <div>
+            <audio controls>
+              <source src={`/assets/audio/${props.audio}`} type="audio/ogg" />
+              <source src={`/assets/audio/${props.audio}`} type="audio/mpeg" />
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+        ) : (
+          ""
+        )}
+
+        {props.video ? (
+          <div>
+            <video width="500" height="240" controls>
+              <source src={`/assets/video/${props.video}`} type="video/mp4" />
+              {/* <source src={`/assets/abel.mp4`} type="video/ogg" /> */}
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        ) : (
+          ""
+        )}
         <div className="image_con  box-content w-[500px]  overflow-hidden">
           {props.images?.length == 1 && (
             <div>
@@ -68,12 +114,15 @@ const PostCard = (props) => {
               </Image.PreviewGroup>
             </div>
           )}
-           {userData.token &&( <div><FavoriteBorderIcon className="mx-2 my-4"/>
-          <StarBorderIcon className="mx-2 my-4"/>
-
-<ChatIcon className="mx-2 my-4"/> </div> )}
+          {userData?.token && (
+            <div>
+              <FavoriteBorderIcon className="mx-2 my-4" />
+              <StarBorderIcon className="mx-2 my-4" />
+              <ChatIcon className="mx-2 my-4" />{" "}
+            </div>
+          )}
         </div>
-        {userData.token && (
+        {userData?.token && (
           <div className="comment_sec">
             <CreateComment
               postId={props.postId}
