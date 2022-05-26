@@ -4,14 +4,17 @@ import styled from "styled-components";
 import Profile from "../../assets/page/profile.png";
 import { IconButton } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
+import { useSelector } from "react-redux";
+import api from "../../api/api";
 
 const CreateComment = ({ comments, setComments, postId }) => {
+  const { data: userData } = useSelector((state) => state.userAuth);
+  console.log(";;;;;;;;;;;;;;;;;;;;", userData);
   const [comment, setComment] = useState({
     message: "",
     post: postId,
-    user: { username: "Marshal", _id: "qwertyuioplkjhgfdsbn" },
+    user: { username: userData.data.username },
   });
-  console.log("3333333333333333333", comment);
   function handleComment(evt) {
     setComment({ ...comment, message: evt.target.value });
   }
@@ -20,6 +23,12 @@ const CreateComment = ({ comments, setComments, postId }) => {
     const newComment = { comment };
     setComments([comment, ...comments]);
     setComment({ ...comment, message: "" });
+    api.post(`/posts/${postId}/comments`, comment, {
+      headers: {
+        "Access-Control-Allow-Origin": true,
+        authorization: `Bearer ${userData.token}`,
+      },
+    });
   }
   return (
     <div>
@@ -46,8 +55,6 @@ const CreateComment = ({ comments, setComments, postId }) => {
           >
             <SendIcon size={"small"} />
           </IconButton>
-       
-
         </form>
       </PlaceHolder>
       {/*  */}

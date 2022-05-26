@@ -9,7 +9,10 @@ const postSchema = new mongoose.Schema(
     description: String,
     tag: [String],
     audio: String,
-    isDraft: Boolean,
+    isDraft: {
+      type: Boolean,
+      default: false,
+    },
     user: {
       type: mongoose.Schema.ObjectId,
       ref: "User",

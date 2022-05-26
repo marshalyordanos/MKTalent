@@ -25,6 +25,7 @@ const tailLayout = {
 const CreatePostpage = () => {
   const [fileList, setFileList] = useState([]);
   const postData = useSelector((state) => state.postData);
+  const data10 = useSelector((state) => state.userAuth.data);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -172,7 +173,6 @@ const CreatePostpage = () => {
                     const formData = new FormData();
                     formData.append("tag", tags);
                     formData.append("description", description);
-
                     fileList.forEach((file) => {
                       console.log("pppppppppppppppppppppp", file);
                       formData.append("images", file);
@@ -180,8 +180,7 @@ const CreatePostpage = () => {
                     api.post("/posts", formData, {
                       headers: {
                         "Access-Control-Allow-Origin": true,
-                        authorization:
-                          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNzY3ZDI2ZDJlNDFmM2JlMDliMTJkYSIsImlhdCI6MTY1MTkzMjQ1NSwiZXhwIjoxNjU0NTI0NDU1fQ.pLFDVfPoG62Zivyml_giRAw3vAFVEvSaTf1SeHq7n_U",
+                        authorization: `Bearer ${data10.token}`,
                       },
                     });
                     const data = {
@@ -189,6 +188,7 @@ const CreatePostpage = () => {
                       description: description,
                       images: fileList.map((file) => file.name),
                       comments: [],
+                      user: { username: data10.data.username },
                     };
                     setTags("");
                     setDescription("");

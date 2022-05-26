@@ -5,11 +5,10 @@ const catchAsync = require("../utils/catchAsync");
 
 /********************** create post ****************** */
 exports.createComment = catchAsync(async (req, res, next) => {
-  if (!req.body.user)
-    req.body.user = {
-      username: req.user.username,
-      _id: req.user._id,
-    };
+  req.body.user = {
+    username: req.user.username,
+    _id: req.user._id,
+  };
   if (!req.body.tour) req.body.post = req.params.postId;
   const comment = await Comment.create(req.body);
 

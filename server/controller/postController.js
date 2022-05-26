@@ -75,14 +75,16 @@ exports.getAllPost = catchAsync(async (req, res, next) => {
   let query = Post.find();
   console.log(req.query);
   const page = req.query.page * 1 || 1;
-  const limit = +req.query.limit || 9;
+  const limit = +req.query.limit || 100;
 
   const skip = (page - 1) * limit;
   query.skip(skip).limit(limit);
   query.sort("-createdAt");
   const post = await query.populate("comments").populate("user");
+  const posts = await Post.find();
 
   res.status(200).json({
+    totalLength: posts.length,
     length: post.length,
     status: "success",
     data: post,
