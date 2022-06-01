@@ -28,20 +28,20 @@ import PersonalPost from "./components/fragments/profile/PersonalPost";
 import PeopleSearchCard from "./components/fragments/people/PeopleSearchCard";
 import Favorites from "./components/fragments/profile/Favourites";
 import CreatePostpage from "./pages/CreatePostpage";
-import BlogHome from './blog/pages/home/Home'
-import Write from './blog/pages/write/Write'
-import Settings from './blog/pages/settings/Settings'
+import BlogHome from "./blog/pages/home/Home";
+import Write from "./blog/pages/write/Write";
+import Settings from "./blog/pages/settings/Settings";
 import { useSelector } from "react-redux";
 import Sidebar from "./blog/sidebar/Sidebar";
 import Header from "./blog/header/Header";
 import Homepcon from "./blog/homepagecontainer/Homepcon";
+import CompanyLayout from "./components/company/Layout";
 const HomeApp = () => {
   const [showLogin, setShowLogin] = React.useState(false);
   const handleShowLoginOpen = () => setShowLogin(true);
   const handleShowLoginClose = () => setShowLogin(false);
 
-
-const { data: userData } = useSelector((state) => state.userAuth);
+  const { data: userData } = useSelector((state) => state.userAuth);
   return (
     <div>
       <Model show={showLogin} onClosed={handleShowLoginClose}>
@@ -132,40 +132,34 @@ const { data: userData } = useSelector((state) => state.userAuth);
             </Layout>
           }
         />
-       <Route
-          path="/blog"  element={
-           < Navigate to={"/blog/homeblog"}/>
-           
-          }
-          />
-             <Route
+        <Route path="/blog" element={<Navigate to={"/blog/homeblog"} />} />
+        <Route
           path="/blog"
           element={
             <Layout>
-              <BlogHome/>
+              <BlogHome />
             </Layout>
-           
           }
-          
         >
-          <Route path="write" element={<Write /> } /> 
-          <Route path="homeblog" element={<>
-          
-        <Homepcon/>
-          </> } /> 
+          <Route path="write" element={<Write />} />
+          <Route
+            path="homeblog"
+            element={
+              <>
+                <Homepcon />
+              </>
+            }
+          />
 
-        {/*{userData.token ? }
+          {/*{userData.token ? }
      
         {/* :  */}
-        {/* <Login />}> */}
-          
-      
-        {/* <Route path="settings" element={<Settings />}  /> */}
-        {/* {userData.token ? :}> */}
+          {/* <Login />}> */}
+
+          {/* <Route path="settings" element={<Settings />}  /> */}
+          {/* {userData.token ? :}> */}
         </Route>
 
-
-        
         <Route
           path="/profile/:id"
           element={
@@ -209,6 +203,7 @@ const { data: userData } = useSelector((state) => state.userAuth);
           <Route path="media" element={<PeoplePage />} />
         </Route>
         <Route path="/:id/createPost" element={<CreatePostpage />} />
+        <Route path="/companylayout" element={<CompanyLayout />} />
 
         <Route path="*" element={<PageNotFound />} />
       </Routes>

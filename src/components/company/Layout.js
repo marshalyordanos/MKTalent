@@ -16,8 +16,7 @@ import EmojiEventsOutlinedIcon from "@mui/icons-material/EmojiEventsOutlined";
 import StickyNote2OutlinedIcon from "@mui/icons-material/StickyNote2Outlined";
 import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
-import RightSideBarUserCard from "./RightSideBarUserCard";
-import UserStatus from "./userStatusBar";
+// import UserStatus from "./userStatusBar";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "@mui/material";
 import { changeLight } from "../../redux/counter/mode";
@@ -25,10 +24,7 @@ import { DarkMode } from "@mui/icons-material";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
-import VideoCard from "../fragments/VideoCard";
-import VideoPage from "../../pages/VideoPage";
-import PostCard from "../fragments/PostCard";
-import Posts from "../../pages/Posts";
+
 import MKLogo from "../../assets/page/MK logo/MK logo.png";
 import Login from "../login/Login";
 import Model from "../../utils/Model";
@@ -52,7 +48,7 @@ const menu = (
   </Menu>
 );
 
-const LayoutApp = (props) => {
+const CompanyLayout = (props) => {
   const data = useSelector((state) => state.userAuth.data);
   console.log("company company ", data);
   const dispatch = useDispatch();
@@ -129,29 +125,24 @@ const LayoutApp = (props) => {
               defaultSelectedKeys={["1"]}
             >
               <Menu.Item key="1" icon={<HomeOutlined />}>
-                <Link to={"/main"}>Home</Link>
+                <Link to={"/main"}>Find Talent</Link>
               </Menu.Item>
               <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-                <Link to={"/videos"}>Video</Link>
+                <Link to={"/videos"}>Post Blog</Link>
               </Menu.Item>
               <Menu.Item key="3" icon={<UserOutlined />}>
-                <Link to={"/peoples"}>People</Link>
+                <Link to={"/peoples"}>Message</Link>
               </Menu.Item>
-              <Menu.Item key="4" icon={<TvIcon />}>
-                Advert
-              </Menu.Item>
+
               <Menu.Item key="5" icon={<FestivalOutlinedIcon />}>
-                <Link to={"/events"}>Event</Link>
+                <Link to={"/events"}>Make Event</Link>
               </Menu.Item>
 
               <Menu.Item key="6" icon={<WorkOutlineOutlinedIcon />}>
-                <Link to={"/jobs"}>Job</Link>
+                <Link to={"/jobs"}>status</Link>
               </Menu.Item>
               <Menu.Item key="7" icon={<StickyNote2OutlinedIcon />}>
-                <Link to={"/blog"}>Blog</Link>
-              </Menu.Item>
-              <Menu.Item key="8" icon={<EmojiEventsOutlinedIcon />}>
-                <Link to={"/reward"}>Reward</Link>
+                <Link to={"/blog"}>profile</Link>
               </Menu.Item>
             </Menu>
           </div>
@@ -219,6 +210,8 @@ const LayoutApp = (props) => {
               >
                 {windowWidth > 845 ? (
                   <div className="flex items-center mx-8">
+                    <NavLink to={"/ww"}>Notification</NavLink>
+
                     <NavLink to={"/ww"}>ABOUT US</NavLink>
                     <NavLink to={"/ee"}>CONTACT</NavLink>
                     {data?.token ? (
@@ -319,7 +312,7 @@ const LayoutApp = (props) => {
                       ""
                     ) : (
                       <div className="px-10 h-[88vh] sticky top-20 ">
-                        <UserStatus />
+                        {/* <UserStatus /> */}
                       </div>
                     )}
                   </>
@@ -333,7 +326,7 @@ const LayoutApp = (props) => {
   );
 };
 
-LayoutApp.defaultProps = {
+CompanyLayout.defaultProps = {
   sidebar: true,
 };
 
@@ -384,4 +377,4 @@ const LayoutStyle = styled.div`
   }
 `;
 
-export default LayoutApp;
+export default CompanyLayout;

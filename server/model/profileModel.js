@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
-const postSchema = new mongoose.Schema(
+const profileSchema = new mongoose.Schema(
   {
-    coerImage: String,
+    coverImage: String,
     profileImage: String,
     age: Number,
     height: Number,
@@ -13,6 +13,12 @@ const postSchema = new mongoose.Schema(
     magicalRating: String,
     freinds: [Object],
     totalLikes: Number,
+    yearOfExperiance: Number,
+    desc: String,
+    point: Number,
+    languages: [String],
+    phone: String,
+    Location: String,
 
     user: {
       type: mongoose.Schema.ObjectId,
@@ -27,12 +33,12 @@ const postSchema = new mongoose.Schema(
   }
 );
 
-postSchema.virtual("comments", {
+profileSchema.virtual("comments", {
   ref: "Comment",
   foreignField: "post",
   localField: "_id",
 });
 
-const Post = mongoose.model("Post", postSchema);
+const Profile = mongoose.model("Profile", profileSchema);
 
-module.exports = Post;
+module.exports = Profile;
