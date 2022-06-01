@@ -27,12 +27,7 @@ export default function TopBar() {
           </li>
           <li className="topListItem">
             <Link className="link text-black" to="/">
-              ABOUT
-            </Link>
-          </li>
-          <li className="topListItem">
-            <Link className="link text-black" to="/">
-              CONTACT
+              CATEGORIES
             </Link>
           </li>
           <li className="topListItem">

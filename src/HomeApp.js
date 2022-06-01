@@ -35,6 +35,8 @@ import { useSelector } from "react-redux";
 import Sidebar from "./blog/sidebar/Sidebar";
 import Header from "./blog/header/Header";
 import Homepcon from "./blog/homepagecontainer/Homepcon";
+// import CrudCompany from "./jobs/CrudCompany"s;
+import CrudJob from "./jobs/CrudJob";
 const HomeApp = () => {
   const [showLogin, setShowLogin] = React.useState(false);
   const handleShowLoginOpen = () => setShowLogin(true);
@@ -209,6 +211,8 @@ const { data: userData } = useSelector((state) => state.userAuth);
           <Route path="media" element={<PeoplePage />} />
         </Route>
         <Route path="/:id/createPost" element={<CreatePostpage />} />
+        {/* <Route path="/postjobs/crudcompany" element={<CrudCompany />} /> */}
+        <Route path="/postjobs/crudjob" element={<CrudJob />} />
 
         <Route path="*" element={<PageNotFound />} />
       </Routes>

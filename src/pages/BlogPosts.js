@@ -6,16 +6,16 @@ import api from "../api/api";
 import { Image } from "antd";
 import styled from "styled-components";
 const BlogPosts = () => {
-  const { posts, loading, error } = useSelector((state) => state.blogPostData);
+  const { blogposts, loading, error } = useSelector((state) => state.blogPostData);
   const dispatch = useDispatch();
-  console.log("ooooooooooooooooo", posts);
+  console.log("ooooooooooooooooo", blogposts);
   useEffect(() => {
     async function fetchPost() {
       dispatch(getAllblogPost({ loading: true }));
       try {
         const { data } = await api.get("/blogposts/getallpost");
         console.log("***************************",data.data);
-        dispatch(getAllblogPost({ loading: false, posts: data.data }));
+        dispatch(getAllblogPost({ loading: false, blogposts: data.data }));
       } catch (err) {
         dispatch(
           getAllblogPost({
@@ -29,15 +29,16 @@ const BlogPosts = () => {
     // console.log
   }, []);
   return (
-    <div className="Posts">
+    <div className="flex flex-row flex-wrap">
       {loading && <h1 className="text-3xl">Loading</h1>}
-      {posts &&
-        posts.map((post, i) => (
+      {blogposts &&
+        blogposts.map((post, i) => (
           <BlogCard
           photo={post.photo}
-          postId={post._id}
-            title={post.title}
+          // postId={post._id}
+      
             desc={post.desc}
+            title={post.title}
             key={i}
           />
         ))}

@@ -28,7 +28,8 @@ const PostCard = (props) => {
     const timeInDay = Math.floor(timeInHours / 24);
     const timeInMonth = Math.floor(timeInDay / 30);
     const timeInYear = Math.floor(timeInDay / 365);
-    let time = "";
+    console.log("zzzzzzzzzzzzzzz",z,props.createdAt)
+    // let time = "";
     if (timeInSeconed < 60) {
       setTime("just now");
     } else if (timeInYear > 0) {
@@ -41,8 +42,11 @@ const PostCard = (props) => {
       setTime(`${timeInDay} day ago`);
     } else if (timeInMonth < 24) {
       setTime(`${timeInMonth} month ago`);
+    }else{
+      setTime("somting is wrong")
     }
   }, []);
+  console.log("jjjjjjjjjjjjjjjjjjjjjjjj",time)
   return (
     <PostCardStyle className=" border-[1px] border-gray-200 bg-white m-5 box-content  w-[600px] p-4 justify-start overflow-hidden">
       <RightSideBarUserCard username={props.username} status={time} />

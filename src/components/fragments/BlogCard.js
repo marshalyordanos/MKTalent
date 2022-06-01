@@ -18,28 +18,29 @@ const BlogCard = (props) => {
   const { data: userData } = useSelector((state) => state.userAuth);
 //   const [comments, setComments] = useState(props.comments);
   return (
-    <PostCardStyle className=" border-[1px] border-gray-200 bg-white m-5 box-content  w-[600px] p-4 justify-start overflow-hidden">
+    <PostCardStyle className=" border-[1px] bg-white m-3 box-content  w-[285px] h-[auto] justify-start overflow-hidden object-cover">
 
-      <div className=" px-9">
-        <h1 className="text-ellipsis text-sm">{props.desc}</h1>
-        <div className="image_con  box-content w-[500px]  overflow-hidden">
+      <div className=" pt-3 px-3 py-3 ">
+    
+        <div className="image_con w-[250px] overflow-hidden">
           {props.photo?.length == 1 && (
             <div>
               <Image.PreviewGroup>
                 <Image
-                  className=" one_image"
+                  className="one_image"
 
-                  src={`/assets/img/post/${props.photo[0]}`}
+                  src={`/assets/img/blogpost/${props.photo[0]}`}
                 />
               </Image.PreviewGroup>
             </div>
           )}
+           
+        <div><h3>{props.title}</h3>
 
         
         </div>
-    
-        <div><h2>{props.title}</h2>
-        <p>{props.desc}</p>
+   
+        <p className="text-ellipsis text-sm">{props.desc}</p>
         </div>
       </div>
     </PostCardStyle>
@@ -59,7 +60,7 @@ const PostCardStyle = styled.div`
   .two_div img {
     object-fit: cover;
     /* margin: 5px; */
-    height: 350px;
+    height: 300px;
     height: 400px;
   }
   .three {
@@ -89,6 +90,12 @@ const PostCardStyle = styled.div`
     object-fit: cover;
     width: 500px;
     height: 350px;
+  }
+  .one_image{
+    height: 200px;
+    width:600px;
+    object-fit: cover;
+    
   }
   @media screen and (max-width: 821px) {
     width: 400px;

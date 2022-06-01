@@ -58,7 +58,7 @@ const Posts = () => {
             video={post.video}
             description={post.description}
             username={post.user.username}
-            crepostatedAt={post.createdAt}
+            createdAt={post.createdAt}
             audio={post.audio}
             key={i}
           />

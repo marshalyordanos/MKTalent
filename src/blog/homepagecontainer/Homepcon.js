@@ -6,9 +6,11 @@ const Homepcon = () => {
   return (
     <div>
         <Header />
-         <div className='flex flex-row flex-wrap'>
+         <div className='flex flex-row flex-wrap'><div className='flex flex-column flex-wrap'>
            <BlogPosts/> </div>
-           {/* <Sidebar/> */}
+           {/* <Sidebar className='w-[200px]'/> */}
+           </div>
+           
     </div>
   );
 }

@@ -52,8 +52,11 @@ const Login = (props) => {
           login({
             error: err.response && err.response.data.message,
             loading: false,
+            
           })
         );
+
+        console.log(err)
       }
     }
   };
