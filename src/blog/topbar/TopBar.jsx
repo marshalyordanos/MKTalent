@@ -2,14 +2,14 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 // import { Context } from "../../context/Context";
 import "./topbar.css";
+import { useDispatch, useSelector } from "react-redux";
+import api from "../../api/api";
 
 export default function TopBar() {
-  // const { user, dispatch } = useContext(Context);
-  // const PF = "http://localhost:5000/images/"
 
-  // const handleLogout = () => {
-  //   dispatch({ type: "LOGOUT" });
-  // };
+  const { loading, error, data } = useSelector((state) => state.userAuth);
+  const dispatch = useDispatch();
+
   return (
     <div className="top">
       <div className="topLeft">
@@ -30,11 +30,11 @@ export default function TopBar() {
               CATEGORIES
             </Link>
           </li>
-          <li className="topListItem">
+         { data.data.role=="company"&&<li className="topListItem">
             <Link className="link text-black" to="write">
               WRITE
             </Link>
-          </li>
+          </li>}
           {/* <li className="topListItem" onClick={handleLogout}>
             {user && "LOGOUT"}
           </li> */}
