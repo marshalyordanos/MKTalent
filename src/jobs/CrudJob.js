@@ -20,9 +20,9 @@ class CrudJob extends Component {
         </button>
 
     
-      <Modal isOpen="{this.state.isOpen}" toggle="{this.toggle}" className="">
-        <ModalHeader toggle="{this.toggle}">ADD JOB</ModalHeader>
-        <ModalBody>
+
+        <h1>ADD JOB</h1>
+     
         <br></br>
         <Form id="register" method="post" onSubmit ="{this.handleSubmit}">
     <FormGroup>
@@ -57,8 +57,7 @@ class CrudJob extends Component {
       </FormGroup>
       <Button className='button_login bg-success'>Submit</Button>
     </Form>
-        </ModalBody>
-      </Modal>
+ 
 
         
 {/* 

@@ -5,7 +5,7 @@ export const blogpostSlice = createSlice({
   name: "blogpost",
   initialState: {
     loading: false,
-    posts: [],
+    blogposts: [],
     error: null,
   },
   reducers: {

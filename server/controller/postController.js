@@ -70,7 +70,7 @@ exports.createPost = catchAsync(async (req, res, next) => {
   });
 });
 
-/****************************** get all posts ****************** */
+/****************************** get all posts ***************** ********************************************************************** */
 exports.getAllPost = catchAsync(async (req, res, next) => {
   let query = Post.find();
   console.log(req.query);
@@ -105,6 +105,8 @@ exports.getPost = catchAsync(async (req, res, next) => {
   });
 });
 
+/*********************** update post *********************** */
+
 exports.updatePost = catchAsync(async (req, res, next) => {
   const post = await Post.findByIdAndUpdate({ _id: req.params.id }, req.body, {
     new: true,
@@ -120,6 +122,7 @@ exports.updatePost = catchAsync(async (req, res, next) => {
   });
 });
 
+/*********************** delete post *********************** */
 exports.deletePost = catchAsync(async (req, res, next) => {
   const post = await Post.findById({ _id: req.params.id });
 

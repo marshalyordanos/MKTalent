@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import BlogCard from "../components/fragments/BlogCard"
+import BlogCard from "../components/fragments/BlogCard";
 import { getAllblogPost } from "../redux/blogpostReducer";
 import api from "../api/api";
 import { Image } from "antd";
 import styled from "styled-components";
 const BlogPosts = () => {
   const { blogposts, loading, error } = useSelector((state) => state.blogPostData);
+
   const dispatch = useDispatch();
   console.log("ooooooooooooooooo", blogposts);
   useEffect(() => {
@@ -15,6 +16,7 @@ const BlogPosts = () => {
       try {
         const { data } = await api.get("/blogposts/getallpost");
         console.log("***************************",data.data);
+        console.log("***************************", data.data);
         dispatch(getAllblogPost({ loading: false, blogposts: data.data }));
       } catch (err) {
         dispatch(
@@ -34,11 +36,13 @@ const BlogPosts = () => {
       {blogposts &&
         blogposts.map((post, i) => (
           <BlogCard
-          photo={post.photo}
-          // postId={post._id}
+  
       
-            desc={post.desc}
+            photo={post.photo}
+            postId={post._id}
             title={post.title}
+            desc={post.desc}
+    
             key={i}
           />
         ))}

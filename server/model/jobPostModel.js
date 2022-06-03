@@ -5,10 +5,11 @@ const JobPostSchema = new mongoose.Schema(
   {  jobtitle: String,
     jobdesc: String,    
     salary:String,
+    location:String,
     user: {
         type: mongoose.Schema.ObjectId,
         ref: "User",
-        required: [true, "posts must have a user"],
+        required: [true],
       },
     
    

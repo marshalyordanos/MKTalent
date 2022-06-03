@@ -11,7 +11,7 @@ import api from "../../../api/api";
 
 import WritePost from "../write/WritePost";
 import { getAllblogPost } from "../../../redux/blogpostReducer";
-import Jobs from '../../../jobs/PostJobs'
+
 export default function Write() {
   const [title, setTitle] = useState("");
 
@@ -43,69 +43,72 @@ export default function Write() {
       console.log(values);
     };
   return (
-   <Jobs/>
-    // <div className="write">
+  
+    <div className="write">
    
-    //    {mediaType == "images" && (
-    //                 <WritePost fileList={fileList} setFileList={setFileList} />
-    //               )}
-    //   <form className="writeForm" onSubmit={onFinish}>
-    //     <div className="writeFormGroup">
+       {mediaType == "images" && (
+                    <WritePost fileList={fileList} setFileList={setFileList} />
+                  )}
+      <form className="writeForm" onSubmit={onFinish}>
+        <div className="writeFormGroup">
          
         
-    //       <input
-    //         type="text"
-    //         placeholder="Title"
-    //         className="writeInput"
-    //         autoFocus={true}
-    //         onChange={e=>setTitle(e.target.value)}
-    //       />
-    //     </div>
-    //     <div className="writeFormGroup">
-    //       <textarea
-    //         placeholder="Tell your story..."
-    //         type="text"
-    //         className="writeInput writeText"
-    //         onChange={(e) => setDescription(e.target.value)}
-    //       ></textarea>
-    //     </div>
-    //     <Button  disabled={fileList.length == 0}
-    //               onClick={(e) => {
-    //                 e.preventDefault();
-    //                 const formData = new FormData();
-    //                 formData.append("title", title);
-    //                 formData.append("desc", desc);
-    //                 fileList.forEach((file) => {
-    //                   console.log("pppppppppppppppppppppp", file);
-    //                   formData.append("photo", file);
-    //                 });
-    //                 api.post("/blogposts/createpost", formData, {
-    //                   headers: {
-    //                     "Access-Control-Allow-Origin": true,
-    //                     authorization: `Bearer ${data10.token}`,
-    //                   },
-    //                 });
-    //                 const data = {
-    //                   title:title,
-    //                   desc: desc,
-    //                   images: fileList.map((file) => file.name),
+          <input
+            type="text"
+            placeholder="Title"
+            className="writeInput"
+            autoFocus={true}
+            onChange={e=>setTitle(e.target.value)}
+          />
+        </div>
+        <div className="writeFormGroup">
+          <textarea
+            placeholder="Tell your story..."
+            type="text"
+            className="writeInput writeText"
+            onChange={(e) => setDescription(e.target.value)}
+          ></textarea>
+        </div>
+        <Button  disabled={fileList.length == 0}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const formData = new FormData();
+                    formData.append("title", title);
+                    formData.append("desc", desc);
+                    fileList.forEach((file) => {
+                      console.log("pppppppppppppppppppppp", file);
+                      formData.append("photo", file);
+                    });
+                    api.post("/blogposts/createpost", formData, {
+                      headers: {
+                        "Access-Control-Allow-Origin": true,
+                        authorization: `Bearer ${data10.token}`,
+                      },
+                    }
+                    
+                    );
+                    navigate("/companylayout/blog");
+                    const data = {
+                      title:title,
+                      desc: desc,
+                      images: fileList.map((file) => file.name),
                   
-    //                   user: { username: data10.data.username },
-    //                 };
-    //                 setTitle("");
-    //                 setDescription("");
-    //                 dispatch(
-    //                   getAllblogPost({
-    //                     ...postData,
-    //                     posts: [...postData.posts, data],
-    //                   })
-    //                 );
+                      user: { username: data10.data.username },
+                    };
+                    setTitle("");
+                    setDescription("");
+                    dispatch(
+                      getAllblogPost({
+                        ...postData,
+                        posts: [...postData.posts, data],
+                      })
+                    );
 
-    //                 navigate("/blog");}} type="submit">
-    //       Publish
-    //     </Button>
-    //   </form>
-    // </div>
+                    }} type="submit">
+          Publish
+        </Button>
+      </form>
+    </div>
  
   );
 }
