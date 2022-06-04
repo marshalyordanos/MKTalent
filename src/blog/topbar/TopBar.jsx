@@ -11,7 +11,9 @@ export default function TopBar() {
   const dispatch = useDispatch();
 
   return (
+
     <div className="top">
+      
       <div className="topLeft">
         <i className="topIcon fab fa-facebook-square"></i>
         <i className="topIcon fab fa-twitter-square"></i>
@@ -30,7 +32,8 @@ export default function TopBar() {
               CATEGORIES
             </Link>
           </li>
-         { data.data.role=="company"&&<li className="topListItem">
+         
+          {data.data?.role=="company"  && <li className="topListItem">
             <Link className="link text-black" to="write">
               WRITE
             </Link>

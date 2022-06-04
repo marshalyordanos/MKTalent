@@ -3,17 +3,19 @@ const mongoose = require("mongoose");
 const JobPostSchema = new mongoose.Schema(
   
   {  jobtitle: String,
-    jobdesc: String,    
+    jobdesc: String, 
+    jobtype:String,   
     salary:String,
     location:String,
     user: {
         type: mongoose.Schema.ObjectId,
         ref: "User",
-        required: [true],
+        required: [true, "posts must have a user"],
       },
     
    
-    categories: [String],
+    responsibilities: [String],
+    requirements:[String],
 },
  
   { 
@@ -22,4 +24,5 @@ const JobPostSchema = new mongoose.Schema(
 
 );
 
-module.exports = mongoose.model("JobPost", JobPostSchema);
+const Job= mongoose.model("JobPost", JobPostSchema);
+module.exports = Job;

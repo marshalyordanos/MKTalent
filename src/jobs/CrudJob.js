@@ -38,6 +38,11 @@ class CrudJob extends Component {
         <Input type="select" name="id_category" id="id_category" onChange="{this.handleCategoryChange}">
         <option>FULL TIME</option>  
         <option>PART TIME</option>  
+        <option>REMOTE</option>  
+        <option>CONTRACTUAL</option>  
+        
+
+
         </Input>
       </FormGroup>
       <FormGroup>
