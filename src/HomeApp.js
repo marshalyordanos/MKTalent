@@ -207,17 +207,17 @@ const HomeApp = () => {
         </Route>
         <Route path="/:id/createPost" element={<CreatePostpage />} />
         {/* <Route path="/postjobs/crudcompany" element={<CrudCompany />} /> */}
-        <Route path="/companylayout" element={<Navigate to={"/companylayout/postjobs"} />} />
+        {/* <Route path="/companylayout" element={<Navigate to={"/companylayout/postjobs"} />} /> */}
         
-        <Route path="/companylayout" element={<CompanyLayout />} >
+        <Route path="/companylayout" element={<CompanyLayout />} />
 
 
-        <Route path="postjobs" element={
-
+        <Route path="/companylayout/postjobs" element={
+     <CompanyLayout>
         <Jobs />
- 
+        </CompanyLayout>
         } />
-        </Route>
+
 
         <Route path="/companylayout/blog" element={<Navigate to={"/companylayout/blog/homeblog"} />} />
         <Route

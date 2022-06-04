@@ -1,0 +1,10 @@
+.container_job{
+    width: 123vh;
+    /* background-image: url('../../../../../Desktop/unnamed-3.png'); */
+    background-size:cover;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  padding:0 50px 20px 50px;
+}

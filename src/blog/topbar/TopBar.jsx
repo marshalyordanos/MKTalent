@@ -33,7 +33,7 @@ export default function TopBar() {
             </Link>
           </li>
          
-          {data.data?.role=="company"  && <li className="topListItem">
+          {data?.data.role=="company"  && <li className="topListItem">
             <Link className="link text-black" to="write">
               WRITE
             </Link>

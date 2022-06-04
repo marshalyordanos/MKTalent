@@ -3,7 +3,7 @@ import userReducer from "./authReducer";
 import postReducer from "./postReducer";
 import blogPostReducer from './blogpostReducer'
 import counterReducer from "./counter/mode";
-
+import jobpostReducer from './jobpostReducer'
 import {
   persistStore,
   persistReducer,
@@ -29,6 +29,7 @@ export const store=configureStore({
     userAuth: persistedReducer,
     postData: postReducer,
     blogPostData:blogPostReducer,
+    jobPostData:jobpostReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

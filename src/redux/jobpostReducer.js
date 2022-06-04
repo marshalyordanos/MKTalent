@@ -1,16 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const blogpostSlice = createSlice({
-  name: "blogpost",
+export const jobpostSlice = createSlice({
+  name: "jobpost",
   initialState: {
     loading: false,
-    blogposts: [],
+    jobposts: [],
     error: null,
   },
   reducers: {
-    getAllblogPost: (state, action) => {
+    getAllJobPost: (state, action) => {
       state.loading = action.payload.loading;
-      state.blogposts = action.payload.blogposts;
+      state.jobposts = action.payload.jobposts;
       state.error = action.payload.error;
     },
     register: (state, action) => {
@@ -26,5 +26,5 @@ export const blogpostSlice = createSlice({
   },
 });
 
-export const { getAllblogPost } = blogpostSlice.actions;
-export default blogpostSlice.reducer;
+export const { getAllJobPost } = jobpostSlice.actions;
+export default jobpostSlice.reducer;

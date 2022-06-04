@@ -131,7 +131,7 @@ const CompanyLayout = (props) => {
                 <Link to={"/companylayout/blog"}>Post Blog</Link>
               </Menu.Item> 
               <Menu.Item key="3" icon={<VideoCameraOutlined />}>
-                <Link to={"postjobs"}>Post Job</Link>
+                <Link to={"/companylayout/postjobs"}>Post Job</Link>
               </Menu.Item> 
             
               <Menu.Item key="4" icon={<UserOutlined />}>
