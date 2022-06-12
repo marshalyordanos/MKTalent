@@ -38,7 +38,15 @@ import Homepcon from "./blog/homepagecontainer/Homepcon";
 // import CrudCompany from "./jobs/CrudCompany"s;
 import CrudJob from "./jobs/CrudJob";
 import CompanyLayout from "./components/company/Layout";
-import Jobs from './jobs/CrudJob'
+import AdminLayout from "./components/admin/Layout";
+import Dashboard from "./components/admin/dashboard/Dashboard";
+import Talents from "./components/admin/talent/Talents";
+import Companies from "./components/admin/companies/Companies";
+import Report from "./components/admin/report/Report";
+import Admins from "./components/admin/admins/Admins";
+import Setting from "./components/admin/setting/Setting";
+import Profile from "./components/admin/profile/Profile";
+import Jobs from "./jobs/CrudJob";
 const HomeApp = () => {
   const [showLogin, setShowLogin] = React.useState(false);
   const handleShowLoginOpen = () => setShowLogin(true);
@@ -208,18 +216,89 @@ const HomeApp = () => {
         <Route path="/:id/createPost" element={<CreatePostpage />} />
         {/* <Route path="/postjobs/crudcompany" element={<CrudCompany />} /> */}
         {/* <Route path="/companylayout" element={<Navigate to={"/companylayout/postjobs"} />} /> */}
-        
+        {/* routing for inner admin pages */}
+        <Route path="/admin" element={<AdminLayout />} />
+        <Route
+          path="/admin/postjobs"
+          element={
+            <AdminLayout>
+              <Jobs />
+            </AdminLayout>
+          }
+        />
+        <Route
+          path="/admin/dashboard"
+          element={
+            <AdminLayout>
+              <Dashboard />
+            </AdminLayout>
+          }
+        />
+        <Route
+          path="/admin/talents"
+          element={
+            <AdminLayout>
+              <Talents />
+            </AdminLayout>
+          }
+        />
+        <Route
+          path="/admin/companies"
+          element={
+            <AdminLayout>
+              <Companies />
+            </AdminLayout>
+          }
+        />
+        <Route
+          path="/admin/report"
+          element={
+            <AdminLayout>
+              <Report />
+            </AdminLayout>
+          }
+        />
+        <Route
+          path="/admin/admins"
+          element={
+            <AdminLayout>
+              <Admins />
+            </AdminLayout>
+          }
+        />
+        <Route
+          path="/admin/setting"
+          element={
+            <AdminLayout>
+              <Setting />
+            </AdminLayout>
+          }
+        />
+        <Route
+          path="/admin/profile"
+          element={
+            <AdminLayout>
+              <Profile />
+            </AdminLayout>
+          }
+        />
+        {/* amdin page routing ends here */}
         <Route path="/companylayout" element={<CompanyLayout />} />
 
+        <Route
+          path="/companylayout/postjobs"
+          element={
+            <CompanyLayout>
+              <Jobs />
+            </CompanyLayout>
+          }
+        />
 
-        <Route path="/companylayout/postjobs" element={
-     <CompanyLayout>
-        <Jobs />
-        </CompanyLayout>
-        } />
+        <Route
+          path="/companylayout/blog"
+          element={<Navigate to={"/companylayout/blog/homeblog"} />}
+        />
 
-
-        <Route path="/companylayout/blog" element={<Navigate to={"/companylayout/blog/homeblog"} />} />
         <Route
           path="/companylayout/blog"
           element={
@@ -246,7 +325,6 @@ const HomeApp = () => {
           {/* <Route path="settings" element={<Settings />}  /> */}
           {/* {userData.token ? :}> */}
         </Route>
-
 
         <Route path="*" element={<PageNotFound />} />
       </Routes>
