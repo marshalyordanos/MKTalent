@@ -4,6 +4,12 @@ const bcrypt = require("bcryptjs");
 // const crypto = require('crypto')
 const postSchema = new mongoose.Schema(
   {
+    likes: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: "User",
+      },
+    ],
     images: [String],
     video: String,
     description: String,

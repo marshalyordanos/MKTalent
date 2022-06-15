@@ -53,6 +53,7 @@ const Posts = () => {
         posts.map((post, i) => (
           <PostCard
             postId={post._id}
+            userId={post.user._id}
             comments={post.comments}
             images={post.images}
             video={post.video}
@@ -61,6 +62,8 @@ const Posts = () => {
             createdAt={post.createdAt}
             audio={post.audio}
             key={i}
+            likes={post.likes.map((x, i) => x._id)}
+            WWW
           />
         ))}
       <div className=" px-10 pt-3 pb-7  flex justify-center items-center">

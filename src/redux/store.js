@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./authReducer";
 import postReducer from "./postReducer";
-import blogPostReducer from './blogpostReducer'
+import blogPostReducer from "./blogpostReducer";
 import counterReducer from "./counter/mode";
-import jobpostReducer from './jobpostReducer'
+import user from "./userReducer";
+
+import jobpostReducer from "./jobpostReducer";
 import {
   persistStore,
   persistReducer,
@@ -13,23 +15,24 @@ import {
   PERSIST,
   PURGE,
   REGISTER,
-} from 'redux-persist'
-import storage from 'redux-persist/lib/storage'
+} from "redux-persist";
+import storage from "redux-persist/lib/storage";
 const persistConfig = {
-  key: 'root',
+  key: "root",
   version: 1,
   storage,
-}
+};
 
-const persistedReducer = persistReducer(persistConfig, userReducer)
+const persistedReducer = persistReducer(persistConfig, userReducer);
 
-export const store=configureStore({
+export const store = configureStore({
   reducer: {
     mode: counterReducer,
     userAuth: persistedReducer,
     postData: postReducer,
-    blogPostData:blogPostReducer,
-    jobPostData:jobpostReducer,
+    blogPostData: blogPostReducer,
+    jobPostData: jobpostReducer,
+    users: user,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -39,4 +42,4 @@ export const store=configureStore({
     }),
 });
 
-export const persistor = persistStore(store)
+export const persistor = persistStore(store);

@@ -2,6 +2,19 @@ const mongoose = require("mongoose");
 
 const profileSchema = new mongoose.Schema(
   {
+    follower: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: "User",
+      },
+    ],
+    following: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: "User",
+      },
+    ],
+    likes: Number,
     coverImage: String,
     profileImage: String,
     age: Number,

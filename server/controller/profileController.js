@@ -37,14 +37,20 @@ exports.uploadUserPhoto = upload.fields([
 /********************* create post  */
 
 exports.createProfile = catchAsync(async (req, res, next) => {
-  //   req.body.user = req.user.id;
+  req.body.user = req.user.id;
   console.log(req.files.coverImage, req.body);
-
-  // const post = await Profile.create(req.body);
+  console.log("lllllllllllll", req.files.profileImage, req.body);
+  if (req.files.coverImage) {
+    req.body.coverImage = req.files.coverImage[0].filename;
+  }
+  if (req.files.profileImage) {
+    req.body.profileImage = req.files.profileImage[0].filename;
+  }
+  const post = await Profile.create(req.body);
 
   res.status(200).json({
     status: "success",
-    // data: post,
+    data: post,
   });
 });
 
@@ -69,36 +75,70 @@ exports.createProfile = catchAsync(async (req, res, next) => {
 //   });
 // });
 
-// /*********************** get one post *********************** */
-// exports.getPost = catchAsync(async (req, res, next) => {
-//   console.log(req.params);
-//   const post = await Post.findById({ _id: req.params.id });
-//   if (!post) {
-//     return next(new AppErorr("There is not post in this ID", 404));
-//   }
+/*********************** get one post *********************** */
+exports.getProfile = catchAsync(async (req, res, next) => {
+  console.log(req.params);
+  const post = await Profile.findOne({ user: req.params.id });
+  console.log(post);
+  if (!post) {
+    return next(new AppErorr("There is not post in this ID", 404));
+  }
 
-//   res.status(200).json({
-//     status: "success",
-//     data: post,
-//   });
-// });
+  res.status(200).json({
+    status: "success",
+    data: post,
+  });
+});
 
-// /*********************** update post *********************** */
+/*********************** get one post *********************** */
+exports.getAllProfile = catchAsync(async (req, res, next) => {
+  console.log(req.params);
+  const post = await Profile.find().populate("user");
+  console.log(post);
 
-// exports.updatePost = catchAsync(async (req, res, next) => {
-//   const post = await Post.findByIdAndUpdate({ _id: req.params.id }, req.body, {
-//     new: true,
-//     runValidators: true,
-//   });
-//   if (!post) {
-//     return next(new AppErorr("There is not post in this ID", 404));
-//   }
+  res.status(200).json({
+    status: "success",
+    data: post,
+  });
+});
 
-//   res.status(200).json({
-//     status: "success",
-//     data: post,
-//   });
-// });
+exports.filterProfile = catchAsync(async (req, res, next) => {
+  console.log(req.params);
+  const post = await Profile.find({ user: req.params.id });
+  console.log(post);
+
+  res.status(200).json({
+    status: "success",
+    data: post,
+  });
+});
+/*********************** update post *********************** */
+
+exports.updatePost = catchAsync(async (req, res, next) => {
+  console.log("ooooooooooooo", req.files.coverImage, req.body);
+  if (req.files.coverImage) {
+    req.body.coverImage = req.files.coverImage[0].filename;
+  }
+  if (req.files.profileImage) {
+    req.body.profileImage = req.files.profileImage[0].filename;
+  }
+  const post = await Profile.findByIdAndUpdate(
+    { _id: req.params.id },
+    req.body,
+    {
+      new: true,
+      runValidators: true,
+    }
+  );
+  if (!post) {
+    return next(new AppErorr("There is not post in this ID", 404));
+  }
+
+  res.status(200).json({
+    status: "success",
+    data: post,
+  });
+});
 
 // /*********************** delete post *********************** */
 // exports.deletePost = catchAsync(async (req, res, next) => {

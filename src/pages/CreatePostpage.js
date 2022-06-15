@@ -180,7 +180,7 @@ const CreatePostpage = () => {
                     api.post("/posts", formData, {
                       headers: {
                         "Access-Control-Allow-Origin": true,
-                        authorization: `Bearer ${data10.token}`,
+                        authorization: `Bearer ${data10.token}`, /////////////////////////////////////////////////////////////////////////////////
                       },
                     });
                     const data = {

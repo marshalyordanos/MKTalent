@@ -1,4 +1,5 @@
 const User = require("../model/userModel/usersModel");
+const AppErorr = require("../utils/appError");
 const catchAsync = require("../utils/catchAsync");
 
 exports.getAllUser = catchAsync(async (req, res, next) => {
@@ -12,9 +13,11 @@ exports.getAllUser = catchAsync(async (req, res, next) => {
 exports.getUser = catchAsync(async (req, res, next) => {
   console.log(req.params);
   const user = await User.findById({ _id: req.params.id }).select("-password");
-
+  if (!user) {
+    return next(new AppErorr("There is not user in this ID", 404));
+  }
   res.status(200).json({
-    status: "success",
+    status: "successasDas",
     data: user,
   });
 });

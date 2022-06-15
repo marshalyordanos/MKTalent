@@ -6,12 +6,38 @@ import {
 } from "@mui/icons-material";
 import { border, fontSize } from "@mui/system";
 import { Col, Divider, Image, Row } from "antd";
-import React from "react";
-import { Link, Outlet } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, Outlet, useParams } from "react-router-dom";
 import styled from "styled-components";
 import CoverImg from "../assets/profile/aa.jpg";
+import api from "../api/api";
+import { useSelector } from "react-redux";
 const style = { background: "#0092ff", padding: "10px 0" };
-const ProfilePage = () => {
+
+const ProfilePage = (props) => {
+  const data = useSelector((state) => state.userAuth.data);
+  const userID = useParams().id;
+  const [profileUser, setProfileUser] = useState();
+  const [profileData, setProfileData] = useState({});
+  useEffect(() => {
+    console.log("fkrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr", data);
+    console.log("fkrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr", userID);
+
+    async function fechData() {
+      const profile = await api.get(`/profile/${userID}`, {
+        headers: {
+          "Access-Control-Allow-Origin": true,
+          authorization: `Bearer ${data.token}`, /////////////////////////////////////////////////////////////////////////////////
+        },
+      });
+      const user = await api.get(`/users/${profile.data.data.user}`);
+
+      console.log("==============", user);
+      setProfileData(profile.data.data);
+      setProfileUser(user.data.data);
+    }
+    fechData();
+  }, []);
   return (
     <ProfilePageStyle className="flex flex-col">
       <Row gutter={(8, 16)}>
@@ -19,7 +45,7 @@ const ProfilePage = () => {
           <div className="h-[170px] lg:h-[220px]  hover:bg-purple-500 border-2">
             <img
               className=" w-[100%] h-[170px] lg:h-[220px]  object-cover"
-              src={CoverImg}
+              src={`/assets/img/profile/${profileData.coverImage}`}
               alt="ksjn"
             />
           </div>
@@ -31,16 +57,16 @@ const ProfilePage = () => {
             <div className="image_con h-[200px]  lg:mt-[-160px]  w-[200px] hover:bg-purple-500 ">
               <img
                 className="  w-[200px] h-[200px]  object-cover"
-                src={CoverImg}
+                src={`/assets/img/profile/${profileData.profileImage}`}
                 alt="ksjn"
               />
             </div>
-            <h3 className="mt-2 ml-10 center">Marshal</h3>
+            <h3 className="mt-2 ml-10 center">{profileUser?.username}</h3>
           </div>
         </div>
         <div>
           <div className="pic_con_data mt-[-80px]  text-balck z-50 items-center flex ">
-            <h3 className="p-0 m-2   text-white">@marsh </h3>
+            <h3 className="p-0 m-2   text-white">@{profileUser?.username} </h3>
             <span>Active 12 hours, 22 minutes ago </span>
           </div>
         </div>

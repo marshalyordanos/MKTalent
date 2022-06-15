@@ -11,11 +11,17 @@ import ChatIcon from "@mui/icons-material/Chat";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useSelector } from "react-redux";
-
+import { Link } from "react-router-dom";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import { pink } from "@mui/material/colors";
+import { IconButton } from "@mui/material";
+import api from "../../api/api";
+import BasicModal from "../../utils/Model";
 const PostCard = (props) => {
   const { data: userData } = useSelector((state) => state.userAuth);
   const [comments, setComments] = useState(props.comments);
   const [time, setTime] = useState("");
+  const [liked, setLiked] = useState(false);
   useEffect(() => {
     /******************   posted date */
 
@@ -28,7 +34,7 @@ const PostCard = (props) => {
     const timeInDay = Math.floor(timeInHours / 24);
     const timeInMonth = Math.floor(timeInDay / 30);
     const timeInYear = Math.floor(timeInDay / 365);
-    console.log("zzzzzzzzzzzzzzz",z,props.createdAt)
+    console.log("zzzzzzzzzzzzzzz", z, props.createdAt);
     // let time = "";
     if (timeInSeconed < 60) {
       setTime("just now");
@@ -42,14 +48,17 @@ const PostCard = (props) => {
       setTime(`${timeInDay} day ago`);
     } else if (timeInMonth < 24) {
       setTime(`${timeInMonth} month ago`);
-    }else{
-      setTime("somting is wrong")
+    } else {
+      setTime("somting is wrong");
     }
   }, []);
-  console.log("jjjjjjjjjjjjjjjjjjjjjjjj",time)
+  console.log("jjjjjjjjjjjjjjjjjjjjjjjj", time);
   return (
     <PostCardStyle className=" border-[1px] border-gray-200 bg-white m-5 box-content  w-[600px] p-4 justify-start overflow-hidden">
-      <RightSideBarUserCard username={props.username} status={time} />
+      <Link to={`/profile/${props.userId}/activity/personal`}>
+        {" "}
+        <RightSideBarUserCard username={props.username} status={time + ""} />
+      </Link>
       <div className=" px-9">
         <h1 className="text-ellipsis text-sm">{props.description}</h1>
         {props.audio ? (
@@ -120,9 +129,80 @@ const PostCard = (props) => {
           )}
           {userData?.token && (
             <div>
-              <FavoriteBorderIcon className="mx-2 my-4" />
-              <StarBorderIcon className="mx-2 my-4" />
-              <ChatIcon className="mx-2 my-4" />{" "}
+              {props.likes.includes(userData.data._id) || liked ? (
+                <IconButton
+                  onClick={async () => {
+                    const likes = props.likes;
+                    // const newLikes = likes.filter((v,i)=>);
+
+                    // const post = await api.get(`/posts/${props.postId}`, {
+                    //   headers: {
+                    //     "Access-Control-Allow-Origin": true,
+                    //     authorization: `Bearer ${userData?.token}`, /////////////////////////////////////////////////////////////////////////////////
+                    //   },
+                    // });
+                    // console.log(
+                    //   "+++++++++++++++++++++++",
+                    //   post.data.data,
+                    //   userData
+                    // );
+                  }}
+                >
+                  <FavoriteIcon sx={{ color: pink[500] }} />
+                </IconButton>
+              ) : (
+                <IconButton
+                  onClick={async () => {
+                    console.log("----------------------------------");
+                    let newLikes;
+                    const likes = props.likes;
+                    if (likes.includes(userData._id)) {
+                      newLikes = [...likes];
+                    } else {
+                      newLikes = [...likes, userData.data._id];
+                    }
+                    console.log("----------------------------------");
+                    console.log(newLikes);
+                    console.log("wwwwwwwwwwwwwww", props.postId);
+                    const x = await api.patch(
+                      `/posts/${props.postId}`,
+                      { likes: newLikes },
+                      {
+                        headers: {
+                          "Access-Control-Allow-Origin": true,
+                          authorization: `Bearer ${userData?.token}`, /////////////////////////////////////////////////////////////////////////////////
+                        },
+                      }
+                    );
+                    setLiked(true);
+                    console.log("lkmsd", x);
+                  }}
+                >
+                  <FavoriteBorderIcon />
+                </IconButton>
+              )}
+              <IconButton>
+                <StarBorderIcon />
+              </IconButton>
+              <IconButton>
+                <ChatIcon />
+              </IconButton>
+              <div className="ml-3 text-[16px] cursor-pointer hover:text-red-700">
+                <p>
+                  {props.likes.length} likes,{" "}
+                  {/* {props?.likeUsers
+                    .slice(0, 3)
+                    .map((x) => x.username)
+                    .join(", ")} */}
+                </p>
+              </div>
+              {/* <BasicModal show={true}>
+                <div className="w-[500px] p-5 bg-gray-400">
+                  {props.likeUsers.map((x) => (
+                    <p className="text-white text-2xl">{x?.username}</p>
+                  ))}
+                </div>
+              </BasicModal> */}
             </div>
           )}
         </div>

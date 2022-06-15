@@ -32,16 +32,22 @@ const Favorites = () => {
   }
   return (
     <div className="Posts">
-      {posts.map((p) => (
+      {posts.map((post, i) => (
         <>
           {}
 
           <PostCard
-            images={p.images}
-            comments={p.comments}
-            description={p.description}
-            postId={p._id}
-            key={p._id}
+            postId={post._id}
+            userId={post.user._id}
+            comments={post.comments}
+            images={post.images}
+            video={post.video}
+            description={post.description}
+            username={post.user.username}
+            createdAt={post.createdAt}
+            audio={post.audio}
+            key={i}
+            likes={post.likes.map((x, i) => x._id)}
           />
         </>
       ))}
