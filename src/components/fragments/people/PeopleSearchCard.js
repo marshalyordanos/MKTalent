@@ -56,6 +56,40 @@ const PeopleSearchCard = (props) => {
     );
     setFollow(true);
   };
+  const unFollowHandler = async () => {
+    const x = await api.get(`/profile/filter/${userData.data._id}`);
+    console.log(";;;;;;;;;;;;;;;", props.userId);
+    const newData = x.data.data.following.filter((v) => v !== props.userId);
+    const y = await api.patch(
+      `/profile/${x.data.data._id}`,
+      {
+        following: newData,
+      },
+      {
+        headers: {
+          "Access-Control-Allow-Origin": true,
+          authorization: `Bearer ${userData.token}`, /////////////////////////////////////////////////////////////////////////////////
+        },
+      }
+    );
+    const xx = await api.get(`/profile/filter/${props.userId}`);
+    console.log(";;;;;;;;;;;;;;;*************", xx.data.data);
+    const newData2 = props.follower.filter((v) => v !== userData.data._id);
+
+    const yy = await api.patch(
+      `/profile/${xx.data.data._id}`,
+      {
+        follower: newData2,
+      },
+      {
+        headers: {
+          "Access-Control-Allow-Origin": true,
+          authorization: `Bearer ${userData.token}`, /////////////////////////////////////////////////////////////////////////////////
+        },
+      }
+    );
+    setFollow(false);
+  };
   return (
     <div className="flex flex-column item-center my-8 mx-12 px-4 shadow-md rounded-xl w-[250px]">
       <div className="flex flex-col self-center">
@@ -69,7 +103,7 @@ const PeopleSearchCard = (props) => {
           <div className=" mt-2">
             {props.follower.includes(userData.data._id) ? (
               <button
-                onClick={() => setFollow(false)}
+                onClick={unFollowHandler}
                 className=" self-center border-purple-600 box-content border-2 w-[130px] rounded-3xl h-[35px] mb-3 text-purple-600 hover:bg-purple-600 hover:text-white hover:duration-700"
               >
                 unFollowing
