@@ -4,7 +4,7 @@ class CrudCategories extends Component {
     render() {
         return (
             <div>
-                
+              fghfg  
             </div>
         )
     }
