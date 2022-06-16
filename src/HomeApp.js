@@ -284,10 +284,10 @@ const HomeApp = () => {
           }
         />
         {/* amdin page routing ends here */}
-        <Route path="/companylayout" element={<CompanyLayout />} />
+        <Route path="/company" element={<CompanyLayout />} />
 
         <Route
-          path="/companylayout/postjobs"
+          path="/company/postjobs"
           element={
             <CompanyLayout>
               <Jobs />
@@ -296,12 +296,8 @@ const HomeApp = () => {
         />
 
         <Route
-          path="/companylayout/blog"
-          element={<Navigate to={"/companylayout/blog/homeblog"} />}
-        />
-        <Route
-          path="/companylayout/profile"
-          element={<Navigate to={"/company/profile"} />}
+          path="/company/blog"
+          element={<Navigate to={"/company/blog/homeblog"} />}
         />
         <Route
           path="/company/profile"
