@@ -6,6 +6,8 @@ const catchAsync = require("../utils/catchAsync");
 const multer = require("multer");
 const sharp = require("sharp");
 const fs = require("fs");
+const Profile = require("../model/profileModel");
+const { updateProfile } = require("./profileController");
 
 /**************** multer storage ************************* */
 const multerStorage = multer.diskStorage({
@@ -118,11 +120,25 @@ exports.updatePost = catchAsync(async (req, res, next) => {
   if (!post) {
     return next(new AppErorr("There is not post in this ID", 404));
   }
+  const oneProfile = await Profile.findOne({ user: post.user });
+  const point = oneProfile.point + 0.1;
+  console.log(
+    "🔥🔥🔥🔥🔥🔥🔥 iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii",
+    point,
+    oneProfile
+  );
+  const profile = await Profile.findByIdAndUpdate(
+    { _id: oneProfile._id },
+    { point: point },
+    {
+      new: true,
+      runValidators: true,
+    }
+  );
+  console.log("999999999999999999999999999999999999999999", profile);
 
-  res.status(200).json({
-    status: "success",
-    data: post,
-  });
+  console.log("999999999999999999999999999999999999999999");
+  next();
 });
 
 /*********************** delete post *********************** */

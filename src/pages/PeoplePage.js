@@ -53,6 +53,8 @@ const PeoplePage = () => {
               image={user.profileImage}
               name={user.user.username}
               userId={user.user._id}
+              follower={user.follower}
+              following={user.following}
             />{" "}
           </div>
         ))}

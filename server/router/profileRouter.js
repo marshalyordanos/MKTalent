@@ -3,10 +3,11 @@ const { protect } = require("../controller/authController");
 const {
   createProfile,
   uploadUserPhoto,
-  updatePost,
+
   getProfile,
   getAllProfile,
   filterProfile,
+  updateProfile,
 } = require("../controller/profileController");
 
 const router = express.Router();
@@ -20,7 +21,8 @@ router
 
 router
   .route("/:id")
-  .patch(protect, uploadUserPhoto, updatePost)
+  .patch(protect, uploadUserPhoto, updateProfile)
+
   .get(protect, getProfile);
 
 router.route("/filter/:id").get(filterProfile);

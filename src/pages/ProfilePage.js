@@ -24,13 +24,19 @@ const ProfilePage = (props) => {
     console.log("fkrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr", userID);
 
     async function fechData() {
-      const profile = await api.get(`/profile/${userID}`, {
+      const profile = await api.get(`/profile/filter/${userID}`, {
         headers: {
           "Access-Control-Allow-Origin": true,
           authorization: `Bearer ${data.token}`, /////////////////////////////////////////////////////////////////////////////////
         },
       });
+      console.log(
+        "======================================================================!!!!!!!!!!!!!"
+      );
       const user = await api.get(`/users/${profile.data.data.user}`);
+      console.log(
+        "======================================================================"
+      );
 
       console.log("==============", user);
       setProfileData(profile.data.data);
@@ -108,13 +114,12 @@ const ProfilePage = (props) => {
         </div>
       </div>
       <Divider className="p-0 m-0 " />
-
       <div className=" flex flex-wrap">
         <div className="leftSideBar  h-40 w-[300px]">
           <div className="flex border-b-[1px] justify-end p-4">
             <div className=" mr-4 ">
-              <h3>10</h3>
-              <p>Friends</p>
+              <h3>{profileData?.follower?.length}</h3>
+              <p>Followers</p>
             </div>
             <div className="mr-4">
               <h3>10</h3>
@@ -137,7 +142,7 @@ const ProfilePage = (props) => {
           <Outlet />
         </div>
         {/* <div className=" border-2 h-40 w-[300px]"></div> */}
-      </div>
+      </div>{" "}
     </ProfilePageStyle>
   );
 };
