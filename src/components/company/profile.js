@@ -29,6 +29,7 @@ import Login from "../login/Login";
 import Model from "../../utils/Model";
 import { logout } from "../../redux/authReducer";
 import "./company.css";
+import JobCard from "../fragments/job/JobCard";
 
 const Profile = (props) => {
   return (
@@ -125,6 +126,32 @@ const Profile = (props) => {
                   <p class="m-0px font-w-600">Clients</p>
                 </div>
               </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-4">
+              <JobCard />
+            </div>
+            <div className="col-4">
+              <JobCard />
+            </div>
+            <div className="col-4">
+              <JobCard />
+            </div>
+            <div className="col-4">
+              <JobCard />
+            </div>
+            <div className="col-4">
+              <JobCard />
+            </div>
+            <div className="col-4">
+              <JobCard />
+            </div>
+            <div className="col-4">
+              <JobCard />
+            </div>
+            <div className="col-4">
+              <JobCard />
             </div>
           </div>
           <div calssName="editbutton">
