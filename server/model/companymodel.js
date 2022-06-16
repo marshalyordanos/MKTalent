@@ -22,10 +22,7 @@ const companySchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    areaOfSpecialization: {
-        type: String,
-        required: true,
-      },
+  
     companyAddress: {
       type: String,
       required:true,
