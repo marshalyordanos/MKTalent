@@ -128,30 +128,33 @@ const Profile = (props) => {
               </div>
             </div>
           </div>
-          <div className="row">
-            <div className="col-4">
-              <JobCard />
-            </div>
-            <div className="col-4">
-              <JobCard />
-            </div>
-            <div className="col-4">
-              <JobCard />
-            </div>
-            <div className="col-4">
-              <JobCard />
-            </div>
-            <div className="col-4">
-              <JobCard />
-            </div>
-            <div className="col-4">
-              <JobCard />
-            </div>
-            <div className="col-4">
-              <JobCard />
-            </div>
-            <div className="col-4">
-              <JobCard />
+          <div className="m">
+            <p className="postedjobs">Posted Jobs</p>
+            <div className="row">
+              <div className="col-4">
+                <JobCard />
+              </div>
+              <div className="col-4">
+                <JobCard />
+              </div>
+              <div className="col-4">
+                <JobCard />
+              </div>
+              <div className="col-4">
+                <JobCard />
+              </div>
+              <div className="col-4">
+                <JobCard />
+              </div>
+              <div className="col-4">
+                <JobCard />
+              </div>
+              <div className="col-4">
+                <JobCard />
+              </div>
+              <div className="col-4">
+                <JobCard />
+              </div>
             </div>
           </div>
           <div calssName="editbutton">
