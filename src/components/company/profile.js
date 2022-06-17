@@ -21,15 +21,16 @@ const Profile = (props) => {
               <div class="about-text go-to">
                 <h3 class="dark-color">Ethio-Telecom</h3>
                 <h6 class="theme-color lead">
-                  A Lead Telecomunication provide in Ethiopia
+                  A Lead Telecommunication service provide in Ethiopia
                 </h6>
                 <p>
                   Ethio telecom, previously known as the Ethiopian
                   Telecommunications Corporation, is an Ethiopian
-                  telecommunication company serving as the major
-                  <mark> internet and telephone service provider</mark>. Ethio
-                  telecom is owned by the Ethiopian government and maintains a
-                  monopoly over all telecommunication services in Ethiopia
+                  telecommunication company serving as the
+                  <mark>major internet and telephone service provider</mark>.
+                  Ethio telecom is owned by the Ethiopian government and
+                  maintains a monopoly over all telecommunication services in
+                  Ethiopia
                 </p>
                 <div class="row about-list">
                   <div class="col-md-6">
