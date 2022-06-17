@@ -39,6 +39,7 @@ import Homepcon from "./blog/homepagecontainer/Homepcon";
 import CrudJob from "./jobs/CrudJob";
 import CompanyLayout from "./components/company/Layout";
 import CompanyProfile from "./components/company/profile";
+import CompanyProfileEdit from "./components/company/profileedit";
 import AdminLayout from "./components/admin/Layout";
 import Dashboard from "./components/admin/dashboard/Dashboard";
 import Talents from "./components/admin/talent/Talents";
@@ -307,9 +308,16 @@ const HomeApp = () => {
             </CompanyLayout>
           }
         />
-
         <Route
-          path="/companylayout/blog"
+          path="/company/profile/edit"
+          element={
+            <CompanyLayout>
+              <CompanyProfileEdit />
+            </CompanyLayout>
+          }
+        />
+        <Route
+          path="/company/blog"
           element={
             <CompanyLayout>
               <BlogHome />

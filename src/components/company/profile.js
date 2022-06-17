@@ -1,35 +1,15 @@
-import React, { useEffect } from "react";
-import { Layout, Menu, Dropdown, Avatar } from "antd";
+import React from "react";
 import {
-  MenuUnfoldOutlined,
-  MenuFoldOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
-  HomeOutlined,
-} from "@ant-design/icons";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Button, dividerClasses } from "@mui/material";
-import { changeLight } from "../../redux/counter/mode";
-import {
-  DarkMode,
   Facebook,
   Instagram,
   LinkedIn,
   Telegram,
   Twitter,
 } from "@mui/icons-material";
-import LightModeIcon from "@mui/icons-material/LightMode";
-import SearchIcon from "@mui/icons-material/Search";
-import MenuIcon from "@mui/icons-material/Menu";
-import MKLogo from "../../assets/page/MK logo/MK logo.png";
 import tel from "../../assets/page/company/ethiotel.jpg";
-import Login from "../login/Login";
-import Model from "../../utils/Model";
-import { logout } from "../../redux/authReducer";
 import "./company.css";
 import JobCard from "../fragments/job/JobCard";
+import { NavLink } from "react-router-dom";
 
 const Profile = (props) => {
   return (
@@ -158,7 +138,9 @@ const Profile = (props) => {
             </div>
           </div>
           <div calssName="editbutton">
-            <button calssName="editbutton ">EDIT PROFILE</button>
+            <div calssName="editbutton  ">
+              <NavLink to="/company/profile/edit">EDIT PROFILE</NavLink>
+            </div>
           </div>
         </div>
       </section>
