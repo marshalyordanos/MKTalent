@@ -125,25 +125,25 @@ const CompanyLayout = (props) => {
               defaultSelectedKeys={["1"]}
             >
               <Menu.Item key="1" icon={<HomeOutlined />}>
-                <Link to={"/find"}>Find Talent</Link>
+                <Link to={"/company/find"}>Find Talent</Link>
               </Menu.Item>
               <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-                <Link to={"/companylayout/blog"}>Post Blog</Link>
+                <Link to={"/company/blog"}>Post Blog</Link>
               </Menu.Item>
               <Menu.Item key="3" icon={<VideoCameraOutlined />}>
-                <Link to={"/companylayout/postjobs"}>Post Job</Link>
+                <Link to={"/company/postjobs"}>Post Job</Link>
               </Menu.Item>
 
               <Menu.Item key="4" icon={<UserOutlined />}>
-                <Link to={"/message"}>Message</Link>
+                <Link to={"/company/message"}>Message</Link>
               </Menu.Item>
 
               <Menu.Item key="5" icon={<FestivalOutlinedIcon />}>
-                <Link to={"/events"}>Make Event</Link>
+                <Link to={"/company/events"}>Make Event</Link>
               </Menu.Item>
 
               <Menu.Item key="6" icon={<WorkOutlineOutlinedIcon />}>
-                <Link to={"/jobs"}>status</Link>
+                <Link to={"/company/jobs"}>status</Link>
               </Menu.Item>
               <Menu.Item key="7" icon={<StickyNote2OutlinedIcon />}>
                 <Link to={"/company/profile"}>profile</Link>

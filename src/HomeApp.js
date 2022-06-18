@@ -316,6 +316,16 @@ const HomeApp = () => {
             </CompanyLayout>
           }
         />
+        <Route path="/company/jobs" element={<CompanyLayout></CompanyLayout>} />
+        <Route
+          path="/company/events"
+          element={<CompanyLayout></CompanyLayout>}
+        />
+        <Route path="/company/find" element={<CompanyLayout></CompanyLayout>} />
+        <Route
+          path="/company/message"
+          element={<CompanyLayout></CompanyLayout>}
+        />
         <Route
           path="/company/blog"
           element={
