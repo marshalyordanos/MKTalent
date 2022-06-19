@@ -174,29 +174,24 @@ const ChatContainer = ({ currentChat }) => {
       </div>
 
       <div class="  flex-grow-0 py-3 px-4 border-top">
-        <div class="input-group">
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              sendHandler();
-            }}
-            className="flex flex-row w-full"
-          >
-            <input
-              type="text"
-              class="form-control "
-              value={input}
-              placeholder="Type your message"
-              onChange={(e) => setInput(e.target.value)}
-              onkeydown={(e) => {
-                if (e.target.va === "Enter") sendHandler();
-              }}
-            />
-            <button type="submit" class="btn btn-primary ">
-              Send
-            </button>
-          </form>
-        </div>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            sendHandler();
+          }}
+          class="input-group"
+        >
+          <input
+            type="text"
+            class="form-control"
+            value={input}
+            placeholder="Type your message"
+            onChange={(e) => setInput(e.target.value)}
+          />
+          <button type="submit" class="btn btn-primary">
+            Send
+          </button>
+        </form>
       </div>
     </div>
   );

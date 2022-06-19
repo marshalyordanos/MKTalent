@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const AppErorr = require("../utils/appError");
 const catchAsync = require("../utils/catchAsync");
 const { promisify } = require("util");
+const Profile = require("../model/profileModel");
 
 const getToken = (id) => {
   //check your code aeound here you may have forgotten id:id and said only id
@@ -13,6 +14,10 @@ const getToken = (id) => {
 
 exports.signup = catchAsync(async (req, res, next) => {
   const newUser = await User.create(req.body);
+  const data = {
+    user: newUser._id,
+  };
+  const profile = await Profile.create(data);
 
   const token = getToken(newUser._id);
 

@@ -1,4 +1,5 @@
 const Job = require("../model/jobPostModel");
+const APIFeature = require("../utils/apiFeature");
 const AppErorr = require("../utils/appError");
 const catchAsync = require("../utils/catchAsync");
 
@@ -61,15 +62,12 @@ exports.getJob = catchAsync(async (req, res, next) => {
 
 //GET ALL JOB
 exports.getAllJob = catchAsync(async (req, res) => {
-  let query = Job.find();
-  console.log(req.query);
-  const page = req.query.page * 1 || 1;
-  const limit = +req.query.limit || 9;
-
-  const skip = (page - 1) * limit;
-  query.skip(skip).limit(limit);
-  query.sort("-createdAt");
-  const job = await query.populate("user");
+  const featur = new APIFeature(Job.find(), req.query)
+    .filter()
+    .sort()
+    .fields()
+    .paging();
+  const job = await featur.query;
 
   res.status(200).json({
     length: job.length,
