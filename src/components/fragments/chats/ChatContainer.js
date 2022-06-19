@@ -31,7 +31,7 @@ const ChatContainer = ({ currentChat }) => {
           return res.data.chats;
         }),
     {
-      refetchInterval: 50000,
+      refetchInterval: 1000,
       refetchIntervalInBackground: true,
     }
   );

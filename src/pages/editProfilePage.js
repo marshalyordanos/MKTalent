@@ -5,7 +5,7 @@ import { Container } from "reactstrap";
 import { Form, FormGroup, Label, Input, Table } from "reactstrap";
 import "./editprofilepage.css";
 import profilepic from "../assets/page/profile.png";
-
+import Defaultpic from "../assets/page/ProfileImage.jpg";
 const EditProfilePage = () => {
   return (
     <div>
@@ -13,13 +13,15 @@ const EditProfilePage = () => {
         <Form id="register" method="post">
           <br></br> <br></br>
           <h1>Edit your profile</h1>
+          <hr></hr>
           <br></br>
           <div className="minicontainer">
             <h3>Profile </h3>
+            <hr></hr>
             <FormGroup>
               <div className="profilepicdiv ">
                 <div className="imagediv">
-                  <img src={profilepic} />
+                  <img className="image" src={Defaultpic} />
                 </div>
                 <div className=" contains">
                   <Label for="profilepic" className="changephoto">
@@ -34,7 +36,6 @@ const EditProfilePage = () => {
                   />
                 </div>
                 <div className="contains">
-                  {" "}
                   <Label for="talenttype">Talent Type</Label>
                   <Input
                     type="text"
@@ -42,23 +43,31 @@ const EditProfilePage = () => {
                     id="talenttype"
                     placeholder="Model"
                   />
+                  <Label for="accounttype">Account Type</Label>
+                  <Input
+                    type="text"
+                    name="accounttype"
+                    id="accounttype"
+                    placeholder="Talent"
+                  />
                 </div>
               </div>
             </FormGroup>
           </div>
           <div className="minicontainer">
             <h3>Password Change</h3>
-            <Link to={""}>
-              <Button
-                className="button_login bg-success"
-                style={{ justifyContent: "" }}
-              >
+            <hr></hr>
+
+            <Link to={"/profile/edit/password"}>
+              <Button className="button_login bg-success">
                 Change Password
               </Button>
             </Link>
           </div>
           <div className="minicontainer">
             <h3>Basic Information</h3>
+            <hr></hr>
+
             <FormGroup>
               <Label for="fname"> First Name</Label>
               <Input
@@ -120,6 +129,7 @@ const EditProfilePage = () => {
           </div>
           <div className="minicontainer">
             <h3>Address</h3>
+            <hr></hr>
 
             <FormGroup>
               <Label for="country">Country</Label>
@@ -144,6 +154,7 @@ const EditProfilePage = () => {
           </div>
           <div className="minicontainer">
             <h3>Contact</h3>
+            <hr></hr>
 
             <FormGroup>
               <Label for="phonenumber">Phone Number</Label>
@@ -176,6 +187,8 @@ const EditProfilePage = () => {
             </FormGroup>
             <div className="Socials">
               <h4>Social media links of the company - not required</h4>
+              <hr></hr>
+
               <FormGroup>
                 <Label for="">Twitter Address</Label>
                 <Input
