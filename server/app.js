@@ -4,7 +4,7 @@ const postRouter = require("./router/postRouter");
 const blogRouter = require("./router/Blogrouter");
 const profileRouter = require("./router/profileRouter");
 const JobRouter = require("./router/jobRouter");
-
+const ChatRouter = require("./router/chatRouter");
 
 const AppErorr = require("./utils/appError");
 const Cors = require("cors");
@@ -19,7 +19,7 @@ app.use("/api/v1/posts", postRouter);
 app.use("/api/v1/blogposts", blogRouter);
 app.use("/api/v1/profile", profileRouter);
 app.use("/api/v1/job", JobRouter);
-
+app.use("/api/v1", ChatRouter);
 
 // app.use('/api/v1/comments',commentRouter)
 

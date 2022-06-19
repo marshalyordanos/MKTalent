@@ -4,6 +4,11 @@ const bcrypt = require("bcryptjs");
 // const crypto = require('crypto')
 const postSchema = new mongoose.Schema(
   {
+    dataType: String,
+    videoImage: {
+      type: String,
+      default: "vedioImage",
+    },
     likes: [
       {
         type: mongoose.Schema.ObjectId,

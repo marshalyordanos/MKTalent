@@ -3,12 +3,13 @@ import styled from "styled-components";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import { Button } from "@mui/material";
 import Sho from "../../assets/page/reward/sho2.jpg";
+import { CurrencyExchange } from "@mui/icons-material";
 const RewardCard = () => {
   return (
     <RewardCardStyle>
       <span>
         5000
-        <CurrencyExchangeIcon className="coin" />
+        <CurrencyExchange className="coin" />
       </span>
       <div>
         <img

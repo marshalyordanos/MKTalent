@@ -15,8 +15,14 @@ const profileSchema = new mongoose.Schema(
       },
     ],
     likes: Number,
-    coverImage: String,
-    profileImage: String,
+    coverImage: {
+      type: String,
+      default: "cover.jpg",
+    },
+    profileImage: {
+      type: String,
+      default: "profile.jpg",
+    },
     age: Number,
     height: Number,
     weight: Number,
@@ -28,7 +34,10 @@ const profileSchema = new mongoose.Schema(
     totalLikes: Number,
     yearOfExperiance: Number,
     desc: String,
-    point: Number,
+    point: {
+      type: Number,
+      default: 5.5,
+    },
     languages: [String],
     phone: String,
     Location: String,

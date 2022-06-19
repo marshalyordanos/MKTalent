@@ -78,7 +78,7 @@ exports.createProfile = catchAsync(async (req, res, next) => {
 /*********************** get one post *********************** */
 exports.getProfile = catchAsync(async (req, res, next) => {
   console.log(req.params);
-  const post = await Profile.findOne({ user: req.params.id });
+  const post = await Profile.findOne({ _id: req.params.id });
   console.log(post);
   if (!post) {
     return next(new AppErorr("There is not post in this ID", 404));
@@ -104,7 +104,7 @@ exports.getAllProfile = catchAsync(async (req, res, next) => {
 
 exports.filterProfile = catchAsync(async (req, res, next) => {
   console.log(req.params);
-  const post = await Profile.find({ user: req.params.id });
+  const post = await Profile.findOne({ user: req.params.id });
   console.log(post);
 
   res.status(200).json({
@@ -112,16 +112,52 @@ exports.filterProfile = catchAsync(async (req, res, next) => {
     data: post,
   });
 });
+
+exports.getAllProfileById = catchAsync(async (req, res, next) => {
+  const users = await Profile.find({ _id: { $ne: req.params.id } }).populate(
+    "user"
+  );
+  return res.json(users);
+});
+
 /*********************** update post *********************** */
 
-exports.updatePost = catchAsync(async (req, res, next) => {
-  console.log("ooooooooooooo", req.files.coverImage, req.body);
-  if (req.files.coverImage) {
+exports.updatePoint = catchAsync(async (req, res, next) => {
+  // console.log("ooooooooooooo", req.files.coverImage, req.body);
+  //job apply --------- 1
+  // get get ---------- 0.01
+  // comment ----------- 0.1
+  // post -------------- 0.0001
+  // jop aprove --------------- 5
+
+  const profile = await Profile.findByIdAndUpdate(
+    { _id: req.params.id },
+    { point: req.point },
+    {
+      new: true,
+      runValidators: true,
+    }
+  );
+  if (!profile) {
+    return next(new AppErorr("There is not post in this ID", 404));
+  }
+
+  res.status(200).json({
+    status: "success",
+    data: profile,
+  });
+});
+
+exports.updateProfile = catchAsync(async (req, res, next) => {
+  // console.log("ooooooooooooo", req.files.coverImage, req.body);
+  if (req?.files?.coverImage) {
     req.body.coverImage = req.files.coverImage[0].filename;
   }
-  if (req.files.profileImage) {
+  if (req?.files?.profileImage) {
     req.body.profileImage = req.files.profileImage[0].filename;
   }
+  const xxx = await Profile.find({ _id: req.params.id });
+  console.log("8888888888888880,", xxx, req.params.id);
   const post = await Profile.findByIdAndUpdate(
     { _id: req.params.id },
     req.body,
@@ -133,6 +169,7 @@ exports.updatePost = catchAsync(async (req, res, next) => {
   if (!post) {
     return next(new AppErorr("There is not post in this ID", 404));
   }
+  console.log("pppppppppppppppppppppppppppppppppp", post);
 
   res.status(200).json({
     status: "success",
