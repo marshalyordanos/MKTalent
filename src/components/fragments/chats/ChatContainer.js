@@ -79,7 +79,7 @@ const ChatContainer = ({ currentChat }) => {
   //     feachdata();
   //   }, [currentChat]);
 
-  const sendHandler = async () => {
+  const sendHandler = async (e) => {
     const x = await api.post(
       "/chats",
       {
@@ -97,6 +97,7 @@ const ChatContainer = ({ currentChat }) => {
       ...messages,
       { message: input, users: [data.data._id, currentChat.user._id] },
     ]);
+    setInput("");
   };
 
   return (
@@ -174,16 +175,21 @@ const ChatContainer = ({ currentChat }) => {
 
       <div class="  flex-grow-0 py-3 px-4 border-top">
         <div class="input-group">
-          <input
-            type="text"
-            class="form-control"
-            value={input}
-            placeholder="Type your message"
-            onChange={(e) => setInput(e.target.value)}
-          />
-          <button onClick={sendHandler} class="btn btn-primary">
-            Send
-          </button>
+          <form onSubmit={sendHandler} className="flex flex-row w-full">
+            <input
+              type="text"
+              class="form-control "
+              value={input}
+              placeholder="Type your message"
+              onChange={(e) => setInput(e.target.value)}
+              onkeydown={(e) => {
+                if (e.target.va === "Enter") sendHandler();
+              }}
+            />
+            <button type="submit" class="btn btn-primary ">
+              Send
+            </button>
+          </form>
         </div>
       </div>
     </div>

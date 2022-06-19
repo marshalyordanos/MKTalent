@@ -10,7 +10,7 @@ const EditProfilePage = () => {
   return (
     <div>
       <Container className="container_job maincontainer">
-        <Form id="register" method="post">
+        <Form id="useredit" method="post">
           <br></br> <br></br>
           <h1>Edit your profile</h1>
           <hr></hr>
@@ -57,12 +57,13 @@ const EditProfilePage = () => {
           <div className="minicontainer">
             <h3>Password Change</h3>
             <hr></hr>
-
-            <Link to={"/profile/edit/password"}>
-              <Button className="button_login bg-success">
-                Change Password
-              </Button>
-            </Link>
+            <div className="flex justify-end mr-6 ">
+              <Link to={"/profile/edit/password"}>
+                <Button className="button_login bg-success">
+                  Change Password
+                </Button>
+              </Link>
+            </div>
           </div>
           <div className="minicontainer">
             <h3>Basic Information</h3>
