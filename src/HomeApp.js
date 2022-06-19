@@ -53,6 +53,7 @@ import Admins from "./components/admin/admins/Admins";
 import Setting from "./components/admin/setting/Setting";
 import Profile from "./components/admin/profile/Profile";
 import Jobs from "./jobs/CrudJob";
+import EditProfilePage from "./pages/EditProfilePage";
 const HomeApp = () => {
   const [showLogin, setShowLogin] = React.useState(false);
   const handleShowLoginOpen = () => setShowLogin(true);
@@ -219,9 +220,20 @@ const HomeApp = () => {
           <Route path="friends" element={<PeoplePage />} />
           <Route path="media" element={<PeoplePage />} />
         </Route>
+        <Route
+          path="/profile/edit"
+          element={
+            <Layout sidebar={false}>
+              <EditProfilePage />
+            </Layout>
+          }
+        ></Route>
         <Route path="/:id/createPost" element={<CreatePostpage />} />
         {/* <Route path="/postjobs/crudcompany" element={<CrudCompany />} /> */}
         {/* <Route path="/companylayout" element={<Navigate to={"/companylayout/postjobs"} />} /> */}
+        {/* ...
+        ...
+        ...     */}
         {/* routing for inner admin pages */}
         <Route path="/admin" element={<AdminLayout />} />
         <Route

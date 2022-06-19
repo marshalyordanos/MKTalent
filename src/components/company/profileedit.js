@@ -103,6 +103,15 @@ const ProfileEdit = (props) => {
             />
           </FormGroup>
           <FormGroup>
+            <Label for="phonenumber2">2nd Phone Number "optional"</Label>
+            <Input
+              type="text"
+              name="phonenumber2"
+              id="phonenumber2"
+              placeholder="Enter Another Phone Number"
+            />
+          </FormGroup>
+          <FormGroup>
             <Label for="establish">date of Establishment</Label>
             <Input
               type="date"
