@@ -53,6 +53,8 @@ import Admins from "./components/admin/admins/Admins";
 import Setting from "./components/admin/setting/Setting";
 import Profile from "./components/admin/profile/Profile";
 import Jobs from "./jobs/CrudJob";
+import EditProfilePage from "./pages/EditProfilePage";
+import EditPasswordPage from "./pages/EditPasswordPage";
 import ChatPage from "./pages/ChatPage";
 import AppliedUser from "./components/company/AppliedUser";
 const HomeApp = () => {
@@ -229,9 +231,33 @@ const HomeApp = () => {
           <Route path="friends" element={<PeoplePage />} />
           <Route path="media" element={<PeoplePage />} />
         </Route>
+        <Route
+          path="/profile/edit"
+          element={
+            <Layout sidebar={false}>
+              <EditProfilePage />
+            </Layout>
+          }
+        ></Route>
+        <Route
+          path="/profile/change/password"
+          element={<Navigate to={"/profile/edit/password"} />}
+        />
+        <Route
+          path="/profile/edit/password"
+          element={
+            <Layout sidebar={false}>
+              <EditPasswordPage />
+            </Layout>
+          }
+        ></Route>
+
         <Route path="/:id/createPost" element={<CreatePostpage />} />
         {/* <Route path="/postjobs/crudcompany" element={<CrudCompany />} /> */}
         {/* <Route path="/companylayout" element={<Navigate to={"/companylayout/postjobs"} />} /> */}
+        {/* ...
+        ...
+        ...     */}
         {/* routing for inner admin pages */}
         <Route path="/admin" element={<AdminLayout />} />
         <Route

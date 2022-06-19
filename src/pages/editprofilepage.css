@@ -1,0 +1,36 @@
+.maincontainer{
+    background-color: white;
+    border-radius: 15px;
+}
+.minicontainer{
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    margin: 20px 0px;
+    padding:40px;
+    
+}
+.imagediv{
+    height: 200px;
+    width: 150px;
+    border: 1px solid black;
+}
+.profilepicdiv{
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+}
+.changephoto{
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: #198754;
+    color: white;
+    padding: 5px;
+}
+.contains{
+    margin: 40px;
+
+}
+.image{
+    height:100%;
+    width: 100%;
+}

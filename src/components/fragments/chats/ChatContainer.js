@@ -31,7 +31,7 @@ const ChatContainer = ({ currentChat }) => {
           return res.data.chats;
         }),
     {
-      refetchInterval: 2000,
+      refetchInterval: 1000,
       refetchIntervalInBackground: true,
     }
   );
@@ -124,7 +124,7 @@ const ChatContainer = ({ currentChat }) => {
 
       <div
         style={{
-          maxHeight: "450px",
+          maxHeight: "60vh",
           display: "flex",
           flexDirection: "column-reverse",
         }}

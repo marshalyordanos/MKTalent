@@ -111,6 +111,11 @@ const ProfilePage = (props) => {
               <Link to={"/id/createpost"}>Create a Post</Link>
             </p>
           </div>
+          <div className="editprofile">
+            <p>
+              <Link to={"/profile/edit"}>Edit Profile</Link>
+            </p>
+          </div>
         </div>
       </div>
       <Divider className="p-0 m-0 " />
@@ -199,7 +204,21 @@ const ProfilePageStyle = styled.div`
         background-color: green;
         padding: 10px;
         border-radius: 7px;
-        color: white;
+        a {
+          color: white;
+        }
+      }
+    }
+    .editprofile {
+      align-self: flex-end;
+      padding-left: 20px;
+      p {
+        background-color: #4646f2;
+        padding: 5px;
+        border-radius: 5px;
+        a {
+          color: white;
+        }
       }
     }
   }
