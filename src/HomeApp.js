@@ -38,6 +38,12 @@ import Homepcon from "./blog/homepagecontainer/Homepcon";
 // import CrudCompany from "./jobs/CrudCompany"s;
 import CrudJob from "./jobs/CrudJob";
 import CompanyLayout from "./components/company/Layout";
+import CompanyFind from "./components/company/find";
+import CompanyMessage from "./components/company/message";
+import CompanyEvent from "./components/company/event";
+import CompanyStatus from "./components/company/status";
+import CompanyProfile from "./components/company/profile";
+import CompanyProfileEdit from "./components/company/profileedit";
 import AdminLayout from "./components/admin/Layout";
 import Dashboard from "./components/admin/dashboard/Dashboard";
 import Talents from "./components/admin/talent/Talents";
@@ -292,10 +298,10 @@ const HomeApp = () => {
           }
         />
         {/* amdin page routing ends here */}
-        <Route path="/companylayout" element={<CompanyLayout />} />
+        <Route path="/company" element={<CompanyLayout />} />
 
         <Route
-          path="/companylayout/postjobs"
+          path="/company/postjob"
           element={
             <CompanyLayout>
               <Jobs />
@@ -304,12 +310,59 @@ const HomeApp = () => {
         />
 
         <Route
-          path="/companylayout/blog"
-          element={<Navigate to={"/companylayout/blog/homeblog"} />}
+          path="/company/blog"
+          element={<Navigate to={"/company/blog/homeblog"} />}
         />
-
         <Route
-          path="/companylayout/blog"
+          path="/company/profile"
+          element={
+            <CompanyLayout>
+              <CompanyProfile />
+            </CompanyLayout>
+          }
+        />
+        <Route
+          path="/company/profile/edit"
+          element={
+            <CompanyLayout>
+              <CompanyProfileEdit />
+            </CompanyLayout>
+          }
+        />
+        <Route
+          path="/company/status"
+          element={
+            <CompanyLayout>
+              <CompanyStatus />
+            </CompanyLayout>
+          }
+        />
+        <Route
+          path="/company/event"
+          element={
+            <CompanyLayout>
+              <CompanyEvent />
+            </CompanyLayout>
+          }
+        />
+        <Route
+          path="/company/find"
+          element={
+            <CompanyLayout>
+              <CompanyFind />
+            </CompanyLayout>
+          }
+        />
+        <Route
+          path="/company/message"
+          element={
+            <CompanyLayout>
+              <CompanyMessage />
+            </CompanyLayout>
+          }
+        />
+        <Route
+          path="/company/blog"
           element={
             <CompanyLayout>
               <BlogHome />

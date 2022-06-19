@@ -8,6 +8,7 @@ const sharp = require("sharp");
 const fs = require("fs");
 const Profile = require("../model/profileModel");
 const { updateProfile } = require("./profileController");
+const APIFeature = require("../utils/apiFeature");
 
 /**************** multer storage ************************* */
 const multerStorage = multer.diskStorage({
@@ -45,6 +46,8 @@ const upload = multer({
 });
 exports.uploadUserPhoto = upload.fields([
   { name: "images", maxCount: 5 },
+  { name: "videoImage", maxCount: 1 },
+
   { name: "audio", maxCount: 1 },
   { name: "video", maxCount: 1 },
 ]);
@@ -53,16 +56,23 @@ exports.uploadUserPhoto = upload.fields([
 
 exports.createPost = catchAsync(async (req, res, next) => {
   req.body.user = req.user.id;
-  console.log(req.files.images, req.body);
+  console.log(
+    "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::"
+  );
+  console.log(req.files, req.body);
   if (req.files.images) {
     req.body.images = [];
     req.files.images.map((file) => req.body.images.push(file.filename));
+    req.body.dataType = "image";
   }
   if (req.files.video) {
     req.body.video = req.files.video[0].filename;
+    req.body.dataType = "video";
+    req.body.videoImage = req.files.videoImage[0].filename;
   }
   if (req.files.audio) {
     req.body.audio = req.files.audio[0].filename;
+    req.body.dataType = "audio";
   }
   const post = await Post.create(req.body);
 
@@ -74,15 +84,21 @@ exports.createPost = catchAsync(async (req, res, next) => {
 
 /****************************** get all posts ***************** ********************************************************************** */
 exports.getAllPost = catchAsync(async (req, res, next) => {
-  let query = Post.find();
-  console.log(req.query);
-  const page = req.query.page * 1 || 1;
-  const limit = +req.query.limit || 100;
+  // let query = Post.find();
+  // console.log(req.query);
+  // const page = req.query.page * 1 || 1;
+  // const limit = +req.query.limit || 100;
 
-  const skip = (page - 1) * limit;
-  query.skip(skip).limit(limit);
-  query.sort("-createdAt");
-  const post = await query
+  // const skip = (page - 1) * limit;
+  // query.skip(skip).limit(limit);
+  // query.sort("-createdAt");
+  const featur = new APIFeature(Post.find(), req.query)
+    .filter()
+    .sort()
+    .fields()
+    .paging();
+
+  const post = await featur.query
     .populate("comments")
     .populate("user")
     .populate("likes");

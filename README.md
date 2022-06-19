@@ -1,3 +1,10 @@
+# About the backend and connectivity networking
+
+if you have problem connect to mongodb or starting the server change the ip address in this file to "localhost" or to your prefered ip address
+MK_TALENT/server/config.env
+MK_TALENT/src/api/api.js
+change 192.168.8.113 to "localhost" without quotes
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

@@ -24,55 +24,25 @@ const tailLayout = {
 };
 const CreatePostpage = () => {
   const [fileList, setFileList] = useState([]);
+  const [video, setVideo] = useState([]);
+
   const postData = useSelector((state) => state.postData);
   const data10 = useSelector((state) => state.userAuth.data);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  console.log("kkkkkkkkkkkkkkkkssssssssss", fileList);
   const [description, setDescription] = useState("");
-  console.log(fileList);
+  console.log(
+    "{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{",
+    video,
+    fileList
+  );
   //   const [files, setFiles] = useState([]);
 
   const [form] = Form.useForm();
   const [tags, setTags] = useState("");
   const [mediaType, setMediaType] = useState("images");
-  const onFinish = (values) => {
-    console.log(values);
-  };
-  //   if (true) {
-  //     return (
-  //       <div>
-  //         <input
-  //           multiple
-  //           onChange={(e) => setFiles(e.target.files)}
-  //           type={"file"}
-  //         />
-  //         <button
-  //           onClick={() => {
-  //             console.log(files);
-  //             const formData = new FormData();
-  //             Object.values(files).forEach((file) => {
-  //               console.log("1111");
-  //               formData.append("images", file);
-  //             });
-  //             formData.append("tag", ["abebe"]);
-  //             // formData.append("images", files);
-
-  //             api.post("/posts", formData, {
-  //               headers: {
-  //                 "Access-Control-Allow-Origin": true,
-  //                 authorization:
-  //                   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNzEyZDM4NzM0MjRkNGY0NDY3NDM4MSIsImlhdCI6MTY1MTU4NzAzNCwiZXhwIjoxNjU0MTc5MDM0fQ.xPYr-RXrRmduSTJ-6eB54d-fGLaHIiezuTDD9R9YXLU",
-  //               },
-  //             });
-  //           }}
-  //         >
-  //           Post
-  //         </button>
-  //       </div>
-  //     );
-  //   }
+  const onFinish = (values) => {};
 
   return (
     <LayoutApp sidebar={false}>
@@ -142,7 +112,11 @@ const CreatePostpage = () => {
                 </div>
                 <div>
                   {mediaType == "video" && (
-                    <VedioPost fileList={fileList} setFileList={setFileList} />
+                    <VedioPost
+                      fileList={fileList}
+                      setFileList={setFileList}
+                      setVideo={setVideo}
+                    />
                   )}
                 </div>
                 <div>
@@ -168,38 +142,73 @@ const CreatePostpage = () => {
               <Form.Item {...tailLayout}>
                 <Button
                   disabled={fileList.length == 0}
-                  onClick={(e) => {
+                  onClick={async (e) => {
                     e.preventDefault();
+
                     const formData = new FormData();
                     formData.append("tag", tags);
                     formData.append("description", description);
-                    fileList.forEach((file) => {
-                      console.log("pppppppppppppppppppppp", file);
-                      formData.append("images", file);
-                    });
-                    api.post("/posts", formData, {
+                    if (mediaType == "images") {
+                      fileList.forEach((file) => {
+                        formData.append("images", file);
+                      });
+                    }
+                    if (mediaType == "video") {
+                      formData.append("videoImage", fileList);
+                      formData.append("video", video);
+                    }
+                    const res = await api.post("/posts", formData, {
                       headers: {
                         "Access-Control-Allow-Origin": true,
                         authorization: `Bearer ${data10.token}`, /////////////////////////////////////////////////////////////////////////////////
                       },
                     });
-                    const data = {
-                      tag: tags,
-                      description: description,
-                      images: fileList.map((file) => file.name),
-                      comments: [],
-                      user: { username: data10.data.username },
-                    };
-                    setTags("");
-                    setDescription("");
-                    dispatch(
-                      getAllPost({
-                        ...postData,
-                        posts: [...postData.posts, data],
-                      })
-                    );
+                    if (mediaType == "images") {
+                      const data = {
+                        tag: tags,
+                        likes: [],
+                        description: description,
+                        images: res.data.data.images.map((file) =>
+                          console.log(
+                            "ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo",
+                            file
+                          )
+                        ),
+                        comments: [],
+                        user: { username: data10.data.username },
+                      };
+                      setTags("");
+                      setDescription("");
+                      dispatch(
+                        getAllPost({
+                          ...postData,
+                          posts: [...postData.posts, data],
+                        })
+                      );
 
-                    navigate("/main");
+                      navigate("/main");
+                    }
+                    if (mediaType == "video") {
+                      const data = {
+                        tag: tags,
+                        description: description,
+                        video: res.data.data.video,
+                        videoImage: res.data.data.videoImage,
+                        comments: [],
+                        likes: [],
+                        user: { username: data10.data.username },
+                      };
+                      setTags("");
+                      setDescription("");
+                      dispatch(
+                        getAllPost({
+                          ...postData,
+                          posts: [...postData.posts, data],
+                        })
+                      );
+
+                      navigate("/main");
+                    }
                   }}
                   type="primary"
                   htmlType="submit"
