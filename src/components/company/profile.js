@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Facebook,
   Instagram,
@@ -9,9 +9,29 @@ import {
 import tel from "../../assets/page/company/ethiotel.jpg";
 import "./company.css";
 import JobCard from "../fragments/job/JobCard";
-import { NavLink } from "react-router-dom";
-
+import { Link, NavLink } from "react-router-dom";
+import GetJobApi from "../../api/getJobApi";
+import { useSelector } from "react-redux";
+import Button from "@mui/material/Button";
 const Profile = (props) => {
+  const [jobs, setJobs] = useState([]);
+  const data = useSelector((state) => state.userAuth.data);
+
+  useEffect(() => {
+    const featchData = async () => {
+      console.log(
+        "================================================================",
+        data?.data._id
+      );
+      const x = await GetJobApi(`?user=${data?.data._id}`);
+      setJobs(x);
+      console.log(
+        "88888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888",
+        x
+      );
+    };
+    featchData();
+  }, []);
   return (
     <div>
       <section class="section about-section gray-bg profilebody" id="about">
@@ -111,31 +131,32 @@ const Profile = (props) => {
           </div>
           <div className="m">
             <p className="postedjobs">Posted Jobs</p>
-            <div className="row">
-              <div className="col-4">
-                <JobCard />
-              </div>
-              <div className="col-4">
-                <JobCard />
-              </div>
-              <div className="col-4">
-                <JobCard />
-              </div>
-              <div className="col-4">
-                <JobCard />
-              </div>
-              <div className="col-4">
-                <JobCard />
-              </div>
-              <div className="col-4">
-                <JobCard />
-              </div>
-              <div className="col-4">
-                <JobCard />
-              </div>
-              <div className="col-4">
-                <JobCard />
-              </div>
+            <div className="   row">
+              {jobs.map((job) => (
+                <div className="border-[1px] col-6">
+                  <JobCard
+                    title={job.jobtitle}
+                    desc={job.jobdesc}
+                    type={job.jobtype}
+                    salary={job.salary}
+                    location={job.location}
+                    responsibilities={job.responsibilities}
+                    requirements={job.requirements}
+                  />
+                  <div className=" px-4 space-x-2 ">
+                    <Link to={`/company/jobs/${job._id}`}>
+                      <Button className="" variant="contained">
+                        Description
+                      </Button>
+                    </Link>
+                    <Link to={`/company/AppliedUser/${job._id}`}>
+                      <Button className="" variant="contained">
+                        Applied User
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
           <div calssName="editbutton">

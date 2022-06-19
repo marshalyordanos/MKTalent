@@ -76,7 +76,7 @@ const LayoutApp = (props) => {
   const profileMenu = (
     <Menu>
       <Menu.Item key={10}>
-        <NavLink to={`/profile/${profile.user}/activity/personal`}>
+        <NavLink to={`/profile/${profile?.user}/activity/personal`}>
           Profile
         </NavLink>
       </Menu.Item>

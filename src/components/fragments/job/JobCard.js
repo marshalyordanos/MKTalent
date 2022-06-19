@@ -9,7 +9,7 @@ const JobCard = (props) => {
         <img src={JobImage} className="w-[50px]" alt="" />
       </div>
       <div className="flex-grow">
-        <h3>hhhh{props.title}</h3>
+        <h3>{props.title}</h3>
         <p>{props.location}</p>
       </div>
       <div className=" self-start bg-gray-200 p-2 px-4 rounded-lg ">

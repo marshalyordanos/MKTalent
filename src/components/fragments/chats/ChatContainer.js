@@ -31,7 +31,7 @@ const ChatContainer = ({ currentChat }) => {
           return res.data.chats;
         }),
     {
-      refetchInterval: 50000,
+      refetchInterval: 2000,
       refetchIntervalInBackground: true,
     }
   );
@@ -79,7 +79,7 @@ const ChatContainer = ({ currentChat }) => {
   //     feachdata();
   //   }, [currentChat]);
 
-  const sendHandler = async () => {
+  const sendHandler = async (e) => {
     const x = await api.post(
       "/chats",
       {
@@ -97,6 +97,7 @@ const ChatContainer = ({ currentChat }) => {
       ...messages,
       { message: input, users: [data.data._id, currentChat.user._id] },
     ]);
+    setInput("");
   };
 
   return (
@@ -173,7 +174,13 @@ const ChatContainer = ({ currentChat }) => {
       </div>
 
       <div class="  flex-grow-0 py-3 px-4 border-top">
-        <div class="input-group">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            sendHandler();
+          }}
+          class="input-group"
+        >
           <input
             type="text"
             class="form-control"
@@ -181,10 +188,10 @@ const ChatContainer = ({ currentChat }) => {
             placeholder="Type your message"
             onChange={(e) => setInput(e.target.value)}
           />
-          <button onClick={sendHandler} class="btn btn-primary">
+          <button type="submit" class="btn btn-primary">
             Send
           </button>
-        </div>
+        </form>
       </div>
     </div>
   );
