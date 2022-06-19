@@ -131,7 +131,7 @@ const CompanyLayout = (props) => {
                 <Link to={"/company/blog"}>Post Blog</Link>
               </Menu.Item>
               <Menu.Item key="3" icon={<VideoCameraOutlined />}>
-                <Link to={"/company/postjobs"}>Post Job</Link>
+                <Link to={"/company/postjob"}>Post Job</Link>
               </Menu.Item>
 
               <Menu.Item key="4" icon={<UserOutlined />}>
@@ -139,11 +139,11 @@ const CompanyLayout = (props) => {
               </Menu.Item>
 
               <Menu.Item key="5" icon={<FestivalOutlinedIcon />}>
-                <Link to={"/company/events"}>Make Event</Link>
+                <Link to={"/company/event"}>Make Event</Link>
               </Menu.Item>
 
               <Menu.Item key="6" icon={<WorkOutlineOutlinedIcon />}>
-                <Link to={"/company/jobs"}>status</Link>
+                <Link to={"/company/status"}>status</Link>
               </Menu.Item>
               <Menu.Item key="7" icon={<StickyNote2OutlinedIcon />}>
                 <Link to={"/company/profile"}>profile</Link>
