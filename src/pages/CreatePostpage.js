@@ -189,11 +189,13 @@ const CreatePostpage = () => {
                       navigate("/main");
                     }
                     if (mediaType == "video") {
+                      e.preventDefault();
                       const data = {
                         tag: tags,
                         description: description,
                         video: res.data.data.video,
                         videoImage: res.data.data.videoImage,
+                        images: [],
                         comments: [],
                         likes: [],
                         user: { username: data10.data.username },

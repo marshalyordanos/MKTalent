@@ -43,7 +43,7 @@ const VideoPage = () => {
             placeholder="Search vedio"
           />
           <Button
-            size={"lage"}
+            size={"4"}
             type="primary"
             shape="circle"
             icon={<SearchOutlined />}
