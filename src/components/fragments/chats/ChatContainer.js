@@ -123,7 +123,7 @@ const ChatContainer = ({ currentChat }) => {
 
       <div
         style={{
-          maxHeight: "450px",
+          maxHeight: "60vh",
           display: "flex",
           flexDirection: "column-reverse",
         }}
