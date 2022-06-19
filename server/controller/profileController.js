@@ -112,6 +112,14 @@ exports.filterProfile = catchAsync(async (req, res, next) => {
     data: post,
   });
 });
+
+exports.getAllProfileById = catchAsync(async (req, res, next) => {
+  const users = await Profile.find({ _id: { $ne: req.params.id } }).populate(
+    "user"
+  );
+  return res.json(users);
+});
+
 /*********************** update post *********************** */
 
 exports.updatePoint = catchAsync(async (req, res, next) => {

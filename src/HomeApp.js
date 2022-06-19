@@ -47,6 +47,7 @@ import Admins from "./components/admin/admins/Admins";
 import Setting from "./components/admin/setting/Setting";
 import Profile from "./components/admin/profile/Profile";
 import Jobs from "./jobs/CrudJob";
+import ChatPage from "./pages/ChatPage";
 const HomeApp = () => {
   const [showLogin, setShowLogin] = React.useState(false);
   const handleShowLoginOpen = () => setShowLogin(true);
@@ -140,6 +141,14 @@ const HomeApp = () => {
           element={
             <Layout>
               <RewardPage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/chat"
+          element={
+            <Layout>
+              <ChatPage />
             </Layout>
           }
         />

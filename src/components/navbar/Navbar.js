@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { DarkMode, Search } from "@mui/icons-material";
@@ -11,16 +11,28 @@ import { NavLink } from "react-router-dom";
 import { Avatar } from "@mui/material";
 import { Dropdown, Menu } from "antd";
 import { logout } from "../../redux/authReducer";
+import porofileApi from "../../api/profileApi";
 const NavbarApp = (props) => {
   const data = useSelector((state) => state.userAuth.data);
   // console.log(data, "bettty");
   const light = useSelector((state) => state.mode.light);
   const dispatch = useDispatch();
-
+  const [profile, setProfile] = useState({});
+  useEffect(() => {
+    const feachData = async () => {
+      if (data.data) {
+        const prof = await porofileApi(data?.data?._id);
+        setProfile(prof);
+      }
+    };
+    feachData();
+  }, []);
   const profileMenu = (
     <Menu>
       <Menu.Item key={10}>
-        <NavLink to={"/ww"}>Profile</NavLink>
+        <NavLink to={`/profile/${profile.user}/activity/personal`}>
+          Profile
+        </NavLink>
       </Menu.Item>
       <Menu.Item key={12}>
         <NavLink

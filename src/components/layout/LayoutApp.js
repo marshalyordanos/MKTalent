@@ -65,17 +65,20 @@ const LayoutApp = (props) => {
   const [profile, setProfile] = useState({});
   useEffect(() => {
     const feachData = async () => {
-      const prof = await porofileApi(data?.data._id);
-      setProfile(prof);
+      if (data.data) {
+        const prof = await porofileApi(data?.data?._id);
+        setProfile(prof);
+      }
     };
     feachData();
   }, []);
 
-  console.log("hhhhhhhhhhhhhhhhhhhhhhhhhhhh", profile);
   const profileMenu = (
     <Menu>
       <Menu.Item key={10}>
-        <NavLink to={"/profile/qqqqqq"}>Profile</NavLink>
+        <NavLink to={`/profile/${profile.user}/activity/personal`}>
+          Profile
+        </NavLink>
       </Menu.Item>
       <Menu.Item key={12}>
         <NavLink
@@ -163,6 +166,9 @@ const LayoutApp = (props) => {
               <Menu.Item key="8" icon={<EmojiEventsOutlinedIcon />}>
                 <Link to={"/reward"}>Reward</Link>
               </Menu.Item>
+              <Menu.Item key="9" icon={<EmojiEventsOutlinedIcon />}>
+                <Link to={"/chat"}>Chat</Link>
+              </Menu.Item>
             </Menu>
           </div>
         </Sider>
@@ -230,7 +236,9 @@ const LayoutApp = (props) => {
                 {windowWidth > 845 ? (
                   <div className="flex items-center mx-8">
                     <div className=" flex flex-row items-center border-2">
-                      <h2 className=" pt-[21px]">{profile.point}</h2>
+                      {data?.token && (
+                        <h2 className=" pt-[21px]">{profile?.point}</h2>
+                      )}
                       <CurrencyExchange className="coin" />
                     </div>
                     <NavLink to={"/ww"}>ABOUT US</NavLink>
@@ -314,6 +322,7 @@ const LayoutApp = (props) => {
               style={{
                 padding: "0 16px",
                 minHeight: 280,
+                // border: "10px solid red",
               }}
             >
               <div className="Layoutapp__content">

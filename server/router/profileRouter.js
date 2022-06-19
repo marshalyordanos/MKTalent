@@ -8,6 +8,7 @@ const {
   getAllProfile,
   filterProfile,
   updateProfile,
+  getAllProfileById,
 } = require("../controller/profileController");
 
 const router = express.Router();
@@ -18,6 +19,7 @@ router
   .post(protect, uploadUserPhoto, createProfile)
   .get(getAllProfile);
 // router.route("/:id")
+router.get("/allusers/:id", getAllProfileById);
 
 router
   .route("/:id")

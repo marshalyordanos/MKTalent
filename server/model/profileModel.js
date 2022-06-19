@@ -17,9 +17,12 @@ const profileSchema = new mongoose.Schema(
     likes: Number,
     coverImage: {
       type: String,
-      default: "",
+      default: "cover.jpg",
     },
-    profileImage: String,
+    profileImage: {
+      type: String,
+      default: "profile.jpg",
+    },
     age: Number,
     height: Number,
     weight: Number,
