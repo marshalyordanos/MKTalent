@@ -12,7 +12,12 @@ const JobPostSchema = new mongoose.Schema(
         ref: "User",
         required: [true, "posts must have a user"],
       },
-    
+    appliedUser : [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: "User",
+      }
+    ],
    
     responsibilities: [String],
     requirements:[String],
