@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import api from "../api/api";
 import { Image } from "antd";
+import './blogpostdet.css'
 export default function SinglePost() {
 const {data, blogposts } = useSelector((state) => state.blogPostData);
 
@@ -22,22 +23,22 @@ const getPost= async ()=>{
   getPost();
 }, [path]);
   return (
-    <div className="singlePost">
+    <div className="blog_det">
       
 
-
-<img
-className="one_image py-5"
+<div><img
+className="border-4 box-content border-red-600 one_image py-5 h-[700px] flex flex-wrap object-cover"
 
 src={`/assets/img/blogpost/${post.data?.photo[0]}`}
-/>
+/></div>
+
 
              
-
-      <h1>{post.data?.title}</h1>
-      <p>{post.data?.desc}</p>
-      <h2>{post.data?.user.username}</h2>
-      <input type='text' disabled='disabled'></input>
+<div> <h1>Title: {post.data?.title}</h1>
+      <p>Description: {post.data?.desc}</p>
+      <h3>Author:{post.data?.user.username}</h3>
+</div>
+     
     </div>
   );
 }

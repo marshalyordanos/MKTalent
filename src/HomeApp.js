@@ -354,14 +354,7 @@ const HomeApp = () => {
             </AdminLayout>
           }
         />
-        <Route
-            path="/company/blog/homeblog/blogpost/:id"
-            element={
-              <CompanyLayout>
-                <BlogPostDetails/>
-              </CompanyLayout>
-            }
-          />
+       
         {/* amdin page routing ends here */}
         <Route path="/company" element={<CompanyLayout />} />
 
@@ -493,7 +486,14 @@ const HomeApp = () => {
               </>
             }
           />
-   
+    <Route
+            path="homeblog/blogpost/:id"
+            element={
+              <>
+                <BlogPostDetails/>
+              </>
+            }
+          />
           {/*{userData.token ? }
      
         {/* :  */}

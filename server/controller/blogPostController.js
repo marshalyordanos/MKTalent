@@ -107,7 +107,7 @@ exports.deletePost = catchAsync(async (req, res) => {
 //GET POST
 exports.getPost = catchAsync( async (req, res) => {
   console.log(req.params);
-  const post = await Post.findById({ _id: req.params.id });
+  const post = await Post.findById({ _id: req.params.id }).populate('user');
   if (!post) {
     return next(new AppErorr("There is not post in this ID", 404));
   }
@@ -115,6 +115,7 @@ exports.getPost = catchAsync( async (req, res) => {
   res.status(200).json({
     status: "success",
     data: post,
+ 
   });
 });
 
