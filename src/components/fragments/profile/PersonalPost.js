@@ -14,7 +14,7 @@ const PersonalPost = () => {
       dispatch(getAllPost({ loading: true }));
       try {
         const { data } = await api.get("/posts/?limit=10");
-        console.log(data.data);
+        // console.log(data.data);
         dispatch(getAllPost({ loading: false, posts: data.data }));
       } catch (err) {
         dispatch(

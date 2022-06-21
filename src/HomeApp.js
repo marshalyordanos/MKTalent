@@ -38,7 +38,12 @@ import Homepcon from "./blog/homepagecontainer/Homepcon";
 // import CrudCompany from "./jobs/CrudCompany"s;
 import CrudJob from "./jobs/CrudJob";
 import CompanyLayout from "./components/company/Layout";
+import CompanyFind from "./components/company/find";
+import CompanyMessage from "./components/company/message";
+import CompanyEvent from "./components/company/event";
+import CompanyStatus from "./components/company/status";
 import CompanyProfile from "./components/company/profile";
+import CompanyProfileEdit from "./components/company/profileedit";
 import AdminLayout from "./components/admin/Layout";
 import Dashboard from "./components/admin/dashboard/Dashboard";
 import Talents from "./components/admin/talent/Talents";
@@ -48,6 +53,11 @@ import Admins from "./components/admin/admins/Admins";
 import Setting from "./components/admin/setting/Setting";
 import Profile from "./components/admin/profile/Profile";
 import Jobs from "./jobs/CrudJob";
+import EditProfilePage from "./pages/editProfilePage";
+import EditPasswordPage from "./pages/EditPasswordPage";
+import ChatPage from "./pages/ChatPage";
+import AppliedUser from "./components/company/AppliedUser";
+import BlogPostDetails from "./pages/BlogPostDetails";
 const HomeApp = () => {
   const [showLogin, setShowLogin] = React.useState(false);
   const handleShowLoginOpen = () => setShowLogin(true);
@@ -144,6 +154,14 @@ const HomeApp = () => {
             </Layout>
           }
         />
+        <Route
+          path="/chat"
+          element={
+            <Layout>
+              <ChatPage />
+            </Layout>
+          }
+        />
         <Route path="/blog" element={<Navigate to={"/blog/homeblog"} />} />
         <Route
           path="/blog"
@@ -162,7 +180,14 @@ const HomeApp = () => {
               </>
             }
           />
-
+     <Route
+            path="homeblog/blogpost/:id"
+            element={
+              <>
+                <BlogPostDetails/>
+              </>
+            }
+          />
           {/*{userData.token ? }
      
         {/* :  */}
@@ -214,9 +239,33 @@ const HomeApp = () => {
           <Route path="friends" element={<PeoplePage />} />
           <Route path="media" element={<PeoplePage />} />
         </Route>
+        <Route
+          path="/profile/edit"
+          element={
+            <Layout sidebar={false}>
+              <EditProfilePage />
+            </Layout>
+          }
+        ></Route>
+        <Route
+          path="/profile/change/password"
+          element={<Navigate to={"/profile/edit/password"} />}
+        />
+        <Route
+          path="/profile/edit/password"
+          element={
+            <Layout sidebar={false}>
+              <EditPasswordPage />
+            </Layout>
+          }
+        ></Route>
+
         <Route path="/:id/createPost" element={<CreatePostpage />} />
         {/* <Route path="/postjobs/crudcompany" element={<CrudCompany />} /> */}
         {/* <Route path="/companylayout" element={<Navigate to={"/companylayout/postjobs"} />} /> */}
+        {/* ...
+        ...
+        ...     */}
         {/* routing for inner admin pages */}
         <Route path="/admin" element={<AdminLayout />} />
         <Route
@@ -284,10 +333,10 @@ const HomeApp = () => {
           }
         />
         {/* amdin page routing ends here */}
-        <Route path="/companylayout" element={<CompanyLayout />} />
+        <Route path="/company" element={<CompanyLayout />} />
 
         <Route
-          path="/companylayout/postjobs"
+          path="/company/postjob"
           element={
             <CompanyLayout>
               <Jobs />
@@ -296,12 +345,8 @@ const HomeApp = () => {
         />
 
         <Route
-          path="/companylayout/blog"
-          element={<Navigate to={"/companylayout/blog/homeblog"} />}
-        />
-        <Route
-          path="/companylayout/profile"
-          element={<Navigate to={"/company/profile"} />}
+          path="/company/blog"
+          element={<Navigate to={"/company/blog/homeblog"} />}
         />
         <Route
           path="/company/profile"
@@ -311,9 +356,65 @@ const HomeApp = () => {
             </CompanyLayout>
           }
         />
-
+      
         <Route
-          path="/companylayout/blog"
+          path="/company/profile/edit"
+          element={
+            <CompanyLayout>
+              <CompanyProfileEdit />
+            </CompanyLayout>
+          }
+        />
+        <Route
+          path="/company/status"
+          element={
+            <CompanyLayout>
+              <CompanyStatus />
+            </CompanyLayout>
+          }
+        />
+        <Route
+          path="/company/event"
+          element={
+            <CompanyLayout>
+              <CompanyEvent />
+            </CompanyLayout>
+          }
+        />
+        <Route
+          path="/company/find"
+          element={
+            <CompanyLayout>
+              <CompanyFind />
+            </CompanyLayout>
+          }
+        />
+        <Route
+          path="/company/AppliedUser/:id"
+          element={
+            <CompanyLayout>
+              <AppliedUser />
+            </CompanyLayout>
+          }
+        />
+        <Route
+          path="/company/jobs/:id"
+          element={
+            <CompanyLayout>
+              <JobDetail />
+            </CompanyLayout>
+          }
+        />
+        <Route
+          path="/company/message"
+          element={
+            <CompanyLayout>
+              <CompanyMessage />
+            </CompanyLayout>
+          }
+        />
+        <Route
+          path="/company/blog"
           element={
             <CompanyLayout>
               <BlogHome />
@@ -329,7 +430,14 @@ const HomeApp = () => {
               </>
             }
           />
-
+   <Route
+            path="/company/blog/homeblog/blogpost/:id"
+            element={
+              <>
+                <BlogPostDetails/>
+              </>
+            }
+          />
           {/*{userData.token ? }
      
         {/* :  */}

@@ -22,6 +22,7 @@ const PostCard = (props) => {
   const [comments, setComments] = useState(props.comments);
   const [time, setTime] = useState("");
   const [liked, setLiked] = useState(false);
+  const [likeLength, setLikeLength] = useState(props.likes.length);
   useEffect(() => {
     /******************   posted date */
 
@@ -132,20 +133,34 @@ const PostCard = (props) => {
               {props.likes.includes(userData.data._id) || liked ? (
                 <IconButton
                   onClick={async () => {
+                    setLiked(false);
+                    setLikeLength(likeLength - 1);
+                    console.log("----------------------------------");
+                    // let newLikes;
                     const likes = props.likes;
-                    // const newLikes = likes.filter((v,i)=>);
+                    const newLikes = likes.filter(
+                      (v, x) => v !== userData.data._id
+                    );
+                    // if (likes.includes(userData._id)) {
+                    //   newLikes = [...likes];
+                    // } else {
+                    //   newLikes = [...likes, userData.data._id];
+                    // }
+                    console.log("----------------------------------");
+                    console.log(newLikes);
+                    console.log("wwwwwwwwwwwwwww", props.postId);
+                    const x = await api.patch(
+                      `/posts/${props.postId}`,
+                      { likes: newLikes },
+                      {
+                        headers: {
+                          "Access-Control-Allow-Origin": true,
+                          authorization: `Bearer ${userData?.token}`, /////////////////////////////////////////////////////////////////////////////////
+                        },
+                      }
+                    );
 
-                    // const post = await api.get(`/posts/${props.postId}`, {
-                    //   headers: {
-                    //     "Access-Control-Allow-Origin": true,
-                    //     authorization: `Bearer ${userData?.token}`, /////////////////////////////////////////////////////////////////////////////////
-                    //   },
-                    // });
-                    // console.log(
-                    //   "+++++++++++++++++++++++",
-                    //   post.data.data,
-                    //   userData
-                    // );
+                    console.log("lkmsd", x);
                   }}
                 >
                   <FavoriteIcon sx={{ color: pink[500] }} />
@@ -153,6 +168,9 @@ const PostCard = (props) => {
               ) : (
                 <IconButton
                   onClick={async () => {
+                    setLiked(true);
+                    setLikeLength(likeLength + 1);
+
                     console.log("----------------------------------");
                     let newLikes;
                     const likes = props.likes;
@@ -189,7 +207,7 @@ const PostCard = (props) => {
               </IconButton>
               <div className="ml-3 text-[16px] cursor-pointer hover:text-red-700">
                 <p>
-                  {props.likes.length} likes,{" "}
+                  {likeLength} likes,{" "}
                   {/* {props?.likeUsers
                     .slice(0, 3)
                     .map((x) => x.username)

@@ -14,9 +14,18 @@ const profileSchema = new mongoose.Schema(
         ref: "User",
       },
     ],
-    likes: Number,
-    coverImage: String,
-    profileImage: String,
+    likes: {
+      type: Number,
+      default: 0,
+    },
+    coverImage: {
+      type: String,
+      default: "cover.jpg",
+    },
+    profileImage: {
+      type: String,
+      default: "profile.jpg",
+    },
     age: Number,
     height: Number,
     weight: Number,
@@ -25,10 +34,16 @@ const profileSchema = new mongoose.Schema(
     ratingAvarage: String,
     magicalRating: String,
     freinds: [Object],
-    totalLikes: Number,
+    totalLikes: {
+      type: Number,
+      default: 0,
+    },
     yearOfExperiance: Number,
     desc: String,
-    point: Number,
+    point: {
+      type: Number,
+      default: 5.5,
+    },
     languages: [String],
     phone: String,
     Location: String,
@@ -36,6 +51,7 @@ const profileSchema = new mongoose.Schema(
     user: {
       type: mongoose.Schema.ObjectId,
       ref: "User",
+      unique: true,
       required: [true, "posts must have a user"],
     },
   },

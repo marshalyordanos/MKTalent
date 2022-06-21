@@ -1,36 +1,37 @@
-import React, { useEffect } from "react";
-import { Layout, Menu, Dropdown, Avatar } from "antd";
+import React, { useEffect, useState } from "react";
 import {
-  MenuUnfoldOutlined,
-  MenuFoldOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
-  HomeOutlined,
-} from "@ant-design/icons";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Button, dividerClasses } from "@mui/material";
-import { changeLight } from "../../redux/counter/mode";
-import {
-  DarkMode,
   Facebook,
   Instagram,
   LinkedIn,
   Telegram,
   Twitter,
 } from "@mui/icons-material";
-import LightModeIcon from "@mui/icons-material/LightMode";
-import SearchIcon from "@mui/icons-material/Search";
-import MenuIcon from "@mui/icons-material/Menu";
-import MKLogo from "../../assets/page/MK logo/MK logo.png";
 import tel from "../../assets/page/company/ethiotel.jpg";
-import Login from "../login/Login";
-import Model from "../../utils/Model";
-import { logout } from "../../redux/authReducer";
 import "./company.css";
-
+import JobCard from "../fragments/job/JobCard";
+import { Link, NavLink } from "react-router-dom";
+import GetJobApi from "../../api/getJobApi";
+import { useSelector } from "react-redux";
+import Button from "@mui/material/Button";
 const Profile = (props) => {
+  const [jobs, setJobs] = useState([]);
+  const data = useSelector((state) => state.userAuth.data);
+
+  useEffect(() => {
+    const featchData = async () => {
+      console.log(
+        "================================================================",
+        data?.data._id
+      );
+      const x = await GetJobApi(`?user=${data?.data._id}`);
+      setJobs(x);
+      console.log(
+        "88888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888",
+        x
+      );
+    };
+    featchData();
+  }, []);
   return (
     <div>
       <section class="section about-section gray-bg profilebody" id="about">
@@ -40,15 +41,16 @@ const Profile = (props) => {
               <div class="about-text go-to">
                 <h3 class="dark-color">Ethio-Telecom</h3>
                 <h6 class="theme-color lead">
-                  A Lead Telecomunication provide in Ethiopia
+                  A Lead Telecommunication service provide in Ethiopia
                 </h6>
                 <p>
                   Ethio telecom, previously known as the Ethiopian
                   Telecommunications Corporation, is an Ethiopian
-                  telecommunication company serving as the major
-                  <mark> internet and telephone service provider</mark>. Ethio
-                  telecom is owned by the Ethiopian government and maintains a
-                  monopoly over all telecommunication services in Ethiopia
+                  telecommunication company serving as the
+                  <mark>major internet and telephone service provider</mark>.
+                  Ethio telecom is owned by the Ethiopian government and
+                  maintains a monopoly over all telecommunication services in
+                  Ethiopia
                 </p>
                 <div class="row about-list">
                   <div class="col-md-6">
@@ -127,8 +129,40 @@ const Profile = (props) => {
               </div>
             </div>
           </div>
+          <div className="m">
+            <p className="postedjobs">Posted Jobs</p>
+            <div className="   row">
+              {jobs.map((job) => (
+                <div className="border-[1px] col-6">
+                  <JobCard
+                    title={job.jobtitle}
+                    desc={job.jobdesc}
+                    type={job.jobtype}
+                    salary={job.salary}
+                    location={job.location}
+                    responsibilities={job.responsibilities}
+                    requirements={job.requirements}
+                  />
+                  <div className=" px-4 space-x-2 ">
+                    <Link to={`/company/jobs/${job._id}`}>
+                      <Button className="" variant="contained">
+                        Description
+                      </Button>
+                    </Link>
+                    <Link to={`/company/AppliedUser/${job._id}`}>
+                      <Button className="" variant="contained">
+                        Applied User
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
           <div calssName="editbutton">
-            <button calssName="editbutton ">EDIT PROFILE</button>
+            <div calssName="editbutton  ">
+              <NavLink to="/company/profile/edit">EDIT PROFILE</NavLink>
+            </div>
           </div>
         </div>
       </section>

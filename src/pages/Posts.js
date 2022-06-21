@@ -62,7 +62,7 @@ const Posts = () => {
             createdAt={post.createdAt}
             audio={post.audio}
             key={i}
-            likes={post.likes.map((x, i) => x._id)}
+            likes={post?.likes?.map((x, i) => x._id) || []}
             WWW
           />
         ))}

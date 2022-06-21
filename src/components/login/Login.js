@@ -42,6 +42,9 @@ const Login = (props) => {
         const { data } = await api.post("/users/login", value);
         dispatch(login({ data: data, loading: false }));
         props.click();
+        const profile = await api.get(`/profile/filter/${data.data._id}`);
+        localStorage.setItem("profile", JSON.stringify(profile.data.data));
+
         if (data.data.role == "talent") {
           navigate("/main");
         } else if (data.data.role == "admin") {
@@ -52,11 +55,10 @@ const Login = (props) => {
           login({
             error: err.response && err.response.data.message,
             loading: false,
-            
           })
         );
 
-        console.log(err)
+        console.log(err);
       }
     }
   };

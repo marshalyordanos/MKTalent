@@ -21,7 +21,7 @@ import UserStatus from "./userStatusBar";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "@mui/material";
 import { changeLight } from "../../redux/counter/mode";
-import { DarkMode } from "@mui/icons-material";
+import { CurrencyExchange, DarkMode } from "@mui/icons-material";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -33,6 +33,7 @@ import MKLogo from "../../assets/page/MK logo/MK logo.png";
 import Login from "../login/Login";
 import Model from "../../utils/Model";
 import { logout } from "../../redux/authReducer";
+import porofileApi from "../../api/profileApi";
 const { Header, Sider, Footer, Content } = Layout;
 
 const menu = (
@@ -54,7 +55,6 @@ const menu = (
 
 const LayoutApp = (props) => {
   const data = useSelector((state) => state.userAuth.data);
-  console.log("company company ", data);
   const dispatch = useDispatch();
   const [collapsed, setCollapsed] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -62,10 +62,23 @@ const LayoutApp = (props) => {
   const [showLogin, setShowLogin] = React.useState(false);
   const handleShowLoginOpen = () => setShowLogin(true);
   const handleShowLoginClose = () => setShowLogin(false);
+  const [profile, setProfile] = useState({});
+  useEffect(() => {
+    const feachData = async () => {
+      if (data.data) {
+        const prof = await porofileApi(data?.data?._id);
+        setProfile(prof);
+      }
+    };
+    feachData();
+  }, []);
+
   const profileMenu = (
     <Menu>
       <Menu.Item key={10}>
-        <NavLink to={"/profile/qqqqqq"}>Profile</NavLink>
+        <NavLink to={`/profile/${profile?.user}/activity/personal`}>
+          Profile
+        </NavLink>
       </Menu.Item>
       <Menu.Item key={12}>
         <NavLink
@@ -153,6 +166,9 @@ const LayoutApp = (props) => {
               <Menu.Item key="8" icon={<EmojiEventsOutlinedIcon />}>
                 <Link to={"/reward"}>Reward</Link>
               </Menu.Item>
+              <Menu.Item key="9" icon={<EmojiEventsOutlinedIcon />}>
+                <Link to={"/chat"}>Chat</Link>
+              </Menu.Item>
             </Menu>
           </div>
         </Sider>
@@ -219,6 +235,12 @@ const LayoutApp = (props) => {
               >
                 {windowWidth > 845 ? (
                   <div className="flex items-center mx-8">
+                    <div className=" flex flex-row items-center border-2">
+                      {data?.token && (
+                        <h2 className=" pt-[21px]">{profile?.point}</h2>
+                      )}
+                      <CurrencyExchange className="coin" />
+                    </div>
                     <NavLink to={"/ww"}>ABOUT US</NavLink>
                     <NavLink to={"/ee"}>CONTACT</NavLink>
                     {data?.token ? (
@@ -300,6 +322,7 @@ const LayoutApp = (props) => {
               style={{
                 padding: "0 16px",
                 minHeight: 280,
+                // border: "10px solid red",
               }}
             >
               <div className="Layoutapp__content">
@@ -341,6 +364,10 @@ const LayoutStyle = styled.div`
   * {
     transition: all 0.1s;
   }
+  .coin {
+    color: #ffb01c;
+  }
+
   .Layoutapp__content {
     display: flex;
     justify-content: center;

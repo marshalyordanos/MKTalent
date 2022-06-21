@@ -24,13 +24,19 @@ const ProfilePage = (props) => {
     console.log("fkrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr", userID);
 
     async function fechData() {
-      const profile = await api.get(`/profile/${userID}`, {
+      const profile = await api.get(`/profile/filter/${userID}`, {
         headers: {
           "Access-Control-Allow-Origin": true,
           authorization: `Bearer ${data.token}`, /////////////////////////////////////////////////////////////////////////////////
         },
       });
+      console.log(
+        "======================================================================!!!!!!!!!!!!!"
+      );
       const user = await api.get(`/users/${profile.data.data.user}`);
+      console.log(
+        "======================================================================"
+      );
 
       console.log("==============", user);
       setProfileData(profile.data.data);
@@ -105,16 +111,20 @@ const ProfilePage = (props) => {
               <Link to={"/id/createpost"}>Create a Post</Link>
             </p>
           </div>
+          <div className="editprofile">
+            <p>
+              <Link to={"/profile/edit"}>Edit Profile</Link>
+            </p>
+          </div>
         </div>
       </div>
       <Divider className="p-0 m-0 " />
-
       <div className=" flex flex-wrap">
         <div className="leftSideBar  h-40 w-[300px]">
           <div className="flex border-b-[1px] justify-end p-4">
             <div className=" mr-4 ">
-              <h3>10</h3>
-              <p>Friends</p>
+              <h3>{profileData?.follower?.length}</h3>
+              <p>Followers</p>
             </div>
             <div className="mr-4">
               <h3>10</h3>
@@ -137,7 +147,7 @@ const ProfilePage = (props) => {
           <Outlet />
         </div>
         {/* <div className=" border-2 h-40 w-[300px]"></div> */}
-      </div>
+      </div>{" "}
     </ProfilePageStyle>
   );
 };
@@ -194,7 +204,21 @@ const ProfilePageStyle = styled.div`
         background-color: green;
         padding: 10px;
         border-radius: 7px;
-        color: white;
+        a {
+          color: white;
+        }
+      }
+    }
+    .editprofile {
+      align-self: flex-end;
+      padding-left: 20px;
+      p {
+        background-color: #4646f2;
+        padding: 5px;
+        border-radius: 5px;
+        a {
+          color: white;
+        }
       }
     }
   }

@@ -141,3 +141,14 @@ mark {
     border-radius: 3px;
     
 }
+.postedjobs{
+    font-size:x-large;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 10px;
+}
+.m{
+    margin-top: 40px;
+    border: white 2px solid;
+    border-radius: 10px;
+}
