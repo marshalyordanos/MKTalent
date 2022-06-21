@@ -75,7 +75,7 @@ const RewardCard = (props) => {
           <p className="rr">{props.reward.name}</p>
         </div>
       </div>
-      {true ? <Button variant="contained">Collect Reward</Button> : ""}
+      {true ? <Button variant="contained ">Collect Reward</Button> : true}
 
       {true ? (
         <div className="bottombuttons">
