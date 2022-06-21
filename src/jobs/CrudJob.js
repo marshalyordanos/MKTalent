@@ -48,7 +48,7 @@ const CrudJob = () => {
     setValue({ ...value, [e.target.name]: e.target.value });
   };
   console.log("lllllllllllllllllllllllllllllllllllllll", value);
-  const onFinish = (values) => {};
+  const onFinish = async (values) => {};
   const handleValidation = async (e) => {
     e.preventDefault();
     const {
@@ -78,27 +78,18 @@ const CrudJob = () => {
         toastOption
       );
     } else {
-      try {
-        dispatch(register({ loading: true }));
-        if (data.data.role == "company") {
-          api.post("/job/createjob", value, {
-            headers: {
-              "Access-Control-Allow-Origin": true,
-              authorization: `Bearer ${userData.token}`,
-            },
-          });
+      // dispatch(register({ loading: true }));
+      if (data.data.role == "company") {
+        await api.post("/job/createjob", value, {
+          headers: {
+            "Access-Control-Allow-Origin": true,
+            authorization: `Bearer ${userData.token}`,
+          },
+        });
 
-          navigate("/companylayout");
-        } else {
-          dispatch(register({ data: data, loading: false }));
-        }
-      } catch (err) {
-        dispatch(
-          register({
-            error: err.response && err.response.data.message,
-            loading: false,
-          })
-        );
+        navigate("/company");
+      } else {
+        // dispatch(register({ data: data, loading: false }));
       }
     }
   };

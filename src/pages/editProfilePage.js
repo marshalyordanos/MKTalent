@@ -6,6 +6,7 @@ import { Form, FormGroup, Label, Input, Table } from "reactstrap";
 import "./editprofilepage.css";
 import profilepic from "../assets/page/profile.png";
 import Defaultpic from "../assets/page/ProfileImage.jpg";
+import DefaultCoverpic from "../assets/page/coverpic.png";
 const EditProfilePage = () => {
   return (
     <div>
@@ -16,7 +17,7 @@ const EditProfilePage = () => {
           <hr></hr>
           <br></br>
           <div className="minicontainer">
-            <h3>Profile </h3>
+            <h3>Profile Picture</h3>
             <hr></hr>
             <FormGroup>
               <div className="profilepicdiv ">
@@ -35,7 +36,8 @@ const EditProfilePage = () => {
                     style={{ display: "none" }}
                   />
                 </div>
-                <div className="contains">
+
+                <div className="contains felx justify-end">
                   <Label for="talenttype">Talent Type</Label>
                   <Input
                     type="text"
@@ -49,6 +51,25 @@ const EditProfilePage = () => {
                     name="accounttype"
                     id="accounttype"
                     placeholder="Talent"
+                  />
+                </div>
+              </div>
+              <h5>Cover Picture</h5>
+              <hr></hr>
+              <div className="profilepicdiv ">
+                <div className="imagedivcover">
+                  <img className="imagec" src={DefaultCoverpic} />
+                </div>
+                <div className=" contains">
+                  <Label for="coverpic" className="changephoto">
+                    Update cover Photo
+                  </Label>
+                  <Input
+                    type="file"
+                    name="coverpic"
+                    accept="image/*"
+                    id="coverpic"
+                    style={{ display: "none" }}
                   />
                 </div>
               </div>

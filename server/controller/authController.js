@@ -6,7 +6,6 @@ const { promisify } = require("util");
 const Profile = require("../model/profileModel");
 
 const getToken = (id) => {
-  //check your code aeound here you may have forgotten id:id and said only id
   return jwt.sign({ id: id }, process.env.JWT_SECRETE, {
     expiresIn: "30d",
   });
@@ -30,22 +29,17 @@ exports.signup = catchAsync(async (req, res, next) => {
 
 exports.login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
-  // check the email and the password is exist
   if (!email || !password) {
     return next(new AppErorr("email and password must be provided!", 401));
   }
 
-  // check if user is exist and oasword is coreact
   const user = await User.findOne({ email: email }).select("+password");
-  // const correct = await user.correctPassword(password,user.password)
-  //   console.log(user);
 
   if (!user || !(await user.correctPassword(password, user.password))) {
     return next(new AppErorr("Incorrect email or password", 401));
   }
 
   console.log(user);
-  //get the token
   const token = getToken(user._id);
 
   res.status(200).json({

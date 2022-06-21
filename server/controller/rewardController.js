@@ -1,5 +1,5 @@
 /********************************* import modules ************************************** */
-const Profile = require("../model/profileModel");
+const Reward = require("../model/rewardModel");
 const multer = require("multer");
 const AppErorr = require("../utils/appError");
 const catchAsync = require("../utils/catchAsync");
@@ -8,7 +8,7 @@ const APIFeature = require("../utils/apiFeature");
 const multerStorage = multer.diskStorage({
   destination: (req, file, cb) => {
     if (file.mimetype.startsWith("image")) {
-      cb(null, "../public/assets/img/profile");
+      cb(null, "../public/assets/img/reward");
     }
   },
   filename: (req, file, cb) => {
@@ -30,24 +30,19 @@ const upload = multer({
   storage: multerStorage,
   fileFilter: multerFilter,
 });
-exports.uploadUserPhoto = upload.fields([
-  { name: "profileImage", maxCount: 1 },
-  { name: "coverImage", maxCount: 1 },
-]);
+exports.uploadUserPhoto = upload.fields([{ name: "image", maxCount: 1 }]);
 
 /********************* create post  */
 
-exports.createProfile = catchAsync(async (req, res, next) => {
+exports.createReward = catchAsync(async (req, res, next) => {
+  console.log("::::::::::::::::::::::::::::::::::::::::::::::::::");
   req.body.user = req.user.id;
-  console.log(req.files.coverImage, req.body);
-  console.log("lllllllllllll", req.files.profileImage, req.body);
-  if (req.files.coverImage) {
-    req.body.coverImage = req.files.coverImage[0].filename;
+  console.log(req.files.image, req.body);
+  if (req.files.image) {
+    req.body.image = req.files.image[0].filename;
   }
-  if (req.files.profileImage) {
-    req.body.profileImage = req.files.profileImage[0].filename;
-  }
-  const post = await Profile.create(req.body);
+
+  const post = await Reward.create(req.body);
 
   res.status(200).json({
     status: "success",
@@ -55,31 +50,9 @@ exports.createProfile = catchAsync(async (req, res, next) => {
   });
 });
 
-/****************************** get all posts ***************** ********************************************************************** */
-// exports.getAllPost = catchAsync(async (req, res, next) => {
-//   let query = Post.find();
-//   console.log(req.query);
-//   const page = req.query.page * 1 || 1;
-//   const limit = +req.query.limit || 100;
-
-//   const skip = (page - 1) * limit;
-//   query.skip(skip).limit(limit);
-//   query.sort("-createdAt");
-//   const post = await query.populate("comments").populate("user");
-//   const posts = await Post.find();
-
-//   res.status(200).json({
-//     totalLength: posts.length,
-//     length: post.length,
-//     status: "success",
-//     data: post,
-//   });
-// });
-
-/*********************** get one post *********************** */
 exports.getProfile = catchAsync(async (req, res, next) => {
   console.log(req.params);
-  const post = await Profile.findOne({ _id: req.params.id });
+  const post = await Reward.findOne({ _id: req.params.id });
   console.log(post);
   if (!post) {
     return next(new AppErorr("There is not post in this ID", 404));
@@ -92,8 +65,8 @@ exports.getProfile = catchAsync(async (req, res, next) => {
 });
 
 /*********************** get one post *********************** */
-exports.getAllProfile = catchAsync(async (req, res, next) => {
-  const featur = new APIFeature(Profile.find(), req.query)
+exports.getAllReward = catchAsync(async (req, res, next) => {
+  const featur = new APIFeature(Reward.find(), req.query)
     .filter()
     .sort()
     .fields()
@@ -109,7 +82,7 @@ exports.getAllProfile = catchAsync(async (req, res, next) => {
 
 exports.filterProfile = catchAsync(async (req, res, next) => {
   console.log(req.params);
-  const post = await Profile.findOne({ user: req.params.id })
+  const post = await Reward.findOne({ user: req.params.id })
     .populate("jobs")
     .populate({ path: "jops.user", model: "User" });
   console.log(post);
@@ -121,7 +94,7 @@ exports.filterProfile = catchAsync(async (req, res, next) => {
 });
 
 exports.getAllProfileById = catchAsync(async (req, res, next) => {
-  const users = await Profile.find({ _id: { $ne: req.params.id } }).populate(
+  const users = await Reward.find({ _id: { $ne: req.params.id } }).populate(
     "user"
   );
   return res.json(users);
@@ -137,7 +110,7 @@ exports.updatePoint = catchAsync(async (req, res, next) => {
   // post -------------- 0.0001
   // jop aprove --------------- 5
 
-  const profile = await Profile.findByIdAndUpdate(
+  const profile = await Reward.findByIdAndUpdate(
     { _id: req.params.id },
     { point: req.point },
     {
@@ -163,9 +136,9 @@ exports.updateProfile = catchAsync(async (req, res, next) => {
   if (req?.files?.profileImage) {
     req.body.profileImage = req.files.profileImage[0].filename;
   }
-  const xxx = await Profile.find({ _id: req.params.id });
+  const xxx = await Reward.find({ _id: req.params.id });
   console.log("8888888888888880,", xxx, req.params.id);
-  const post = await Profile.findByIdAndUpdate(
+  const post = await Reward.findByIdAndUpdate(
     { _id: req.params.id },
     req.body,
     {
@@ -183,57 +156,3 @@ exports.updateProfile = catchAsync(async (req, res, next) => {
     data: post,
   });
 });
-
-// /*********************** delete post *********************** */
-// exports.deletePost = catchAsync(async (req, res, next) => {
-//   const post = await Post.findById({ _id: req.params.id });
-
-//   if (!(req.user.id == post.user)) {
-//     return next(new AppErorr("this is not your post", 404));
-//   }
-
-//   const postDelete = await Post.findByIdAndDelete({ _id: req.params.id });
-//   if (!post) {
-//     return next(new AppErorr("There is not post in this ID", 404));
-//   }
-
-//   const comment = await Comment.deleteMany({ post: req.params.id });
-
-//   if (post.images) {
-//     const path = post.images;
-
-//     try {
-//       path.map((p) => fs.unlinkSync(`../public/assets/img/post/${p}`));
-
-//       //file removed
-//     } catch (err) {
-//       console.error(err);
-//     }
-//   }
-//   if (post.video) {
-//     const path = post.vedio;
-
-//     try {
-//       fs.unlinkSync(`../public/assets/video/${path}`);
-
-//       //file removed
-//     } catch (err) {
-//       console.error(err);
-//     }
-//   }
-//   if (post.audio) {
-//     const path = post.audio;
-
-//     try {
-//       fs.unlinkSync(`../public/assets/audio/${path}`);
-
-//       //file removed
-//     } catch (err) {
-//       console.error(err);
-//     }
-//   }
-//   res.status(200).json({
-//     status: "success",
-//     data: post,
-//   });
-// });

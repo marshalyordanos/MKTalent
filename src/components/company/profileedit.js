@@ -37,11 +37,6 @@ const ProfileEdit = (props) => {
                     style={{ display: "none" }}
                   />
                 </div>
-                <div className="contains">
-                  <div className="imagediv">
-                    <img className="image" src={CompanyProfileImage} />
-                  </div>
-                </div>
               </div>
             </FormGroup>
           </div>

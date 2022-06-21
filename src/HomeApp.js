@@ -49,6 +49,7 @@ import Dashboard from "./components/admin/dashboard/Dashboard";
 import Talents from "./components/admin/talent/Talents";
 import Companies from "./components/admin/companies/Companies";
 import Report from "./components/admin/report/Report";
+import Reward from "./components/admin/reward/Reward";
 import Admins from "./components/admin/admins/Admins";
 import Setting from "./components/admin/setting/Setting";
 import Profile from "./components/admin/profile/Profile";
@@ -58,6 +59,11 @@ import EditPasswordPage from "./pages/EditPasswordPage";
 import ChatPage from "./pages/ChatPage";
 import AppliedUser from "./components/company/AppliedUser";
 import BlogPostDetails from "./pages/BlogPostDetails";
+import AppliedJob from "./components/fragments/job/ApliedJob";
+import TalentList from "./components/company/TalentList";
+import TotalBlogs from "./components/company/status/TotalBlogs";
+import TotalJobs from "./components/company/status/Totaljobs";
+import TotalEvents from "./components/company/status/TotalEvents";
 const HomeApp = () => {
   const [showLogin, setShowLogin] = React.useState(false);
   const handleShowLoginOpen = () => setShowLogin(true);
@@ -119,6 +125,14 @@ const HomeApp = () => {
           element={
             <Layout>
               <JobDetail />
+            </Layout>
+          }
+        />
+        <Route
+          path="/jobs/appliedUser"
+          element={
+            <Layout>
+              <AppliedJob />
             </Layout>
           }
         />
@@ -301,6 +315,14 @@ const HomeApp = () => {
           }
         />
         <Route
+          path="/admin/reward"
+          element={
+            <AdminLayout>
+              <Reward />
+            </AdminLayout>
+          }
+        />
+        <Route
           path="/admin/report"
           element={
             <AdminLayout>
@@ -382,6 +404,31 @@ const HomeApp = () => {
           }
         />
         <Route
+          path="/company/status/blogs"
+          element={
+            <CompanyLayout>
+              <TotalBlogs />
+            </CompanyLayout>
+          }
+        />
+        <Route
+          path="/company/status/jobs"
+          element={
+            <CompanyLayout>
+              <TotalJobs />
+            </CompanyLayout>
+          }
+        />
+        <Route
+          path="/company/status/events"
+          element={
+            <CompanyLayout>
+              <TotalEvents />
+            </CompanyLayout>
+          }
+        />
+
+        <Route
           path="/company/event"
           element={
             <CompanyLayout>
@@ -394,6 +441,14 @@ const HomeApp = () => {
           element={
             <CompanyLayout>
               <CompanyFind />
+            </CompanyLayout>
+          }
+        />
+        <Route
+          path="/talent/list"
+          element={
+            <CompanyLayout>
+              <TalentList />
             </CompanyLayout>
           }
         />

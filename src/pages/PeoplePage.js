@@ -55,6 +55,10 @@ const PeoplePage = () => {
               userId={user.user._id}
               follower={user.follower}
               following={user.following}
+              ratingUser={user.ratingUser}
+              ratingAvarage={user.ratingAvarage}
+              profileId={user._id}
+              rating={user.rating}
             />{" "}
           </div>
         ))}
