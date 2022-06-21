@@ -79,7 +79,9 @@ exports.createProfile = catchAsync(async (req, res, next) => {
 /*********************** get one post *********************** */
 exports.getProfile = catchAsync(async (req, res, next) => {
   console.log(req.params);
-  const post = await Profile.findOne({ _id: req.params.id });
+  const post = await Profile.findOne({ _id: req.params.id }).populate(
+    "rewards"
+  );
   console.log(post);
   if (!post) {
     return next(new AppErorr("There is not post in this ID", 404));
@@ -98,7 +100,7 @@ exports.getAllProfile = catchAsync(async (req, res, next) => {
     .sort()
     .fields()
     .paging();
-  const post = await featur.query.populate("user");
+  const post = await featur.query.populate("user").populate("rewards");
   console.log(post);
 
   res.status(200).json({
