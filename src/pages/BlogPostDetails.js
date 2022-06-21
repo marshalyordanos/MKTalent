@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { useLocation } from "react-router";
+import { useLocation,useParams } from "react-router";
 import { Link } from "react-router-dom";
 // import { Context } from "../../context/Context";
 // import "./singlePost.css";
@@ -11,11 +11,12 @@ export default function SinglePost() {
 const {data, blogposts } = useSelector((state) => state.blogPostData);
 
   const location = useLocation();
+  const id = useParams().id;
 const path=location.pathname.split('/')[4];
 const [post, setPost]=useState("");
 useEffect(() => {
 const getPost= async ()=>{ 
-  const res =await api.get('/blogposts/'+path)
+  const res =await api.get('/blogposts/'+id)
   setPost(res.data)
   console.log(res)}
   getPost();
@@ -26,7 +27,7 @@ const getPost= async ()=>{
 
 
 <img
-className="one_image"
+className="one_image py-5"
 
 src={`/assets/img/blogpost/${post.data?.photo[0]}`}
 />
