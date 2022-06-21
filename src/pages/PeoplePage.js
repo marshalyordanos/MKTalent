@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { SearchOutlined } from "@ant-design/icons";
 import { useSelector } from "react-redux";
 import api from "../api/api";
+import { Empty } from "antd";
 const PeoplePage = () => {
   const [users, setUsers] = useState([]);
   useEffect(() => {
@@ -47,21 +48,25 @@ const PeoplePage = () => {
       </div>
       <hr className="ml-7 mr-7 border-[#e7e7e7] " />
       <div className="self-center flex flex-wrap justify-center m-auto ">
-        {users.map((user) => (
-          <div className="flex flex-row">
-            <PeopleSearchCard
-              image={user.profileImage}
-              name={user.user.username}
-              userId={user.user._id}
-              follower={user.follower}
-              following={user.following}
-              ratingUser={user.ratingUser}
-              ratingAvarage={user.ratingAvarage}
-              profileId={user._id}
-              rating={user.rating}
-            />{" "}
-          </div>
-        ))}
+        {users ? (
+          users.map((user) => (
+            <div className="flex flex-row">
+              <PeopleSearchCard
+                image={user.profileImage}
+                name={user.user.username}
+                userId={user.user._id}
+                follower={user.follower}
+                following={user.following}
+                ratingUser={user.ratingUser}
+                ratingAvarage={user.ratingAvarage}
+                profileId={user._id}
+                rating={user.rating}
+              />{" "}
+            </div>
+          ))
+        ) : (
+          <Empty />
+        )}
 
         {/* <PeopleSearchCard/>
       <PeopleSearchCard/>

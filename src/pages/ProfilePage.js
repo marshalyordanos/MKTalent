@@ -127,8 +127,8 @@ const ProfilePage = (props) => {
               <p>Followers</p>
             </div>
             <div className="mr-4">
-              <h3>10</h3>
-              <p>Likes</p>
+              <h3>{profileData?.following?.length}</h3>
+              <p>Following</p>
             </div>
           </div>
           <div className=" text-center ">
