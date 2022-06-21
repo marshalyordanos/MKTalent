@@ -1,0 +1,14 @@
+.maincontainer{
+    background-color: white;
+    border-radius: 15px;
+}
+
+.contains{
+    margin: 40px;
+
+}
+.profilepicdiv{
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+}
