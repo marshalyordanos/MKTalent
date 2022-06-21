@@ -128,7 +128,7 @@ const ChatContainer = ({ currentChat }) => {
           display: "flex",
           flexDirection: "column-reverse",
         }}
-        class="md:w-[600px] overflow-y-scroll flex-1 position-relative flex-1"
+        class="md:w-[600px] overflow-y-scroll flex-1 position-relative"
       >
         <div class=" p-4">
           {messages.map((message) => {

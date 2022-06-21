@@ -15,7 +15,7 @@ const RewardCard = () => {
       <div className="dd">
         <img width={400} src={Sho} alt="" />
       </div>
-      {true ? <Button variant="contained conta">Collect Reward</Button> : true}
+      {true ? <Button variant="contained ">Collect Reward</Button> : true}
 
       {true ? (
         <div className="bottombuttons">
