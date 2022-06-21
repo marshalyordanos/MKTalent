@@ -94,7 +94,7 @@ const CreatePostpage = () => {
                     onChange={(e) => setMediaType(e.target.value)}
                     value="video"
                   >
-                    Vedio
+                    Video
                   </Radio.Button>
                   <Radio.Button
                     onChange={(e) => setMediaType(e.target.value)}

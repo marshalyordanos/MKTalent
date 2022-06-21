@@ -23,7 +23,7 @@ const Reward = (props) => {
               <div className="addcontainer flex ">
                 <div className="imagediv">
                   {urls.length !== 0 ? (
-                    <img className="image" src={urls} />
+                    <img className="image" src={urls[0]} />
                   ) : (
                     <img className="image" src={Rewardpic} />
                   )}
@@ -34,10 +34,7 @@ const Reward = (props) => {
                   </Label>
                   <Input
                     onChange={(e) => {
-                      setUrls([
-                        ...urls,
-                        URL.createObjectURL(e.target.files[0]),
-                      ]);
+                      setUrls([URL.createObjectURL(e.target.files[0])]);
                     }}
                     type="file"
                     name="profilepic"
@@ -91,12 +88,18 @@ const Reward = (props) => {
         <div className="flex row minicontainers">
           <h1>Rewards</h1>
           <hr></hr>
-          <RewardCard />
-          <RewardCard />
-          <RewardCard />
-          <RewardCard />
-          <RewardCard />
-          <RewardCard />
+          <div className="rewards flex justify-between flex-wrap">
+            <RewardCard />
+            <RewardCard />
+            <RewardCard />
+            <RewardCard />
+            <RewardCard />
+            <RewardCard />
+            <RewardCard />
+            <RewardCard />
+            <RewardCard />
+            <RewardCard />
+          </div>
         </div>
       </div>
     </Rewardstyle>

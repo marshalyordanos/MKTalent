@@ -14,12 +14,22 @@ const RewardCard = () => {
       <div className="dd">
         <img width={400} src={Sho} alt="" />
       </div>
-      <Button variant="contained">Collect Reward</Button>
+      {!true ? <Button variant="contained">Collect Reward</Button> : true}
+
+      {true ? (
+        <div className="bottombuttons">
+          <Button variant="contained bg-info w-50">Update</Button>
+          <Button variant="contained bg-danger w-50">Remove</Button>
+        </div>
+      ) : (
+        true
+      )}
     </RewardCardStyle>
   );
 };
 
 const RewardCardStyle = styled.div`
+  background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -53,6 +63,15 @@ const RewardCardStyle = styled.div`
   button {
     padding: 10px 20px;
     margin: 10px 0;
+  }
+  .bottombuttons {
+    color: white;
+    font-size: 300;
+    height: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   @media only screen and (max-width: 750px) {
     > div {
