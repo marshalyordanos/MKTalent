@@ -89,16 +89,34 @@ const Reward = (props) => {
           <h1>Rewards</h1>
           <hr></hr>
           <div className="rewards flex justify-between flex-wrap">
-            <RewardCard />
-            <RewardCard />
-            <RewardCard />
-            <RewardCard />
-            <RewardCard />
-            <RewardCard />
-            <RewardCard />
-            <RewardCard />
-            <RewardCard />
-            <RewardCard />
+            <RewardCard
+              reward={{
+                price: 200000000,
+                name: "Mohammed",
+                image: "user-62af939ac1999b3810f26f71-1655845171169.jpeg",
+              }}
+            />
+            <RewardCard
+              reward={{
+                price: 45,
+                name: "Nike",
+                image: "sho1.jpg",
+              }}
+            />
+            <RewardCard
+              reward={{
+                price: 93,
+                name: "Lether shoe",
+                image: "sho2.jpg",
+              }}
+            />
+            <RewardCard
+              reward={{
+                price: 45,
+                name: "skechers",
+                image: "sho3.jpg",
+              }}
+            />
           </div>
         </div>
       </div>
