@@ -6,19 +6,10 @@ import FmdGoodOutlinedIcon from "@mui/icons-material/FmdGoodOutlined";
 import Button from "../../../utils/Button";
 import api from "../../../api/api";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const JobDetail = () => {
-  const pra = [
-    "We are looking for a marketing analyst with a razor-sharp attention to detail, broad knowledge of statistics, mathematics and analytics, and an almost obsessive commitment to thoroughness. Marketing analysts can expect to work with vast amounts of written and numerical information about market trends, volume of sales, customer experience, and competitors’ activities. Their responsibilities include gathering data, writing detailed reports on findings, identifying new markets, and advising upper-management on tactics.",
-    "Successful marketing analyst candidates should have at least two years’ experience in marketing, excellent mathematics and language skills, and outstanding insight. Ideal candidates will have a proven aptitude for interpreting data.",
-  ];
-  const response = [
-    "Gathering and analyzing data.",
-    "Reporting to marketing managers and coordinators.",
-    "Monitoring customer bases and identifying new ones.",
-    "Preparing detailed reports on consumer behavior, competitors’ activities, outcomes, and sales.",
-    "Designing market surveys.",
-  ];
+  const data = useSelector((state) => state.userAuth.data);
   const [job, setJob] = useState({});
   const [responsibilities, setResponsibilities] = useState([]);
   const [requirements, setRequirements] = useState([]);
@@ -38,6 +29,51 @@ const JobDetail = () => {
     };
     feachData();
   }, []);
+
+  const applyHandler = async () => {
+    console.log(
+      "**********************************************************************************"
+    );
+    const x = await api.patch(
+      `/job/updatejob/${job._id}`,
+      {
+        appliedUser: [...job.appliedUser, data.data._id],
+      },
+      {
+        headers: {
+          "Access-Control-Allow-Origin": true,
+          authorization: `Bearer ${data?.token}`, /////////////////////////////////////////////////////////////////////////////////
+        },
+      }
+    );
+    const yy = await api.get(
+      `/profile/filter/${data.data._id}`,
+
+      {
+        headers: {
+          "Access-Control-Allow-Origin": true,
+          authorization: `Bearer ${data?.token}`, /////////////////////////////////////////////////////////////////////////////////
+        },
+      }
+    );
+    const y = await api.patch(
+      `/profile/${yy.data.data._id}`,
+      {
+        jobs: [...yy.data.data.jobs, job._id],
+      },
+      {
+        headers: {
+          "Access-Control-Allow-Origin": true,
+          authorization: `Bearer ${data?.token}`, /////////////////////////////////////////////////////////////////////////////////
+        },
+      }
+    );
+    console.log(
+      "**********************************************************************************",
+      x
+    );
+    setJob({ ...job, appliedUser: [...job.appliedUser, data.data] });
+  };
   return (
     <JobDetailStyle>
       <JobCard
@@ -84,7 +120,22 @@ const JobDetail = () => {
       </div>
 
       <div className="m-[20px]">
-        <Button>Apply</Button>
+        {job?.appliedUser &&
+        job?.appliedUser.map((x) => x._id).includes(data?.data._id) ? (
+          <button
+            className="px-4 py-2 rounded-md border-[1px] border-gray-500 bg-sky-600 text-white"
+            // onClick={applyHandler}
+          >
+            Already applied
+          </button>
+        ) : (
+          <button
+            className="px-4 py-2 rounded-md border-[1px] border-gray-500 bg-sky-600 text-white"
+            onClick={applyHandler}
+          >
+            Apply
+          </button>
+        )}
       </div>
 
       <div className="jobdetail__Jobs">

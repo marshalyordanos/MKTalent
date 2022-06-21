@@ -16,7 +16,10 @@ import Button from "@mui/material/Button";
 const Profile = (props) => {
   const [jobs, setJobs] = useState([]);
   const data = useSelector((state) => state.userAuth.data);
-
+  console.log(
+    ":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::",
+    data
+  );
   useEffect(() => {
     const featchData = async () => {
       console.log(

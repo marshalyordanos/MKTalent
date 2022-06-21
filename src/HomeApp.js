@@ -57,6 +57,8 @@ import EditProfilePage from "./pages/EditProfilePage";
 import EditPasswordPage from "./pages/EditPasswordPage";
 import ChatPage from "./pages/ChatPage";
 import AppliedUser from "./components/company/AppliedUser";
+import AppliedJob from "./components/fragments/job/ApliedJob";
+import TalentList from "./components/company/TalentList";
 const HomeApp = () => {
   const [showLogin, setShowLogin] = React.useState(false);
   const handleShowLoginOpen = () => setShowLogin(true);
@@ -118,6 +120,14 @@ const HomeApp = () => {
           element={
             <Layout>
               <JobDetail />
+            </Layout>
+          }
+        />
+        <Route
+          path="/jobs/appliedUser"
+          element={
+            <Layout>
+              <AppliedJob />
             </Layout>
           }
         />
@@ -377,6 +387,14 @@ const HomeApp = () => {
           element={
             <CompanyLayout>
               <CompanyFind />
+            </CompanyLayout>
+          }
+        />
+        <Route
+          path="/talent/list"
+          element={
+            <CompanyLayout>
+              <TalentList />
             </CompanyLayout>
           }
         />

@@ -5,6 +5,7 @@ import PersonAddIcon from "@mui/icons-material/PersonAdd";
 
 import { useSelector } from "react-redux";
 import api from "../../../api/api";
+import { Rate } from "antd";
 const PeopleSearchCard = (props) => {
   const [follow, setFollow] = useState(false);
   const FGstatus = (props) => {
@@ -134,7 +135,15 @@ const PeopleSearchCard = (props) => {
           number={props.follower.length}
           label="Followers"
         />{" "}
-        <FGstatus number="0" label="Likes" />
+        <FGstatus number={props.following.length} label="Following" />
+      </div>
+      <div>
+        <Rate
+          onChange={(value) => console.log("5555555555555555555", value)}
+          allowHalf
+          defaultValue={2.5}
+        />
+        ;
       </div>
       {userData.token && (
         <Link to={`/profile/${props.userId}/activity/personal`}>

@@ -12,10 +12,6 @@ const RewardCard = () => {
         <CurrencyExchange className="coin" />
       </span>
       <div>
-        <img
-          src="/assets/img/post/user-62712d3873424d4f44674381-1651702975025.jpeg"
-          alt="betty"
-        />
         <img src={Sho} alt="" />
       </div>
       <Button variant="contained">Collect Reward</Button>

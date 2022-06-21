@@ -3,6 +3,7 @@ const Profile = require("../model/profileModel");
 const multer = require("multer");
 const AppErorr = require("../utils/appError");
 const catchAsync = require("../utils/catchAsync");
+const APIFeature = require("../utils/apiFeature");
 /**************** multer storage ************************* */
 const multerStorage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -92,8 +93,12 @@ exports.getProfile = catchAsync(async (req, res, next) => {
 
 /*********************** get one post *********************** */
 exports.getAllProfile = catchAsync(async (req, res, next) => {
-  console.log(req.params);
-  const post = await Profile.find().populate("user");
+  const featur = new APIFeature(Profile.find(), req.query)
+    .filter()
+    .sort()
+    .fields()
+    .paging();
+  const post = await featur.query.populate("user");
   console.log(post);
 
   res.status(200).json({
@@ -104,7 +109,9 @@ exports.getAllProfile = catchAsync(async (req, res, next) => {
 
 exports.filterProfile = catchAsync(async (req, res, next) => {
   console.log(req.params);
-  const post = await Profile.findOne({ user: req.params.id });
+  const post = await Profile.findOne({ user: req.params.id })
+    .populate("jobs")
+    .populate({ path: "jops.user", model: "User" });
   console.log(post);
 
   res.status(200).json({

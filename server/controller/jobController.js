@@ -49,7 +49,9 @@ exports.deleteJob = catchAsync(async (req, res, next) => {
 //GET JOB
 exports.getJob = catchAsync(async (req, res, next) => {
   console.log(req.params);
-  const job = await Job.findById({ _id: req.params.id });
+  const job = await Job.findById({ _id: req.params.id }).populate(
+    "appliedUser"
+  );
   if (!job) {
     return next(new AppErorr("There is no job with this ID", 404));
   }

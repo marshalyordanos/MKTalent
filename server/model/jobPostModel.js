@@ -17,12 +17,21 @@ const JobPostSchema = new mongoose.Schema(
       {
         type: mongoose.Schema.ObjectId,
         ref: "User",
+        unique: true,
       },
     ],
     approvedUser: [
       {
         type: mongoose.Schema.ObjectId,
         ref: "User",
+        unique: true,
+      },
+    ],
+    declineUser: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: "User",
+        unique: true,
       },
     ],
 
@@ -35,5 +44,5 @@ const JobPostSchema = new mongoose.Schema(
   }
 );
 
-const Job = mongoose.model("JobPost", JobPostSchema);
+const Job = mongoose.model("Job", JobPostSchema);
 module.exports = Job;
