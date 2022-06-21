@@ -44,7 +44,10 @@ const profileSchema = new mongoose.Schema(
     height: Number,
     weight: Number,
     talentType: String,
-    rating: Number,
+    rating: {
+      type: Number,
+      default: 0,
+    },
     ratingUser: [
       {
         type: mongoose.Schema.ObjectId,
@@ -52,10 +55,7 @@ const profileSchema = new mongoose.Schema(
         unique: true,
       },
     ],
-    ratingAvarage: {
-      type: Number,
-      default: 3,
-    },
+
     magicalRating: Number,
     freinds: [Object],
     totalLikes: {
@@ -85,6 +85,12 @@ const profileSchema = new mongoose.Schema(
     toObject: { virtuals: true },
   }
 );
+profileSchema.virtual("ratingAvarage").get(function () {
+  if (this.ratingUser.length !== 0) {
+    return this.rating / this.ratingUser.length;
+  }
+  return 0;
+});
 
 profileSchema.virtual("comments", {
   ref: "Comment",

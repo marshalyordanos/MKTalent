@@ -3,6 +3,8 @@ const userRouter = require("./router/userRouter");
 const postRouter = require("./router/postRouter");
 const blogRouter = require("./router/Blogrouter");
 const profileRouter = require("./router/profileRouter");
+const rewardRouter = require("./router/rewardRouter");
+
 const JobRouter = require("./router/jobRouter");
 const ChatRouter = require("./router/chatRouter");
 
@@ -18,6 +20,8 @@ app.use("/api/v1/users", userRouter);
 app.use("/api/v1/posts", postRouter);
 app.use("/api/v1/blogposts", blogRouter);
 app.use("/api/v1/profile", profileRouter);
+app.use("/api/v1/reward", rewardRouter);
+
 app.use("/api/v1/job", JobRouter);
 app.use("/api/v1", ChatRouter);
 

@@ -11,8 +11,8 @@ const RewardCard = () => {
         5000
         <CurrencyExchange className="coin" />
       </span>
-      <div>
-        <img src={Sho} alt="" />
+      <div className="dd">
+        <img width={400} src={Sho} alt="" />
       </div>
       <Button variant="contained">Collect Reward</Button>
     </RewardCardStyle>
@@ -20,9 +20,16 @@ const RewardCard = () => {
 };
 
 const RewardCardStyle = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   /* border: 1px solid red; */
+  border: 1px solid lightgray;
   width: 300px;
   margin: 10px;
+  .dd {
+    width: 295px;
+  }
   span {
     display: flex;
     align-items: center;
@@ -39,7 +46,7 @@ const RewardCardStyle = styled.div`
     height: 210px;
   }
   div img {
-    width: 250px;
+    width: 350px;
     height: 210px;
     object-fit: cover;
   }

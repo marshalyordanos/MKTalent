@@ -2,12 +2,15 @@ import React, { useEffect, useState } from "react";
 import Profile from "../../../assets/page/profile.png";
 import { Link } from "react-router-dom";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
-
+import styled from "styled-components";
 import { useSelector } from "react-redux";
 import api from "../../../api/api";
 import { Rate } from "antd";
 const PeopleSearchCard = (props) => {
   const [follow, setFollow] = useState(false);
+  const [showRate, setShowRate] = useState(false);
+  const [rater, setRater] = useState(0);
+
   const FGstatus = (props) => {
     return (
       <div className="self-center flex flex-column">
@@ -22,7 +25,7 @@ const PeopleSearchCard = (props) => {
     const fun = async () => {
       console.log("************************************************");
 
-      console.log("************************************************");
+      console.log("************************************************", userData);
     };
     fun();
   }, []);
@@ -91,8 +94,33 @@ const PeopleSearchCard = (props) => {
     );
     setFollow(false);
   };
+  const handleRating = async () => {
+    console.log("----------------------------------");
+
+    console.log("----------------------------------");
+
+    console.log("wwwwwwwwwwwwwww", props.rating);
+    const x = await api.patch(
+      `/profile/${props.profileId}`,
+      {
+        ratingUser: [...props.ratingUser, userData.data._id],
+        rating: props.rating + rater,
+      },
+      {
+        headers: {
+          "Access-Control-Allow-Origin": true,
+          authorization: `Bearer ${userData?.token}`, /////////////////////////////////////////////////////////////////////////////////
+        },
+      }
+    );
+
+    console.log(
+      "lk%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%sd",
+      x
+    );
+  };
   return (
-    <div className="flex flex-column item-center my-8 mx-12 px-4 shadow-md rounded-xl w-[250px]">
+    <PeoplePageStyle className="flex flex-column item-center my-8 mx-12 px-4 shadow-md rounded-xl w-[250px]">
       <div className="flex flex-col self-center">
         {" "}
         <img
@@ -100,7 +128,7 @@ const PeopleSearchCard = (props) => {
           className="my-2  
      self-center bg-contain bg-center h-14 w-14 object-cover rounded-3xl"
         />
-        {userData.token && (
+        {userData?.token && userData?.data.role == "talent" && (
           <div className=" mt-2">
             {props.follower.includes(userData.data._id) ? (
               <button
@@ -137,14 +165,45 @@ const PeopleSearchCard = (props) => {
         />{" "}
         <FGstatus number={props.following.length} label="Following" />
       </div>
-      <div>
-        <Rate
-          onChange={(value) => console.log("5555555555555555555", value)}
-          allowHalf
-          defaultValue={2.5}
-        />
-        ;
-      </div>
+      {userData.data.role == "talent" ? (
+        <div>
+          {props?.ratingUser.includes(userData.data._id) ? (
+            <div className="flex flex-col items-center">
+              {" "}
+              <Rate allowHalf disabled defaultValue={props.ratingAvarage} />
+            </div>
+          ) : (
+            <div className="flex flex-col items-center">
+              <button className="btn" onClick={() => setShowRate(!showRate)}>
+                Rate the user
+              </button>
+              {showRate && (
+                <div className="flex flex-col items-center">
+                  <Rate
+                    onChange={(value) => setRater(value)}
+                    allowHalf
+                    defaultValue={0}
+                  />
+                  <button
+                    onClick={handleRating}
+                    className="p-2 w-16 border-[1px] rounded-md"
+                  >
+                    ok
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
+          ;
+        </div>
+      ) : (
+        <div>
+          <div className="flex flex-col items-center">
+            {" "}
+            <Rate allowHalf disabled defaultValue={props.ratingAvarage} />
+          </div>
+        </div>
+      )}
       {userData.token && (
         <Link to={`/profile/${props.userId}/activity/personal`}>
           <button className=" self-center border-purple-600 box-content border-2 w-[200px] rounded-3xl h-[35px] mb-3 text-purple-600 hover:bg-purple-600 hover:text-white hover:duration-700">
@@ -152,8 +211,19 @@ const PeopleSearchCard = (props) => {
           </button>
         </Link>
       )}
-    </div>
+    </PeoplePageStyle>
   );
 };
 
+const PeoplePageStyle = styled.div`
+  .btn {
+    border: 1px solid lightgray;
+    padding: 2px 10px;
+    text-align: center;
+  }
+  .btn:hover {
+    color: #2b99ff;
+    border: 1px solid #2b99ff;
+  }
+`;
 export default PeopleSearchCard;

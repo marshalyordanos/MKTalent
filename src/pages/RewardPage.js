@@ -1,8 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import RewardCard from "../components/fragments/RewardCard";
 import styled from "styled-components";
+import api from "../api/api";
 const RewardPage = () => {
   const [change, setChange] = useState(false);
+  const [reward, setReward] = useState([]);
+  useEffect(() => {
+    const feachData = async () => {
+      const users = await api.get("/profile");
+      console.log("marshalwwwwwwwwwwwwww", users.data.data);
+      setReward(users.data.data);
+    };
+    feachData();
+  }, []);
   return (
     <RewardPageStyled>
       <div>
