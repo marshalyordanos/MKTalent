@@ -65,6 +65,7 @@ import TalentList from "./components/company/TalentList";
 import TotalBlogs from "./components/company/status/TotalBlogs";
 import TotalJobs from "./components/company/status/Totaljobs";
 import TotalEvents from "./components/company/status/TotalEvents";
+import SearchPage from "./pages/SearchPage";
 const HomeApp = () => {
   const [showLogin, setShowLogin] = React.useState(false);
   const handleShowLoginOpen = () => setShowLogin(true);
@@ -177,6 +178,14 @@ const HomeApp = () => {
             </Layout>
           }
         />
+        <Route
+          path="/usersearch/:username"
+          element={
+            <Layout>
+              <SearchPage />
+            </Layout>
+          }
+        />
         <Route path="/blog" element={<Navigate to={"/blog/homeblog"} />} />
         <Route
           path="/blog"
@@ -255,7 +264,7 @@ const HomeApp = () => {
           <Route path="media" element={<PeoplePage />} />
         </Route>
         <Route
-          path="/profile/edit"
+          path="/profile/edit/:id"
           element={
             <Layout sidebar={false}>
               <EditProfilePage />

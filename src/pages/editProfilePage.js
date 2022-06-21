@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Spinner, Button, Modal, ModalHeader, ModalBody } from "reactstrap";
 import { Container } from "reactstrap";
@@ -8,6 +8,10 @@ import profilepic from "../assets/page/profile.png";
 import Defaultpic from "../assets/page/ProfileImage.jpg";
 import DefaultCoverpic from "../assets/page/coverpic.png";
 const EditProfilePage = () => {
+  const [urls, setUrls] = useState([]);
+  const [urls2, setUrls2] = useState([]);
+  console.log("qqqqqqqqqqqqqqqqqqqqqq", urls);
+
   return (
     <div>
       <Container className="container_job maincontainer">
@@ -22,7 +26,11 @@ const EditProfilePage = () => {
             <FormGroup>
               <div className="profilepicdiv ">
                 <div className="imagediv">
-                  <img className="image" src={Defaultpic} />
+                  {urls.length !== 0 ? (
+                    <img className="image" src={urls[0]} />
+                  ) : (
+                    <img className="image" src={DefaultCoverpic} />
+                  )}
                 </div>
                 <div className=" contains">
                   <Label for="profilepic" className="changephoto">
@@ -32,6 +40,9 @@ const EditProfilePage = () => {
                     type="file"
                     name="profilepic"
                     accept="image/*"
+                    onChange={(e) => {
+                      setUrls([URL.createObjectURL(e.target.files[0])]);
+                    }}
                     id="profilepic"
                     style={{ display: "none" }}
                   />
@@ -58,7 +69,11 @@ const EditProfilePage = () => {
               <hr></hr>
               <div className="profilepicdiv ">
                 <div className="imagedivcover">
-                  <img className="imagec" src={DefaultCoverpic} />
+                  {urls2.length !== 0 ? (
+                    <img className="image" src={urls2[0]} />
+                  ) : (
+                    <img className="image" src={DefaultCoverpic} />
+                  )}
                 </div>
                 <div className=" contains">
                   <Label for="coverpic" className="changephoto">
@@ -68,6 +83,9 @@ const EditProfilePage = () => {
                     type="file"
                     name="coverpic"
                     accept="image/*"
+                    onChange={(e) => {
+                      setUrls2([URL.createObjectURL(e.target.files[0])]);
+                    }}
                     id="coverpic"
                     style={{ display: "none" }}
                   />

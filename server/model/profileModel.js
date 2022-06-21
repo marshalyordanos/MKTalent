@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const profileSchema = new mongoose.Schema(
   {
+    username: String,
     follower: [
       {
         type: mongoose.Schema.ObjectId,
