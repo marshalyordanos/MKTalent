@@ -54,7 +54,7 @@ import Admins from "./components/admin/admins/Admins";
 import Setting from "./components/admin/setting/Setting";
 import Profile from "./components/admin/profile/Profile";
 import Jobs from "./jobs/CrudJob";
-import EditProfilePage from "./pages/editProfilePage";
+import EditProfilePage from "./pages/EditProfilePage";
 import EditPasswordPage from "./pages/EditPasswordPage";
 import ChatPage from "./pages/ChatPage";
 import AppliedUser from "./components/company/AppliedUser";
@@ -194,11 +194,11 @@ const HomeApp = () => {
               </>
             }
           />
-     <Route
+          <Route
             path="homeblog/blogpost/:id"
             element={
               <>
-                <BlogPostDetails/>
+                <BlogPostDetails />
               </>
             }
           />
@@ -379,7 +379,7 @@ const HomeApp = () => {
             </CompanyLayout>
           }
         />
-      
+
         <Route
           path="/company/profile/edit"
           element={

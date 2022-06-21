@@ -40,7 +40,7 @@ const VideoPage = () => {
               !light && "dark:text-white dark:bg-slate-900"
             }`}
             type="text"
-            placeholder="Search vedio"
+            placeholder="Search video"
           />
           <Button
             size={"4"}
