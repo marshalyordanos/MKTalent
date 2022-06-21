@@ -7,18 +7,17 @@ import { useDispatch, useSelector } from "react-redux";
 import RewardCard from "../../fragments/RewardCard";
 import styled from "styled-components";
 import Rewardpic from "../../../assets/page/reward.png";
-const Reward = (props) => {
+const Rewardedit = (props) => {
   const [urls, setUrls] = useState([]);
   const dispatch = useDispatch();
   const light = useSelector((state) => state.mode.light);
-  console.log("lllllllllllllllll", urls.length);
   return (
-    <Rewardstyle>
-      <div className="maincontainer">
-        <div className="minicontainers">
-          <h1>Add Reward</h1>
-          <hr></hr>
-          <Form id="addreward flex" method="post">
+    <Rewardeditstyle>
+      <Form id="useredit" method="post">
+        <div className="maincontainer">
+          <div className="minicontainers">
+            <h1>Update a Reward</h1>
+            <hr></hr>
             <FormGroup>
               <div className="addcontainer flex ">
                 <div className="imagediv">
@@ -64,50 +63,20 @@ const Reward = (props) => {
                   />
                 </div>
                 <Button className="button_login bg-success" type="submit">
-                  Add Reward
+                  Update Reward
                 </Button>
               </div>
             </FormGroup>
-          </Form>
-        </div>
-        <div className="minicontainers">
-          <h1>Search Reward</h1>
-          <hr></hr>
-
-          <div class="search">
-            <Input
-              type="text"
-              class="searchTerm"
-              placeholder="which Reward are you looking for?"
-            />
-            <button type="submit" class="searchButton">
-              <SearchIcon />
-            </button>
           </div>
         </div>
-        <div className="flex row minicontainers">
-          <h1>Rewards</h1>
-          <hr></hr>
-          <div className="rewards flex justify-between flex-wrap">
-            <RewardCard />
-            <RewardCard />
-            <RewardCard />
-            <RewardCard />
-            <RewardCard />
-            <RewardCard />
-            <RewardCard />
-            <RewardCard />
-            <RewardCard />
-            <RewardCard />
-          </div>
-        </div>
-      </div>
-    </Rewardstyle>
+      </Form>
+    </Rewardeditstyle>
   );
 };
-const Rewardstyle = styled.div`
+const Rewardeditstyle = styled.div`
   background: #f2f2f2;
   font-family: "Open Sans", sans-serif;
+
   .addcontainer {
     margin-bottom: 20px;
     align-items: center;
@@ -161,4 +130,4 @@ const Rewardstyle = styled.div`
     transform: translate(-50%, -50%);
   }
 `;
-export default Reward;
+export default Rewardedit;

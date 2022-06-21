@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import { Button } from "@mui/material";
@@ -14,11 +15,13 @@ const RewardCard = () => {
       <div className="dd">
         <img width={400} src={Sho} alt="" />
       </div>
-      {!true ? <Button variant="contained">Collect Reward</Button> : true}
+      {true ? <Button variant="contained">Collect Reward</Button> : true}
 
       {true ? (
         <div className="bottombuttons">
-          <Button variant="contained bg-info w-50">Update</Button>
+          <Link to={"/admin/reward/edit/id"} className="w-50 text-white">
+            <Button variant="contained bg-info w-100">Update</Button>
+          </Link>
           <Button variant="contained bg-danger w-50">Remove</Button>
         </div>
       ) : (

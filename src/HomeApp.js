@@ -50,6 +50,7 @@ import Talents from "./components/admin/talent/Talents";
 import Companies from "./components/admin/companies/Companies";
 import Report from "./components/admin/report/Report";
 import Reward from "./components/admin/reward/Reward";
+import RewardEdit from "./components/admin/reward/rewardedit";
 import Admins from "./components/admin/admins/Admins";
 import Setting from "./components/admin/setting/Setting";
 import Profile from "./components/admin/profile/Profile";
@@ -319,6 +320,14 @@ const HomeApp = () => {
           element={
             <AdminLayout>
               <Reward />
+            </AdminLayout>
+          }
+        />
+        <Route
+          path="/admin/reward/edit/:id"
+          element={
+            <AdminLayout>
+              <RewardEdit />
             </AdminLayout>
           }
         />
