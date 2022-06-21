@@ -88,17 +88,98 @@ const Reward = (props) => {
         <div className="flex row minicontainers">
           <h1>Rewards</h1>
           <hr></hr>
-          <div className="rewards flex justify-between flex-wrap">
-            <RewardCard />
-            <RewardCard />
-            <RewardCard />
-            <RewardCard />
-            <RewardCard />
-            <RewardCard />
-            <RewardCard />
-            <RewardCard />
-            <RewardCard />
-            <RewardCard />
+          <div className="rewards flex  justify-center flex-wrap">
+            <RewardCard
+              reward={{
+                price: 200000000,
+                name: "Mohammed",
+                image: "user-62af939ac1999b3810f26f71-1655845171169.jpeg",
+              }}
+            />
+            <RewardCard
+              reward={{
+                price: 45,
+                name: "Nike",
+                image: "sho1.jpg",
+              }}
+            />
+            <RewardCard
+              reward={{
+                price: 93,
+                name: "Lether shoe",
+                image: "sho2.jpg",
+              }}
+            />
+            <RewardCard
+              reward={{
+                price: 45,
+                name: "skechers",
+                image: "sho3.jpg",
+              }}
+            />
+            <RewardCard
+              reward={{
+                price: 235,
+                name: "addidas",
+                image: "hood1.jpg",
+              }}
+            />
+            <RewardCard
+              reward={{
+                price: 365,
+                name: "underware",
+                image: "hood2.jpg",
+              }}
+            />
+            <RewardCard
+              reward={{
+                price: 420,
+                name: "normal",
+                image: "hood3.jpg",
+              }}
+            />
+            <RewardCard
+              reward={{
+                price: 1347,
+                name: "Italian",
+                image: "suit1.jpg",
+              }}
+            />
+            <RewardCard
+              reward={{
+                price: 832,
+                name: "French",
+                image: "suit2.jpg",
+              }}
+            />
+            <RewardCard
+              reward={{
+                price: 2163,
+                name: "Turkish",
+                image: "suit3.jpg",
+              }}
+            />
+            <RewardCard
+              reward={{
+                price: 21,
+                name: "classic",
+                image: "shirt1.jpg",
+              }}
+            />
+            <RewardCard
+              reward={{
+                price: 56,
+                name: "Traditional",
+                image: "shirt2.jpg",
+              }}
+            />
+            <RewardCard
+              reward={{
+                price: 9,
+                name: "plain shirt",
+                image: "shirt3.jpg",
+              }}
+            />
           </div>
         </div>
       </div>
