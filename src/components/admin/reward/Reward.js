@@ -88,7 +88,7 @@ const Reward = (props) => {
         <div className="flex row minicontainers">
           <h1>Rewards</h1>
           <hr></hr>
-          <div className="rewards flex justify-between flex-wrap">
+          <div className="rewards flex  justify-center flex-wrap">
             <RewardCard
               reward={{
                 price: 200000000,
@@ -119,9 +119,65 @@ const Reward = (props) => {
             />
             <RewardCard
               reward={{
-                price: 45,
-                name: "Nike",
+                price: 235,
+                name: "addidas",
                 image: "hood1.jpg",
+              }}
+            />
+            <RewardCard
+              reward={{
+                price: 365,
+                name: "underware",
+                image: "hood2.jpg",
+              }}
+            />
+            <RewardCard
+              reward={{
+                price: 420,
+                name: "normal",
+                image: "hood3.jpg",
+              }}
+            />
+            <RewardCard
+              reward={{
+                price: 1347,
+                name: "Italian",
+                image: "suit1.jpg",
+              }}
+            />
+            <RewardCard
+              reward={{
+                price: 832,
+                name: "French",
+                image: "suit2.jpg",
+              }}
+            />
+            <RewardCard
+              reward={{
+                price: 2163,
+                name: "Turkish",
+                image: "suit3.jpg",
+              }}
+            />
+            <RewardCard
+              reward={{
+                price: 21,
+                name: "classic",
+                image: "shirt1.jpg",
+              }}
+            />
+            <RewardCard
+              reward={{
+                price: 56,
+                name: "Traditional",
+                image: "shirt2.jpg",
+              }}
+            />
+            <RewardCard
+              reward={{
+                price: 9,
+                name: "plain shirt",
+                image: "shirt3.jpg",
               }}
             />
           </div>
