@@ -61,7 +61,7 @@ const RewardCard = (props) => {
           </Modal>
         </div>
         <div>
-          <span>
+          <span className=" text-2xl text-center">
             {props.reward.price}
             <CurrencyExchange className="coin" />
           </span>
@@ -72,29 +72,35 @@ const RewardCard = (props) => {
               alt=""
             />
           </div>
-          <p className="rr">{props.reward.name}</p>
+          <p className="rr text-center mb-2">{props.reward.name}</p>
         </div>
       </div>
-      {true ? <Button variant="contained ">Collect Reward</Button> : true}
-
-      {true ? (
-        <div className="bottombuttons">
-          <Link to={"/admin/reward/edit/id"} className="w-50 text-white">
-            <Button variant="contained bg-info w-100">Update</Button>
-          </Link>
-          <Button variant="contained bg-danger w-50">Remove</Button>
-        </div>
-      ) : (
-        true
-      )}
+      <div className="flex flex-col items-center mt-2 ">
+        {userData.data.role == "talent" ? (
+          <div>
+            <Button onClick={rewardHandler} variant="contained ">
+              Collect Reward
+            </Button>
+          </div>
+        ) : (
+          <div>
+            <div className="bottombuttons">
+              <Link to={"/admin/reward/edit/id"} className="w-50 text-white">
+                <Button variant="contained bg-info ">Update</Button>
+              </Link>
+              <Button variant="contained bg-danger">Remove</Button>
+            </div>
+          </div>
+        )}
+      </div>
     </RewardCardStyle>
   );
 };
 
 const RewardCardStyle = styled.div`
   background-color: white;
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
 
   border: 1px solid lightgray;
   width: 300px;
@@ -112,6 +118,7 @@ const RewardCardStyle = styled.div`
     display: flex;
     align-items: center;
     /* border: 1px solid green; */
+    justify-content: center;
     padding: 5px 20px;
     font-size: 30px;
   }
@@ -119,19 +126,19 @@ const RewardCardStyle = styled.div`
     color: #ffb01c;
   }
 
-  > div {
+  /* > div {
     width: 250px;
     height: 210px;
-  }
-  div img {
+  } */
+  .dd img {
     width: 350px;
     height: 210px;
     object-fit: cover;
   }
-  button {
+  /* button {
     padding: 10px 20px;
     margin: 10px 0;
-  }
+  } */
   .bottombuttons {
     color: white;
     font-size: 300;
