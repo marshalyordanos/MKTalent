@@ -63,6 +63,8 @@ const LayoutApp = (props) => {
   const handleShowLoginOpen = () => setShowLogin(true);
   const handleShowLoginClose = () => setShowLogin(false);
   const [profile, setProfile] = useState({});
+  const [search, setSearch] = useState("");
+  console.log("ldsmksdmkldsmksmdkcmlmlksd", search);
   useEffect(() => {
     const feachData = async () => {
       if (data.data) {
@@ -217,16 +219,19 @@ const LayoutApp = (props) => {
                     onClick={toggle}
                   />
                 )}
-                <label className="flex ml-8  justify-center items-center">
-                  <SearchIcon sx={{ color: !light && "white" }} />{" "}
-                  <input
-                    type="text"
-                    placeholder="Search..."
-                    className={`self-center h-7 focus:outline-none ${
-                      !light && "bg-[#001529]  text-white"
-                    }`}
-                  />
-                </label>
+                <form action={`/usersearch/${search}`}>
+                  <label className="flex ml-8  justify-center items-center">
+                    <SearchIcon sx={{ color: !light && "white" }} />{" "}
+                    <input
+                      type="text"
+                      onChange={(e) => setSearch(e.target.value)}
+                      placeholder="Search..."
+                      className={`self-center h-7 focus:outline-none ${
+                        !light && "bg-[#001529]  text-white"
+                      }`}
+                    />
+                  </label>
+                </form>
               </div>
               <div
                 className={`${

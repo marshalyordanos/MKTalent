@@ -14,6 +14,7 @@ const getToken = (id) => {
 exports.signup = catchAsync(async (req, res, next) => {
   const newUser = await User.create(req.body);
   const data = {
+    username: newUser.username,
     user: newUser._id,
   };
   const profile = await Profile.create(data);
