@@ -128,16 +128,10 @@ exports.updatePoint = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.updateProfile = catchAsync(async (req, res, next) => {
-  // console.log("ooooooooooooo", req.files.coverImage, req.body);
-  if (req?.files?.coverImage) {
-    req.body.coverImage = req.files.coverImage[0].filename;
+exports.updateRewards = catchAsync(async (req, res, next) => {
+  if (req?.files?.image) {
+    req.body.image = req.files.image[0].filename;
   }
-  if (req?.files?.profileImage) {
-    req.body.profileImage = req.files.profileImage[0].filename;
-  }
-  const xxx = await Reward.find({ _id: req.params.id });
-  console.log("8888888888888880,", xxx, req.params.id);
   const post = await Reward.findByIdAndUpdate(
     { _id: req.params.id },
     req.body,
@@ -150,7 +144,6 @@ exports.updateProfile = catchAsync(async (req, res, next) => {
     return next(new AppErorr("There is not post in this ID", 404));
   }
   console.log("pppppppppppppppppppppppppppppppppp", post);
-
   res.status(200).json({
     status: "success",
     data: post,

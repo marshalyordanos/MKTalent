@@ -6,12 +6,20 @@ const profileSchema = new mongoose.Schema(
       {
         type: mongoose.Schema.ObjectId,
         ref: "User",
+        unique: true,
+      },
+    ],
+    rewards: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: "Reward",
       },
     ],
     following: [
       {
         type: mongoose.Schema.ObjectId,
         ref: "User",
+        unique: true,
       },
     ],
     jobs: [

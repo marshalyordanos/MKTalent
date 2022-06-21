@@ -2,14 +2,30 @@ import React, { useEffect, useState } from "react";
 import RewardCard from "../components/fragments/RewardCard";
 import styled from "styled-components";
 import api from "../api/api";
+import { useSelector } from "react-redux";
 const RewardPage = () => {
   const [change, setChange] = useState(false);
-  const [reward, setReward] = useState([]);
+  const [rewards, setRewards] = useState([]);
+  const [userReward, setUserReward] = useState([]);
+
+  const { data: userData } = useSelector((state) => state.userAuth);
+
   useEffect(() => {
     const feachData = async () => {
-      const users = await api.get("/profile");
-      console.log("marshalwwwwwwwwwwwwww", users.data.data);
-      setReward(users.data.data);
+      const reward = await api.get("/reward");
+      const x = await api.get(`/profile/filter/${userData.data._id}`);
+      const y = await api.get(`/profile/${x.data.data._id}`, {
+        headers: {
+          "Access-Control-Allow-Origin": true,
+          authorization: `Bearer ${userData.token}`, /////////////////////////////////////////////////////////////////////////////////
+        },
+      });
+      setRewards(reward.data.data);
+      setUserReward(y.data.data);
+      console.log(
+        "55555555555555555555555555555555555555555555555555555",
+        y.data.data
+      );
     };
     feachData();
   }, []);
@@ -32,15 +48,16 @@ const RewardPage = () => {
         </div>
       </div>
       {change ? (
-        <h1>Food</h1>
+        <div className=" flex flex-wrap justify-center">
+          {userReward.rewards.map((reward) => (
+            <RewardCard reward={reward} />
+          ))}
+        </div>
       ) : (
         <div className=" flex flex-wrap justify-center">
-          <RewardCard />
-          <RewardCard />
-          <RewardCard />
-          <RewardCard />
-          <RewardCard />
-          <RewardCard />
+          {rewards.map((reward) => (
+            <RewardCard reward={reward} />
+          ))}
         </div>
       )}
     </RewardPageStyled>

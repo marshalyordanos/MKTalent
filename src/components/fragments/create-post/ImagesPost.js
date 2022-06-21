@@ -45,6 +45,7 @@ const ImagesPost = ({ fileList, setFileList }) => {
             <div className=" text-3xl text-slate-400 ">+</div>
             <p>Upload</p>
           </div>
+
           <input
             onChange={(e) => {
               setFileList([...fileList, e.target.files[0]]);
