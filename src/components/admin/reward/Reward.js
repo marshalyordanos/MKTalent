@@ -117,6 +117,13 @@ const Reward = (props) => {
                 image: "sho3.jpg",
               }}
             />
+            <RewardCard
+              reward={{
+                price: 45,
+                name: "Nike",
+                image: "hood1.jpg",
+              }}
+            />
           </div>
         </div>
       </div>
