@@ -5,6 +5,8 @@ import { getAllblogPost } from "../redux/blogpostReducer";
 import api from "../api/api";
 import { Image } from "antd";
 import styled from "styled-components";
+import { ButtonBase } from "@mui/material";
+import { useNavigate, Link } from "react-router-dom";
 const BlogPosts = () => {
   const { blogposts, loading, error } = useSelector((state) => state.blogPostData);
 
@@ -30,21 +32,30 @@ const BlogPosts = () => {
     fetchPost();
     // console.log
   }, []);
+  // const openPost = ()=>navigate(`/blog/blogpost/${blogposts._id}`);
+    
+  
+  const navigate = useNavigate();
   return (
     <div className="flex flex-row flex-wrap">
       {loading && <h1 className="text-3xl">Loading</h1>}
       {blogposts &&
         blogposts.map((post, i) => (
+          <Link to={`blogpost/${post._id}`} 
+          // onClick={openPost}
+          >
           <BlogCard
   
       
             photo={post.photo}
             postId={post._id}
             title={post.title}
+            user={post.user.username}
             desc={post.desc}
     
             key={i}
           />
+          </Link>
         ))}
     </div>
   );

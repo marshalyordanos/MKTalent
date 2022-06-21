@@ -54,10 +54,11 @@ import Admins from "./components/admin/admins/Admins";
 import Setting from "./components/admin/setting/Setting";
 import Profile from "./components/admin/profile/Profile";
 import Jobs from "./jobs/CrudJob";
-import EditProfilePage from "./pages/EditProfilePage";
+import EditProfilePage from "./pages/editProfilePage";
 import EditPasswordPage from "./pages/EditPasswordPage";
 import ChatPage from "./pages/ChatPage";
 import AppliedUser from "./components/company/AppliedUser";
+import BlogPostDetails from "./pages/BlogPostDetails";
 import AppliedJob from "./components/fragments/job/ApliedJob";
 import TalentList from "./components/company/TalentList";
 import TotalBlogs from "./components/company/status/TotalBlogs";
@@ -193,7 +194,14 @@ const HomeApp = () => {
               </>
             }
           />
-
+     <Route
+            path="homeblog/blogpost/:id"
+            element={
+              <>
+                <BlogPostDetails/>
+              </>
+            }
+          />
           {/*{userData.token ? }
      
         {/* :  */}
@@ -346,6 +354,14 @@ const HomeApp = () => {
             </AdminLayout>
           }
         />
+        <Route
+            path="/company/blog/homeblog/blogpost/:id"
+            element={
+              <CompanyLayout>
+                <BlogPostDetails/>
+              </CompanyLayout>
+            }
+          />
         {/* amdin page routing ends here */}
         <Route path="/company" element={<CompanyLayout />} />
 
@@ -370,6 +386,7 @@ const HomeApp = () => {
             </CompanyLayout>
           }
         />
+      
         <Route
           path="/company/profile/edit"
           element={
@@ -476,7 +493,7 @@ const HomeApp = () => {
               </>
             }
           />
-
+   
           {/*{userData.token ? }
      
         {/* :  */}
