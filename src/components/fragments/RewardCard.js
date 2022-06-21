@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import { Button } from "@mui/material";
@@ -47,39 +48,51 @@ const RewardCard = (props) => {
     showModal();
   };
   return (
-    <div>
+    <RewardCardStyle>
       <div>
-        <Modal
-          title="Basic Modal"
-          visible={isModalVisible}
-          onOk={handleOk}
-          onCancel={handleCancel}
-        >
-          <h2>Congratulations you have claimed your reward🎁🎁🎁</h2>
-        </Modal>
-      </div>
-      <RewardCardStyle>
-        <span>
-          {props.reward.price}
-          <CurrencyExchange className="coin" />
-        </span>
-        <div className="dd">
-          <img
-            width={400}
-            src={`/assets/img/reward/${props.reward.image}`}
-            alt=""
-          />
+        <div>
+          <Modal
+            title="Basic Modal"
+            visible={isModalVisible}
+            onOk={handleOk}
+            onCancel={handleCancel}
+          >
+            <h2>Congratulations you have claimed your reward🎁🎁🎁</h2>
+          </Modal>
         </div>
-        <p className="rr">{props.reward.name}</p>
-        <Button onClick={rewardHandler} variant="contained">
-          Collect Reward
-        </Button>
-      </RewardCardStyle>
-    </div>
+        <div>
+          <span>
+            {props.reward.price}
+            <CurrencyExchange className="coin" />
+          </span>
+          <div className="dd">
+            <img
+              width={400}
+              src={`/assets/img/reward/${props.reward.image}`}
+              alt=""
+            />
+          </div>
+          <p className="rr">{props.reward.name}</p>
+        </div>
+      </div>
+      {true ? <Button variant="contained">Collect Reward</Button> : ""}
+
+      {true ? (
+        <div className="bottombuttons">
+          <Link to={"/admin/reward/edit/id"} className="w-50 text-white">
+            <Button variant="contained bg-info w-100">Update</Button>
+          </Link>
+          <Button variant="contained bg-danger w-50">Remove</Button>
+        </div>
+      ) : (
+        true
+      )}
+    </RewardCardStyle>
   );
 };
 
 const RewardCardStyle = styled.div`
+  background-color: white;
   display: flex;
   flex-direction: column;
 
@@ -118,6 +131,15 @@ const RewardCardStyle = styled.div`
   button {
     padding: 10px 20px;
     margin: 10px 0;
+  }
+  .bottombuttons {
+    color: white;
+    font-size: 300;
+    height: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   @media only screen and (max-width: 750px) {
     > div {

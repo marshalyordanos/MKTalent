@@ -49,6 +49,8 @@ import Dashboard from "./components/admin/dashboard/Dashboard";
 import Talents from "./components/admin/talent/Talents";
 import Companies from "./components/admin/companies/Companies";
 import Report from "./components/admin/report/Report";
+import Reward from "./components/admin/reward/Reward";
+import RewardEdit from "./components/admin/reward/rewardedit";
 import Admins from "./components/admin/admins/Admins";
 import Setting from "./components/admin/setting/Setting";
 import Profile from "./components/admin/profile/Profile";
@@ -57,8 +59,12 @@ import EditProfilePage from "./pages/EditProfilePage";
 import EditPasswordPage from "./pages/EditPasswordPage";
 import ChatPage from "./pages/ChatPage";
 import AppliedUser from "./components/company/AppliedUser";
+import BlogPostDetails from "./pages/BlogPostDetails";
 import AppliedJob from "./components/fragments/job/ApliedJob";
 import TalentList from "./components/company/TalentList";
+import TotalBlogs from "./components/company/status/TotalBlogs";
+import TotalJobs from "./components/company/status/Totaljobs";
+import TotalEvents from "./components/company/status/TotalEvents";
 const HomeApp = () => {
   const [showLogin, setShowLogin] = React.useState(false);
   const handleShowLoginOpen = () => setShowLogin(true);
@@ -189,7 +195,14 @@ const HomeApp = () => {
               </>
             }
           />
-
+          <Route
+            path="homeblog/blogpost/:id"
+            element={
+              <>
+                <BlogPostDetails />
+              </>
+            }
+          />
           {/*{userData.token ? }
      
         {/* :  */}
@@ -303,6 +316,22 @@ const HomeApp = () => {
           }
         />
         <Route
+          path="/admin/reward"
+          element={
+            <AdminLayout>
+              <Reward />
+            </AdminLayout>
+          }
+        />
+        <Route
+          path="/admin/reward/edit/:id"
+          element={
+            <AdminLayout>
+              <RewardEdit />
+            </AdminLayout>
+          }
+        />
+        <Route
           path="/admin/report"
           element={
             <AdminLayout>
@@ -334,6 +363,14 @@ const HomeApp = () => {
             </AdminLayout>
           }
         />
+        <Route
+          path="/company/blog/homeblog/blogpost/:id"
+          element={
+            <CompanyLayout>
+              <BlogPostDetails />
+            </CompanyLayout>
+          }
+        />
         {/* amdin page routing ends here */}
         <Route path="/company" element={<CompanyLayout />} />
 
@@ -358,6 +395,7 @@ const HomeApp = () => {
             </CompanyLayout>
           }
         />
+
         <Route
           path="/company/profile/edit"
           element={
@@ -374,6 +412,31 @@ const HomeApp = () => {
             </CompanyLayout>
           }
         />
+        <Route
+          path="/company/status/blogs"
+          element={
+            <CompanyLayout>
+              <TotalBlogs />
+            </CompanyLayout>
+          }
+        />
+        <Route
+          path="/company/status/jobs"
+          element={
+            <CompanyLayout>
+              <TotalJobs />
+            </CompanyLayout>
+          }
+        />
+        <Route
+          path="/company/status/events"
+          element={
+            <CompanyLayout>
+              <TotalEvents />
+            </CompanyLayout>
+          }
+        />
+
         <Route
           path="/company/event"
           element={
