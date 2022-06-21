@@ -237,7 +237,10 @@ const LayoutApp = (props) => {
                   <div className="flex items-center mx-8">
                     <div className=" flex flex-row items-center border-2">
                       {data?.token && (
-                        <h2 className=" pt-[21px]">{profile?.point}</h2>
+                        <h2 className=" pt-[21px]">
+                          {Math.round((profile?.point + Number.EPSILON) * 100) /
+                            100}
+                        </h2>
                       )}
                       <CurrencyExchange className="coin" />
                     </div>

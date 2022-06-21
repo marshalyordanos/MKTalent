@@ -14,6 +14,6 @@ router.route("/createjob").post(protect, createJob);
 router.route("/deletejob").delete(protect, deleteJob);
 router.route("/getalljob").get(getAllJob);
 router.route("/:id").get(getJob);
-router.route("/updatepjob").patch(protect, updateJob);
+router.route("/updatejob/:id").patch(protect, updateJob);
 
 module.exports = router;

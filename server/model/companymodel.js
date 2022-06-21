@@ -22,20 +22,19 @@ const companySchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-  
+
     companyAddress: {
       type: String,
-      required:true,
-     
+      required: true,
     },
     PhoneNumber: {
-        type: String,
-        required: ["true", "Please input gender"],
-        enum: {
-          values: ["male", "female"],
-          message: "input either: male or female",
-        },
+      type: String,
+      required: ["true", "Please input gender"],
+      enum: {
+        values: ["male", "female"],
+        message: "input either: male or female",
       },
+    },
     password: {
       type: String,
       required: [true, "Please provide your password"],
@@ -60,20 +59,20 @@ const companySchema = new mongoose.Schema(
   }
 );
 
-userSchema.pre("save", async function (next) {
+companySchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
   this.passwordConfirm = undefined;
   next();
 });
-userSchema.pre(/^find/, async function (next) {});
+companySchema.pre(/^find/, async function (next) {});
 
-userSchema.methods.correctPassword = async function (password1, password2) {
+companySchema.methods.correctPassword = async function (password1, password2) {
   return await bcrypt.compare(password1, password2);
 };
 
-userSchema.methods.changePasswordAfter = function (JWTTimeStamp) {
+companySchema.methods.changePasswordAfter = function (JWTTimeStamp) {
   if (this.passwordChangeAt) {
     const changedTimeStamp = parseInt(
       this.passwordChangeAt.getTime() / 1000,

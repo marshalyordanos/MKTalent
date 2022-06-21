@@ -14,6 +14,20 @@ const profileSchema = new mongoose.Schema(
         ref: "User",
       },
     ],
+    jobs: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: "Job",
+        unique: true,
+      },
+    ],
+    approvedJob: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: "Job",
+        unique: true,
+      },
+    ],
     likes: {
       type: Number,
       default: 0,
@@ -30,9 +44,19 @@ const profileSchema = new mongoose.Schema(
     height: Number,
     weight: Number,
     talentType: String,
-    rating: String,
-    ratingAvarage: String,
-    magicalRating: String,
+    rating: {
+      type: Number,
+      default: 0,
+    },
+    ratingUser: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: "User",
+        unique: true,
+      },
+    ],
+
+    magicalRating: Number,
     freinds: [Object],
     totalLikes: {
       type: Number,
@@ -61,6 +85,12 @@ const profileSchema = new mongoose.Schema(
     toObject: { virtuals: true },
   }
 );
+profileSchema.virtual("ratingAvarage").get(function () {
+  if (this.ratingUser.length !== 0) {
+    return this.rating / this.ratingUser.length;
+  }
+  return 0;
+});
 
 profileSchema.virtual("comments", {
   ref: "Comment",

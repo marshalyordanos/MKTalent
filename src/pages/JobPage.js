@@ -29,15 +29,26 @@ const JobPage = () => {
       {/* ********** header */}
       <div className="header flex items-center justify-between text-base m-4">
         <NavLink to="/qq">All jobs</NavLink>
-        <span
-          onClick={() => {
-            setShowCatagory(!showCatagory);
-            setShowFilter(false);
-          }}
-          to="#Catagorys"
-        >
-          Categories
-        </span>
+        <div>
+          <Link
+            onClick={() => {
+              setShowCatagory(!showCatagory);
+              setShowFilter(false);
+            }}
+            to="/jobs/appliedUser"
+          >
+            Applied Jobs
+          </Link>
+          <span
+            onClick={() => {
+              setShowCatagory(!showCatagory);
+              setShowFilter(false);
+            }}
+            to="#Catagorys"
+          >
+            Categories
+          </span>
+        </div>
       </div>
       <div className="header__bottem ">
         <div className="header__bottem__one">
