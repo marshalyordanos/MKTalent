@@ -123,24 +123,25 @@ const ProfilePage = (props) => {
                 <p>Friends</p>
               </Link>
             </li>
-            <li>
-              <Link to="friends">
-                {" "}
-                <PermMediaOutlined sx={{ fontSize: 30 }} />
-                <p>Media</p>
-              </Link>
-            </li>
           </ul>
-          <div className="createPost">
-            <p>
-              <Link to={"/id/createpost"}>Create a Post</Link>
-            </p>
-          </div>
-          <div className="editprofile">
-            <p>
-              <Link to={`/profile/edit/${profileData?._id}`}>Edit Profile</Link>
-            </p>
-          </div>
+          {data.data._id === userID ? (
+            <div className="flex">
+              <div className="createPost">
+                <p>
+                  <Link to={"/id/createpost"}>Create a Post</Link>
+                </p>
+              </div>
+              <div className="editprofile">
+                <p>
+                  <Link to={`/profile/edit/${profileData?._id}`}>
+                    Edit Profile
+                  </Link>
+                </p>
+              </div>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
       <Divider className="p-0 m-0 " />
