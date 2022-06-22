@@ -12,7 +12,7 @@ import { Modal } from "antd";
 const RewardCard = (props) => {
   const { data: userData } = useSelector((state) => state.userAuth);
   const [isModalVisible, setIsModalVisible] = useState(false);
-
+  const [text, setText] = useState("");
   const showModal = () => {
     setIsModalVisible(true);
   };
@@ -31,6 +31,7 @@ const RewardCard = (props) => {
       x.data.data
     );
     if (props.reward.price < x.data.data.point) {
+      setText("Congratulations you have claimed your reward🎁🎁🎁");
       const y = await api.patch(
         `/profile/${x.data.data._id}`,
         {
@@ -44,8 +45,12 @@ const RewardCard = (props) => {
           },
         }
       );
+
+      showModal();
+    } else {
+      setText("you have no enough points 😿😿😿? work harder👍");
+      showModal();
     }
-    showModal();
   };
   return (
     <RewardCardStyle>
@@ -57,7 +62,7 @@ const RewardCard = (props) => {
             onOk={handleOk}
             onCancel={handleCancel}
           >
-            <h2>Congratulations you have claimed your reward🎁🎁🎁</h2>
+            <h1>{text}</h1>
           </Modal>
         </div>
         <div>
@@ -78,9 +83,13 @@ const RewardCard = (props) => {
       <div className="flex flex-col items-center mt-2 ">
         {userData.data.role == "talent" ? (
           <div>
-            <Button onClick={rewardHandler} variant="contained ">
-              Collect Reward
-            </Button>
+            {props.show ? (
+              <Button onClick={rewardHandler} variant="contained ">
+                Collect Reward
+              </Button>
+            ) : (
+              ""
+            )}
           </div>
         ) : (
           <div>

@@ -50,13 +50,13 @@ const RewardPage = () => {
       {change ? (
         <div className=" flex flex-wrap justify-center">
           {userReward.rewards.map((reward) => (
-            <RewardCard reward={reward} />
+            <RewardCard show={false} reward={reward} />
           ))}
         </div>
       ) : (
         <div className=" flex flex-wrap justify-center">
           {rewards.map((reward) => (
-            <RewardCard reward={reward} />
+            <RewardCard show={true} reward={reward} />
           ))}
         </div>
       )}

@@ -43,7 +43,7 @@ const Setting = (props) => {
 
   const handleValidation = async (e) => {
     e.preventDefault();
-    const { email, username, password, passwordConfirm } = value;
+    const { email, username, password, passwordConfirm, role } = value;
     if (!username) {
       toast.error("Please provide the company Name", toastOption);
     } else if (!email) {
@@ -58,13 +58,13 @@ const Setting = (props) => {
     } else {
       try {
         dispatch(register({ loading: true }));
-
-        const { data } = await api.post("/users/signup", value);
+        const ddd = {...value,role:"company"}
+        const { data } = await api.post("/users/signup", ddd);
         dispatch(register({ data: data, loading: false }));
 
         console.log("pppppppp", data);
-        if (data.data.role == "talent") {
-          navigate("/main");
+        if (data.data.role == "company") {
+          navigate("/company/postjob");
         } else if (data.data.role == "admin") {
           navigate("/admin");
         }
@@ -110,7 +110,7 @@ const Setting = (props) => {
               placeholder="Company's Email"
               required
             />
-
+               
             <label for="password">Password</label>
             <input
               name="password"

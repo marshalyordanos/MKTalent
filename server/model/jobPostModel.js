@@ -17,21 +17,18 @@ const JobPostSchema = new mongoose.Schema(
       {
         type: mongoose.Schema.ObjectId,
         ref: "User",
-        unique: true,
       },
     ],
     approvedUser: [
       {
         type: mongoose.Schema.ObjectId,
         ref: "User",
-        unique: true,
       },
     ],
     declineUser: [
       {
         type: mongoose.Schema.ObjectId,
         ref: "User",
-        unique: true,
       },
     ],
 

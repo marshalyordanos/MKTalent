@@ -13,40 +13,78 @@ const JobPage = () => {
   const [showFilter, setShowFilter] = useState(false);
   const [showCatagory, setShowCatagory] = useState(false);
   const [allJobs, setAllJobs] = useState([]);
+  const [freelance, setFreelance] = useState(false);
+  const [fulltime, setFulltime] = useState(false);
+  const [parttime, setParttime] = useState(false);
+  const [temporary, setTemporary] = useState(false);
+
   useEffect(() => {
     const feachData = async () => {
       const jobs = await api.get("/job/getalljob");
-      setAllJobs(jobs.data.data);
-      console.log(
-        "::::::::::::::::::::::::::::::::::::::::::::::",
-        jobs.data.data
-      );
+      let ff = [];
+      let gg;
+      if (fulltime) {
+        ff = [
+          ...ff,
+          ...jobs.data.data.filter((job) => job.jobtype == "Fulltime"),
+        ];
+      }
+      if (freelance) {
+        ff = [
+          ...ff,
+          ...jobs.data.data.filter((job) => job.jobtype == "CONTRACTUAL"),
+        ];
+      }
+      if (temporary) {
+        ff = [
+          ...ff,
+          ...jobs.data.data.filter((job) => job.jobtype == "REMOTE"),
+        ];
+      }
+      if (parttime) {
+        ff = [
+          ...ff,
+          ...jobs.data.data.filter((job) => job.jobtype == "PART TIME"),
+        ];
+      }
+      if (ff.length == 0) {
+        ff = [...jobs.data.data];
+      }
+      setAllJobs(ff);
+      console.log("::::::::::::::::::::::::::::::::::::::::::::::", ff);
     };
     feachData();
-  }, []);
+  }, [freelance, fulltime, parttime, temporary]);
+
+  useEffect(() => {}, []);
+  const handleFreelance = () => {
+    setFreelance(!freelance);
+  };
+  const handleFullTime = () => {
+    setFulltime(!fulltime);
+  };
+  const handleParttime = () => {
+    setParttime(!parttime);
+  };
+  const handleTemporary = () => {
+    setTemporary(!temporary);
+  };
   return (
     <JobPageStyle>
       {/* ********** header */}
       <div className="header flex items-center justify-between text-base m-4">
         <NavLink to="/qq">All jobs</NavLink>
         <div>
-          <Link
-            onClick={() => {
-              setShowCatagory(!showCatagory);
-              setShowFilter(false);
-            }}
-            to="/jobs/appliedUser"
-          >
-            Applied Jobs
-          </Link>
-          <span
-            onClick={() => {
-              setShowCatagory(!showCatagory);
-              setShowFilter(false);
-            }}
-            to="#Catagorys"
-          >
-            Categories
+          <span>
+            <Link
+              onClick={() => {
+                setShowCatagory(!showCatagory);
+                setShowFilter(false);
+              }}
+              to="/jobs/appliedUser"
+            >
+              Applied Jobs
+            </Link>
           </span>
         </div>
       </div>
@@ -74,26 +112,16 @@ const JobPage = () => {
       </div>
       {showFilter && (
         <div className="JobPage__filter text-lg m-6 flex justify-center">
-          <Checkbox>Freelance</Checkbox>
-          <Checkbox>Full Time</Checkbox>
-          <Checkbox>Part Time</Checkbox>
-          <Checkbox>Temporary</Checkbox>
+          <Checkbox name="freelance" onChange={(e) => handleFreelance()}>
+            Contractual
+          </Checkbox>
+
+          <Checkbox onChange={(e) => handleFullTime()}>Full Time</Checkbox>
+          <Checkbox onChange={(e) => handleParttime()}>Part Time</Checkbox>
+          <Checkbox onChange={(e) => handleTemporary()}>Remote</Checkbox>
         </div>
       )}
-      {showCatagory && (
-        <div className="grid grid-cols-3 gap-3 m-4">
-          <JobCatagory />
-          <JobCatagory />
-          <JobCatagory />
-          <JobCatagory />
-          <JobCatagory />
-          <JobCatagory />
-          <JobCatagory />
-          <JobCatagory />
-          <JobCatagory />
-          <JobCatagory />
-        </div>
-      )}
+
       <div>
         {/* <Link to={"/jobs/knnkjkn"}>
           <JobCard />
