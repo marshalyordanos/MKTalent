@@ -1,10 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import api from "../../api/api";
 import RightSideBarUserCard from "./RightSideBarUserCard";
 
 function UserStatus() {
   const light = useSelector((state) => state.mode.light);
-
+  const [searchUser, setSearchUser] = useState([]);
+  const [users, setUsers] = useState([]);
+  useEffect(() => {
+    const feachData = async () => {
+      const users = await api.get("/profile");
+      console.log("marshalwwwwwwwwwwwwww", users.data.data);
+      setUsers(users.data.data);
+      setSearchUser(users.data.data);
+    };
+    feachData();
+  }, []);
   const [page, setPage] = useState(1);
   const pageNewest = () => {
     setPage(1);
@@ -28,112 +39,37 @@ function UserStatus() {
       >
         Members
       </h1>
-      <span className="flex flex-rows px-2">
-        <p
-          className="text-base mx-3 hover:cursor-pointer
-border-b-2  
-border-slate-100 
-hover:border-b-2  
-  hover:border-blue-500"
-          onClick={pageNewest}
-        >
-          Newest
-        </p>
-        |
-        <p
-          className="text-base mx-3 hover:cursor-pointer hover:border-b-2  
-  hover:border-blue-500"
-          onClick={pageActive}
-        >
-          {" "}
-          Active
-        </p>
-        |
-        <p
-          className="text-base mx-3 hover:cursor-pointer hover:border-b-2  
-  hover:border-blue-500"
-          onClick={pagePopular}
-        >
-          {" "}
-          Popular
-        </p>
-      </span>
-      {page == 1 && (
-        <div>
-          <RightSideBarUserCard
-            username="Abebe kebede"
-            status="Registered two years ago"
-          />
-          <RightSideBarUserCard
-            username="Abebe kebede"
-            status="Registered two years ago"
-          />
-          <RightSideBarUserCard
-            username="Abebe kebede"
-            status="Registered two years ago"
-          />
-          <RightSideBarUserCard
-            username="Abebe kebede"
-            status="Registered two years ago"
-          />
-          <RightSideBarUserCard
-            username="Abebe kebede"
-            status="Registered two years ago"
-          />
-          <RightSideBarUserCard
-            username="Abebe kebede"
-            status="Registered two years ago"
-          />
-          <RightSideBarUserCard
-            username="Abebe kebede"
-            status="Registered two years ago"
-          />
-        </div>
-      )}
-      {page == 2 && (
-        <div>
-          <RightSideBarUserCard
-            username="Abebe kebede"
-            status="two years ago"
-          />
-          <RightSideBarUserCard
-            username="Abebe kebede"
-            status="two years ago"
-          />
-          <RightSideBarUserCard
-            username="Abebe kebede"
-            status="two years ago"
-          />
-          <RightSideBarUserCard
-            username="Abebe kebede"
-            status="two years ago"
-          />
-          <RightSideBarUserCard
-            username="Abebe kebede"
-            status="two years ago"
-          />
-          <RightSideBarUserCard
-            username="Abebe kebede"
-            status="two years ago"
-          />
-          <RightSideBarUserCard
-            username="Abebe kebede"
-            status="two years ago"
-          />
-        </div>
-      )}
 
-      {page == 3 && (
-        <div>
-          <RightSideBarUserCard username="Abebe kebede" status="11 Friends" />
-          <RightSideBarUserCard username="Abebe kebede" status="11 Friends" />
-          <RightSideBarUserCard username="Abebe kebede" status="11 Friends" />
-          <RightSideBarUserCard username="Abebe kebede" status="11 Friends" />
-          <RightSideBarUserCard username="Abebe kebede" status="11 Friends" />
-          <RightSideBarUserCard username="Abebe kebede" status="11 Friends" />
-          <RightSideBarUserCard username="Abebe kebede" status="11 Friends" />
-        </div>
-      )}
+      <div>
+        <RightSideBarUserCard
+          username="Abebe kebede"
+          status="Registered two years ago"
+        />
+        <RightSideBarUserCard
+          username="Abebe kebede"
+          status="Registered two years ago"
+        />
+        <RightSideBarUserCard
+          username="Abebe kebede"
+          status="Registered two years ago"
+        />
+        <RightSideBarUserCard
+          username="Abebe kebede"
+          status="Registered two years ago"
+        />
+        <RightSideBarUserCard
+          username="Abebe kebede"
+          status="Registered two years ago"
+        />
+        <RightSideBarUserCard
+          username="Abebe kebede"
+          status="Registered two years ago"
+        />
+        <RightSideBarUserCard
+          username="Abebe kebede"
+          status="Registered two years ago"
+        />
+      </div>
     </div>
   );
 }
