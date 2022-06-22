@@ -185,11 +185,11 @@ const EditProfilePage = () => {
                 </div>
 
                 <div className="contains felx justify-end">
-                  <Label for="talenttype">Talent Type</Label>
+                  <Label for="talentType">Talent Type</Label>
                   <Input
                     type="text"
                     name="talentType"
-                    id="talenttype"
+                    id="talentType"
                     onChange={(e) =>
                       setValue({ ...value, [e.target.name]: e.target.value })
                     }

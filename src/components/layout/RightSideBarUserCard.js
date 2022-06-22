@@ -21,7 +21,7 @@ border-slate-200  hover:border-b-[1px]
           >
             {props.username}
           </h4>
-          <p className="p-0">{props.status}</p>
+          <p className="p-0">{props.point}</p>
         </div>
       </span>
     </div>

@@ -15,6 +15,7 @@ import WorkOutlineOutlinedIcon from "@mui/icons-material/WorkOutlineOutlined";
 import FestivalOutlinedIcon from "@mui/icons-material/FestivalOutlined";
 import EmojiEventsOutlinedIcon from "@mui/icons-material/EmojiEventsOutlined";
 import StickyNote2OutlinedIcon from "@mui/icons-material/StickyNote2Outlined";
+import ChatIcon from "@mui/icons-material/Chat";
 import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
 import RightSideBarUserCard from "./RightSideBarUserCard";
@@ -155,9 +156,7 @@ const LayoutApp = (props) => {
               <Menu.Item key="3" icon={<UserOutlined />}>
                 <Link to={"/peoples"}>People</Link>
               </Menu.Item>
-              <Menu.Item key="4" icon={<TvIcon />}>
-                Advert
-              </Menu.Item>
+
               <Menu.Item key="5" icon={<FestivalOutlinedIcon />}>
                 <Link to={"/events"}>Event</Link>
               </Menu.Item>
@@ -171,7 +170,7 @@ const LayoutApp = (props) => {
               <Menu.Item key="8" icon={<EmojiEventsOutlinedIcon />}>
                 <Link to={"/reward"}>Reward</Link>
               </Menu.Item>
-              <Menu.Item key="9" icon={<EmojiEventsOutlinedIcon />}>
+              <Menu.Item key="9" icon={<ChatIcon />}>
                 <Link to={"/chat"}>Chat</Link>
               </Menu.Item>
             </Menu>
@@ -262,7 +261,7 @@ const LayoutApp = (props) => {
                       >
                         <div className="flex items-center   ">
                           <p className="py-0 pl-4 pr-2 mt-[14px] ">
-                            {data?.data.username}
+                            {profile?.username}
                           </p>
 
                           <Avatar
@@ -289,7 +288,7 @@ const LayoutApp = (props) => {
                       <Dropdown overlay={menu} placement="bottomLeft" arrow>
                         <div className="flex items-center  px-4  ">
                           <p className="py-0 pl-4 pr-2 mt-[14px] ">
-                            {data?.data.username}
+                            {profile?.username}
                           </p>
 
                           <Avatar

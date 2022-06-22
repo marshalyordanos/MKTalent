@@ -22,9 +22,6 @@ const ProfilePage = (props) => {
   const [searchUser, setSearchUser] = useState([]);
 
   useEffect(() => {
-    console.log("fkrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr", data);
-    console.log("fkrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr", userID);
-
     async function fechData() {
       const profile = await api.get(`/profile/filter/${userID}`, {
         headers: {
@@ -33,15 +30,8 @@ const ProfilePage = (props) => {
         },
       });
 
-      console.log(
-        "======================================================================!!!!!!!!!!!!!"
-      );
       const user = await api.get(`/users/${profile.data.data.user}`);
-      console.log(
-        "======================================================================"
-      );
 
-      console.log("==============", user);
       setProfileData(profile.data.data);
       setProfileUser(user.data.data);
       const allUserProfile = await api.get(`/profile`, {
@@ -50,20 +40,10 @@ const ProfilePage = (props) => {
           authorization: `Bearer ${data.token}`, /////////////////////////////////////////////////////////////////////////////////
         },
       });
-      console.log(
-        "======================================================================",
-        allUserProfile.data.data
-      );
       const yy = [...allUserProfile.data.data];
-      console.log("ppppppppppppppppppp", yy);
       yy.sort((a, b) => {
         return b.follower.length - a.follower.length;
       });
-      console.log(
-        "llllllllll>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>",
-        yy,
-        data.data
-      );
       const zz = yy.filter((user) => user.user._id !== data.data._id);
       setSearchUser(zz.slice(0, 6));
     }
@@ -123,24 +103,25 @@ const ProfilePage = (props) => {
                 <p>Friends</p>
               </Link>
             </li>
-            <li>
-              <Link to="friends">
-                {" "}
-                <PermMediaOutlined sx={{ fontSize: 30 }} />
-                <p>Media</p>
-              </Link>
-            </li>
           </ul>
-          <div className="createPost">
-            <p>
-              <Link to={"/id/createpost"}>Create a Post</Link>
-            </p>
-          </div>
-          <div className="editprofile">
-            <p>
-              <Link to={`/profile/edit/${profileData?._id}`}>Edit Profile</Link>
-            </p>
-          </div>
+          {data.data._id === userID ? (
+            <div className="flex">
+              <div className="createPost">
+                <p>
+                  <Link to={"/id/createpost"}>Create a Post</Link>
+                </p>
+              </div>
+              <div className="editprofile">
+                <p>
+                  <Link to={`/profile/edit/${profileData?._id}`}>
+                    Edit Profile
+                  </Link>
+                </p>
+              </div>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
       <Divider className="p-0 m-0 " />
