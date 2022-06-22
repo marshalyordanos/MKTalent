@@ -12,9 +12,7 @@ import { useSelector } from "react-redux";
 const Find = (props) => {
   const light = useSelector((state) => state.mode.light);
   const [users, setUsers] = useState([]);
-  const [search, setSearch] = useState("");
   const [searchUser, setSearchUser] = useState([]);
-  const usernames = users.map((user) => user.user.username);
 
   useEffect(() => {
     const feachData = async () => {

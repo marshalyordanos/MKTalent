@@ -1,31 +1,33 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import api from "../../api/api";
 import RightSideBarUserCard from "./RightSideBarUserCard";
 
 function UserStatus() {
   const light = useSelector((state) => state.mode.light);
-  const [searchUser, setSearchUser] = useState([]);
   const [users, setUsers] = useState([]);
+  const [searchUser, setSearchUser] = useState([]);
+
   useEffect(() => {
     const feachData = async () => {
       const users = await api.get("/profile");
       console.log("marshalwwwwwwwwwwwwww", users.data.data);
       setUsers(users.data.data);
-      setSearchUser(users.data.data);
+      const yy = [...users.data.data];
+      console.log("ppppppppppppppppppp", yy);
+      yy.sort((a, b) => {
+        return b.point - a.point;
+      });
+      console.log("llllllllll", yy);
+      setSearchUser(yy.splice(0, 8));
     };
     feachData();
   }, []);
-  const [page, setPage] = useState(1);
-  const pageNewest = () => {
-    setPage(1);
-  };
-  const pageActive = () => {
-    setPage(2);
-  };
-  const pagePopular = () => {
-    setPage(3);
-  };
+
+  console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&", searchUser);
+  const pointHandler = () => {};
+
   return (
     <div
       className={` box-content pb-4 ${
@@ -41,34 +43,15 @@ function UserStatus() {
       </h1>
 
       <div>
-        <RightSideBarUserCard
-          username="Abebe kebede"
-          status="Registered two years ago"
-        />
-        <RightSideBarUserCard
-          username="Abebe kebede"
-          status="Registered two years ago"
-        />
-        <RightSideBarUserCard
-          username="Abebe kebede"
-          status="Registered two years ago"
-        />
-        <RightSideBarUserCard
-          username="Abebe kebede"
-          status="Registered two years ago"
-        />
-        <RightSideBarUserCard
-          username="Abebe kebede"
-          status="Registered two years ago"
-        />
-        <RightSideBarUserCard
-          username="Abebe kebede"
-          status="Registered two years ago"
-        />
-        <RightSideBarUserCard
-          username="Abebe kebede"
-          status="Registered two years ago"
-        />
+        {searchUser.map((user) => (
+          <Link to={`/profile/62b3656b906aef2a34c0d52c/activity/personal`}>
+            <RightSideBarUserCard
+              image={user.profileImage}
+              username={user.username}
+              point={user.point}
+            />
+          </Link>
+        ))}
       </div>
     </div>
   );
