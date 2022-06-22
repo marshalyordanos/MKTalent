@@ -40,7 +40,6 @@ const BlogCard = (props) => {
         
         </div>
    <p>Author: {props.user}</p>
-        <p className="text-ellipsis text-sm">{props.desc}</p>
 
         </div>
       </div>

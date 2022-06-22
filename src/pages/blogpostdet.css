@@ -1,4 +1,15 @@
 .blog_det{
     display: flex;
     flex-direction: column;
+    padding-left: 220px;
+}
+.blo_desc p{
+font-size: 22px;
+/* border: 1px solid red; */
+width: 80%;
+}
+
+.blog_post_checker{
+    overflow: hidden;
+    background-color: red;
 }

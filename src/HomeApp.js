@@ -450,6 +450,56 @@ const HomeApp = () => {
           }
         />
         <Route
+          path="/profile/:id"
+          element={
+            <Layout sidebar={false}>
+              <ProfilePage></ProfilePage>
+            </Layout>
+          }
+        >
+          <Route path="activity" element={<ProfileContainer />}>
+            {/* <Route path="favourites" element={<ProfileFrag />} /> */}
+            <Route
+              path="personal"
+              element={
+                <>
+                  <Activity />
+                  <PersonalPost />
+                </>
+              }
+            />
+            <Route
+              path="friends"
+              element={
+                <>
+                  <Activity />
+                  <FriendsPost />
+                </>
+              }
+            />
+            <Route
+              path="favourites"
+              element={
+                <>
+                  <Activity />
+                  <Favorites />
+                </>
+              }
+            />
+          </Route>
+          <Route path="profile" element={<ProfileFrag />} />
+          <Route path="friends" element={<PeoplePage />} />
+          <Route path="media" element={<PeoplePage />} />
+        </Route>
+        {/* <Route
+          path="/company/profile/:id/activity/personal"
+          element={
+            <CompanyLayout>
+              <TotalJobs />
+            </CompanyLayout>
+          }
+        /> */}
+        <Route
           path="/company/status/events"
           element={
             <CompanyLayout>
