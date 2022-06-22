@@ -105,16 +105,28 @@ const ChatContainer = ({ currentChat }) => {
       <div class="py-2 px-4 border-bottom d-none d-lg-block">
         <div class="d-flex align-items-center py-1">
           <div class="position-relative">
-            <img
-              src={`/assets/img/profile/${currentChat?.profileImage}`}
-              class="rounded-circle mr-1"
-              alt="Sharon Lessman"
-              width="40"
-              height="40"
-            />
+            {currentChat?.profileImage ? (
+              <img
+                src={`/assets/img/profile/${currentChat?.profileImage}`}
+                class="rounded-circle mr-1"
+                width="40"
+                height="40"
+              />
+            ) : (
+              <img
+                src={`/assets/img/profile/profile.jpg`}
+                class="rounded-circle mr-1"
+                width="40"
+                height="40"
+              />
+            )}
           </div>
           <div class="flex-grow-1 pl-3">
-            <strong>{currentChat?.user.username}</strong>
+            {currentChat?.user.username ? (
+              <strong>{currentChat?.user.username}</strong>
+            ) : (
+              <strong>Choose a person to Chat</strong>
+            )}
             <div class="text-muted small">
               <em>{/* tping...... */}</em>
             </div>
@@ -138,7 +150,6 @@ const ChatContainer = ({ currentChat }) => {
                   <img
                     src={`/assets/img/profile/${profile?.profileImage}`}
                     class="rounded-circle mr-1"
-                    alt="Chris Wood"
                     width="40"
                     height="40"
                   />
@@ -155,7 +166,6 @@ const ChatContainer = ({ currentChat }) => {
                   <img
                     src={`/assets/img/profile/${currentChat?.profileImage}`}
                     class="rounded-circle mr-1"
-                    alt="Sharon Lessman"
                     width="40"
                     height="40"
                   />

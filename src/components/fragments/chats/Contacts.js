@@ -25,12 +25,11 @@ const Contacts = ({ contacts, changeChat }) => {
         return (
           <div onClick={() => changeCurrentChat(i, user)}>
             <a href="#" class="list-group-item list-group-item-action border-0">
-              <div class="badge bg-success float-right">5</div>
+              {/* <div class="badge bg-success float-right">5</div> */}
               <div class="d-flex align-items-start">
                 <img
                   src={`/assets/img/profile/${user.profileImage}`}
                   class="rounded-circle mr-1"
-                  alt="Vanessa Tucker"
                   width="40"
                   height="40"
                 />
