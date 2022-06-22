@@ -15,6 +15,7 @@ import WorkOutlineOutlinedIcon from "@mui/icons-material/WorkOutlineOutlined";
 import FestivalOutlinedIcon from "@mui/icons-material/FestivalOutlined";
 import EmojiEventsOutlinedIcon from "@mui/icons-material/EmojiEventsOutlined";
 import StickyNote2OutlinedIcon from "@mui/icons-material/StickyNote2Outlined";
+import ChatIcon from "@mui/icons-material/Chat";
 import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
 import RightSideBarUserCard from "./RightSideBarUserCard";
@@ -171,7 +172,7 @@ const LayoutApp = (props) => {
               <Menu.Item key="8" icon={<EmojiEventsOutlinedIcon />}>
                 <Link to={"/reward"}>Reward</Link>
               </Menu.Item>
-              <Menu.Item key="9" icon={<EmojiEventsOutlinedIcon />}>
+              <Menu.Item key="9" icon={<ChatIcon />}>
                 <Link to={"/chat"}>Chat</Link>
               </Menu.Item>
             </Menu>

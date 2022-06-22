@@ -87,7 +87,7 @@ export default function Write() {
                     }
                     
                     );
-                    navigate("/companylayout/blog");
+                    navigate("/company/blog");
                     const data = {
                       title:title,
                       desc: desc,

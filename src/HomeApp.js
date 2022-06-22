@@ -426,6 +426,14 @@ const HomeApp = () => {
           }
         />
         <Route
+          path="/company/chat"
+          element={
+            <CompanyLayout>
+              <ChatPage />
+            </CompanyLayout>
+          }
+        />
+        <Route
           path="/company/status/blogs"
           element={
             <CompanyLayout>

@@ -8,16 +8,33 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const data = [
-  { name: "January", Total: 1200 },
-  { name: "February", Total: 2100 },
-  { name: "March", Total: 800 },
-  { name: "April", Total: 1600 },
-  { name: "May", Total: 900 },
-  { name: "June", Total: 1700 },
-];
+
+import { userColumns, userRows } from "../datatablesource";
+
+import { useEffect, useState, useMemo } from "react";
+import api from "../../../api/api";
+
+// const MONTHS = useMemo(()=>[  { name: "January", Total: 1200 },
+// { name: "February", Total: 2100 },
+// { name: "March", Total: 800 },
+// { name: "April", Total: 1600 },
+// { name: "May", Total: 900 },
+// { name: "June", Total: 1700 },]) 
 
 const Chart = ({ aspect, title }) => {
+//   const [data, setData] = useState(userRows);
+// const [searchUser, setSearchUser] = useState([]);
+// const [users, setUsers] = useState([]);
+
+//   useEffect(() => {
+//     const feachData = async () => {
+//       const users = await api.get("/profile");
+//       console.log("marshalwwwwwwwwwwwwww", users.data.data);
+//       users.data.data.map(item=>setUsers(prev=>[...prev,{name:MONTHS[item._id-1], "New User":item.createdAt}]))
+//       setSearchUser(users.data.data);
+//     };
+//     feachData();
+//   }, [MONTHS]);
   return (
     <div className="chart">
       <div className="title">{title}</div>
@@ -25,7 +42,7 @@ const Chart = ({ aspect, title }) => {
         <AreaChart
           width={730}
           height={250}
-          data={data}
+          // data={data}
           margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
         >
           <defs>
