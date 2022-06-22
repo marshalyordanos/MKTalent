@@ -26,7 +26,7 @@ const userSchema = new mongoose.Schema(
     },
     gender: {
       type: String,
-      required: ["true", "Please input gender"],
+      // required: ["true", "Please input gender"],
       enum: {
         values: ["male", "female"],
         message: "input either: male or female",
