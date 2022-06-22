@@ -69,7 +69,7 @@ export default function Write() {
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
         </div>
-        <Button  disabled={fileList.length == 0}
+        <button className="my-8 mx-48 bg-lime-700 text-red-100 w-[150px] h-[60px]"  disabled={fileList.length == 0}
                   onClick={(e) => {
                     e.preventDefault();
                     const formData = new FormData();
@@ -88,6 +88,7 @@ export default function Write() {
                     
                     );
                     navigate("/company/blog");
+                    window.location.reload(false)
                     const data = {
                       title:title,
                       desc: desc,
@@ -106,7 +107,7 @@ export default function Write() {
 
                     }} type="submit">
           Publish
-        </Button>
+        </button>
       </form>
     </div>
  
