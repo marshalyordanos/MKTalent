@@ -6,25 +6,25 @@ import styled from "styled-components";
 const Status = (props) => {
   return (
     <StatusCss>
-      <div>
-        <h1>Div left for marshall chart </h1>
-      </div>
-      <div>
-        <div className="statusdiv flex justify-center">
-          <NavLink to={"/company/status/blogs"} className="companycards ">
+      <div></div>
+      <div className="statusdiv text-center">
+        <p className="para">The total Number of Blogs , Jobs and Event</p>
+        <hr></hr>
+        <div className=" flex justify-between">
+          <div className="companycards ">
             <p className="titlestat">Blog</p>
             <div className="totalstat">Total: 7</div>
-          </NavLink>
-          <NavLink to={"/company/status/jobs"} className="companycards ">
+          </div>
+          <div className="companycards ">
             <p className="titlestat">Job</p>
             <div className="totalstat">Total: 20</div>
             <div className="totalstat">Applied users: 7200</div>
-          </NavLink>
-          <NavLink to={"/company/status/events"} className="companycards ">
+          </div>
+          <div className="companycards ">
             <p className="titlestat">Event</p>
             <div className="totalstat">Total: 13</div>
             <div className="totalstat">Participants: 453</div>
-          </NavLink>
+          </div>
         </div>
       </div>
     </StatusCss>
@@ -32,9 +32,10 @@ const Status = (props) => {
 };
 
 const StatusCss = styled.div`
+  .para {
+    font-size: 2em;
+  }
   .statusdiv {
-    display: flex;
-
     background-color: #eeeeee;
     padding: 30px;
   }
@@ -44,8 +45,8 @@ const StatusCss = styled.div`
     border: 1px solid grey;
     border-left: 4px solid blue;
     border-radius: 10px;
-    margin: 10px;
-    padding: 20px;
+    margin: 50px;
+    padding: 40px;
     width: 20%;
     text-align: center;
   }
