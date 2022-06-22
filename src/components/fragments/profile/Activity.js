@@ -14,10 +14,6 @@ const Activity = () => {
         <hr></hr>
       </div>
       <div className="flex flex-row flex-wrap hover:text-purple-500 hover:cursor-pointer">
-        <Link to={`/profile/${userData.data._id}/activity/favourites`}>
-          {" "}
-          <p>Favourites</p>
-        </Link>
         <hr></hr>
       </div>
       <div className="flex flex-row flex-wrap hover:text-purple-500 hover:cursor-pointer">
