@@ -1,13 +1,20 @@
 export const userColumns = [
-  { field: "id", headerName: "ID", width: 70 },
   {
     field: "user",
     headerName: "User",
     width: 230,
     renderCell: (params) => {
+      console.log(
+        "pppppppppppppaaaaaaaaaaarrrrrrrrrrrrraaaaaaaaaaaaammmmmm",
+        params
+      );
       return (
         <div className="cellWithImg">
-          <img className="cellImg" src={params.row.img} alt="avatar" />
+          <img
+            className="cellImg"
+            src={`/assets/img/profile/${params.row.profileImage}`}
+            alt="avatar"
+          />
           {params.row.username}
         </div>
       );
@@ -17,12 +24,34 @@ export const userColumns = [
     field: "email",
     headerName: "Email",
     width: 230,
+    renderCell: (params) => {
+      console.log(
+        "pppppppppppppaaaaaaaaaaarrrrrrrrrrrrraaaaaaaaaaaaammmmmm",
+        params
+      );
+      return (
+        <div className="cellWithImg">
+          <p>{params.row.user.email}</p>
+        </div>
+      );
+    },
   },
 
   {
-    field: "age",
-    headerName: "Age",
+    field: "Gender",
+    headerName: "Gender",
     width: 100,
+    renderCell: (params) => {
+      console.log(
+        "pppppppppppppaaaaaaaaaaarrrrrrrrrrrrraaaaaaaaaaaaammmmmm",
+        params
+      );
+      return (
+        <div className="cellWithImg">
+          <p>{params.row.user.gender}</p>
+        </div>
+      );
+    },
   },
   {
     field: "status",

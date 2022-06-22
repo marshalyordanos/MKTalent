@@ -19,7 +19,7 @@ const Datatable = () => {
     feachData();
   }, []);
   const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
+    setUsers(users.filter((item) => item.id !== id));
   };
 
   const actionColumn = [
@@ -30,7 +30,10 @@ const Datatable = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}>
+            <Link
+              to={`/profile/${params.row.user._id}/activity/personal`}
+              style={{ textDecoration: "none" }}
+            >
               <div className="viewButton">View</div>
             </Link>
             <div
@@ -48,7 +51,7 @@ const Datatable = () => {
     <div className="datatable">
       <DataGrid
         className="datagrid w-[150vh]"
-        rows={data}
+        rows={users}
         columns={userColumns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]}

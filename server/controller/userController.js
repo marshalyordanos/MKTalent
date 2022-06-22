@@ -107,3 +107,19 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
   //4) Log user in , set JWT
   createSentToken(user, 200, res);
 });
+
+exports.deleteUser = catchAsync(async (req, res, next) => {
+  // 1) get user form collection
+
+  const user = await User.findByIdAndDelete(req.params.id);
+
+  // console.log("iiiiiiiiiiiii",req.body)
+  // 2) check if posted current password is correct
+
+  if (!user) {
+    return next(new AppErorr("Wrong id"), 400);
+  }
+
+  //4) Log user in , set JWT
+  createSentToken(user, 200, res);
+});
