@@ -61,7 +61,7 @@ const ModelRegistration = (props) => {
     } else {
       try {
         dispatch(register({ loading: true }));
-
+        console.log("sfagsdgasdgasgd value, ", value);
         const { data } = await api.post("/users/signup", value);
         dispatch(register({ data: data, loading: false }));
 
