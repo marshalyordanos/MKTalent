@@ -12,7 +12,7 @@ import { useState } from "react";
 import TvIcon from "@mui/icons-material/Tv";
 import WorkOutlineOutlinedIcon from "@mui/icons-material/WorkOutlineOutlined";
 import FestivalOutlinedIcon from "@mui/icons-material/FestivalOutlined";
-import EmojiEventsOutlinedIcon from "@mui/icons-material/EmojiEventsOutlined";
+import ChatIcon from "@mui/icons-material/Chat";
 import StickyNote2OutlinedIcon from "@mui/icons-material/StickyNote2Outlined";
 import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
@@ -143,6 +143,9 @@ const CompanyLayout = (props) => {
               </Menu.Item>
               <Menu.Item key="7" icon={<StickyNote2OutlinedIcon />}>
                 <Link to={"/company/profile"}>profile</Link>
+              </Menu.Item>
+              <Menu.Item key="4" icon={<ChatIcon />}>
+                <Link to={"/company/chat"}>Chat</Link>
               </Menu.Item>
             </Menu>
           </div>
