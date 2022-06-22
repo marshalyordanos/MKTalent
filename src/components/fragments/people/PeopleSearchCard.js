@@ -131,7 +131,7 @@ const PeopleSearchCard = (props) => {
                 onClick={unFollowHandler}
                 className=" self-center border-purple-600 box-content border-2 w-[130px] rounded-3xl h-[35px] mb-3 text-purple-600 hover:bg-purple-600 hover:text-white hover:duration-700"
               >
-                unFollowing
+                unfollow
               </button>
             ) : props.following.includes(userData.data._id) ? (
               <button
