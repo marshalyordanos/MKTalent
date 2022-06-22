@@ -19,7 +19,7 @@ const FriendsPost = () => {
       try {
         const { data } = await api.get("/posts/?limit=10");
 
-        const pp = await api.get(`/profile/filter/${userId.data._id}`);
+        const pp = await api.get(`/profile/filter/${userId}`);
         const xx = data.data.filter((post) =>
           pp.data.data.following.includes(post.user._id)
         );
