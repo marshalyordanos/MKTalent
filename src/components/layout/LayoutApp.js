@@ -261,7 +261,7 @@ const LayoutApp = (props) => {
                       >
                         <div className="flex items-center   ">
                           <p className="py-0 pl-4 pr-2 mt-[14px] ">
-                            {data?.data.username}
+                            {profile?.username}
                           </p>
 
                           <Avatar
@@ -288,7 +288,7 @@ const LayoutApp = (props) => {
                       <Dropdown overlay={menu} placement="bottomLeft" arrow>
                         <div className="flex items-center  px-4  ">
                           <p className="py-0 pl-4 pr-2 mt-[14px] ">
-                            {data?.data.username}
+                            {profile?.username}
                           </p>
 
                           <Avatar

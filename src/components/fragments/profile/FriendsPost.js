@@ -23,10 +23,7 @@ const FriendsPost = () => {
         const xx = data.data.filter((post) =>
           pp.data.data.following.includes(post.user._id)
         );
-        console.log(
-          ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>",
-          xx
-        );
+
         dispatch(getAllPost({ loading: false, posts: xx }));
       } catch (err) {
         dispatch(

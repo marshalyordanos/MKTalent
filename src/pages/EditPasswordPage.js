@@ -105,12 +105,6 @@ const EditPasswordPage = () => {
             </FormGroup>
           </div>
           <div className="flex justify-between minicontainer">
-            <NavLink
-              to={"/profile/edit"}
-              className=" py-3 px-4 rounded button_login bg-info text-white"
-            >
-              Back
-            </NavLink>
             <Button
               onClick={submitHandler}
               className="button_login bg-success"

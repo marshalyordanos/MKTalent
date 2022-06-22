@@ -1,20 +1,33 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import api from "../../api/api";
 import RightSideBarUserCard from "./RightSideBarUserCard";
 
 function UserStatus() {
   const light = useSelector((state) => state.mode.light);
+  const [users, setUsers] = useState([]);
+  const [searchUser, setSearchUser] = useState([]);
 
-  const [page, setPage] = useState(1);
-  const pageNewest = () => {
-    setPage(1);
-  };
-  const pageActive = () => {
-    setPage(2);
-  };
-  const pagePopular = () => {
-    setPage(3);
-  };
+  useEffect(() => {
+    const feachData = async () => {
+      const users = await api.get("/profile");
+      console.log("marshalwwwwwwwwwwwwww", users.data.data);
+      setUsers(users.data.data);
+      const yy = [...users.data.data];
+      console.log("ppppppppppppppppppp", yy);
+      yy.sort((a, b) => {
+        return b.point - a.point;
+      });
+      console.log("llllllllll", yy);
+      setSearchUser(yy.splice(0, 8));
+    };
+    feachData();
+  }, []);
+
+  console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&", searchUser);
+  const pointHandler = () => {};
+
   return (
     <div
       className={` box-content pb-4 ${
@@ -28,112 +41,18 @@ function UserStatus() {
       >
         Members
       </h1>
-      <span className="flex flex-rows px-2">
-        <p
-          className="text-base mx-3 hover:cursor-pointer
-border-b-2  
-border-slate-100 
-hover:border-b-2  
-  hover:border-blue-500"
-          onClick={pageNewest}
-        >
-          Newest
-        </p>
-        |
-        <p
-          className="text-base mx-3 hover:cursor-pointer hover:border-b-2  
-  hover:border-blue-500"
-          onClick={pageActive}
-        >
-          {" "}
-          Active
-        </p>
-        |
-        <p
-          className="text-base mx-3 hover:cursor-pointer hover:border-b-2  
-  hover:border-blue-500"
-          onClick={pagePopular}
-        >
-          {" "}
-          Popular
-        </p>
-      </span>
-      {page == 1 && (
-        <div>
-          <RightSideBarUserCard
-            username="Abebe kebede"
-            status="Registered two years ago"
-          />
-          <RightSideBarUserCard
-            username="Abebe kebede"
-            status="Registered two years ago"
-          />
-          <RightSideBarUserCard
-            username="Abebe kebede"
-            status="Registered two years ago"
-          />
-          <RightSideBarUserCard
-            username="Abebe kebede"
-            status="Registered two years ago"
-          />
-          <RightSideBarUserCard
-            username="Abebe kebede"
-            status="Registered two years ago"
-          />
-          <RightSideBarUserCard
-            username="Abebe kebede"
-            status="Registered two years ago"
-          />
-          <RightSideBarUserCard
-            username="Abebe kebede"
-            status="Registered two years ago"
-          />
-        </div>
-      )}
-      {page == 2 && (
-        <div>
-          <RightSideBarUserCard
-            username="Abebe kebede"
-            status="two years ago"
-          />
-          <RightSideBarUserCard
-            username="Abebe kebede"
-            status="two years ago"
-          />
-          <RightSideBarUserCard
-            username="Abebe kebede"
-            status="two years ago"
-          />
-          <RightSideBarUserCard
-            username="Abebe kebede"
-            status="two years ago"
-          />
-          <RightSideBarUserCard
-            username="Abebe kebede"
-            status="two years ago"
-          />
-          <RightSideBarUserCard
-            username="Abebe kebede"
-            status="two years ago"
-          />
-          <RightSideBarUserCard
-            username="Abebe kebede"
-            status="two years ago"
-          />
-        </div>
-      )}
 
-      {page == 3 && (
-        <div>
-          <RightSideBarUserCard username="Abebe kebede" status="11 Friends" />
-          <RightSideBarUserCard username="Abebe kebede" status="11 Friends" />
-          <RightSideBarUserCard username="Abebe kebede" status="11 Friends" />
-          <RightSideBarUserCard username="Abebe kebede" status="11 Friends" />
-          <RightSideBarUserCard username="Abebe kebede" status="11 Friends" />
-          <RightSideBarUserCard username="Abebe kebede" status="11 Friends" />
-          <RightSideBarUserCard username="Abebe kebede" status="11 Friends" />
-        </div>
-      )}
+      <div>
+        {searchUser.map((user) => (
+          <Link to={`/profile/62b3656b906aef2a34c0d52c/activity/personal`}>
+            <RightSideBarUserCard
+              image={user.profileImage}
+              username={user.username}
+              point={user.point}
+            />
+          </Link>
+        ))}
+      </div>
     </div>
   );
 }

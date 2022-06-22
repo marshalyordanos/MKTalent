@@ -12,17 +12,13 @@ const PersonalPost = () => {
   const dispatch = useDispatch();
   const userId = useParams().id;
   const { data: userData } = useSelector((state) => state.userAuth);
-  console.log(
-    ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>",
-    posts
-  );
+
   // console.log("ooooooooooooooooo", posts);
   useEffect(() => {
     async function fetchPost() {
       dispatch(getAllPost({ loading: true }));
       try {
         const { data } = await api.get(`/posts/?limit=10&&user=${userId}`);
-        console.log("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<", data.data);
         dispatch(getAllPost({ loading: false, posts: data.data }));
       } catch (err) {
         dispatch(

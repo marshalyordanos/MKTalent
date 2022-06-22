@@ -81,7 +81,7 @@ const NavbarApp = (props) => {
                 <Dropdown overlay={profileMenu} placement="bottomLeft" arrow>
                   <div className="flex items-center  text-white ">
                     <p className="py-0 pl-4 pr-2 mt-[14px] ">
-                      {data?.data.username}
+                      {profile?.username}
                     </p>
                     <Avatar
                       alt="Remy Sharp"
