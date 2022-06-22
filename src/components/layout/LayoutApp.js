@@ -156,9 +156,7 @@ const LayoutApp = (props) => {
               <Menu.Item key="3" icon={<UserOutlined />}>
                 <Link to={"/peoples"}>People</Link>
               </Menu.Item>
-              <Menu.Item key="4" icon={<TvIcon />}>
-                Advert
-              </Menu.Item>
+
               <Menu.Item key="5" icon={<FestivalOutlinedIcon />}>
                 <Link to={"/events"}>Event</Link>
               </Menu.Item>
