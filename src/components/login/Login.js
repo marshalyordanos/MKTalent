@@ -49,6 +49,8 @@ const Login = (props) => {
           navigate("/main");
         } else if (data.data.role == "admin") {
           navigate("/admin");
+        } else if (data.data.role == "company") {
+          navigate("/company/find");
         }
       } catch (err) {
         dispatch(
