@@ -134,10 +134,6 @@ const CompanyLayout = (props) => {
                 <Link to={"/company/postjob"}>Post Job</Link>
               </Menu.Item>
 
-              <Menu.Item key="4" icon={<UserOutlined />}>
-                <Link to={"/company/message"}>Message</Link>
-              </Menu.Item>
-
               <Menu.Item key="5" icon={<FestivalOutlinedIcon />}>
                 <Link to={"/company/event"}>Make Event</Link>
               </Menu.Item>

@@ -8,10 +8,10 @@ import "./navbardd.css";
 import { useDispatch, useSelector } from "react-redux";
 import { changeLight } from "../../redux/counter/mode";
 import { NavLink } from "react-router-dom";
-import { Avatar } from "@mui/material";
 import { Dropdown, Menu } from "antd";
 import { logout } from "../../redux/authReducer";
 import porofileApi from "../../api/profileApi";
+import Avatar from "@mui/material/Avatar";
 const NavbarApp = (props) => {
   const data = useSelector((state) => state.userAuth.data);
   // console.log(data, "bettty");
@@ -83,7 +83,10 @@ const NavbarApp = (props) => {
                     <p className="py-0 pl-4 pr-2 mt-[14px] ">
                       {data?.data.username}
                     </p>
-                    <Avatar>M</Avatar>
+                    <Avatar
+                      alt="Remy Sharp"
+                      src={`/assets/img/profile/${profile.profileImage}`}
+                    />
                   </div>
                 </Dropdown>
               ) : (

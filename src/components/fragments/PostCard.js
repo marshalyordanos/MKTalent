@@ -17,12 +17,32 @@ import { pink } from "@mui/material/colors";
 import { IconButton } from "@mui/material";
 import api from "../../api/api";
 import BasicModal from "../../utils/Model";
+import porofileApi from "../../api/profileApi";
 const PostCard = (props) => {
   const { data: userData } = useSelector((state) => state.userAuth);
   const [comments, setComments] = useState(props.comments);
   const [time, setTime] = useState("");
   const [liked, setLiked] = useState(false);
   const [likeLength, setLikeLength] = useState(props.likes.length);
+  const [profile, setProfile] = useState({});
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    const featchData = async () => {
+      const y = await api.get(`/users/${props.userId}`);
+      setUser(y.data.data);
+
+      const x = await porofileApi(props.userId);
+      setProfile(x);
+      console.log(
+        "//////////////////////////////////////////////////",
+        y.data.data,
+        x
+      );
+      return x;
+    };
+    featchData();
+  }, []);
   useEffect(() => {
     /******************   posted date */
 
@@ -58,7 +78,11 @@ const PostCard = (props) => {
     <PostCardStyle className=" border-[1px] border-gray-200 bg-white m-5 box-content  w-[600px] p-4 justify-start overflow-hidden">
       <Link to={`/profile/${props.userId}/activity/personal`}>
         {" "}
-        <RightSideBarUserCard username={props.username} status={time + ""} />
+        <RightSideBarUserCard
+          image={profile.profileImage}
+          username={props.username}
+          status={time + ""}
+        />
       </Link>
       <div className=" px-9">
         <h1 className="text-ellipsis text-sm">{props.description}</h1>
@@ -159,7 +183,23 @@ const PostCard = (props) => {
                         },
                       }
                     );
-
+                    const xx = await api.get(`/profile/filter/${props.userId}`);
+                    console.log(
+                      ";;;;;;;;;;;;;;;*************>>>>>>>>>>>>>>>>>>>>>>>>>>",
+                      xx.data.data
+                    );
+                    const yy = await api.patch(
+                      `/profile/${xx.data.data._id}`,
+                      {
+                        point: xx.data.data.point - 0.1,
+                      },
+                      {
+                        headers: {
+                          "Access-Control-Allow-Origin": true,
+                          authorization: `Bearer ${userData.token}`, /////////////////////////////////////////////////////////////////////////////////
+                        },
+                      }
+                    );
                     console.log("lkmsd", x);
                   }}
                 >
@@ -189,6 +229,23 @@ const PostCard = (props) => {
                         headers: {
                           "Access-Control-Allow-Origin": true,
                           authorization: `Bearer ${userData?.token}`, /////////////////////////////////////////////////////////////////////////////////
+                        },
+                      }
+                    );
+                    const xx = await api.get(`/profile/filter/${props.userId}`);
+                    console.log(
+                      ";;;;;;;;;;;;;;;*************>>>>>>>>>>>>>>>>>>>>>>>>>>",
+                      xx.data.data
+                    );
+                    const yy = await api.patch(
+                      `/profile/${xx.data.data._id}`,
+                      {
+                        point: xx.data.data.point + 0.1,
+                      },
+                      {
+                        headers: {
+                          "Access-Control-Allow-Origin": true,
+                          authorization: `Bearer ${userData.token}`, /////////////////////////////////////////////////////////////////////////////////
                         },
                       }
                     );

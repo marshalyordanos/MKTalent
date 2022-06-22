@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Form, FormGroup, Label, Input, Container, Button } from "reactstrap";
 import "./company.css";
 import Defaultevent from "../../assets/page/eventimage.png";
 const Event = (props) => {
+  const [urls, setUrls] = useState([]);
   return (
     <div>
       <Container className="container_job maincontainer">
@@ -19,7 +20,11 @@ const Event = (props) => {
               <div className="profilepicdiv ">
                 <div className=" contains">
                   <div className="imagediv">
-                    <img className="image" src={Defaultevent} />
+                    {urls.length !== 0 ? (
+                      <img className="image" src={urls[0]} />
+                    ) : (
+                      <img className="image" src={Defaultevent} />
+                    )}
                   </div>
                 </div>
                 <div className=" contains self-center">
@@ -27,6 +32,9 @@ const Event = (props) => {
                     Choose Photo
                   </Label>
                   <Input
+                    onChange={(e) => {
+                      setUrls([URL.createObjectURL(e.target.files[0])]);
+                    }}
                     type="file"
                     name="eventphoto"
                     accept="image/*"

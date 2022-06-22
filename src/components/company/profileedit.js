@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { Spinner, Button, Modal, ModalHeader, ModalBody } from "reactstrap";
 import { Container } from "reactstrap";
@@ -8,6 +8,7 @@ import CompanyLogo from "../../assets/page/company/ethiotel.jpg";
 import CompanyProfileImage from "../../assets/page/company/companyProfileImage.png";
 
 const ProfileEdit = (props) => {
+  const [urls, setUrls] = useState([]);
   return (
     <div>
       <Container className="container_job maincontainer">
@@ -22,7 +23,11 @@ const ProfileEdit = (props) => {
               <div className="profilepicdiv ">
                 <div className=" contains">
                   <div className="imagediv">
-                    <img className="image" src={CompanyLogo} />
+                    {urls.length !== 0 ? (
+                      <img className="image" src={urls[0]} />
+                    ) : (
+                      <img className="image" src={CompanyProfileImage} />
+                    )}
                   </div>
                 </div>
                 <div className=" contains self-center">
@@ -30,6 +35,9 @@ const ProfileEdit = (props) => {
                     Change LOGO
                   </Label>
                   <Input
+                    onChange={(e) => {
+                      setUrls([URL.createObjectURL(e.target.files[0])]);
+                    }}
                     type="file"
                     name="profilepic"
                     accept="image/*"

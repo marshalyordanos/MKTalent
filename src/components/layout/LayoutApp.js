@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
-import { Layout, Menu, Dropdown, Avatar } from "antd";
+import { Layout, Menu, Dropdown } from "antd";
+import Avatar from "@mui/material/Avatar";
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
@@ -86,6 +87,8 @@ const LayoutApp = (props) => {
         <NavLink
           onClick={() => {
             dispatch(logout());
+            localStorage.removeItem("persist:root");
+            // window.location.reload(false);
           }}
           to={"#logout"}
         >
@@ -262,7 +265,10 @@ const LayoutApp = (props) => {
                             {data?.data.username}
                           </p>
 
-                          <Avatar>M</Avatar>
+                          <Avatar
+                            alt="Remy Sharp"
+                            src={`/assets/img/profile/${profile.profileImage}`}
+                          />
                         </div>
                       </Dropdown>
                     ) : (
@@ -286,7 +292,10 @@ const LayoutApp = (props) => {
                             {data?.data.username}
                           </p>
 
-                          <Avatar>M</Avatar>
+                          <Avatar
+                            alt="Remy Sharp"
+                            src={`/assets/img/profile/${profile.profileImage}`}
+                          />
                         </div>
                       </Dropdown>
                     )}

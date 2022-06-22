@@ -22,21 +22,7 @@ const EditProfilePage = () => {
   const [username, setUsername] = useState(userData.username);
   const [email, setEmail] = useState(userData.email);
   const navigate = useNavigate();
-  const [value, setValue] = useState({
-    talentType: user.talentType,
-    firstName: user.firstName,
-    lastName: user.lastName,
-    middleName: user.middleName,
-    bio: user.bio,
-    birthDate: user.birthDate,
-    country: user.country,
-    city: user.city,
-    twitter: user.twitter,
-    facebook: user.facebook,
-    instagram: user.instagram,
-    linkdin: user.linkdin,
-    telegram: user.telegram,
-  });
+  const [value, setValue] = useState({});
   console.log("qqqqqqqqqqqqqqqqqqqqqq", email, userData.data);
   useEffect(() => {
     const feachData = async () => {
@@ -55,19 +41,42 @@ const EditProfilePage = () => {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append("talentType", value.talentType);
-    formData.append("firstName", value.firstName);
-    formData.append("lastName", value.lastName);
-    formData.append("middleName", value.middleName);
-    formData.append("bio", value.bio);
-
-    formData.append("country", value.country);
-    formData.append("city", value.city);
-    formData.append("twitter", value.twitter);
-    formData.append("facebook", value.facebook);
-    formData.append("instagram", value.instagram);
-    formData.append("linkdin", value.linkdin);
-    formData.append("telegram", value.telegram);
+    if (value.talentType) {
+      formData.append("talentType", value.talentType);
+    }
+    if (value.firstName) {
+      formData.append("firstName", value.firstName);
+    }
+    if (value.lastName) {
+      formData.append("lastName", value.lastName);
+    }
+    if (value.middleName) {
+      formData.append("middleName", value.middleName);
+    }
+    if (value.country) {
+      formData.append("country", value.country);
+    }
+    if (value.bio) {
+      formData.append("bio", value.bio);
+    }
+    if (value.city) {
+      formData.append("city", value.city);
+    }
+    if (value.twitter) {
+      formData.append("twitter", value.twitter);
+    }
+    if (value.facebook) {
+      formData.append("facebook", value.facebook);
+    }
+    if (value.instagram) {
+      formData.append("instagram", value.instagram);
+    }
+    if (value.linkdin) {
+      formData.append("linkdin", value.linkdin);
+    }
+    if (value.linkdin) {
+      formData.append("linkdin", value.linkdin);
+    }
     if (value.birthDate) {
       formData.append("birthDate", value.birthDate);
     }

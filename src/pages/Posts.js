@@ -64,6 +64,7 @@ const Posts = () => {
             key={i}
             likes={post?.likes?.map((x, i) => x._id) || []}
             WWW
+            posts={posts}
           />
         ))}
       <div className=" px-10 pt-3 pb-7  flex justify-center items-center">
