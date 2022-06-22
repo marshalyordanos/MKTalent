@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { DarkMode, Search } from "@mui/icons-material";
 import SearchIcon from "@mui/icons-material/Search";
 import LightModeIcon from "@mui/icons-material/LightMode";
-import "./navbar.css";
+import "./navbardd.css";
 import { useDispatch, useSelector } from "react-redux";
 import { changeLight } from "../../redux/counter/mode";
 import { NavLink } from "react-router-dom";
@@ -59,11 +59,11 @@ const NavbarApp = (props) => {
       <Navbar
         collapseOnSelect
         bg="dark"
-        className={light ? "navbar__con" : "navbar__con navbar__con__dark"}
+        className={light ? "navbarcon__mk" : "navbarcon__mk navbarcon__mk__mk_dark"}
         expand="lg"
         variant="dark"
       >
-        <Container className="navbar__con1">
+        <Container className="navbarcon__mk1">
           <NavLink to="/home">
             <Navbar.Brand>MK-Talent</Navbar.Brand>
           </NavLink>

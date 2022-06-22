@@ -3,15 +3,12 @@ import React from 'react'
 import { Button } from 'react-bootstrap'
 import NavbarApp from '../navbar/Navbar'
 import HomeIMg from './img/web.jpg'
-import HomeDarkIMg from './img/homeDark.jpg'
-
+import HomedarkIMg from './img/homeDark.jpg'
 import Rewards from './img/reward.jpg'
 import Connection from './img/connection.jpg'
 import TimeImg from './img/time.jpg'
-
 import Past from './img/past.jpg'
-
-import './home.css'
+import './homeqw.css'
 import Usercard from './UserCard/Usercard'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
@@ -19,13 +16,13 @@ const Home = (props) => {
   const light = useSelector(state=>state.mode.light)
   const navigate = useNavigate()
   return (
-    <div className={light?"home":"home home__dark"}>
+    <div className={light?"home_mk":"home_mk home__dark_mk"}>
         {/* navbar */}
         {props.children}
         
-   <div className={light?'home__top__con':"home__top__con home__top__con__dark"}>
-   <div className={light?'home__top home__top1':'home__top home__top1 home__top__dark home__top1__dark'}>
-        <div className={light?'home__title':'home__title home__title__dark'}>
+   <div className={light?'home__top__con':"home__top__con home__top__con__dark_mk"}>
+   <div className={light?'home__top_mk home__top1':'home__top home__top1 home__top__dark_mk home__top1__dark_mk'}>
+        <div className={light?'home__title':'home__title home__title__dark_mk'}>
                 <h1>MK-TALENT is your best Choice </h1>
                 <p>We provide many ways for you to get yourself out there and introduce yourself to the world. Join us and make your work opportunity a little Easier!
                 Grow your portfolio by doing jobs, participating in events and getting rewards.
@@ -33,14 +30,14 @@ const Home = (props) => {
                 <Button onClick={()=>navigate('/main')} size='lg' style={{marginTop:"30px"}} variant="success">Get started</Button>
             </div>
         <div className="home__img">
-        <img src={light?HomeIMg:HomeDarkIMg} />
+        <img src={light?HomeIMg:HomedarkIMg} />
         </div>
    </div>
-   <div className={light?'home__top home__mid':'home__top home__mid home__top__dark home__mid__dark'}>
+   <div className={light?'home__top home__mid':'home__top home__mid home__top__dark_mk home__mid__dark_mk'}>
    <div className="home__img">
         <img src={Past} id="home__past"/>
         </div>
-        <div className={light?'home__title home__title5':'home__title home__title5 home__title__dark'}>
+        <div className={light?'home__title home__title5':'home__title home__title5 home__title__dark_mk'}>
                 <h1 style={{fontSize:"29px"}}>Now is your moment to build a better tomorrow</h1>
                 <p>We’ve seen what the future can be. Now it’s time to decide what it will be.
                 </p>
@@ -49,9 +46,9 @@ const Home = (props) => {
    </div>
    </div>
    {/* some information */}
-   <div className={light?'home__info':'home__info home__info__dark'}>
-   <div className={light?'home__top2':'home__top2 home__top2__dark'}>
-        <div className={light?'home__title2':'home__title2 home__title2__dark'}>
+   <div className={light?'home__info':'home__info home__info__dark_mk'}>
+   <div className={light?'home__top2':'home__top2 home__top2__dark_mk'}>
+        <div className={light?'home__title2':'home__title2 home__title2__dark_mk'}>
                 <h1>Expand your network by joining us</h1>
                 <p>Connect with diffrent companies and grow your network. Join us and make your work opportunity Easier!
                 Transform the way you work with one place for everyone and everything you need to get stuff done.
@@ -90,7 +87,7 @@ const Home = (props) => {
 
    </div>
    {/* how to get start */}
-   <div className={light?"home_getSatrt":"home_getSatrt home_getSatrt__dark"}>
+   <div className={light?"home_getSatrt":"home_getSatrt home_getSatrt__dark_mk"}>
      <h1>Get started with MK-Talent</h1>
      <div className='home__getStart__con'>
        <div className='home__getStart__items'>
@@ -111,21 +108,25 @@ const Home = (props) => {
      </div>
    </div>
    {/* Developer Information */}
-   <div className={light?'home__dev bg-gray-900 ':"home__dev home__dev__dark"}>
+   <div className={light?'home__dev bg-gray-900 ':"home__dev home__dev__dark_mk"}>
      <div className='home__dev__title'>
      <h1>MK-Talent Developers</h1>
         <p>Here's the developers that develop MK-TAlent </p>
      </div>
        <div className='home__card'>
-         <Usercard/>
-         <Usercard/>
-         <Usercard/>
-         <Usercard/>
+         <Usercard avatar="K" name="Kirubel Berhanu" desc="Give yourself the flexibility to work when, 
+                where and how you work best.Take control
+                 of notifications, collaborate live
+                  or on your own time, and find answers in 
+                  conversations from across your company."/>
+         <Usercard avatar="K" name="Kibrom Esayas"/>
+         <Usercard avatar="M" name="Marshal Yordanos"/>
+         <Usercard avatar="M" name="Mohammed Hussein"/>
 
         </div> 
    </div>
    {/* footer */}
-   <div className={light?"home__footer":"home__footer home__footer__dark"}>
+   <div className={light?"home__footer":"home__footer home__footer__dark_mk"}>
        <div className='home__footer__con'>
        <div className='home__footer__logo'>
         
@@ -152,7 +153,7 @@ const Home = (props) => {
 
             </ul>
      </div>
-     <div className='company'>
+     <div className='company_C'>
       <p>Company</p>
             <ul>
               <li><NavLink to="/"><p>About</p></NavLink></li>

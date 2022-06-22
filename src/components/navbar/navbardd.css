@@ -1,13 +1,25 @@
 .navbar__lightBtn:hover{
   background: rgb(51, 51, 51);
 }
-.navbar__con{
+.navbarcon__mk{
   /* background-color: #198754; */
-  /* background-color: #FFA000; */
-  color: black;
+  background-color: #FFA000;
+  color: red;
+  /* height: 50%; */
+  height: 140px;
 
 }
-.navbar__con1 > a{
+.navbarcon__mk1{
+  /* background-color: #FFA000; */
+  background-color: black;
+  /* height: 50%; */
+  height: 140px;
+  padding-top: 65px;
+  width: 1200px;
+  border-bottom: 2px solid white;
+  padding-bottom: 40px;
+}
+.navbarcon__mk1 > a{
    color: white;
    text-decoration:none ;
 }
@@ -16,7 +28,7 @@
   color: white;
   text-decoration:none ;
 }
-.navbar__con__dark{
+.navbarcon__mk__mk_dark{
   background-color: rgb(71, 71, 71);
 }
 .navbar__left{
