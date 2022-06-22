@@ -9,7 +9,7 @@
   height: 100%;
   width: 100%;
 }
-.home__top__con{
+.home__top__con__1{
   margin-bottom: -35px;
   border: 1px solid blue;
 
@@ -17,7 +17,7 @@
 .home_mk img{
   max-width: 500px;
 }
-.home__top{
+.home__top_mk{
   max-width: 1250px;
   margin: auto;
   display: flex;
@@ -26,7 +26,7 @@
   padding-top: 70px;
   align-items: center;
 }
-.home__title,.home__title2{
+.home__title__mk,.home__title2{
   width: 500px;
 }
 .home_mk .home__top1 img{
@@ -164,13 +164,13 @@ justify-content: center;
      width: 400px;
   }
   
-  .home__top{
+  .home__top_mk{
     max-width: 800px;
   }
   #home__past{
     width: 300px;
   }
-  .home__title,.home__title2{
+  .home__title__mk,.home__title2{
     width: 300px;
   }
   .home .home__top1 img{
@@ -189,7 +189,7 @@ justify-content: center;
 } 
 /* 850 */
 @media only screen and (max-width:850px) {
-  .home__top{
+  .home__top_mk{
     max-width: 600px;
     margin: auto;
     display: flex;
@@ -200,7 +200,7 @@ justify-content: center;
     padding-top: 70px;
     align-items: center;
   }
-  .home__title{
+  .home__title__mk{
     width: 500px;
     padding-top: 50px;
 
@@ -217,7 +217,7 @@ justify-content: center;
    padding-left: 40px;
    text-align: center;
  }
- .home__top__con{
+ .home__top__con__1{
   margin-bottom: 30px;
 }
 .home__title5 h1{
@@ -247,21 +247,21 @@ justify-content: center;
      width: 400px;
   }
   
-  .home__top{
+  .home__top_mk{
     max-width: 480px;
   }
   #home__past{
     width: 300px;
   }
-  .home__title,.home__title2{
+  .home__title__mk,.home__title2{
     
     width: 300px;
   }
-  .home__title h1,.home__title2 h1{
+  .home__title__mk h1,.home__title2 h1{
     font-size: 19px;
     width: 200px;
   }
-  .home__title p,.home__title2 p{
+  .home__title__mk p,.home__title2 p{
     font-size: 13px;
   }
   .home .home__top1 img{
@@ -288,21 +288,21 @@ justify-content: center;
      width: 250px;
   }
   
-  .home__top{
+  .home__top_mk{
     max-width: 300px;
   }
   #home__past{
     width: 200px;
   }
-  .home__title,.home__title2{
+  .home__title__mk,.home__title2{
     
     width: 220px;
   }
-  .home__title h1,.home__title2 h1{
+  .home__title__mk h1,.home__title2 h1{
     font-size: 19px;
     width: 200px;
   }
-  .home__title p,.home__title2 p{
+  .home__title__mk p,.home__title2 p{
     font-size: 13px;
   }
   .home .home__top1 img{

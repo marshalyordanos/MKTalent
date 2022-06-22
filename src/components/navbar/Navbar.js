@@ -59,7 +59,9 @@ const NavbarApp = (props) => {
       <Navbar
         collapseOnSelect
         bg="dark"
-        className={light ? "navbarcon__mk" : "navbarcon__mk navbarcon__mk__mk_dark"}
+        className={
+          light ? "navbarcon__mk" : "navbarcon__mk navbarcon__mk__mk_dark"
+        }
         expand="lg"
         variant="dark"
       >
@@ -69,25 +71,8 @@ const NavbarApp = (props) => {
           </NavLink>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link href="#features">News</Nav.Link>
-              <NavDropdown title="Blog" id="collasible-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Talent</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  Professional advice
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">
-                  Companies
-                </NavDropdown.Item>
-              </NavDropdown>
-              <NavDropdown title="Talent" id="collasible-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Men</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">Women</NavDropdown.Item>
-              </NavDropdown>
-              <Nav.Link href="#pricing">Development</Nav.Link>
-              <Nav.Link href="#pricing">About</Nav.Link>
-            </Nav>
-            <Nav className="navbar__left">
+            <Nav className="me-auto"></Nav>
+            <Nav className="navbar__left__mk">
               {/* <Nav.Link href="#deets">
                 {" "}
                 <SearchIcon />{" "}

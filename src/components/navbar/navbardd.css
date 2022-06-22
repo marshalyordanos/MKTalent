@@ -6,7 +6,10 @@
   background-color: #FFA000;
   color: red;
   /* height: 50%; */
+ 
+
   height: 140px;
+
 
 }
 .navbarcon__mk1{
@@ -15,7 +18,11 @@
   /* height: 50%; */
   height: 140px;
   padding-top: 65px;
-  width: 1200px;
+  min-width: 100vw;
+
+  position: absolute;
+  left: 0;
+  
   border-bottom: 2px solid white;
   padding-bottom: 40px;
 }
@@ -23,7 +30,7 @@
    color: white;
    text-decoration:none ;
 }
-.navbar__left >a{
+.navbar__left__mk >a{
   
   color: white;
   text-decoration:none ;
@@ -31,14 +38,14 @@
 .navbarcon__mk__mk_dark{
   background-color: rgb(71, 71, 71);
 }
-.navbar__left{
+.navbar__left__mk{
   display: flex;
   align-items: center;
 }
 
 
 @media only screen and (max-width:1000px) {
-  .navbar__left{
+  .navbar__left__mk{
     display: flex;
     align-items: flex-start;
   }
