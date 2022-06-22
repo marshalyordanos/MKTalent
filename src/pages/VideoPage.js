@@ -9,12 +9,14 @@ import api from "../api/api";
 import PostApi from "../api/postApi";
 const { Search } = Input;
 const VideoPage = () => {
+  const [searchPost, setSearchPost] = useState([]);
   const light = useSelector((state) => state.mode.light);
   const [posts, setPost] = useState([]);
   useEffect(() => {
     const featchData = async () => {
       const x = await PostApi("?dataType=video");
       setPost(x);
+      setSearchPost(x);
       console.log(
         ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",
         x
@@ -22,6 +24,16 @@ const VideoPage = () => {
     };
     featchData();
   }, []);
+
+  const handleChange = (e) => {
+    // setSearch(e.target.value);
+    console.log("ddddd", e.target.value);
+    const xx = posts.filter((user) =>
+      user.user.username.toLowerCase().startsWith(e.target.value.toLowerCase())
+    );
+    console.log("pppppp", xx);
+    setSearchPost(xx);
+  };
   return (
     <Videopage1 className="">
       <div className=" border-b-[1px] mx-7 border-[#e7e7e7]">
@@ -39,6 +51,7 @@ const VideoPage = () => {
             className={`w-[12rem] ${
               !light && "dark:text-white dark:bg-slate-900"
             }`}
+            onChange={handleChange}
             type="text"
             placeholder="Search video"
           />
@@ -52,11 +65,12 @@ const VideoPage = () => {
       </div>
       <hr className="ml-7 mr-7 border-[#e7e7e7] " />
       <div className="flex flex-wrap justify-evenly">
-        {posts.map((post) => (
+        {searchPost.map((post) => (
           <VideoCard
             videoImage={post.videoImage}
             userId={post.user._id}
             video={post.video}
+            post={post}
           />
         ))}
       </div>

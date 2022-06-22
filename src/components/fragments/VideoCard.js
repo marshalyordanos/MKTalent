@@ -55,7 +55,7 @@ const VideoCard = (props) => {
           alt=""
         />
         <p className={` m-2 text-base ${!light && "dark:text-white "}`}>
-          {user.username}
+          {props.post.user.username}
         </p>
       </div>
       <div className=" absolute top-0">
