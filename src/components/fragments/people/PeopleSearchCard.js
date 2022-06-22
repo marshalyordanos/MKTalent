@@ -28,17 +28,12 @@ const PeopleSearchCard = (props) => {
   };
 
   useEffect(() => {
-    const fun = async () => {
-      console.log("************************************************");
-
-      console.log("************************************************", userData);
-    };
+    const fun = async () => {};
     fun();
   }, []);
   const followHandler = async () => {
     const x = await api.get(`/profile/filter/${userData.data._id}`);
 
-    console.log(";;;;;;;;;;;;;;;", props.userId);
     const y = await api.patch(
       `/profile/${x.data.data._id}`,
       {
@@ -52,7 +47,6 @@ const PeopleSearchCard = (props) => {
       }
     );
     const xx = await api.get(`/profile/filter/${props.userId}`);
-    console.log(";;;;;;;;;;;;;;;*************", xx.data.data);
     const yy = await api.patch(
       `/profile/${xx.data.data._id}`,
       {
@@ -72,7 +66,7 @@ const PeopleSearchCard = (props) => {
   };
   const unFollowHandler = async () => {
     const x = await api.get(`/profile/filter/${userData.data._id}`);
-    console.log(";;;;;;;;;;;;;;;", props.userId);
+
     const newData = x.data.data.following.filter((v) => v !== props.userId);
     const y = await api.patch(
       `/profile/${x.data.data._id}`,
@@ -87,7 +81,6 @@ const PeopleSearchCard = (props) => {
       }
     );
     const xx = await api.get(`/profile/filter/${props.userId}`);
-    console.log(";;;;;;;;;;;;;;;*************", xx.data.data);
     const newData2 = props.follower.filter((v) => v !== userData.data._id);
 
     const yy = await api.patch(
@@ -108,11 +101,6 @@ const PeopleSearchCard = (props) => {
     window.location.reload(false);
   };
   const handleRating = async () => {
-    console.log("----------------------------------");
-
-    console.log("----------------------------------");
-
-    console.log("wwwwwwwwwwwwwww", props.rating);
     const x = await api.patch(
       `/profile/${props.profileId}`,
       {
@@ -125,11 +113,6 @@ const PeopleSearchCard = (props) => {
           authorization: `Bearer ${userData?.token}`, /////////////////////////////////////////////////////////////////////////////////
         },
       }
-    );
-
-    console.log(
-      "lk%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%sd",
-      x
     );
   };
   return (
