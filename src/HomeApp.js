@@ -55,7 +55,7 @@ import Admins from "./components/admin/admins/Admins";
 import Setting from "./components/admin/setting/Setting";
 import Profile from "./components/admin/profile/Profile";
 import Jobs from "./jobs/CrudJob";
-import EditProfilePage from "./pages/EditProfilePage";
+import EditProfilePage from "./pages/editProfilePage";
 import EditPasswordPage from "./pages/EditPasswordPage";
 import ChatPage from "./pages/ChatPage";
 import AppliedUser from "./components/company/AppliedUser";
@@ -291,7 +291,10 @@ const HomeApp = () => {
         ...
         ...     */}
         {/* routing for inner admin pages */}
-        <Route path="/admin" element={<AdminLayout />} />
+        <Route path="/admin" element={<Navigate to={"/admin/dashboard"} />} />
+        <Route path="/admin" element={<AdminLayout /> } />
+
+
         <Route
           path="/admin/postjobs"
           element={

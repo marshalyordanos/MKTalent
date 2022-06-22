@@ -1,10 +1,10 @@
 
-.home{
+.home_mk{
   background-color: #F6EFE8;
   height: 100%;
   width: 100%;
 }
-.home__dark{
+.home__dark_mk{
   background-color: #292929;
   height: 100%;
   width: 100%;
@@ -14,7 +14,7 @@
   border: 1px solid blue;
 
 }
-.home img{
+.home_mk img{
   max-width: 500px;
 }
 .home__top{
@@ -29,7 +29,7 @@
 .home__title,.home__title2{
   width: 500px;
 }
-.home .home__top1 img{
+.home_mk .home__top1 img{
   max-width: 700px;
 }
 /*  */
@@ -202,6 +202,8 @@ justify-content: center;
   }
   .home__title{
     width: 500px;
+    padding-top: 50px;
+
   }
   .home__img{
     width: 600px;
@@ -278,7 +280,7 @@ justify-content: center;
 } 
 @media only screen and (max-width:406px) {
  
-  .home{
+  .home_mk{
     /* width: 400px; */
 
   }
@@ -330,26 +332,26 @@ justify-content: center;
 
 
 
-/********************* dark *******************************/
-/********************* dark *******************************/
-/********************* dark *******************************/
-/********************* dark *******************************/
+/********************* dark_mk *******************************/
+/********************* dark_mk *******************************/
+/********************* dark_mk *******************************/
+/********************* dark_mk *******************************/
 
 
-.home__top__dark{
+.home__top__dark_mk{
   /* color: #198754; */
   color: white;
 }
 
 /*  */
-.home__info__dark {
+.home__info__dark_mk {
    background-color: #3b3b3b;
    color: white;
 }
 
 /*  */
 
-.home_getSatrt__dark{
+.home_getSatrt__dark_mk{
 color: white;
 
 }
@@ -362,7 +364,7 @@ color: white;
   padding-top:50px ;
   padding-bottom: 20px;
 }
-.home__dev__dark{
+.home__dev__dark_mk{
   background-color:#3b3b3b ;
   /* background-color: #212121; */
   /* border-radius: 0px 0px 500px 500px; */
@@ -375,11 +377,11 @@ color: white;
 
 /************************ footer  *****************  */
 
-.home__footer__dark{
+.home__footer__dark_mk{
   color: white;
   
 }
 
-.home__footer__dark .home__footer__con a{
+.home__footer__dark_mk .home__footer__con a{
   color: rgb(168, 168, 168);
 }
