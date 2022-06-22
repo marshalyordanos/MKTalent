@@ -7,10 +7,17 @@ import { useSelector } from "react-redux";
 import api from "../../../api/api";
 import { Rate } from "antd";
 const PeopleSearchCard = (props) => {
-  const [follow, setFollow] = useState(false);
+  const { data: userData } = useSelector((state) => state.userAuth);
+  // const [follow, setFollow] = useState(false);
   const [showRate, setShowRate] = useState(false);
   const [rater, setRater] = useState(0);
-
+  const [showFollow, setShowFollow] = useState(
+    props.follower.includes(userData.data._id)
+  );
+  console.log(
+    "}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}",
+    showFollow
+  );
   const FGstatus = (props) => {
     return (
       <div className="self-center flex flex-column">
@@ -20,7 +27,6 @@ const PeopleSearchCard = (props) => {
     );
   };
 
-  const { data: userData } = useSelector((state) => state.userAuth);
   useEffect(() => {
     const fun = async () => {
       console.log("************************************************");
@@ -31,6 +37,7 @@ const PeopleSearchCard = (props) => {
   }, []);
   const followHandler = async () => {
     const x = await api.get(`/profile/filter/${userData.data._id}`);
+
     console.log(";;;;;;;;;;;;;;;", props.userId);
     const y = await api.patch(
       `/profile/${x.data.data._id}`,
@@ -50,6 +57,7 @@ const PeopleSearchCard = (props) => {
       `/profile/${xx.data.data._id}`,
       {
         follower: [...props.follower, userData.data._id],
+        point: xx.data.data.point + 0.5,
       },
       {
         headers: {
@@ -58,7 +66,9 @@ const PeopleSearchCard = (props) => {
         },
       }
     );
-    setFollow(true);
+    // setShowFollow(!showFollow);
+    // setFollow(true);
+    window.location.reload(false);
   };
   const unFollowHandler = async () => {
     const x = await api.get(`/profile/filter/${userData.data._id}`);
@@ -84,6 +94,7 @@ const PeopleSearchCard = (props) => {
       `/profile/${xx.data.data._id}`,
       {
         follower: newData2,
+        point: xx.data.data.point - 0.5,
       },
       {
         headers: {
@@ -92,7 +103,9 @@ const PeopleSearchCard = (props) => {
         },
       }
     );
-    setFollow(false);
+    // setFollow(false);
+    // setShowFollow(!showFollow);
+    window.location.reload(false);
   };
   const handleRating = async () => {
     console.log("----------------------------------");

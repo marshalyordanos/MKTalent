@@ -82,23 +82,10 @@ const VideoCard = (props) => {
                   className="w-[40px] m-2 h-[40px] object-cover rounded-full "
                   alt=""
                 />
-                <p className=" m-2 text-base">{props.video}</p>
+                <p className=" m-2 text-base">{props.post.user.username}</p>
               </div>
             </div>
-            <div className=" ">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eligendi
-              tenetur, perferendis aliquid sint iusto provident nobis laborum
-              enim accusantium unde, quibusdam architecto. Excepturi explicabo
-              deserunt, aliquam accusantium facere necessitatibus quos. orem
-              ipsum, dolor sit amet consectetur adipisicing elit. Eligendi
-              tenetur, perferendis aliquid sint iusto provident nobis laborum
-              enim accusantium unde, quibusdam architecto. Excepturi explicabo
-              deserunt, aliquam accusantium facere necessitatibus quos. lipsum
-              dolor sit amet consectetur adipisicing elit. Ab, rerum
-              perferendis. Corporis similique eos voluptas non facilis minima
-              quod earum soluta, iusto obcaecati veniam magnam ullam doloremque
-              explicabo deleniti natus?
-            </div>
+            <div className=" ">{props.post.description}</div>
           </div>
         </Modal>
       </div>

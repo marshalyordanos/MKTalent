@@ -82,7 +82,6 @@ exports.createPost = catchAsync(async (req, res, next) => {
   });
 });
 
-
 exports.getAllPostWithOut = catchAsync(async (req, res, next) => {
   // let query = Post.find();
   // console.log(req.query);
@@ -165,22 +164,26 @@ exports.updatePost = catchAsync(async (req, res, next) => {
   if (!post) {
     return next(new AppErorr("There is not post in this ID", 404));
   }
-  const oneProfile = await Profile.findOne({ user: post.user });
-  const point = oneProfile.point + 0.1;
-  console.log(
-    "🔥🔥🔥🔥🔥🔥🔥 iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii",
-    point,
-    oneProfile
-  );
-  const profile = await Profile.findByIdAndUpdate(
-    { _id: oneProfile._id },
-    { point: point },
-    {
-      new: true,
-      runValidators: true,
-    }
-  );
-  console.log("999999999999999999999999999999999999999999", profile);
+  res.status(200).json({
+    status: "success",
+    data: post,
+  });
+  // const oneProfile = await Profile.findOne({ user: post.user });
+  // const point = oneProfile.point + 0.1;
+  // console.log(
+  //   "🔥🔥🔥🔥🔥🔥🔥 iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii",
+  //   point,
+  //   oneProfile
+  // );
+  // const profile = await Profile.findByIdAndUpdate(
+  //   { _id: oneProfile._id },
+  //   { point: point },
+  //   {
+  //     new: true,
+  //     runValidators: true,
+  //   }
+  // );
+  // console.log("999999999999999999999999999999999999999999", profile);
 
   console.log("999999999999999999999999999999999999999999");
   next();
