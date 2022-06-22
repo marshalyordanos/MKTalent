@@ -7,6 +7,7 @@ import { Image } from "antd";
 import styled from "styled-components";
 import { ButtonBase } from "@mui/material";
 import { useNavigate, Link } from "react-router-dom";
+import './blogpostdet.css'
 const BlogPosts = () => {
   const { blogposts, loading, error } = useSelector((state) => state.blogPostData);
 
@@ -44,14 +45,14 @@ const BlogPosts = () => {
           <Link to={`blogpost/${post._id}`} 
           // onClick={openPost}
           >
-          <BlogCard
+          <BlogCard className="border-2 box-content overflow-hidden h-[400px]"
   
       
             photo={post.photo}
             postId={post._id}
             title={post.title}
             user={post.user.username}
-            desc={post.desc}
+             desc={post.desc}
     
             key={i}
           />
