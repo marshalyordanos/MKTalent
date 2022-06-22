@@ -8,15 +8,27 @@ import { useSelector } from "react-redux";
 import api from "../api/api";
 import { Empty } from "antd";
 const PeoplePage = () => {
+  const [searchUser, setSearchUser] = useState([]);
   const [users, setUsers] = useState([]);
   useEffect(() => {
     const feachData = async () => {
       const users = await api.get("/profile");
       console.log("marshalwwwwwwwwwwwwww", users.data.data);
       setUsers(users.data.data);
+      setSearchUser(users.data.data);
     };
     feachData();
   }, []);
+  const handleChange = (e) => {
+    // setSearch(e.target.value);
+    console.log("ddddd", e.target.value);
+    console.log(users, e.target.value);
+    const xx = users.filter((user) =>
+      user.user.username.toLowerCase().startsWith(e.target.value.toLowerCase())
+    );
+    console.log("pppppp", xx);
+    setSearchUser(xx);
+  };
   const light = useSelector((state) => state.mode.light);
   return (
     <Videopage1 className="">
@@ -35,6 +47,7 @@ const PeoplePage = () => {
             className={`w-[12rem] ${
               !light && "dark:text-white dark:bg-slate-900"
             }`}
+            onChange={handleChange}
             type="text"
             placeholder="Search Members..."
           />
@@ -48,8 +61,8 @@ const PeoplePage = () => {
       </div>
       <hr className="ml-7 mr-7 border-[#e7e7e7] " />
       <div className="self-center flex flex-wrap justify-center m-auto ">
-        {users ? (
-          users.map((user) => (
+        {searchUser ? (
+          searchUser.map((user) => (
             <div className="flex flex-row">
               <PeopleSearchCard
                 image={user.profileImage}

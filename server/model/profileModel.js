@@ -3,6 +3,18 @@ const mongoose = require("mongoose");
 const profileSchema = new mongoose.Schema(
   {
     username: String,
+    firstName: String,
+    lastName: String,
+    middleName: String,
+    bio: String,
+    birthDate: Date,
+    country: String,
+    city: String,
+    twitter: String,
+    facebook: String,
+    instagram: String,
+    linkdin: String,
+    telegram: String,
     follower: [
       {
         type: mongoose.Schema.ObjectId,

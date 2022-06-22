@@ -19,6 +19,8 @@ const ProfilePage = (props) => {
   const userID = useParams().id;
   const [profileUser, setProfileUser] = useState();
   const [profileData, setProfileData] = useState({});
+  const [searchUser, setSearchUser] = useState([]);
+
   useEffect(() => {
     console.log("fkrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr", data);
     console.log("fkrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr", userID);
@@ -30,6 +32,7 @@ const ProfilePage = (props) => {
           authorization: `Bearer ${data.token}`, /////////////////////////////////////////////////////////////////////////////////
         },
       });
+
       console.log(
         "======================================================================!!!!!!!!!!!!!"
       );
@@ -41,6 +44,28 @@ const ProfilePage = (props) => {
       console.log("==============", user);
       setProfileData(profile.data.data);
       setProfileUser(user.data.data);
+      const allUserProfile = await api.get(`/profile`, {
+        headers: {
+          "Access-Control-Allow-Origin": true,
+          authorization: `Bearer ${data.token}`, /////////////////////////////////////////////////////////////////////////////////
+        },
+      });
+      console.log(
+        "======================================================================",
+        allUserProfile.data.data
+      );
+      const yy = [...allUserProfile.data.data];
+      console.log("ppppppppppppppppppp", yy);
+      yy.sort((a, b) => {
+        return b.follower.length - a.follower.length;
+      });
+      console.log(
+        "llllllllll>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>",
+        yy,
+        data.data
+      );
+      const zz = yy.filter((user) => user.user._id !== data.data._id);
+      setSearchUser(zz.slice(0, 6));
     }
     fechData();
   }, []);
@@ -113,7 +138,7 @@ const ProfilePage = (props) => {
           </div>
           <div className="editprofile">
             <p>
-              <Link to={"/profile/edit"}>Edit Profile</Link>
+              <Link to={`/profile/edit/${profileData?._id}`}>Edit Profile</Link>
             </p>
           </div>
         </div>
@@ -135,11 +160,17 @@ const ProfilePage = (props) => {
             <h2 className="mt-2">Suggestion</h2>
             Marshal, [5/5/2022 12:21 AM]
             <div className="flex flex-wrap ">
-              {Array(5)
-                .fill(2)
-                .map(() => (
-                  <div className=" border-2 m-2 w-20 h-20"></div>
-                ))}
+              {searchUser.map((user) => (
+                <div className=" border-2 m-2 w-20 h-20">
+                  <a href={`/profile/${user.user._id}/activity/personal`}>
+                    <img
+                      className=" w-20 h-20 object-cover"
+                      src={`/assets/img/profile/${user.profileImage}`}
+                    />
+                    <h6 className="mt-2">{user.username}</h6>
+                  </a>
+                </div>
+              ))}
             </div>
           </div>
         </div>
