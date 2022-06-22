@@ -134,16 +134,9 @@ const CompanyLayout = (props) => {
               <Menu.Item key="4" icon={<UserOutlined />}>
                 <Link to={"/admin/reward"}>Reward</Link>
               </Menu.Item>
-              <Menu.Item key="5" icon={<FileTextOutlined />}>
-                <Link to={"/admin/report"}>Report</Link>
-              </Menu.Item>
-
-              <Menu.Item key="6" icon={<TeamOutlined />}>
-                <Link to={"/admin/admins"}>Admins</Link>
-              </Menu.Item>
 
               <Menu.Item key="7" icon={<SettingOutlined />}>
-                <Link to={"/admin/company/register"}>setting</Link>
+                <Link to={"/admin/company/register"}>Register Company</Link>
               </Menu.Item>
               <Menu.Item key="8" icon={<UserAddOutlined />}>
                 <Link to={"/admin/profile"}>profile</Link>
