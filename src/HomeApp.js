@@ -44,6 +44,7 @@ import CompanyEvent from "./components/company/event";
 import CompanyStatus from "./components/company/status";
 import CompanyProfile from "./components/company/profile";
 import CompanyProfileEdit from "./components/company/profileedit";
+import EditCompanyPassword from "./components/company/Editcompanypassword";
 import AdminLayout from "./components/admin/Layout";
 import Dashboard from "./components/admin/dashboard/Dashboard";
 import Talents from "./components/admin/talent/Talents";
@@ -357,7 +358,7 @@ const HomeApp = () => {
           }
         />
         <Route
-          path="/admin/setting"
+          path="/admin/company/register"
           element={
             <AdminLayout>
               <Setting />
@@ -372,7 +373,7 @@ const HomeApp = () => {
             </AdminLayout>
           }
         />
-       
+
         {/* amdin page routing ends here */}
         <Route path="/company" element={<CompanyLayout />} />
 
@@ -403,6 +404,14 @@ const HomeApp = () => {
           element={
             <CompanyLayout>
               <CompanyProfileEdit />
+            </CompanyLayout>
+          }
+        />
+        <Route
+          path="/company/profile/edit/password"
+          element={
+            <CompanyLayout>
+              <EditCompanyPassword />
             </CompanyLayout>
           }
         />
@@ -504,11 +513,11 @@ const HomeApp = () => {
               </>
             }
           />
-    <Route
+          <Route
             path="homeblog/blogpost/:id"
             element={
               <>
-                <BlogPostDetails/>
+                <BlogPostDetails />
               </>
             }
           />

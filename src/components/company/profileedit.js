@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-
+import { NavLink, Link } from "react-router-dom";
 import { Spinner, Button, Modal, ModalHeader, ModalBody } from "reactstrap";
 import { Container } from "reactstrap";
 import { Form, FormGroup, Label, Input, Table } from "reactstrap";
@@ -39,6 +39,17 @@ const ProfileEdit = (props) => {
                 </div>
               </div>
             </FormGroup>
+          </div>
+          <div className="minicontainer">
+            <h3>Password Change</h3>
+            <hr></hr>
+            <div className="flex justify-end mr-6 ">
+              <Link to={"/company/profile/edit/password"}>
+                <Button className="button_login bg-success">
+                  Change Password
+                </Button>
+              </Link>
+            </div>
           </div>
           <div className="minicontainer">
             <h3>Basic Information </h3>

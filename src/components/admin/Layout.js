@@ -143,7 +143,7 @@ const CompanyLayout = (props) => {
               </Menu.Item>
 
               <Menu.Item key="7" icon={<SettingOutlined />}>
-                <Link to={"/admin/setting"}>setting</Link>
+                <Link to={"/admin/company/register"}>setting</Link>
               </Menu.Item>
               <Menu.Item key="8" icon={<UserAddOutlined />}>
                 <Link to={"/admin/profile"}>profile</Link>
