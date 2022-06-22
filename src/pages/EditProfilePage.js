@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, NavLink, useNavigate, useParams } from "react-router-dom";
 import { Spinner, Button, Modal, ModalHeader, ModalBody } from "reactstrap";
 import { Container } from "reactstrap";
 import { Form, FormGroup, Label, Input, Table } from "reactstrap";
@@ -7,11 +7,134 @@ import "./editprofilepage.css";
 import profilepic from "../assets/page/profile.png";
 import Defaultpic from "../assets/page/ProfileImage.jpg";
 import DefaultCoverpic from "../assets/page/coverpic.png";
+import api from "../api/api";
+import { useDispatch, useSelector } from "react-redux";
 const EditProfilePage = () => {
   const [urls, setUrls] = useState([]);
   const [urls2, setUrls2] = useState([]);
-  console.log("qqqqqqqqqqqqqqqqqqqqqq", urls);
+  const profileId = useParams().id;
+  const [image1, setImage1] = useState(null);
+  const [image2, setImage2] = useState(null);
+  console.log("???????????????????????????????????????????????", image1);
+  const [user, setUsers] = useState([]);
+  const { data: userData } = useSelector((state) => state.userAuth);
+  const dispatch = useDispatch();
+  const [username, setUsername] = useState(userData.username);
+  const [email, setEmail] = useState(userData.email);
+  const navigate = useNavigate();
+  const [value, setValue] = useState({
+    talentType: user.talentType,
+    firstName: user.firstName,
+    lastName: user.lastName,
+    middleName: user.middleName,
+    bio: user.bio,
+    birthDate: user.birthDate,
+    country: user.country,
+    city: user.city,
+    twitter: user.twitter,
+    facebook: user.facebook,
+    instagram: user.instagram,
+    linkdin: user.linkdin,
+    telegram: user.telegram,
+  });
+  console.log("qqqqqqqqqqqqqqqqqqqqqq", email, userData.data);
+  useEffect(() => {
+    const feachData = async () => {
+      const users = await api.get(`/profile/${profileId}`, {
+        headers: {
+          "Access-Control-Allow-Origin": true,
+          authorization: `Bearer ${userData.token}`, /////////////////////////////////////////////////////////////////////////////////
+        },
+      });
+      console.log("marshalwwwwwwwwwwwwww", users.data.data);
+      setUsers(users.data.data);
+    };
+    feachData();
+  }, []);
+  const submitHandler = async (e) => {
+    e.preventDefault();
 
+    const formData = new FormData();
+    formData.append("talentType", value.talentType);
+    formData.append("firstName", value.firstName);
+    formData.append("lastName", value.lastName);
+    formData.append("middleName", value.middleName);
+    formData.append("bio", value.bio);
+
+    formData.append("country", value.country);
+    formData.append("city", value.city);
+    formData.append("twitter", value.twitter);
+    formData.append("facebook", value.facebook);
+    formData.append("instagram", value.instagram);
+    formData.append("linkdin", value.linkdin);
+    formData.append("telegram", value.telegram);
+    if (value.birthDate) {
+      formData.append("birthDate", value.birthDate);
+    }
+    if (image1) {
+      formData.append("profileImage", image1);
+    }
+    if (image2) {
+      formData.append("coverImage", image2);
+    }
+
+    const res = await api.patch(`/profile/${user._id}`, formData, {
+      headers: {
+        "Access-Control-Allow-Origin": true,
+        authorization: `Bearer ${userData.token}`, /////////////////////////////////////////////////////////////////////////////////
+      },
+    });
+
+    const res1 = await api.patch(
+      `/users/updateMe`,
+      { username: username, email: email },
+      {
+        headers: {
+          "Access-Control-Allow-Origin": true,
+          authorization: `Bearer ${userData.token}`, /////////////////////////////////////////////////////////////////////////////////
+        },
+      }
+    );
+
+    // if (email) {
+    //   const res = await api.patch(
+    //     `/users/updateMe`,
+    //     { email: email },
+    //     {
+    //       headers: {
+    //         "Access-Control-Allow-Origin": true,
+    //         authorization: `Bearer ${userData.token}`, /////////////////////////////////////////////////////////////////////////////////
+    //       },
+    //     }
+    //   );
+    // }
+    navigate(`/profile/${userData.data._id}/activity/personal`);
+    // if (mediaType == "images") {
+    //   const data = {
+    //     tag: tags,
+    //     likes: [],
+    //     description: description,
+    //     images: res.data.data.images.map((file) =>
+    //       console.log(
+    //         "ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo",
+    //         file
+    //       )
+    //     ),
+    //     comments: [],
+    //     user: { username: data10.data.username },
+    //   };
+    //   setTags("");
+    //   setDescription("");
+    //   dispatch(
+    //     getAllPost({
+    //       ...postData,
+    //       posts: [...postData.posts, data],
+    //     })
+    //   );
+
+    //   navigate("/main");
+    // }
+  };
   return (
     <div>
       <Container className="container_job maincontainer">
@@ -29,7 +152,10 @@ const EditProfilePage = () => {
                   {urls.length !== 0 ? (
                     <img className="image" src={urls[0]} />
                   ) : (
-                    <img className="image" src={DefaultCoverpic} />
+                    <img
+                      className="image"
+                      src={`/assets/img/profile/${user.profileImage}`}
+                    />
                   )}
                 </div>
                 <div className=" contains">
@@ -41,6 +167,7 @@ const EditProfilePage = () => {
                     name="profilepic"
                     accept="image/*"
                     onChange={(e) => {
+                      setImage1(e.target.files[0]);
                       setUrls([URL.createObjectURL(e.target.files[0])]);
                     }}
                     id="profilepic"
@@ -52,16 +179,13 @@ const EditProfilePage = () => {
                   <Label for="talenttype">Talent Type</Label>
                   <Input
                     type="text"
-                    name="talenttype"
+                    name="talentType"
                     id="talenttype"
+                    onChange={(e) =>
+                      setValue({ ...value, [e.target.name]: e.target.value })
+                    }
                     placeholder="Model"
-                  />
-                  <Label for="accounttype">Account Type</Label>
-                  <Input
-                    type="text"
-                    name="accounttype"
-                    id="accounttype"
-                    placeholder="Talent"
+                    // onChange={}
                   />
                 </div>
               </div>
@@ -72,7 +196,10 @@ const EditProfilePage = () => {
                   {urls2.length !== 0 ? (
                     <img className="image" src={urls2[0]} />
                   ) : (
-                    <img className="image" src={DefaultCoverpic} />
+                    <img
+                      className="image"
+                      src={`/assets/img/profile/${user.coverImage}`}
+                    />
                   )}
                 </div>
                 <div className=" contains">
@@ -84,6 +211,7 @@ const EditProfilePage = () => {
                     name="coverpic"
                     accept="image/*"
                     onChange={(e) => {
+                      setImage2(e.target.files[0]);
                       setUrls2([URL.createObjectURL(e.target.files[0])]);
                     }}
                     id="coverpic"
@@ -112,9 +240,12 @@ const EditProfilePage = () => {
               <Label for="fname"> First Name</Label>
               <Input
                 type="text"
-                name="fname"
+                name="firstName"
                 id="fname"
-                placeholder="Enter your First name"
+                onChange={(e) =>
+                  setValue({ ...value, [e.target.name]: e.target.value })
+                }
+                placeholder={user.firstName}
                 required
               />
             </FormGroup>
@@ -122,9 +253,12 @@ const EditProfilePage = () => {
               <Label for="mname"> Middle Name</Label>
               <Input
                 type="text"
-                name="mname"
+                name="middleName"
                 id="mname"
-                placeholder="Enter your Middle name"
+                onChange={(e) =>
+                  setValue({ ...value, [e.target.name]: e.target.value })
+                }
+                placeholder={user.middleName}
                 required
               />
             </FormGroup>
@@ -132,9 +266,12 @@ const EditProfilePage = () => {
               <Label for="lname"> Last Name</Label>
               <Input
                 type="text"
-                name="lname"
+                name="lastName"
+                onChange={(e) =>
+                  setValue({ ...value, [e.target.name]: e.target.value })
+                }
                 id="lname"
-                placeholder="Enter your Last name"
+                placeholder={user.lastName}
                 required
               />
             </FormGroup>
@@ -144,7 +281,8 @@ const EditProfilePage = () => {
                 type="text"
                 name="username"
                 id="username"
-                placeholder="Enter your Username"
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder={user.username}
                 required
               />
             </FormGroup>
@@ -152,16 +290,22 @@ const EditProfilePage = () => {
               <Label for="bio">Bio</Label>
               <Input
                 type="textarea"
+                onChange={(e) =>
+                  setValue({ ...value, [e.target.name]: e.target.value })
+                }
                 name="bio"
                 id="bio"
-                placeholder="Enter a small bio or discription about yourself"
+                placeholder={user.bio || "wirte your bio "}
               />
             </FormGroup>
             <FormGroup>
               <Label for="birthdate">Birth date</Label>
               <Input
                 type="date"
-                name="birthdate"
+                name="birthDate"
+                onChange={(e) =>
+                  setValue({ ...value, [e.target.name]: e.target.value })
+                }
                 id="birthdate"
                 placeholder="Enter a your birthdate"
               />
@@ -177,7 +321,10 @@ const EditProfilePage = () => {
                 type="text"
                 name="country"
                 id="country"
-                placeholder="Enter Your Country of Residence"
+                onChange={(e) =>
+                  setValue({ ...value, [e.target.name]: e.target.value })
+                }
+                placeholder={user.country}
                 required
               />
             </FormGroup>
@@ -186,8 +333,11 @@ const EditProfilePage = () => {
               <Input
                 type="text"
                 name="city"
+                onChange={(e) =>
+                  setValue({ ...value, [e.target.name]: e.target.value })
+                }
                 id="city"
-                placeholder="Enter Your city of Residence"
+                placeholder={user.city}
                 required
               />
             </FormGroup>
@@ -197,31 +347,13 @@ const EditProfilePage = () => {
             <hr></hr>
 
             <FormGroup>
-              <Label for="phonenumber">Phone Number</Label>
-              <Input
-                type="text"
-                name="phonenumber"
-                id="phonenumber"
-                placeholder="Enter Your Phone Number"
-                required
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label for="phonenumber2">Second Phone Number "optional"</Label>
-              <Input
-                type="text"
-                name="phonenumber2"
-                id="phonenumber2"
-                placeholder="Second Phone Number"
-              />
-            </FormGroup>
-            <FormGroup>
               <Label for="email">Email</Label>
               <Input
                 type="email"
                 name="email"
                 id="email"
-                placeholder="Enter your email address"
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder={userData.data.email}
                 required
               />
             </FormGroup>
@@ -234,8 +366,11 @@ const EditProfilePage = () => {
                 <Input
                   type="text"
                   name="twitter"
+                  onChange={(e) =>
+                    setValue({ ...value, [e.target.name]: e.target.value })
+                  }
                   id="twitter"
-                  placeholder="Enter your Twitter Address"
+                  placeholder={user.twitter}
                 />
               </FormGroup>
               <FormGroup>
@@ -243,8 +378,11 @@ const EditProfilePage = () => {
                 <Input
                   type="text"
                   name="facebook"
+                  onChange={(e) =>
+                    setValue({ ...value, [e.target.name]: e.target.value })
+                  }
                   id="facebook"
-                  placeholder="Enter your facebook Address"
+                  placeholder={user.facebook}
                 />
               </FormGroup>
               <FormGroup>
@@ -252,8 +390,11 @@ const EditProfilePage = () => {
                 <Input
                   type="text"
                   name="instagram"
+                  onChange={(e) =>
+                    setValue({ ...value, [e.target.name]: e.target.value })
+                  }
                   id="instagram"
-                  placeholder="Enter your instagram Address"
+                  placeholder={user.instagram}
                 />
               </FormGroup>
               <FormGroup>
@@ -261,8 +402,11 @@ const EditProfilePage = () => {
                 <Input
                   type="text"
                   name="linkdin"
+                  onChange={(e) =>
+                    setValue({ ...value, [e.target.name]: e.target.value })
+                  }
                   id="linkdin"
-                  placeholder="Enter your linkdIn Address"
+                  placeholder={user.linkdin}
                 />
               </FormGroup>
               <FormGroup>
@@ -271,7 +415,10 @@ const EditProfilePage = () => {
                   type="text"
                   name="telegram"
                   id="telegram"
-                  placeholder="Enter your Telegram Address"
+                  onChange={(e) =>
+                    setValue({ ...value, [e.target.name]: e.target.value })
+                  }
+                  placeholder={user.telegram}
                 />
               </FormGroup>
             </div>
@@ -283,7 +430,11 @@ const EditProfilePage = () => {
             >
               Back
             </NavLink>
-            <Button className="button_login bg-success" type="submit">
+            <Button
+              onClick={submitHandler}
+              className="button_login bg-success"
+              type="submit"
+            >
               Submit
             </Button>
           </div>

@@ -1,14 +1,61 @@
-import React from "react";
-import { Link, NavLink } from "react-router-dom";
-import { Spinner, Button, Modal, ModalHeader, ModalBody } from "reactstrap";
+import React, { useEffect, useState } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Spinner, Button, ModalHeader, ModalBody } from "reactstrap";
 import { Container } from "reactstrap";
 import { Form, FormGroup, Label, Input, Table } from "reactstrap";
 import "./editprofilepage.css";
+import { Modal } from "antd";
 import profilepic from "../assets/page/profile.png";
 import Defaultpic from "../assets/page/ProfileImage.jpg";
+import api from "../api/api";
+import { useSelector } from "react-redux";
 const EditPasswordPage = () => {
+  const [newPassword, setNewPassword] = useState("");
+  const [oldPassword, setOldPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [users, setUsers] = useState([]);
+  const { data: userData } = useSelector((state) => state.userAuth);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const navigate = useNavigate();
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+    navigate(`/profile/${userData.data._id}/activity/personal`);
+  };
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    try {
+      const users = await api.patch(
+        "/users/updateMyPassword",
+        {
+          passwordCurrent: oldPassword,
+          password: newPassword,
+          passwordConfirm: confirmPassword,
+        },
+        {
+          headers: {
+            "Access-Control-Allow-Origin": true,
+            authorization: `Bearer ${userData.token}`, /////////////////////////////////////////////////////////////////////////////////
+          },
+        }
+      );
+      console.log("marshalwwwwwwwwwwwwww", users.data.data);
+      setUsers(users.data.data);
+      showModal();
+    } catch (err) {
+      console.log("💀💀💀💀💀💥💥💥💥💥💥💥💥💥");
+      const x = err.response && err.response.data.message;
+    }
+  };
   return (
     <div>
+      <Modal title="Basic Modal" visible={isModalVisible} onOk={handleOk}>
+        <h2>Your password is chenged</h2>
+      </Modal>
       <Container className="container_job maincontainer">
         <Form id="register" method="post">
           <h1>Change Password</h1>
@@ -24,6 +71,7 @@ const EditPasswordPage = () => {
                 type="password"
                 name="oldpassword"
                 id="oldpassword"
+                onChange={(e) => setOldPassword(e.target.value)}
                 placeholder="Enter your Old Password"
                 required
               />
@@ -39,6 +87,7 @@ const EditPasswordPage = () => {
                 type="password"
                 name="password"
                 id="password"
+                onChange={(e) => setNewPassword(e.target.value)}
                 placeholder="Enter your New password"
                 required
               />
@@ -49,6 +98,7 @@ const EditPasswordPage = () => {
                 type="password"
                 name="confirmpassword"
                 id="confirmpassword"
+                onChange={(e) => setConfirmPassword(e.target.value)}
                 placeholder="Confirm Your Password"
                 required
               />
@@ -61,7 +111,11 @@ const EditPasswordPage = () => {
             >
               Back
             </NavLink>
-            <Button className="button_login bg-success" type="submit">
+            <Button
+              onClick={submitHandler}
+              className="button_login bg-success"
+              type="submit"
+            >
               Change
             </Button>
           </div>

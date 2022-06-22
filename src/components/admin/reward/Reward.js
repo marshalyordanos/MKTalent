@@ -1,19 +1,86 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
 import { Form, FormGroup, Label, Input, Table, Button } from "reactstrap";
+import { Modal } from "antd";
 import "./reward.css";
 import { useDispatch, useSelector } from "react-redux";
 import RewardCard from "../../fragments/RewardCard";
 import styled from "styled-components";
 import Rewardpic from "../../../assets/page/reward.png";
+import api from "../../../api/api";
 const Reward = (props) => {
   const [urls, setUrls] = useState([]);
+
+  const { data: userData } = useSelector((state) => state.userAuth);
   const dispatch = useDispatch();
   const light = useSelector((state) => state.mode.light);
-  console.log("lllllllllllllllll", urls.length);
+
+  const [value, setValue] = useState({
+    price: "",
+    name: "",
+  });
+  console.log("lllllllllllllllll", value);
+  const [image1, setImage1] = useState(null);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [rewards, setRewards] = useState([]);
+
+  useEffect(() => {
+    const feachData = async () => {
+      const reward = await api.get("/reward");
+
+      setRewards(reward.data.data);
+    };
+    feachData();
+  }, []);
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+  const submitHandler = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("price", value.price);
+    formData.append("name", value.name);
+    formData.append("image", image1);
+
+    const res = await api.post(`/reward/`, formData, {
+      headers: {
+        "Access-Control-Allow-Origin": true,
+        authorization: `Bearer ${userData.token}`, /////////////////////////////////////////////////////////////////////////////////
+      },
+    });
+    const data = {
+      price: value.price,
+      name: value.name,
+      image: res.data.data.image,
+    };
+    setRewards([data, ...rewards]);
+    showModal();
+    setValue({ name: "", price: "" });
+    setUrls([]);
+    setImage1(null);
+
+    // navigate(`/profile/${userData.data._id}/activity/personal`);
+  };
   return (
     <Rewardstyle>
+      <Modal
+        title="Basic Modal"
+        visible={isModalVisible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+        <h1>Rewar is added 👍</h1>
+      </Modal>
       <div className="maincontainer">
         <div className="minicontainers">
           <h1>Add Reward</h1>
@@ -34,6 +101,7 @@ const Reward = (props) => {
                   </Label>
                   <Input
                     onChange={(e) => {
+                      setImage1(e.target.files[0]);
                       setUrls([URL.createObjectURL(e.target.files[0])]);
                     }}
                     type="file"
@@ -49,7 +117,10 @@ const Reward = (props) => {
                   <Label for="rewardname">Reward Name</Label>
                   <Input
                     type="text"
-                    name="rewardname"
+                    name="name"
+                    onChange={(e) =>
+                      setValue({ ...value, [e.target.name]: e.target.value })
+                    }
                     id="rewardname"
                     placeholder="Reward Name"
                     required
@@ -57,13 +128,21 @@ const Reward = (props) => {
                   <Label for="rewardpoint">Price</Label>
                   <Input
                     type="text"
-                    name="rewardpoint"
+                    name="price"
+                    onChange={(e) =>
+                      setValue({ ...value, [e.target.name]: e.target.value })
+                    }
                     id="rewardpoint"
                     placeholder="Reward Price"
                     required
                   />
                 </div>
-                <Button className="button_login bg-success" type="submit">
+                <Button
+                  onClick={submitHandler}
+                  disabled={!value.price || !value.name || !image1}
+                  className="button_login bg-success"
+                  type="submit"
+                >
                   Add Reward
                 </Button>
               </div>
@@ -89,97 +168,9 @@ const Reward = (props) => {
           <h1>Rewards</h1>
           <hr></hr>
           <div className="rewards flex  justify-center flex-wrap">
-            <RewardCard
-              reward={{
-                price: 200000000,
-                name: "Mohammed",
-                image: "user-62af939ac1999b3810f26f71-1655845171169.jpeg",
-              }}
-            />
-            <RewardCard
-              reward={{
-                price: 45,
-                name: "Nike",
-                image: "sho1.jpg",
-              }}
-            />
-            <RewardCard
-              reward={{
-                price: 93,
-                name: "Lether shoe",
-                image: "sho2.jpg",
-              }}
-            />
-            <RewardCard
-              reward={{
-                price: 45,
-                name: "skechers",
-                image: "sho3.jpg",
-              }}
-            />
-            <RewardCard
-              reward={{
-                price: 235,
-                name: "addidas",
-                image: "hood1.jpg",
-              }}
-            />
-            <RewardCard
-              reward={{
-                price: 365,
-                name: "underware",
-                image: "hood2.jpg",
-              }}
-            />
-            <RewardCard
-              reward={{
-                price: 420,
-                name: "normal",
-                image: "hood3.jpg",
-              }}
-            />
-            <RewardCard
-              reward={{
-                price: 1347,
-                name: "Italian",
-                image: "suit1.jpg",
-              }}
-            />
-            <RewardCard
-              reward={{
-                price: 832,
-                name: "French",
-                image: "suit2.jpg",
-              }}
-            />
-            <RewardCard
-              reward={{
-                price: 2163,
-                name: "Turkish",
-                image: "suit3.jpg",
-              }}
-            />
-            <RewardCard
-              reward={{
-                price: 21,
-                name: "classic",
-                image: "shirt1.jpg",
-              }}
-            />
-            <RewardCard
-              reward={{
-                price: 56,
-                name: "Traditional",
-                image: "shirt2.jpg",
-              }}
-            />
-            <RewardCard
-              reward={{
-                price: 9,
-                name: "plain shirt",
-                image: "shirt3.jpg",
-              }}
-            />
+            {rewards.map((reward) => (
+              <RewardCard reward={reward} />
+            ))}
           </div>
         </div>
       </div>
