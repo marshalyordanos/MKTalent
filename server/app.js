@@ -7,7 +7,7 @@ const rewardRouter = require("./router/rewardRouter");
 
 const JobRouter = require("./router/jobRouter");
 const ChatRouter = require("./router/chatRouter");
-
+const EventRouter= require('./router/eventRouter')
 const AppErorr = require("./utils/appError");
 const Cors = require("cors");
 const { errHandling } = require("./controller/errorController");
@@ -23,6 +23,7 @@ app.use("/api/v1/profile", profileRouter);
 app.use("/api/v1/reward", rewardRouter);
 
 app.use("/api/v1/job", JobRouter);
+app.use("/api/v1/event", EventRouter);
 app.use("/api/v1", ChatRouter);
 
 // app.use('/api/v1/comments',commentRouter)
