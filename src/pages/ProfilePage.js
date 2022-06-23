@@ -82,84 +82,93 @@ const ProfilePage = (props) => {
           </div>
         </div>
       </div>
-      <div className="toptab  z-50">
-        <div className="header">
-          <ul>
-            <li>
-              <Link to="activity/personal">
-                <PermMediaOutlined sx={{ fontSize: 30 }} /> <p>Activity</p>
-              </Link>
-            </li>
-            <li>
-              <Link to="profile">
-                <AssignmentIndOutlined sx={{ fontSize: 30 }} />
-                <p>Profile</p>
-              </Link>
-            </li>{" "}
-            <li>
-              <Link to="friends">
-                {" "}
-                <PermIdentityOutlined sx={{ fontSize: 30 }} />
-                <p>Friends</p>
-              </Link>
-            </li>
-          </ul>
-          {data.data._id === userID ? (
-            <div className="flex">
-              <div className="createPost">
-                <p>
-                  <Link to={"/id/createpost"}>Create a Post</Link>
-                </p>
-              </div>
-              <div className="editprofile">
-                <p>
-                  <Link to={`/profile/edit/${profileData?._id}`}>
-                    Edit Profile
-                  </Link>
-                </p>
-              </div>
-            </div>
-          ) : (
-            ""
-          )}
-        </div>
-      </div>
-      <Divider className="p-0 m-0 " />
-      <div className=" flex flex-wrap">
-        <div className="leftSideBar  h-40 w-[300px]">
-          <div className="flex border-b-[1px] justify-end p-4">
-            <div className=" mr-4 ">
-              <h3>{profileData?.follower?.length}</h3>
-              <p>Followers</p>
-            </div>
-            <div className="mr-4">
-              <h3>{profileData?.following?.length}</h3>
-              <p>Following</p>
-            </div>
-          </div>
-          <div className=" text-center ">
-            <h2 className="mt-2">Suggestion</h2>
-            Marshal, [5/5/2022 12:21 AM]
-            <div className="flex flex-wrap ">
-              {searchUser.map((user) => (
-                <div className=" border-2 m-2 w-20 h-20">
-                  <a href={`/profile/${user.user._id}/activity/personal`}>
-                    <img
-                      className=" w-20 h-20 object-cover"
-                      src={`/assets/img/profile/${user.profileImage}`}
-                    />
-                    <h6 className="mt-2">{user.username}</h6>
-                  </a>
+      {props.show ? (
+        ""
+      ) : (
+        <div className="toptab  z-50">
+          <div className="header">
+            <ul>
+              <li>
+                <Link to="activity/personal">
+                  <PermMediaOutlined sx={{ fontSize: 30 }} /> <p>Activity</p>
+                </Link>
+              </li>
+              <li>
+                <Link to="profile">
+                  <AssignmentIndOutlined sx={{ fontSize: 30 }} />
+                  <p>Profile</p>
+                </Link>
+              </li>{" "}
+              <li>
+                <Link to="friends">
+                  {" "}
+                  <PermIdentityOutlined sx={{ fontSize: 30 }} />
+                  <p>Friends</p>
+                </Link>
+              </li>
+            </ul>
+            {data.data._id === userID ? (
+              <div className="flex">
+                <div className="createPost">
+                  <p>
+                    <Link to={"/id/createpost"}>Create a Post</Link>
+                  </p>
                 </div>
-              ))}
-            </div>
+                <div className="editprofile">
+                  <p>
+                    <Link to={`/profile/edit/${profileData?._id}`}>
+                      Edit Profile
+                    </Link>
+                  </p>
+                </div>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
         </div>
-        <div className=" border-l-2 p-4 border-r-2 min-w-[500px] min-h-[400px] h-auto flex-1 flex-wrap object-contain">
-          <Outlet />
+      )}
+      <Divider className="p-0 m-0 " />
+      {props.show ? (
+        ""
+      ) : (
+        <div className=" flex flex-wrap">
+          <div className="leftSideBar  h-40 w-[300px]">
+            <div className="flex border-b-[1px] justify-end p-4">
+              <div className=" mr-4 ">
+                <h3>{profileData?.follower?.length}</h3>
+                <p>Followers</p>
+              </div>
+              <div className="mr-4">
+                <h3>{profileData?.following?.length}</h3>
+                <p>Following</p>
+              </div>
+            </div>
+
+            <div className=" text-center ">
+              <h2 className="mt-2">Suggestion</h2>
+              Marshal, [5/5/2022 12:21 AM]
+              <div className="flex flex-wrap ">
+                {searchUser.map((user) => (
+                  <div className=" border-2 m-2 w-20 h-20">
+                    <a href={`/profile/${user.user._id}/activity/personal`}>
+                      <img
+                        className=" w-20 h-20 object-cover"
+                        src={`/assets/img/profile/${user.profileImage}`}
+                      />
+                      <h6 className="mt-2">{user.username}</h6>
+                    </a>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className=" border-l-2 p-4 border-r-2 min-w-[500px] min-h-[400px] h-auto flex-1 flex-wrap object-contain">
+            <Outlet />
+          </div>
+          {/* <div className=" border-2 h-40 w-[300px]"></div> */}
         </div>
-        {/* <div className=" border-2 h-40 w-[300px]"></div> */}
-      </div>{" "}
+      )}
     </ProfilePageStyle>
   );
 };

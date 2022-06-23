@@ -12,9 +12,12 @@ import "./homeqw.css";
 import Usercard from "./UserCard/Usercard";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { data } from "autoprefixer";
 const Home = (props) => {
   const light = useSelector((state) => state.mode.light);
   const navigate = useNavigate();
+  const { data: userData } = useSelector((state) => state.userAuth);
+
   return (
     <div className={light ? "home_mk" : "home_mk home__dark_mk"}>
       {/* navbar */}
@@ -47,7 +50,15 @@ const Home = (props) => {
               participating in events and getting rewards.
             </p>
             <Button
-              onClick={() => navigate("/main")}
+              onClick={() => {
+                if (userData?.data.role == "company") {
+                  navigate("/company/find");
+                } else if (userData?.data.role == "admin") {
+                  navigate("/admin");
+                } else {
+                  navigate("/main");
+                }
+              }}
               size="lg"
               style={{ marginTop: "30px" }}
               variant="success"

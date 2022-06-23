@@ -12,9 +12,10 @@ const Datatable = () => {
   useEffect(() => {
     const feachData = async () => {
       const users = await api.get("/profile");
+      const user = users.data.data.filter((user) => user.user.role == "talent");
       console.log("marshalwwwwwwwwwwwwww", users.data.data);
-      setUsers(users.data.data);
-      setSearchUser(users.data.data);
+      setUsers(user);
+      setSearchUser(user);
     };
     feachData();
   }, []);
@@ -31,7 +32,7 @@ const Datatable = () => {
         return (
           <div className="cellAction">
             <Link
-              to={`/profile/${params.row.user._id}/activity/personal`}
+              to={`/admin/${params.row.user._id}/profile`}
               style={{ textDecoration: "none" }}
             >
               <div className="viewButton">View</div>

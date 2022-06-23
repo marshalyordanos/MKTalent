@@ -11,7 +11,7 @@ const Profile = (props) => {
   return (
     <div>
       <h1>THIS IS PROFILE PAGE IN ADMIN CONTROL with PROFILPAGE</h1>
-      <ProfilePage />
+      <ProfilePage show={true} />
     </div>
   );
 };

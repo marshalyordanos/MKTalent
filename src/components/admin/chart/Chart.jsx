@@ -8,7 +8,6 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-
 import { userColumns, userRows } from "../datatablesource";
 
 import { useEffect, useState, useMemo } from "react";
@@ -19,22 +18,22 @@ import api from "../../../api/api";
 // { name: "March", Total: 800 },
 // { name: "April", Total: 1600 },
 // { name: "May", Total: 900 },
-// { name: "June", Total: 1700 },]) 
+// { name: "June", Total: 1700 },])
 
 const Chart = ({ aspect, title }) => {
-//   const [data, setData] = useState(userRows);
-// const [searchUser, setSearchUser] = useState([]);
-// const [users, setUsers] = useState([]);
+  //   const [data, setData] = useState(userRows);
+  // const [searchUser, setSearchUser] = useState([]);
+  // const [users, setUsers] = useState([]);
 
-//   useEffect(() => {
-//     const feachData = async () => {
-//       const users = await api.get("/profile");
-//       console.log("marshalwwwwwwwwwwwwww", users.data.data);
-//       users.data.data.map(item=>setUsers(prev=>[...prev,{name:MONTHS[item._id-1], "New User":item.createdAt}]))
-//       setSearchUser(users.data.data);
-//     };
-//     feachData();
-//   }, [MONTHS]);
+  //   useEffect(() => {
+  //     const feachData = async () => {
+  //       const users = await api.get("/profile");
+  //       console.log("marshalwwwwwwwwwwwwww", users.data.data);
+  //       users.data.data.map(item=>setUsers(prev=>[...prev,{name:MONTHS[item._id-1], "New User":item.createdAt}]))
+  //       setSearchUser(users.data.data);
+  //     };
+  //     feachData();
+  //   }, [MONTHS]);
   return (
     <div className="chart">
       <div className="title">{title}</div>
