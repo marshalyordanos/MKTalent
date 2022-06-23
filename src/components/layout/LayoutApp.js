@@ -40,12 +40,6 @@ const { Header, Sider, Footer, Content } = Layout;
 
 const menu = (
   <Menu>
-    <Menu.Item key={10}>
-      <NavLink to={"/ww"}>ABOUT US</NavLink>
-    </Menu.Item>
-    <Menu.Item key={12}>
-      <NavLink to={"/ee"}>CONTACT</NavLink>
-    </Menu.Item>
     <Menu.Item key={13}>
       <NavLink to={"/ll"}>LOGIN</NavLink>
     </Menu.Item>
@@ -251,8 +245,7 @@ const LayoutApp = (props) => {
                       )}
                       <CurrencyExchange className="coin" />
                     </div>
-                    <NavLink to={"/ww"}>ABOUT US</NavLink>
-                    <NavLink to={"/ee"}>CONTACT</NavLink>
+
                     {data?.token ? (
                       <Dropdown
                         overlay={profileMenu}
