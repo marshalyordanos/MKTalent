@@ -11,6 +11,7 @@ import {
   FileTextOutlined,
   BankOutlined,
 } from "@ant-design/icons";
+import ChatIcon from "@mui/icons-material/Chat";
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
@@ -140,6 +141,9 @@ const CompanyLayout = (props) => {
               </Menu.Item>
               <Menu.Item key="8" icon={<UserAddOutlined />}>
                 <Link to={"/admin/profile"}>profile</Link>
+              </Menu.Item>
+              <Menu.Item key="9" icon={<ChatIcon />}>
+                <Link to={"/admin/chat"}>Chat</Link>
               </Menu.Item>
             </Menu>
           </div>

@@ -59,7 +59,7 @@ const Profile = (props) => {
                   <div class="col-md-6">
                     <div class="media">
                       <label>Address</label>
-                      <p>California, USA</p>
+                      <p>Addis Ababa, Ethiopia</p>
                     </div>
                     <div class="media">
                       <label>Established</label>
