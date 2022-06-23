@@ -1,47 +1,40 @@
-import React from 'react'
-import styled from 'styled-components'
-import EventImage from '../../../assets/page/event/jorka.png'
-import { Navigate, Route, Routes,Link } from 'react-router-dom';
-const EventCard = () => {
-  return (
-    <EventCardStyle >
-       <div className='px-3 overflow-hidden'>
-           <img src={EventImage} className="w-[70px] h-[70px] rounded-full object-fit" alt="" />
-       </div>
-       <div className='hover:text-white'>
-           <h3 className=''>JORKA EVENTS</h3>
-           <p>location and address</p>
+import React from "react";
+import styled from "styled-components";
+import JobImage from "../../../assets/page/Job/job1.png";
 
-       </div>
-       <div className=' self-start bg-gray-200 hover:bg-blue-500 hover:ease-in-out duration:300 hover:cursor-pointer  p-2 px-4 rounded-lg '>
-            <Link to="/eventdetail/22" className='hover:text-white'><p className='hover:text-white'>Participate</p></Link>
-       </div>
-    </EventCardStyle>
-  )
-}
-const EventCardStyle = styled.div`
-   margin: 20px;
-   display: flex;
-   flex-direction: column;
-   align-self:center;
-   background-color: #ffffff;
-   padding: 30px;
-   width:250px;
-   height: 300px;
-   justify-content: space-around;
-padding-left: 70px;
+const EventCard = (props) => {
+  return (
+    <JobCardStyle>
+      <div className="px-3">
+        {/* <img src={JobImage} className="w-[50px]" alt="" /> */}
+      </div>
+      <div className="flex-grow">
+        <h3>{props.eventname}</h3>
+        <p>{props.location}</p>
+      </div>
+      <div className=" self-start bg-gray-200 p-2 px-4 rounded-lg ">
+        <p>{props.eventtype}</p>
+      </div>
+    </JobCardStyle>
+  );
+};
+
+const JobCardStyle = styled.div`
+  margin: 20px;
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 30px;
   /* box-shadow:  4px 4px 10px lightgray; */
   border-radius: 5px;
-  :hover{
-  box-shadow:  4px 4px 15px #b6b6b6;
-background-color: #ffc400;
-transition: all 0.5s ease-in-out;
-color:white;
+  :hover {
+    box-shadow: 4px 4px 15px #b6b6b6;
   }
-   p,h3{
-       margin: 0;
-       padding: 0;
-   }
-
+  p,
+  h3 {
+    margin: 0;
+    padding: 0;
+  }
 `;
-export default EventCard
+
+export default EventCard;
