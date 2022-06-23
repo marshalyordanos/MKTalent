@@ -27,11 +27,7 @@ export default function TopBar() {
               HOME
             </Link>
           </li>
-          <li className="topListItem">
-            <Link className="link text-black" to="/">
-              CATEGORIES
-            </Link>
-          </li>
+          
          
           {data.data?.role=="company"  && <li className="topListItem">
             <Link className="link text-black" to="write">
