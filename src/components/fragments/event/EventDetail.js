@@ -11,9 +11,9 @@ import { useSelector } from "react-redux";
 const EventDetail = () => {
   const data = useSelector((state) => state.userAuth.data);
   const [job, setJob] = useState({});
-  const [responsibilities, setResponsibilities] = useState([]);
+  const [tt, setTT] = useState(false);
   const [requirements, setRequirements] = useState([]);
-
+  const [responsibilities, setResponsibilities] = useState([]);
   const jobId = useParams();
   useEffect(() => {
     const feachData = async () => {
@@ -31,48 +31,7 @@ const EventDetail = () => {
   }, []);
 
   const applyHandler = async () => {
-    console.log(
-      "**********************************************************************************"
-    );
-    const x = await api.patch(
-      `/event/updateEvent/${job._id}`,
-      {
-        appliedUser: [...job.appliedUser, data.data._id],
-      },
-      {
-        headers: {
-          "Access-Control-Allow-Origin": true,
-          authorization: `Bearer ${data?.token}`, /////////////////////////////////////////////////////////////////////////////////
-        },
-      }
-    );
-    const yy = await api.get(
-      `/profile/filter/${data.data._id}`,
-
-      {
-        headers: {
-          "Access-Control-Allow-Origin": true,
-          authorization: `Bearer ${data?.token}`, /////////////////////////////////////////////////////////////////////////////////
-        },
-      }
-    );
-    const y = await api.patch(
-      `/profile/${yy.data.data._id}`,
-      {
-        jobs: [...yy.data.data.jobs, job._id],
-      },
-      {
-        headers: {
-          "Access-Control-Allow-Origin": true,
-          authorization: `Bearer ${data?.token}`, /////////////////////////////////////////////////////////////////////////////////
-        },
-      }
-    );
-    console.log(
-      "**********************************************************************************",
-      x
-    );
-    setJob({ ...job, appliedUser: [...job.appliedUser, data.data] });
+    setTT(true);
   };
   return (
     <JobDetailStyle>
@@ -80,7 +39,6 @@ const EventDetail = () => {
         eventname={job.eventname}
         eventtype={job.eventtype}
         description={job.description}
-       
         location={job.location}
         duration={job.duration}
         targetaudience={job.targetaudience}
@@ -106,11 +64,9 @@ const EventDetail = () => {
 
         <p>{job.description}</p>
       </div>
-   
 
       <div className="m-[20px]">
-        {job?.appliedUser &&
-        job?.appliedUser.map((x) => x._id).includes(data?.data._id) ? (
+        {tt ? (
           <button
             className="px-4 py-2 rounded-md border-[1px] border-gray-500 bg-sky-600 text-white"
             // onClick={applyHandler}
@@ -126,8 +82,6 @@ const EventDetail = () => {
           </button>
         )}
       </div>
-
-      
     </JobDetailStyle>
   );
 };
