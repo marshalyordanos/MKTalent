@@ -37,10 +37,10 @@ const Dashboard = (props) => {
     const feachData = async () => {
       const userss = await api.get("/profile");
       const user = userss.data.data.filter(
-        (user) => user.user.role == "talent"
+        (user) => user?.user?.role == "talent"
       );
       const company = userss.data.data.filter(
-        (user) => user.user.role == "company"
+        (user) => user?.user?.role == "company"
       );
 
       const job = await api.get("/job/getallJob");
@@ -67,10 +67,10 @@ const Dashboard = (props) => {
           {/* <Navbar />
            */}
           <div className="widgets">
-            <Widget num={users.length} type="user" />
-            <Widget num={companys.length} type="company" />
-            <Widget num={jobs.length} type="job" />
-            <Widget num={rewards.length} type="reward" />
+            <Widget num={users?.length} type="user" />
+            <Widget num={companys?.length} type="company" />
+            <Widget num={jobs?.length} type="job" />
+            <Widget num={rewards?.length} type="reward" />
           </div>
           <div className="charts">
             <Featured point={points} />

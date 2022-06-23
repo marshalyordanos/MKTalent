@@ -67,9 +67,9 @@ const PeoplePage = () => {
           searchUser.map((user) => (
             <div className="flex flex-row">
               <PeopleSearchCard
-                image={user.profileImage}
-                name={user.user.username}
-                userId={user.user._id}
+                image={user?.profileImage}
+                name={user?.user?.username}
+                userId={user?.user?._id}
                 follower={user.follower}
                 following={user.following}
                 ratingUser={user.ratingUser}

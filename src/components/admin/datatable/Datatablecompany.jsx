@@ -13,7 +13,7 @@ const Datatable = () => {
     const feachData = async () => {
       const users = await api.get("/profile");
       const user = users.data.data.filter(
-        (user) => user.user.role == "company"
+        (user) => user?.user?.role == "company"
       );
 
       console.log("marshalwwwwwwwwwwwwww", users.data.data);

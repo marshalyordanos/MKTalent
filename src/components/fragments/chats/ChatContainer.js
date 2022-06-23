@@ -122,8 +122,8 @@ const ChatContainer = ({ currentChat }) => {
             )}
           </div>
           <div class="flex-grow-1 pl-3">
-            {currentChat?.user.username ? (
-              <strong>{currentChat?.user.username}</strong>
+            {currentChat?.user?.username ? (
+              <strong>{currentChat?.user?.username}</strong>
             ) : (
               <strong>Choose a person to Chat</strong>
             )}

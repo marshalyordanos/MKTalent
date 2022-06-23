@@ -5,7 +5,7 @@ import { Container } from "reactstrap";
 import { Form, FormGroup, Label, Input, Table } from "reactstrap";
 import "./company.css";
 import CompanyLogo from "../../assets/page/company/ethiotel.jpg";
-import CompanyProfileImage from "../../assets/page/company/companyProfileImage.png";
+import CompanyProfileImage from "../../assets/page/company.png";
 
 const ProfileEdit = (props) => {
   const [urls, setUrls] = useState([]);

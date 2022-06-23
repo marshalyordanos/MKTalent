@@ -13,17 +13,17 @@ const Status = (props) => {
         <div className=" flex justify-between">
           <div className="companycards ">
             <p className="titlestat">Blog</p>
-            <div className="totalstat">Total: 7</div>
+            <div className="totalstat">Total: 3</div>
           </div>
           <div className="companycards ">
             <p className="titlestat">Job</p>
-            <div className="totalstat">Total: 20</div>
-            <div className="totalstat">Applied users: 7200</div>
+            <div className="totalstat">Total: 4</div>
+            <div className="totalstat">Applied users: 3</div>
           </div>
           <div className="companycards ">
             <p className="titlestat">Event</p>
-            <div className="totalstat">Total: 13</div>
-            <div className="totalstat">Participants: 453</div>
+            <div className="totalstat">Total: 1</div>
+            <div className="totalstat">Participants: 1</div>
           </div>
         </div>
       </div>

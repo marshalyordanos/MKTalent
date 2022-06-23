@@ -37,7 +37,7 @@ const Contacts = ({ contacts, changeChat, handleChange, searchUser }) => {
                   height="40"
                 />
                 <div class="flex-grow-1 ml-3">
-                  {user.user.username}
+                  {user?.user?.username}
                   <div class="small">
                     <span class="fas fa-circle chat-online"></span> Online
                   </div>
