@@ -14,6 +14,8 @@ const ChatPage = () => {
   const [currentChat, setCurrentChat] = useState(undefined);
   const currentUser = useSelector((state) => state.userAuth.data.data);
 
+  const [searchUser, setSearchUser] = useState([]);
+  const [users, setUsers] = useState([]);
   useEffect(() => {
     const feachdata = async () => {
       if (currentUser) {
@@ -21,6 +23,7 @@ const ChatPage = () => {
           const data = await api.get(`/profile/allusers/${currentUser?._id}`);
 
           setContacts(data.data);
+          setSearchUser(data.data);
           // console.log("}}}}}}}}}}}}}}}}}}}}}}}}}}", data);
         } else {
           // navigate("/setAvatar");
@@ -30,7 +33,14 @@ const ChatPage = () => {
 
     feachdata();
   }, [currentUser]);
-
+  const handleChange = (e) => {
+    // setSearch(e.target.value);
+    const xx = contacts.filter((user) =>
+      user.user.username.toLowerCase().startsWith(e.target.value.toLowerCase())
+    );
+    console.log("pppppp", xx);
+    setSearchUser(xx);
+  };
   const handleChatChange = (chat) => {
     setCurrentChat(chat);
   };
@@ -43,7 +53,12 @@ const ChatPage = () => {
           <div class="card">
             <div class="row g-0">
               {/* /**************************************************************************************** *********************/}
-              <Contacts contacts={contacts} changeChat={handleChatChange} />
+              <Contacts
+                handleChange={handleChange}
+                searchUser={searchUser}
+                contacts={contacts}
+                changeChat={handleChatChange}
+              />
               <ChatContainer currentChat={currentChat} />
             </div>
           </div>

@@ -67,6 +67,7 @@ import TotalBlogs from "./components/company/status/TotalBlogs";
 import TotalJobs from "./components/company/status/Totaljobs";
 import TotalEvents from "./components/company/status/TotalEvents";
 import SearchPage from "./pages/SearchPage";
+import { Empty } from "antd";
 const HomeApp = () => {
   const [showLogin, setShowLogin] = React.useState(false);
   const handleShowLoginOpen = () => setShowLogin(true);
@@ -351,24 +352,31 @@ const HomeApp = () => {
             </AdminLayout>
           }
         />
-        <Route
-          path="/admin/admins"
+        {/* <Route
+          path="/admin/admin/:id"
           element={
             <AdminLayout>
-              <Admins />
+              <ProfilePage />
             </AdminLayout>
           }
-        />
+        /> */}
         <Route
-          path="/admin/company/register"
+          path="/admin/:id"
           element={
-            <AdminLayout>
-              <Setting />
-            </AdminLayout>
+            <CompanyLayout>
+              <ProfilePage></ProfilePage>
+            </CompanyLayout>
           }
-        />
+        >
+          <Route path="activity/personal" element={<Empty />} />
+
+          <Route path="profile" element={<ProfileFrag />} />
+          <Route path="friends" element={<PeoplePage />} />
+          <Route path="media" element={<PeoplePage />} />
+        </Route>
+
         <Route
-          path="/admin/profile"
+          path="/admin/profile/:id"
           element={
             <AdminLayout>
               <Profile />
@@ -548,6 +556,20 @@ const HomeApp = () => {
             </CompanyLayout>
           }
         />
+        <Route
+          path="/company/:id"
+          element={
+            <CompanyLayout>
+              <ProfilePage></ProfilePage>
+            </CompanyLayout>
+          }
+        >
+          <Route path="activity/personal" element={<Empty />} />
+
+          <Route path="profile" element={<ProfileFrag />} />
+          <Route path="friends" element={<PeoplePage />} />
+          <Route path="media" element={<PeoplePage />} />
+        </Route>
         <Route
           path="/company/jobs/:id"
           element={

@@ -18,6 +18,7 @@ const JobPage = () => {
   const [parttime, setParttime] = useState(false);
   const [temporary, setTemporary] = useState(false);
 
+  const [searchUser, setSearchUser] = useState([]);
   useEffect(() => {
     const feachData = async () => {
       const jobs = await api.get("/job/getalljob");
@@ -51,6 +52,7 @@ const JobPage = () => {
         ff = [...jobs.data.data];
       }
       setAllJobs(ff);
+      setSearchUser(jobs.data.data);
       console.log("::::::::::::::::::::::::::::::::::::::::::::::", ff);
     };
     feachData();
@@ -68,6 +70,14 @@ const JobPage = () => {
   };
   const handleTemporary = () => {
     setTemporary(!temporary);
+  };
+  const handleChange = (e) => {
+    // setSearch(e.target.value);
+    const xx = searchUser.filter((job) =>
+      job.jobtitle.toLowerCase().startsWith(e.target.value.toLowerCase())
+    );
+    console.log("pppppp", xx);
+    setAllJobs(xx);
   };
   return (
     <JobPageStyle>
@@ -90,8 +100,13 @@ const JobPage = () => {
       </div>
       <div className="header__bottem ">
         <div className="header__bottem__one">
-          <input type="text" placeholder="Keywords" name="" id="" />
-          <input type="text" placeholder="Location" name="" id="" />
+          <input
+            onChange={handleChange}
+            type="text"
+            placeholder="Keywords"
+            name=""
+            id=""
+          />
           <Button
             size={"lage"}
             type="primary"

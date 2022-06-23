@@ -1,18 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const Contacts = ({ contacts, changeChat }) => {
+const Contacts = ({ contacts, changeChat, handleChange, searchUser }) => {
   const [currentSelected, setCurrentSelected] = useState(undefined);
+  const [name, setName] = useState("");
 
   const changeCurrentChat = (index, contact) => {
     setCurrentSelected(index);
     changeChat(contact);
   };
+
   return (
     <div class="col-12 col-lg-5 col-xl-3 border-right">
       <div class="px-4 d-none d-md-block">
         <div class="d-flex align-items-center">
           <div class="flex-grow-1">
             <input
+              onChange={handleChange}
               type="text"
               class="form-control my-3"
               placeholder="Search..."
@@ -21,7 +24,7 @@ const Contacts = ({ contacts, changeChat }) => {
         </div>
       </div>
 
-      {contacts.map((user, i) => {
+      {searchUser.map((user, i) => {
         return (
           <div onClick={() => changeCurrentChat(i, user)}>
             <a href="#" class="list-group-item list-group-item-action border-0">

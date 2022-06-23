@@ -138,6 +138,7 @@ const Find = (props) => {
                   ratingAvarage={user.ratingAvarage}
                   profileId={user._id}
                   rating={user.rating}
+                  isCompany={true}
                 />{" "}
               </div>
             ))

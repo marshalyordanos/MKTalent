@@ -2,15 +2,29 @@ import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
 import { userColumns, userRows } from "../datatablesource";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import api from "../../../api/api";
 
 const Datatable = () => {
   const [data, setData] = useState(userRows);
+  const [searchUser, setSearchUser] = useState([]);
+  const [users, setUsers] = useState([]);
+  useEffect(() => {
+    const feachData = async () => {
+      const users = await api.get("/profile");
+      const user = users.data.data.filter(
+        (user) => user.user.role == "company"
+      );
 
+      console.log("marshalwwwwwwwwwwwwww", users.data.data);
+      setUsers(user);
+      setSearchUser(user);
+    };
+    feachData();
+  }, []);
   const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
+    setUsers(users.filter((item) => item.id !== id));
   };
-
   const actionColumn = [
     {
       field: "action",
@@ -35,10 +49,9 @@ const Datatable = () => {
   ];
   return (
     <div className="datatable">
-
       <DataGrid
         className="datagrid w-[150vh]"
-        rows={data}
+        rows={users}
         columns={userColumns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]}

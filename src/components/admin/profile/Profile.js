@@ -10,7 +10,7 @@ const Profile = (props) => {
 
   return (
     <div>
-      <ProfilePage />
+      <ProfilePage show={true} />
     </div>
   );
 };

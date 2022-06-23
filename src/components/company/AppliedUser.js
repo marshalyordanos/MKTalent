@@ -149,7 +149,7 @@ const AppliedUser = () => {
         <Space size="middle">
           {/* <button>Invite {record.name}</button> */}
           <Link
-            to={`/profile/${record._id}/activity/personal`}
+            to={`/company/${record._id}/profile`}
             variant="contained"
             color="success"
           >

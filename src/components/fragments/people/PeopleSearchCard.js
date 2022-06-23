@@ -201,7 +201,13 @@ const PeopleSearchCard = (props) => {
         </div>
       )}
       {userData.token && (
-        <Link to={`/profile/${props.userId}/activity/personal`}>
+        <Link
+          to={
+            props.isCompany
+              ? `/company/${props.userId}/profile`
+              : `/profile/${props.userId}/activity/personal`
+          }
+        >
           <button className=" self-center border-purple-600 box-content border-2 w-[200px] rounded-3xl h-[35px] mb-3 text-purple-600 hover:bg-purple-600 hover:text-white hover:duration-700">
             View Profile
           </button>

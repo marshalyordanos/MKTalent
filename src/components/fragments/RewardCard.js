@@ -19,6 +19,7 @@ const RewardCard = (props) => {
 
   const handleOk = () => {
     setIsModalVisible(false);
+    window.location.reload(false);
   };
 
   const handleCancel = () => {
