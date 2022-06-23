@@ -13,7 +13,7 @@ const Event = (props) => {
           <h1>Make Event</h1>
           <hr></hr>
           <br></br>
-          <div className="minicontainer">
+          {/* <div className="minicontainer">
             <h3>Event Picture</h3>
             <hr></hr>
             <FormGroup>
@@ -44,7 +44,7 @@ const Event = (props) => {
                 </div>
               </div>
             </FormGroup>
-          </div>
+          </div> */}
           <div className="minicontainer">
             <h3>About Event </h3>
             <hr></hr>

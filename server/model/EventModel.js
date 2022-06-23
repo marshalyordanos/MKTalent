@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 
 const EventPostSchema = new mongoose.Schema(
   {
+    eventname: {
+      type:String,
+    unique:true
+    },
 eventtype: String,
 location: String,
 description: String,
@@ -15,13 +19,12 @@ user: {
   required: [true, "posts must have a user"],
 },
 
-// appliedUser: [
-//   {
-//     type: mongoose.Schema.ObjectId,
-//     ref: "User",
-//     unique: true,
-//   },
-// ], 
+appliedUser: [
+  {
+    type: mongoose.Schema.ObjectId,
+    ref: "User",
+  },
+], 
   }, 
 {
     timestamps: true,
