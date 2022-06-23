@@ -205,8 +205,6 @@ const CompanyLayout = (props) => {
               >
                 {windowWidth > 845 ? (
                   <div className="flex items-center mx-8">
-                    <NavLink to={"/ww"}>Notification</NavLink>
-
                     {data?.token ? (
                       <Dropdown
                         overlay={profileMenu}

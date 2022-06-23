@@ -12,8 +12,8 @@ const Datatable = () => {
   useEffect(() => {
     const feachData = async () => {
       const users = await api.get("/profile");
-      const user = users.data.data.filter((user) => user.user.role == "talent");
-      console.log("marshalwwwwwwwwwwwwww", users.data.data);
+      const user = users.data.data.filter((user) => user?.user?.role == "talent");
+      console.log("marshalwwwwwwwwwwwwww", users?.data?.data);
       setUsers(user);
       setSearchUser(user);
     };
