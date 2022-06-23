@@ -44,12 +44,12 @@ function UserStatus() {
 
       <div>
         {searchUser.map((user) => (
-          <Link to={`/profile/${user.user._id}/activity/personal`}>
+          <Link to={`/profile/${user?.user?._id}/activity/personal`}>
             <RightSideBarUserCard
               image={user.profileImage}
               username={user.username}
               point={user.point}
-              userId={user.user._id}
+              userId={user?.user?._id}
             />
           </Link>
         ))}
