@@ -363,9 +363,9 @@ const HomeApp = () => {
         <Route
           path="/admin/:id"
           element={
-            <CompanyLayout>
+            <AdminLayout>
               <ProfilePage></ProfilePage>
-            </CompanyLayout>
+            </AdminLayout>
           }
         >
           <Route path="activity/personal" element={<Empty />} />
@@ -374,6 +374,14 @@ const HomeApp = () => {
           <Route path="friends" element={<PeoplePage />} />
           <Route path="media" element={<PeoplePage />} />
         </Route>
+        <Route
+          path="/admin/company/register"
+          element={
+            <AdminLayout>
+              <Setting></Setting>
+            </AdminLayout>
+          }
+        />
 
         <Route
           path="/admin/profile/:id"
