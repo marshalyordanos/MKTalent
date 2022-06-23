@@ -3,9 +3,10 @@ const mongoose = require("mongoose");
 const EventPostSchema = new mongoose.Schema(
   {
     eventname: {
-      type:String,
+      type: String,
     unique:true
     },
+   
 eventtype: String,
 location: String,
 description: String,

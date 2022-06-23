@@ -1,179 +1,193 @@
-import React from 'react';
-import styled from 'styled-components'
-import EventCard from './EventCard'
-import BusinessCenterOutlinedIcon from '@mui/icons-material/BusinessCenterOutlined';
-import FmdGoodOutlinedIcon from '@mui/icons-material/FmdGoodOutlined';
-import FaceBook from '../../../assets/page/event/Facebook.svg.png'
-import Instagram from '../../../assets/page/event/instagram.jpg'
-import Telegram from '../../../assets/page/event/telegram.png'
-import EventIcon from '@mui/icons-material/Event';
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
+import JobCard from "./EventCard";
+import BusinessCenterOutlinedIcon from "@mui/icons-material/BusinessCenterOutlined";
+import FmdGoodOutlinedIcon from "@mui/icons-material/FmdGoodOutlined";
+import Button from "../../../utils/Button";
+import api from "../../../api/api";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-import Button from '../../../utils/Button';
 const EventDetail = () => {
-    const pra = [
-        "Fundraising proceeds will directly support Reel Asian’s year-round and festival youth programs that help culturally diverse and newcomer youth from the GTA examine issues of identity and belonging through media arts, while providing leadership opportunities, education and job-skills training in film and creative production",
+  const data = useSelector((state) => state.userAuth.data);
+  const [job, setJob] = useState({});
+  const [responsibilities, setResponsibilities] = useState([]);
+  const [requirements, setRequirements] = useState([]);
 
-    ]
-    const locationandduration = [
-        "Big Sean will at the hmv Underground at Beherawi Theater around giorgis on March 24, 2015 at 5:00 PM for an exclusive FAN MEET & GREET. Space is limited to the first 300 fans on a first come first served basis (as per the event protocol).",
-      
-    ]
-    const targetaudience = [
-        "Anyone with interest.",
-        "Looking to expand their network and make connections.",
-        "Aspiring Models are recommended to attend .",
-        "Additional related experience beneficial."
-    ]
-    const incollaborationwith = [
-        "Ghion.",
-        "Dashen Bank.",
-        "Choo choo .",
-   
-    ]
-    const share = [
-       <img src={ FaceBook} className="w-8"/>,
-       <img src={ Instagram} className="w-12"/>,
-       <img src={ Telegram}className="w-8"/>,
+  const jobId = useParams();
+  useEffect(() => {
+    const feachData = async () => {
+      const jobs = await api.get(`/event/${jobId.id}`);
+      setJob(jobs.data.data);
+      setRequirements(jobs.data.data.eventtype);
+      setResponsibilities(jobs.data.data.duration);
 
-    ]
+      console.log(
+        "::::::::::::::::::::::::::::::::::::::::::::::",
+        jobs.data.data
+      );
+    };
+    feachData();
+  }, []);
+
+  const applyHandler = async () => {
+    console.log(
+      "**********************************************************************************"
+    );
+    const x = await api.patch(
+      `/event/updateEvent/${job._id}`,
+      {
+        appliedUser: [...job.appliedUser, data.data._id],
+      },
+      {
+        headers: {
+          "Access-Control-Allow-Origin": true,
+          authorization: `Bearer ${data?.token}`, /////////////////////////////////////////////////////////////////////////////////
+        },
+      }
+    );
+    const yy = await api.get(
+      `/profile/filter/${data.data._id}`,
+
+      {
+        headers: {
+          "Access-Control-Allow-Origin": true,
+          authorization: `Bearer ${data?.token}`, /////////////////////////////////////////////////////////////////////////////////
+        },
+      }
+    );
+    const y = await api.patch(
+      `/profile/${yy.data.data._id}`,
+      {
+        jobs: [...yy.data.data.jobs, job._id],
+      },
+      {
+        headers: {
+          "Access-Control-Allow-Origin": true,
+          authorization: `Bearer ${data?.token}`, /////////////////////////////////////////////////////////////////////////////////
+        },
+      }
+    );
+    console.log(
+      "**********************************************************************************",
+      x
+    );
+    setJob({ ...job, appliedUser: [...job.appliedUser, data.data] });
+  };
   return (
-    <EventDetailStyle>
-        <EventCard className=""/>
-        <div className='eventDetail__type text-gray-500'>
-            <div className='eventDetail__type1 '>
-                <div className='a1'>
-                <EventIcon/>
-                <span className='pl-3'>Event Type</span>
-                </div>
-                <span>Conference</span>
-            </div>
-            <div className='eventDetail__type2' >
-                <div className='a2'>
-                <FmdGoodOutlinedIcon/>
-                <span className='pl-3'>Location</span>
-                </div>
-                <span> Beherawi Theater around giorgis, Addisababa</span>
-            </div>
-            
+    <JobDetailStyle>
+      <JobCard
+        eventname={job.eventname}
+        eventtype={job.eventtype}
+        description={job.description}
        
+        location={job.location}
+        duration={job.duration}
+        targetaudience={job.targetaudience}
+      />
+      <div className="jobDetail__type text-gray-500">
+        <div className="jobDetail__type1 ">
+          <div className="a1">
+            <BusinessCenterOutlinedIcon />
+            <span className="pl-3">Event Type</span>
+          </div>
+          <span>{job.eventtype}</span>
         </div>
-        <div className='eventDetail__pra'>
-            <h3>Event Description:</h3>
-        {
-                pra.map(v=><p>{v}</p>)
-            }
+        <div className="jobDetail__type2">
+          <div className="a2">
+            <FmdGoodOutlinedIcon />
+            <span className="pl-3">Location</span>
+          </div>
+          <span>{job.location}</span>
         </div>
-        <div className="eventdetail__response">
-            <h3>Location and Duration:</h3>
-            {
-                locationandduration.map(v=><li>{v}</li>)
-            }
-        </div>
-        <div className="eventdetail__list">
-            <h3>Target Audience :</h3>
-            {
-                targetaudience.map(v=><li>{v}</li>)
-            }
-        </div>
-        <div className="eventdetail__list">
-            <h3>Incollaboration with:</h3>
-            {
-                incollaborationwith.map(v=><li>{v}</li>)
-            }
-        </div>
-        <div className="eventdetail__list">
-            <h3>Share :</h3>
-            {
-                <div className="flex px-4 flex-row self-end">{share.map(v=><div>{v}</div>)}</div>
-            }
-        </div>
+      </div>
+      <div className="jobDetail__pra">
+        <h3>Event Description:</h3>
 
-        <div className='m-[20px]'>
-        <Button >Participate</Button>
+        <p>{job.description}</p>
+      </div>
+   
 
-        </div>
+      <div className="m-[20px]">
+        {job?.appliedUser &&
+        job?.appliedUser.map((x) => x._id).includes(data?.data._id) ? (
+          <button
+            className="px-4 py-2 rounded-md border-[1px] border-gray-500 bg-sky-600 text-white"
+            // onClick={applyHandler}
+          >
+            Already applied
+          </button>
+        ) : (
+          <button
+            className="px-4 py-2 rounded-md border-[1px] border-gray-500 bg-sky-600 text-white"
+            onClick={applyHandler}
+          >
+            Apply
+          </button>
+        )}
+      </div>
 
-        <div className='eventdetail__events'>
-            <h2>Related Events</h2>
-        <EventCard/>
-        <EventCard/>
-        <EventCard/>
-        <EventCard/>
-        <EventCard/>
-
-        </div>
-
-
-
-        
-    </EventDetailStyle>
+      
+    </JobDetailStyle>
   );
-}
+};
 
+const JobDetailStyle = styled.div`
+  flex: 1;
+  .jobDetail__type {
+    margin: 20px;
+    border-radius: 7px;
+    border: 1px solid lightgray;
+  }
+  .jobDetail__type1 {
+    padding: 14px;
+    border-bottom: 1px solid lightgray;
+  }
+  .jobDetail__type2 {
+    padding: 14px;
+  }
+  .jobDetail__type div {
+    display: flex;
+    align-items: center;
+  }
+  .jobDetail__type1 > div {
+    width: 40%;
+    font-size: 16px;
+  }
+  .jobDetail__type2 > div {
+    width: 40%;
+    font-size: 16px;
+  }
 
-
-const  EventDetailStyle = styled.div`
-     .eventDetail__type{
-         margin: 20px;
-         border-radius: 7px;
-         border: 1px solid lightgray;
-     }
-     .eventDetail__type1{
-         padding: 14px;
-         border-bottom: 1px solid lightgray;
-     }
-     .eventDetail__type2{
-         padding: 14px;
-     }
-     .eventDetail__type div{
-         display: flex;
-         align-items: center;
-
-     }
-     .eventDetail__type1 > div{
-         width: 40%;
-         font-size: 16px;
-     }
-     .eventDetail__type2 > div{
-         width: 40%;
-         font-size: 16px;
-     }
-
-/* jobDetail__pra */
-.eventDetail__pra{
+  /* jobDetail__pra */
+  .jobDetail__pra {
     margin: 20px;
     font-size: 15px;
-}
-/* jobdetail__response */
-.eventdetail__response{
+  }
+  /* jobdetail__response */
+  .jobdetail__response {
     margin: 20px;
-}
-.eventdetail__response li{
+  }
+  .jobdetail__response li {
     font-size: 15px;
     margin: 4px;
-}
-/* jobdetail__list */
-.eventdetail__list{
+  }
+  /* jobdetail__requirements */
+  .jobdetail__requirements {
     margin: 20px;
-}
-.eventdetail__list li{
+  }
+  .jobdetail__requirements li {
     font-size: 15px;
     margin: 4px;
-}
+  }
 
-
-/* eventdetail__events */
-.eventdetail__events{
-    
-}
-.eventdetail__events h2{
+  /* jobdetail__Jobs */
+  .jobdetail__Jobs {
+  }
+  .jobdetail__Jobs h2 {
     padding-top: 35px;
     margin: 25px;
     border-bottom: 1px solid lightgray;
-   
-}
-
+  }
 `;
-
-
 export default EventDetail;

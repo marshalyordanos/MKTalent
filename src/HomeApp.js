@@ -149,7 +149,7 @@ const HomeApp = () => {
           }
         />
         <Route
-          path="/eventdetail/:id"
+          path="/event/:id"
           element={
             <Layout>
               <EventDetail />
