@@ -6,7 +6,7 @@ import {
   Telegram,
   Twitter,
 } from "@mui/icons-material";
-import tel from "../../assets/page/company/ethiotel.jpg";
+import tel from "../../assets/page/company.png";
 import "./company.css";
 import JobCard from "../fragments/job/JobCard";
 import { Link, NavLink } from "react-router-dom";
@@ -42,18 +42,11 @@ const Profile = (props) => {
           <div class="row align-items-center flex-row-reverse">
             <div class="col-lg-6">
               <div class="about-text go-to">
-                <h3 class="dark-color">Ethio-Telecom</h3>
-                <h6 class="theme-color lead">
-                  A Lead Telecommunication service provide in Ethiopia
-                </h6>
+                <h3 class="dark-color">Company Name</h3>
+                <h6 class="theme-color lead">Company Descriptoin</h6>
                 <p>
-                  Ethio telecom, previously known as the Ethiopian
-                  Telecommunications Corporation, is an Ethiopian
-                  telecommunication company serving as the
-                  <mark>major internet and telephone service provider</mark>.
-                  Ethio telecom is owned by the Ethiopian government and
-                  maintains a monopoly over all telecommunication services in
-                  Ethiopia
+                  Detail information about the company
+                  <mark>the main information</mark>.
                 </p>
                 <div class="row about-list">
                   <div class="col-md-6">
@@ -63,18 +56,18 @@ const Profile = (props) => {
                     </div>
                     <div class="media">
                       <label>Established</label>
-                      <p>4th april 1998</p>
+                      <p>1st Jan 2000</p>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="media">
                       <label>E-mail</label>
-                      <p>firehewot@ethiotel.com</p>
+                      <p>company@email.com</p>
                     </div>
                     <div class="media">
                       <label>Phone</label>
-                      <p>820-885-3321</p>
-                      <p>820-532-9737</p>
+                      <p>09-00-00-00-00</p>
+                      <p>09-00-00-00-00</p>
                     </div>
                   </div>
                 </div>
@@ -109,7 +102,7 @@ const Profile = (props) => {
               <div class="col-6 col-lg-4">
                 <div class="count-data text-center">
                   <h6 class="count h2" data-to="500" data-speed="500">
-                    672
+                    0
                   </h6>
                   <p class="m-0px font-w-600">Employees</p>
                 </div>
@@ -117,7 +110,7 @@ const Profile = (props) => {
               <div class="col-6 col-lg-4">
                 <div class="count-data text-center">
                   <h6 class="count h2" data-to="150" data-speed="150">
-                    128
+                    0
                   </h6>
                   <p class="m-0px font-w-600">Years of service</p>
                 </div>
@@ -125,7 +118,7 @@ const Profile = (props) => {
               <div class="col-6 col-lg-4">
                 <div class="count-data text-center">
                   <h6 class="count h2" data-to="850" data-speed="850">
-                    43,645,923
+                    0
                   </h6>
                   <p class="m-0px font-w-600">Clients</p>
                 </div>
