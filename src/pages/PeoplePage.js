@@ -15,7 +15,9 @@ const PeoplePage = () => {
       const users = await api.get("/profile");
       console.log("marshalwwwwwwwwwwwwww", users.data.data);
       setUsers(users.data.data);
-      setSearchUser(users.data.data);
+      setSearchUser(
+        users.data.data.filter((user) => user.user.role == "talent")
+      );
     };
     feachData();
   }, []);

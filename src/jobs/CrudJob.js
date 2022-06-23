@@ -87,7 +87,7 @@ const CrudJob = () => {
           },
         });
 
-        navigate("/company");
+        navigate("/company/profile");
       } else {
         // dispatch(register({ data: data, loading: false }));
       }

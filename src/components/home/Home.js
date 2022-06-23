@@ -51,12 +51,14 @@ const Home = (props) => {
             </p>
             <Button
               onClick={() => {
-                if (userData?.data.role == "company") {
+                if (userData?.data?.role == "company") {
                   navigate("/company/find");
-                } else if (userData?.data.role == "admin") {
+                } else if (userData?.data?.role == "admin") {
                   navigate("/admin");
-                } else {
+                } else if (userData?.data?.role == "talent") {
                   navigate("/main");
+                } else {
+                  alert("Please login first!");
                 }
               }}
               size="lg"

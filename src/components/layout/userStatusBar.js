@@ -14,12 +14,15 @@ function UserStatus() {
       const users = await api.get("/profile");
       console.log("marshalwwwwwwwwwwwwww", users.data.data);
       setUsers(users.data.data);
-      const yy = [...users.data.data];
+      const yy = [
+        ...users.data.data.filter((user) => user.user.role == "talent"),
+      ];
       console.log("ppppppppppppppppppp", yy);
       yy.sort((a, b) => {
         return b.point - a.point;
       });
       console.log("llllllllll", yy);
+
       setSearchUser(yy.splice(0, 8));
     };
     feachData();

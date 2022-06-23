@@ -124,7 +124,7 @@ const PeopleSearchCard = (props) => {
           className="my-2  
      self-center bg-contain bg-center h-14 w-14 object-cover rounded-3xl"
         />
-        {userData?.token && userData?.data.role == "talent" && (
+        {userData?.token && userData?.data?.role == "talent" && (
           <div className=" mt-2">
             {props.follower.includes(userData.data._id) ? (
               <button
@@ -161,7 +161,7 @@ const PeopleSearchCard = (props) => {
         />{" "}
         <FGstatus number={props.following.length} label="Following" />
       </div>
-      {userData?.data.role == "talent" ? (
+      {userData?.data?.role == "talent" ? (
         <div>
           {props?.ratingUser.includes(userData.data._id) ? (
             <div className="flex flex-col items-center">

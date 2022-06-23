@@ -6,7 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { register } from "../../../redux/authReducer";
 import { useNavigate } from "react-router-dom";
-
+import { Modal } from "antd";
 // import ModelRegistrationCon from '../RegisterStyle'
 
 // import './ModelRegistration.css'
@@ -19,7 +19,20 @@ const Setting = (props) => {
   const userData = useSelector((state) => state.auth);
   const light = useSelector((state) => state.mode.light);
   const roleType = useSelector((state) => state.mode.role);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [text, setText] = useState("");
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
 
+  const handleOk = () => {
+    setIsModalVisible(false);
+    window.location.reload(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
   const [value, setValue] = useState({
     username: "",
     email: "",
@@ -58,16 +71,17 @@ const Setting = (props) => {
     } else {
       try {
         dispatch(register({ loading: true }));
-        const ddd = {...value,role:"company"}
+
+        const ddd = { ...value, role: "company" };
         const { data } = await api.post("/users/signup", ddd);
-        dispatch(register({ data: data, loading: false }));
+        if (data.data.role == "company") {
+          navigate("/home");
+          showModal();
+        } else {
+          dispatch(register({ data: data, loading: false }));
+        }
 
         console.log("pppppppp", data);
-        if (data.data.role == "company") {
-          navigate("/company/postjob");
-        } else if (data.data.role == "admin") {
-          navigate("/admin");
-        }
       } catch (err) {
         dispatch(
           register({
@@ -80,6 +94,14 @@ const Setting = (props) => {
   };
   return (
     <>
+      <Modal
+        title="Basic Modal"
+        visible={isModalVisible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+        <h1>the company is registered! ✅✅✅</h1>
+      </Modal>
       {props.children}
 
       <Settingstyle style={{ backgroundColor: light ? "white" : "#3b3b3b" }}>
@@ -110,7 +132,7 @@ const Setting = (props) => {
               placeholder="Company's Email"
               required
             />
-               
+
             <label for="password">Password</label>
             <input
               name="password"
