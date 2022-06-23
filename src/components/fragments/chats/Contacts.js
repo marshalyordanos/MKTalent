@@ -1,23 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const Contacts = ({ contacts, changeChat }) => {
+const Contacts = ({ contacts, changeChat, handleChange, searchUser }) => {
   const [currentSelected, setCurrentSelected] = useState(undefined);
   const [name, setName] = useState("");
 
-  const [searchUser, setSearchUser] = useState(contacts);
-  const [users, setUsers] = useState([]);
   const changeCurrentChat = (index, contact) => {
     setCurrentSelected(index);
     changeChat(contact);
   };
-  const handleChange = (e) => {
-    // setSearch(e.target.value);
-    const xx = contacts.filter((user) =>
-      user.user.username.toLowerCase().startsWith(e.target.value.toLowerCase())
-    );
-    console.log("pppppp", xx);
-    setSearchUser(xx);
-  };
+
   return (
     <div class="col-12 col-lg-5 col-xl-3 border-right">
       <div class="px-4 d-none d-md-block">

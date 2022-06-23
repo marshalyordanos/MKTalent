@@ -22,7 +22,7 @@ const SearchPage = () => {
     <div>
       {/* <PeopleSearchCard /> */}
       <div className="self-center flex flex-wrap justify-center m-auto ">
-        {users ? (
+        {users.length !== 0 ? (
           users.map((user) => (
             <div className="flex flex-row">
               <PeopleSearchCard
