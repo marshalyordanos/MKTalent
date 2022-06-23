@@ -383,6 +383,14 @@ const HomeApp = () => {
             </AdminLayout>
           }
         />
+        <Route
+          path="/admin/chat"
+          element={
+            <AdminLayout>
+              <ChatPage />
+            </AdminLayout>
+          }
+        />
 
         {/* amdin page routing ends here */}
         <Route path="/company" element={<CompanyLayout />} />
