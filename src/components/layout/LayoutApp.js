@@ -259,7 +259,7 @@ const LayoutApp = (props) => {
 
                           <Avatar
                             alt="Remy Sharp"
-                            src={`/assets/img/profile/${profile.profileImage}`}
+                            src={`/assets/img/profile/${profile?.profileImage}`}
                           />
                         </div>
                       </Dropdown>
@@ -286,7 +286,7 @@ const LayoutApp = (props) => {
 
                           <Avatar
                             alt="Remy Sharp"
-                            src={`/assets/img/profile/${profile.profileImage}`}
+                            src={`/assets/img/profile/${profile?.profileImage}`}
                           />
                         </div>
                       </Dropdown>

@@ -85,7 +85,7 @@ const NavbarApp = (props) => {
                     </p>
                     <Avatar
                       alt="Remy Sharp"
-                      src={`/assets/img/profile/${profile.profileImage}`}
+                      src={`/assets/img/profile/${profile?.profileImage}`}
                     />
                   </div>
                 </Dropdown>

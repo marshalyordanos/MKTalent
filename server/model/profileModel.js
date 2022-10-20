@@ -19,7 +19,6 @@ const profileSchema = new mongoose.Schema(
       {
         type: mongoose.Schema.ObjectId,
         ref: "User",
-        unique: true,
       },
     ],
     rewards: [
@@ -32,21 +31,18 @@ const profileSchema = new mongoose.Schema(
       {
         type: mongoose.Schema.ObjectId,
         ref: "User",
-        unique: true,
       },
     ],
     jobs: [
       {
         type: mongoose.Schema.ObjectId,
         ref: "Job",
-        unique: true,
       },
     ],
     approvedJob: [
       {
         type: mongoose.Schema.ObjectId,
         ref: "Job",
-        unique: true,
       },
     ],
     likes: {

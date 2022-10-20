@@ -189,7 +189,7 @@ const Home = (props) => {
         </div>
       </div>
       {/* Developer Information */}
-      <div
+      {/* <div
         className={
           light ? "home__dev bg-gray-900 " : "home__dev home__dev__dark_mk"
         }
@@ -212,7 +212,7 @@ const Home = (props) => {
           <Usercard avatar="M" name="Marshal Yordanos" />
           <Usercard avatar="M" name="Mohammed Hussein" />
         </div>
-      </div>
+      </div> */}
       {/* footer */}
       <div
         className={
